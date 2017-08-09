@@ -3,4 +3,60 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <drawable name="draw_transparent">#00000000</drawable>
+    <color name="dark_gray">#F0F0F0</color>
+    <color name="transparent">#00000000</color>
+    <color name="transparent_gray">#99777777</color>
+    <color name="ligntgray">#CCCCCC</color>
+    <color name="white">#FFFFFF</color>
+    <color name="background_dark">#ff000000</color>
+    <color name="darker_gray">#aaa</color>
+    <color name="black">#000000</color>
+    <color name="blue">#0000FF</color>
+    <color name="red">#FF0000</color>
+    <color name="gray">#AAAAAA</color>
+    <color name="pink_little">#FF8710</color>
+    <color name="popup">#D9D9D9</color>
+    <color name="blue_deep">#45A7F4</color>
+    <color name="pic_bg">#555555</color>
+    <color name="pic_des">#EEEEEE</color>
+    <color name="app_down">#EBEBEB</color>
+    <color name="app_down_one">#EDEDED</color>
+    <color name="list_selector_color">#D9D9D9</color>
+    <color name="recom">#F46900</color>
+    <color name="open_view_bg">#EDEDED</color>
+    <color name="more_pop_text_color">#8A8A8A</color>
+    <color name="orange">#FF8000</color>
+    <color name="green">#00ff00</color>
+
+    <color name="color_int_picture">#ffffff</color>
+
+    <!-- 除了主页外其他Activity背景颜色 -->
+    <color name="color_bg">#ebebeb</color>  <!-- 和微信保持一致 -->
+
+    <!-- 公告列表页已读和未读信息颜色 -->
+    <color name="read">#AAAAAA</color>
+    <color name="unread">#353535</color>
+
+    <!-- 详情页颜色 -->
+    <color name="title">#333333</color>
+    <color name="announcement_time">#40C9F3</color>
+    <color name="announcement_publisher">#999999</color>
+
+    <!-- ListView分割线颜色 -->
+    <color name="listview_divider">#d8d8d8</color>
+
+    <!-- 冷柜合同里面的输入颜色 -->
+    <color name="input_text_color">#3472E9</color>
+
+    <!-- 高亮字体的颜色 -->
+    <color name="high_light_text">#21C903</color>
+
+    <!-- 选中行颜色 -->
+    <color name="selected_item">#FFAD33</color>
+
+    <color name="frame">#61a716</color>
+    <color name="divider">#e6e6e6</color>
+
+
 </resources>

@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.wyj.treasure.R;
+import com.wyj.treasure.activity.DongTaiActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,6 +40,6 @@ public class HomeFragment extends BaseFragment {
 
     @OnClick(R.id.tv_home)
     public void onViewClicked() {
-
+        DongTaiActivity.actionStart(getActivity(), "data", "str");
     }
 }

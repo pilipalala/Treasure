@@ -1,6 +1,7 @@
 package com.wyj.treasure;
 
 import android.app.Application;
+import android.content.Context;
 
 import cat.ereza.customactivityoncrash.config.CaocConfig;
 
@@ -12,9 +13,21 @@ import cat.ereza.customactivityoncrash.config.CaocConfig;
  */
 
 public class MyApplication extends Application {
+    private static Context context;
+
     @Override
     public void onCreate() {
         super.onCreate();
+        context = getApplicationContext();
+        initError();
+    }
+
+    /*获取全局的 Context */
+    public static Context getContext() {
+        return context;
+    }
+
+    private void initError() {
         CaocConfig.Builder.create()
                 .backgroundMode(CaocConfig.BACKGROUND_MODE_SILENT) //default: CaocConfig.BACKGROUND_MODE_SHOW_CUSTOM
                 .enabled(true) //default: true

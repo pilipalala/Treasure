@@ -25,7 +25,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      *
      * @return
      */
-    protected abstract int initView();
+    protected abstract void initView();
 
 
     /**

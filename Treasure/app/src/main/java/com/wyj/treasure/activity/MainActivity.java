@@ -54,10 +54,12 @@ public class MainActivity extends AppCompatActivity {
         BaseFragment to = getFragment(position);
         switchFragment(mFragment, to);
     }
+
     public BaseFragment getFragment(int position) {
         BaseFragment baseFragment = mBaseFragment.get(position);
         return baseFragment;
     }
+
     /**
      * @param from 刚显示的Fragment。马上就要被隐藏
      * @param to   马上要切换的Fragment。 一会要显示
@@ -65,6 +67,9 @@ public class MainActivity extends AppCompatActivity {
     private void switchFragment(Fragment from, Fragment to) {
         if (from != to) {//才切换
             mFragment = to;
+            /**
+             * 开启一个事务
+             * */
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             if (!to.isAdded()) {//to没被添加
                 //隐藏from
@@ -73,6 +78,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                 //添加to
                 if (to != null) {
+                    /**
+                     * 提交事务commit
+                     * */
                     transaction.add(R.id.content, to).commit();
                 }
             } else {

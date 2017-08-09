@@ -28,7 +28,8 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".activity.NetworkChangeActivity"></activity>
+        <activity android:name=".activity.NetworkChangeActivity" />
+        <activity android:name=".activity.DongTaiActivity"></activity>
     </application>
 
 </manifest>

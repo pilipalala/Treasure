@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.wyj.com.treasure.com.wyj.treasure.MainActivity">
+    tools:context="com.wyj.treasure.activity.MainActivity">
 
     <FrameLayout
         android:id="@+id/content"
