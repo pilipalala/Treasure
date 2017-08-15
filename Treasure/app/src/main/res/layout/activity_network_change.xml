@@ -7,4 +7,33 @@
     android:orientation="vertical"
     tools:context="com.wyj.treasure.activity.NetworkChangeActivity">
 
+    <include layout="@layout/title" />
+
+    <Button
+        android:id="@+id/btn_sendBroadcast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_5"
+        android:background="@color/spinner_bg"
+        android:text="发送自定义广播(标准)"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/btn_sendOrderedBroadcast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_5"
+        android:background="@color/spinner_bg"
+        android:text="发送自定义广播(有序)"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/btn_localBroadcast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_5"
+        android:background="@color/spinner_bg"
+        android:text="发送本地广播"
+        android:textColor="@color/white" />
+
 </LinearLayout>

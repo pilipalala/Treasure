@@ -3,6 +3,8 @@ package com.wyj.treasure;
 import android.app.Application;
 import android.content.Context;
 
+import com.tencent.bugly.crashreport.CrashReport;
+
 import cat.ereza.customactivityoncrash.config.CaocConfig;
 
 /**
@@ -19,14 +21,30 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
+
+        initCrash();
+
         initError();
     }
 
-    /*获取全局的 Context */
+    /**
+     * 错误统计
+     */
+    private void initCrash() {
+        CrashReport.initCrashReport(getApplicationContext(), "42788188ed", false);
+        CrashReport.setUserSceneTag(context, 20170811); // 上报后的Crash会显示该标签
+    }
+
+    /**
+     * 获取全局的 Context
+     */
     public static Context getContext() {
         return context;
     }
 
+    /**
+     * 拦截app闪退
+     */
     private void initError() {
         CaocConfig.Builder.create()
                 .backgroundMode(CaocConfig.BACKGROUND_MODE_SILENT) //default: CaocConfig.BACKGROUND_MODE_SHOW_CUSTOM

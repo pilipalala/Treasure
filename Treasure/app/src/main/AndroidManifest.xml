@@ -4,6 +4,12 @@
 
     <!-- To access Google+ APIs: -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
 
     <application
         android:name=".MyApplication"
@@ -26,10 +32,47 @@
         <receiver
             android:name=".receiver.NetworkChangeReceiver"
             android:enabled="true"
-            android:exported="true" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
 
         <activity android:name=".activity.NetworkChangeActivity" />
-        <activity android:name=".activity.DongTaiActivity"></activity>
+        <activity android:name=".activity.DongTaiActivity" />
+        <activity android:name=".activity.MyReceiverActivity" />
+
+        <receiver
+            android:name=".receiver.MyReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.wyj.treasure.MYRECEIVER" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".activity.MyOrderlyBroadcastActivity" />
+
+        <receiver
+            android:name=".receiver.MyOrderedReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter android:priority="100">
+                <action android:name="com.wyj.treasure.ORDEREDRECEIVER" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".activity.MyLocalBroadcastActivity" />
+
+        <service
+            android:name=".service.MyService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".activity.ServiceActivity" />
+        <activity android:name=".notification.SimpleNotificationActivity" />
+        <activity android:name=".notification.NotificationEffectActivity" />
+        <activity android:name=".activity.NotificationStyleActivity"></activity>
     </application>
 
 </manifest>

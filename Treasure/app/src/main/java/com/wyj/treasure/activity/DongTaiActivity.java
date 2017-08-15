@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -33,6 +34,10 @@ public class DongTaiActivity extends BaseActivity {
     Button btSave;
     @BindView(R.id.ll_dongtai_main)
     LinearLayout llDongtaiMain;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
     private ArrayList<ViewHolder> ls_vh;
     private LayoutInflater inflater;
     private View childView;
@@ -48,11 +53,17 @@ public class DongTaiActivity extends BaseActivity {
     @Override
     protected void initData() {
 
-
+        tvTitle.setText("动态添加布局");
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         String data = getIntent().getStringExtra("data");
         String str = getIntent().getStringExtra("str");
-        LogUtil.d("data--->"+data);
-        LogUtil.d("str---->"+str);
+        LogUtil.d("data--->" + data);
+        LogUtil.d("str---->" + str);
         ls_vh = new ArrayList<ViewHolder>();// 保存View的实例
         /*布局选择器*/
         inflater = LayoutInflater.from(this);
@@ -159,7 +170,7 @@ public class DongTaiActivity extends BaseActivity {
             case R.id.bt_save:
 
                 if (ls_vh.size() == 0) {
-                    ToastUtil.show(this, "请增加一条数据");
+                    ToastUtil.show("请增加一条数据");
                     break;
                 }
                 StringBuffer s = new StringBuffer();
@@ -176,13 +187,14 @@ public class DongTaiActivity extends BaseActivity {
                 }
                 str.trim();
                 if (!str.equals("")) {
-                    ToastUtil.show(this, str);
+                    ToastUtil.show(str);
                     finish();
                 }
 
                 break;
         }
     }
+
 
     /**
      * 保存动态生成的View的实例

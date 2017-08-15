@@ -1,8 +1,9 @@
 package com.wyj.treasure.utils;
 
-import android.content.Context;
 import android.view.Gravity;
 import android.widget.Toast;
+
+import com.wyj.treasure.MyApplication;
 
 /**
  * Created by wangyujie
@@ -14,9 +15,9 @@ import android.widget.Toast;
 public class ToastUtil {
     private static Toast toast;
 
-    public static Toast show(Context context, String text) {
+    public static Toast show(String text) {
         if (toast == null) {
-            toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
+            toast = Toast.makeText(MyApplication.getContext(), text, Toast.LENGTH_SHORT);
         }
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.setText(text);
@@ -24,8 +25,8 @@ public class ToastUtil {
         return toast;
     }
 
-    public static Toast show(Context context, int text) {
-        return show(context, String.valueOf(Double.valueOf(text)));
+    public static Toast show( int text) {
+        return show( String.valueOf(Double.valueOf(text)));
     }
 
 }

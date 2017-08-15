@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/title" />
+
+    <Button
+        android:id="@+id/btn_big_text_style"
+        style="@style/default_button_style"
+        android:text="发送一个BigTextStyle的通知" />
+
+    <Button
+        android:id="@+id/btn_inbox_style"
+        style="@style/default_button_style"
+        android:text="发送一个InboxStyle的通知" />
+
+    <Button
+        android:id="@+id/btn_big_picture_style"
+        style="@style/default_button_style"
+        android:text="发送一个BigPictureStyle的通知" />
+
+    <Button
+        android:id="@+id/btn_media_style"
+        style="@style/default_button_style"
+        android:text="发送一个MediaStyle的通知" />
+
+    <Button
+        android:id="@+id/btn_priority_style"
+        style="@style/default_button_style"
+        android:text="发送一个重要程度最高的通知" />
+</LinearLayout>

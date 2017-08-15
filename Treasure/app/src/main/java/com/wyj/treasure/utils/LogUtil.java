@@ -6,7 +6,7 @@ import android.util.Log;
  * Created by wangyujie
  * Date 2017/8/10
  * Time 0:04
- * TODO
+ * TODO Log日志工具
  */
 
 public class LogUtil {
@@ -16,8 +16,8 @@ public class LogUtil {
     public static final int WARN = 4;
     public static final int ERROR = 5;
     public static final int NOTHING = 6;
-    public static final int LEVEL = DEBUG;
-    private static String TAG = "wangyujie";
+    public static final int LEVEL = VERBOSE;
+    private static String TAG = "Treasure";
 
     public static void v(String msg) {
         if (LEVEL <= VERBOSE) {

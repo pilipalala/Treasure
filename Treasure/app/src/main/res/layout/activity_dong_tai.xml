@@ -2,37 +2,40 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical">
+
+    <include layout="@layout/title" />
 
     <Button
         android:id="@+id/bt_add"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/green"
-        android:text="增加一条" />
+        android:text="增加一条"
+        android:textColor="@color/green" />
+
     <Button
         android:id="@+id/bt_del"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/red"
-        android:text="删除一条" />
+        android:text="删除一条"
+        android:textColor="@color/red" />
+
     <Button
         android:id="@+id/bt_save"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/input_text_color"
-        android:text="保存" />
+        android:text="保存"
+        android:textColor="@color/input_text_color" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:id="@+id/ll_dongtai_main"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical" >
-        </LinearLayout>
+            android:orientation="vertical"></LinearLayout>
     </ScrollView>
 
 </LinearLayout>

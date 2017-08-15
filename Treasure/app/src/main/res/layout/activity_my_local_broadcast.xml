@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.wyj.treasure.activity.MyReceiverActivity">
+
+    <include layout="@layout/title" />
+
+    <Button
+        android:id="@+id/btn_dong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_5"
+        android:background="@color/spinner_bg"
+        android:text="动态注册"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/btn_jing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_5"
+        android:background="@color/spinner_bg"
+        android:text="静态注册"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/tv_prompt"
+        android:layout_width="match_parent"
+        android:padding="@dimen/dp_10"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

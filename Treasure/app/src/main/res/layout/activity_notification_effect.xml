@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <Button
+                android:id="@+id/btn_notify_only_text"
+                style="@style/default_button_style"
+                android:text="仅显示消息标题、内容、图标、时间" />
+
+            <Button
+                android:id="@+id/btn_notify_with_ring"
+                style="@style/default_button_style"
+                android:text="通知时伴随铃声" />
+
+            <Button
+                android:id="@+id/btn_notify_with_vibrate"
+                style="@style/default_button_style"
+                android:text="通知时伴随震动" />
+
+            <Button
+                android:id="@+id/btn_notify_with_lights"
+                style="@style/default_button_style"
+                android:text="通知时伴随呼吸灯" />
+
+            <Button
+                android:id="@+id/btn_notify_with_mix"
+                style="@style/default_button_style"
+                android:text="通知伴随铃声、震动、呼吸灯" />
+
+            <Button
+                android:id="@+id/btn_notify_with_insistent"
+                style="@style/default_button_style"
+                android:text="循环通知(响铃、震动、呼吸灯)" />
+
+            <Button
+                android:id="@+id/btn_notify_with_alert_once"
+                style="@style/default_button_style"
+                android:text="我只通知一次(效果跟默认一样)" />
+
+            <Button
+                android:id="@+id/btn_clear_notify"
+                style="@style/default_button_style"
+                android:text="清空所有消息" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

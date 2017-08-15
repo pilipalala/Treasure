@@ -1,22 +1,36 @@
 package com.wyj.treasure.fragment;
 
+import android.content.Intent;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
 
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.DongTaiActivity;
+import com.wyj.treasure.activity.NetworkChangeActivity;
+import com.wyj.treasure.activity.ServiceActivity;
+import com.wyj.treasure.adapter.HomeAdapter;
+import com.wyj.treasure.mode.HomeItem;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import butterknife.Unbinder;
 
 public class HomeFragment extends BaseFragment {
 
-    @BindView(R.id.tv_home)
-    TextView tvHome;
+    @BindView(R.id.rv_list)
+    RecyclerView rvList;
     Unbinder unbinder;
+
+
+    private String[] TITLE = {"动态添加布局", "广播接收器", "后台服务"};
+    private Class<?>[] ACTIVITY = {DongTaiActivity.class, NetworkChangeActivity.class, ServiceActivity.class};
+    private List<HomeItem> mDataList;
+
 
     @Override
     protected View initView() {
@@ -26,9 +40,33 @@ public class HomeFragment extends BaseFragment {
     }
 
     @Override
+    protected void processData() {
+
+    }
+
+    @Override
     protected void initData() {
         super.initData();
+        rvList.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        dealWithData();
+        HomeAdapter homeAdapter = new HomeAdapter(R.layout.adapter_item_home, mDataList);
+        homeAdapter.openLoadAnimation();
+        homeAdapter.setOnItemClickListener((adapter, view, position) -> {
+            Intent intent = new Intent(getActivity(), ACTIVITY[position]);
+            startActivity(intent);
+        });
+        rvList.setAdapter(homeAdapter);
 
+    }
+
+    private void dealWithData() {
+        mDataList = new ArrayList<>();
+        for (int i = 0; i < TITLE.length; i++) {
+            HomeItem item = new HomeItem();
+            item.setActivity(ACTIVITY[i]);
+            item.setTitle(TITLE[i]);
+            mDataList.add(item);
+        }
     }
 
 
@@ -38,8 +76,4 @@ public class HomeFragment extends BaseFragment {
         unbinder.unbind();
     }
 
-    @OnClick(R.id.tv_home)
-    public void onViewClicked() {
-        DongTaiActivity.actionStart(getActivity(), "data", "str");
-    }
 }

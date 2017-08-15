@@ -13,6 +13,11 @@ public class DashboardFragment extends BaseFragment {
     }
 
     @Override
+    protected void processData() {
+
+    }
+
+    @Override
     protected void initData() {
         super.initData();
 
