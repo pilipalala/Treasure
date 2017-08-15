@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
+//apply plugin:'auto-patch-plugin' //生成补丁patch.jar的时候开启
+apply plugin: 'robust'//生成apk的时候开启
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.3"
@@ -45,6 +47,7 @@ dependencies {
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.22'
     compile 'com.tencent.bugly:crashreport:latest.release'
     compile 'com.tencent.bugly:nativecrashreport:latest.release'
+    compile 'com.meituan.robust:robust:0.3.3'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
 }

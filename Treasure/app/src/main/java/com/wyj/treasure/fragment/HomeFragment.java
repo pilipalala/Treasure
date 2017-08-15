@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.DongTaiActivity;
+import com.wyj.treasure.activity.MeiTuanRobustActivity;
 import com.wyj.treasure.activity.NetworkChangeActivity;
 import com.wyj.treasure.activity.ServiceActivity;
 import com.wyj.treasure.adapter.HomeAdapter;
@@ -27,8 +28,8 @@ public class HomeFragment extends BaseFragment {
     Unbinder unbinder;
 
 
-    private String[] TITLE = {"动态添加布局", "广播接收器", "后台服务"};
-    private Class<?>[] ACTIVITY = {DongTaiActivity.class, NetworkChangeActivity.class, ServiceActivity.class};
+    private String[] TITLE = {"动态添加布局", "广播接收器", "后台服务", "美团热修复"};
+    private Class<?>[] ACTIVITY = {DongTaiActivity.class, NetworkChangeActivity.class, ServiceActivity.class, MeiTuanRobustActivity.class};
     private List<HomeItem> mDataList;
 
 

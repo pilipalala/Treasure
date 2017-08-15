@@ -35,7 +35,6 @@ public class ServiceActivity extends BaseActivity {
         public void onServiceConnected(ComponentName name, IBinder service) {
             binder = (MyService.DownloadBinder) service;
             binder.startDownload();
-
             binder.getProgress();
 
 

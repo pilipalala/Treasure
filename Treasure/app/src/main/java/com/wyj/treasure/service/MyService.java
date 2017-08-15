@@ -1,10 +1,14 @@
 package com.wyj.treasure.service;
 
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
+import android.support.v4.app.NotificationCompat;
 
+import com.wyj.treasure.R;
 import com.wyj.treasure.activity.MainActivity;
 import com.wyj.treasure.utils.LogUtil;
 
@@ -38,16 +42,22 @@ public class MyService extends Service {
 
 
         Intent intent = new Intent(this, MainActivity.class);
-//        PendingIntent pendingIntent = PendingIntent.getActivities()
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+        Notification notification = new NotificationCompat.Builder(this)
+                .setContentTitle("点击可以跳转到Activity")
+                .setContentText("~~~~~")
+                .setSmallIcon(R.mipmap.ic_launcher_round)
+                .setWhen(System.currentTimeMillis())
+                .setContentIntent(pendingIntent)
+                .build();
+
+        startForeground(1000, notification);
+
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         LogUtil.d("onStartCommand");
-
-
-
-
 
 
         return super.onStartCommand(intent, flags, startId);
