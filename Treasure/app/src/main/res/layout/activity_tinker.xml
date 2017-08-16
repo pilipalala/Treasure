@@ -4,11 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.wyj.treasure.activity.HotFixActivity">
-
-    <TextView
-        android:id="@+id/tvShow"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    tools:context="com.wyj.treasure.activity.TinkerActivity">
 
 </android.support.constraint.ConstraintLayout>

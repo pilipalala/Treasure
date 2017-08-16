@@ -1,5 +1,4 @@
 <resources>
-
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
@@ -53,5 +52,20 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <style name="myTheme" parent="android:Theme.Material">
+        <!-- 允许使用transitions -->
+        <item name="android:windowContentTransitions">true</item>
+
+
+        <!--设置进入动画      通过分解方式进入-->
+        <item name="android:windowEnterTransition">@transition/explode</item>
+        <!--设置退出动画      通过分解方式退出-->
+        <item name="android:windowExitTransition">@transition/explode</item>
+
+        <item name="android:windowReenterTransition">@transition/explode</item>
+        <item name="android:windowReturnTransition">@transition/explode</item>
+
+
+    </style>
 
 </resources>

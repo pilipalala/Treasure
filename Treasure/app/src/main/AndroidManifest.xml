@@ -74,8 +74,10 @@
         <activity android:name=".notification.SimpleNotificationActivity" />
         <activity android:name=".notification.NotificationEffectActivity" />
         <activity android:name=".activity.NotificationStyleActivity" />
-        <activity android:name=".activity.MeiTuanRobustActivity" />
-        <activity android:name=".activity.HotFixActivity"></activity>
+        <activity android:name=".activity.TinkerActivity" />
+        <activity android:name=".activity.transition.TransitionsActivity" />
+        <activity android:name=".activity.transition.TransitionsSlideActivity" />
+        <activity android:name=".activity.transition.TransitionsRedActivity"></activity>
     </application>
 
 </manifest>
