@@ -14,4 +14,8 @@
         style="@style/default_button_style"
         android:text="跳转" />
 
+    <Button
+        android:id="@+id/btn_list"
+        style="@style/default_button_style"
+        android:text="RecycleView过渡动画跳转" />
 </LinearLayout>

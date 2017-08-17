@@ -2,6 +2,7 @@ package com.wyj.treasure.activity.transition;
 
 import android.content.Intent;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.TextView;
 
 import com.wyj.treasure.R;
@@ -31,11 +32,20 @@ public class TransitionsActivity extends BaseActivity {
         toolbar.setNavigationOnClickListener(v -> finish());
     }
 
-    @OnClick(R.id.btn)
-    public void onViewClicked() {
-        Intent intent = new Intent(this, TransitionsSlideActivity.class);
-//        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
-        startActivity(intent);
 
+    @OnClick({R.id.btn, R.id.btn_list})
+    public void onViewClicked(View view) {
+        Intent intent = new Intent();
+        switch (view.getId()) {
+            case R.id.btn:
+                intent.setClass(this, TransitionsSlideActivity.class);
+                startActivity(intent);
+
+                break;
+            case R.id.btn_list:
+                intent.setClass(this, TransitionsListActivity.class);
+                startActivity(intent);
+                break;
+        }
     }
 }

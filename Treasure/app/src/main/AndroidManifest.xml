@@ -77,7 +77,9 @@
         <activity android:name=".activity.TinkerActivity" />
         <activity android:name=".activity.transition.TransitionsActivity" />
         <activity android:name=".activity.transition.TransitionsSlideActivity" />
-        <activity android:name=".activity.transition.TransitionsRedActivity"></activity>
+        <activity android:name=".activity.transition.TransitionsRedActivity" />
+        <activity android:name=".activity.transition.TransitionsListActivity" />
+        <activity android:name=".activity.transition.TransitionsDetailActivity"></activity>
     </application>
 
 </manifest>
