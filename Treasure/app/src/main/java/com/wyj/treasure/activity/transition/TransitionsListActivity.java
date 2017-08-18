@@ -18,7 +18,6 @@ import android.util.Pair;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.ViewOutlineProvider;
-import android.view.Window;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -58,9 +57,9 @@ public class TransitionsListActivity extends BaseActivity {
     private boolean isAdd = true;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void initView() {
-        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         getWindow().setEnterTransition(new Explode().setDuration(1000));
         setContentView(R.layout.activity_transitions_list);
         ButterKnife.bind(this);

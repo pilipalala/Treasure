@@ -5,6 +5,9 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.DongTaiActivity;
@@ -53,6 +56,13 @@ public class HomeFragment extends BaseFragment {
     @Override
     protected void initData() {
         super.initData();
+        /*android:layoutAnimation="@anim/anim_layout"*/
+        Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.anim_item);
+        LayoutAnimationController controller = new LayoutAnimationController(animation);
+        controller.setDelay(0.5f);
+        controller.setAnimation(animation);
+        controller.setOrder(LayoutAnimationController.ORDER_NORMAL);
+        rvList.setLayoutAnimation(controller);
         rvList.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         dealWithData();
         HomeAdapter homeAdapter = new HomeAdapter(R.layout.adapter_item_home, mDataList);

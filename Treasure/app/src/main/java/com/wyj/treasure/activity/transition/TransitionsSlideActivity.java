@@ -2,6 +2,8 @@ package com.wyj.treasure.activity.transition;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.transition.Explode;
 import android.transition.Fade;
 import android.transition.Slide;
@@ -74,6 +76,7 @@ public class TransitionsSlideActivity extends BaseActivity {
      *             Transition就会自动的根据状态的区别去生成动画效果。
      *             第二、不同场景之间变换的动画效果可以简单的通过使用不同的Transition类来改变
      */
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @OnClick({R.id.red_box, R.id.green_box, R.id.blue_box, R.id.rl_root})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -85,7 +88,6 @@ public class TransitionsSlideActivity extends BaseActivity {
 
                 View sharedView = redBox;
                 String transitionName = getString(R.string.square_blue_name);
-
                 ActivityOptions transitionActivityOptions = ActivityOptions.makeSceneTransitionAnimation(this, sharedView, transitionName);
                 startActivity(i, transitionActivityOptions.toBundle());
 
