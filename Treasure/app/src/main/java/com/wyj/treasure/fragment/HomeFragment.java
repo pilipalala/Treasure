@@ -5,11 +5,15 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.DongTaiActivity;
 import com.wyj.treasure.activity.GridLayoutManagerActivity;
 import com.wyj.treasure.activity.NetworkChangeActivity;
+import com.wyj.treasure.activity.PullUpToLoadMoreActivity;
 import com.wyj.treasure.activity.ServiceActivity;
 import com.wyj.treasure.activity.TinkerActivity;
 import com.wyj.treasure.activity.transition.TransitionsActivity;
@@ -32,11 +36,11 @@ public class HomeFragment extends BaseFragment {
 
     private String[] TITLE = {
             "动态添加布局", "广播接收器",
-            "后台服务", "微信热修复", "过渡动画", "RecyclerView通过GridLayoutManager实现多样式布局"};
+            "后台服务", "微信热修复", "过渡动画", "RecyclerView通过GridLayoutManager实现多样式布局","向上拖动查看图文详情控件"};
     private Class<?>[] ACTIVITY = {
             DongTaiActivity.class, NetworkChangeActivity.class,
             ServiceActivity.class, TinkerActivity.class,
-            TransitionsActivity.class, GridLayoutManagerActivity.class};
+            TransitionsActivity.class, GridLayoutManagerActivity.class, PullUpToLoadMoreActivity.class};
     private List<HomeItem> mDataList;
 
 
@@ -55,6 +59,13 @@ public class HomeFragment extends BaseFragment {
     @Override
     protected void initData() {
         super.initData();
+        /*android:layoutAnimation="@anim/anim_layout"*/
+        Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.anim_item);
+        LayoutAnimationController controller = new LayoutAnimationController(animation);
+        controller.setDelay(0.5f);
+        controller.setAnimation(animation);
+        controller.setOrder(LayoutAnimationController.ORDER_NORMAL);
+        rvList.setLayoutAnimation(controller);
         rvList.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         dealWithData();
         HomeAdapter homeAdapter = new HomeAdapter(R.layout.adapter_item_home, mDataList);

@@ -58,6 +58,7 @@ public class TransitionsListActivity extends BaseActivity {
     private boolean isAdd = true;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void initView() {
         getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
@@ -75,6 +76,7 @@ public class TransitionsListActivity extends BaseActivity {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             addButton.setOutlineProvider(new ViewOutlineProvider() {
+                @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
                 @Override
                 public void getOutline(View view, Outline outline) {
                     int shapeSize = (int) getResources().getDimension(R.dimen.shape_size);

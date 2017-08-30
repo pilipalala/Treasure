@@ -19,16 +19,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".activity.MainActivity"
-            android:label="@string/app_name"
-            android:launchMode="singleTask">
+        <activity android:name=".activity.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activity.MainActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"></activity>
 
         <receiver
             android:name=".receiver.NetworkChangeReceiver"
@@ -93,7 +94,8 @@
         <activity android:name=".activity.GridLayoutManagerActivity" />
         <activity android:name=".activity.ReflectActivity" />
         <activity android:name=".activity.RemoteViewWidgetActivity" />
-        <activity android:name=".activity.SwipeDeleteActivity"></activity>
+        <activity android:name=".activity.SwipeDeleteActivity" />
+        <activity android:name=".activity.PullUpToLoadMoreActivity"></activity>
     </application>
 
 </manifest>

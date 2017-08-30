@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.wyj.treasure.activity.PullUpToLoadMoreActivity">
+
+    <LinearLayout
+        android:id="@+id/ll_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:drawablePadding="03dp"
+            android:drawableTop="@mipmap/msg"
+            android:gravity="center"
+            android:text="私聊"
+            android:textSize="10sp" />
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="#bbbbbb" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:drawablePadding="03dp"
+            android:drawableTop="@mipmap/collect"
+            android:gravity="center"
+            android:text="收藏"
+            android:textSize="10sp" />
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="#bbbbbb" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:drawablePadding="03dp"
+            android:drawableTop="@mipmap/shop"
+            android:gravity="center"
+            android:text="小店"
+            android:textSize="10sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:background="#66ff4081"
+            android:gravity="center"
+            android:text="加入购物车"
+            android:textColor="#ff4081"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:background="#ff4081"
+            android:gravity="center"
+            android:text="立即购买"
+            android:textColor="#ffffff"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/ll_bottom">
+
+        <include layout="@layout/activity_scoll_include" />
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:minHeight="48dp"
+            app:contentInsetLeft="@dimen/dp_050"
+            app:contentInsetRight="@dimen/dp_050"
+            app:titleMarginStart="@dimen/dp_050" />
+
+        <ImageView
+            android:id="@+id/iv_float"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_marginBottom="25dp"
+            android:layout_marginRight="25dp"
+            android:src="@mipmap/up"
+            android:visibility="gone" />
+
+
+    </FrameLayout>
+
+</RelativeLayout>

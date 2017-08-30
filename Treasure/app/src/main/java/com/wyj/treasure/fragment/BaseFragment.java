@@ -13,6 +13,7 @@ import android.view.ViewGroup;
  */
 public abstract class BaseFragment extends Fragment {
     protected Context mContext;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,9 +25,10 @@ public abstract class BaseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return initView();
     }
+
     /**
      * 强制子类重写，实现子类特有的ui
-    * */
+     */
 
     protected abstract View initView();
 
@@ -40,7 +42,7 @@ public abstract class BaseFragment extends Fragment {
     protected abstract void processData();
 
     /*当子类需要初始化数据，或者联网请求绑定数据，展示数据的 */
-    protected void initData(){
+    protected void initData() {
 
     }
 }

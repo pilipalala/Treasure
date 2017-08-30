@@ -45,7 +45,6 @@ public class BaseCardViewFragment extends BaseFragment {
             Intent intent = new Intent(getActivity(), mData.get(position).getClz());
             startActivity(intent);
         });
-
     }
 
     protected void notifyDataChanged() {
