@@ -5,6 +5,7 @@
     android:orientation="vertical"
     tools:context="com.wyj.treasure.fragment.NotificationsFragment">
 
+    <include layout="@layout/title" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycle"

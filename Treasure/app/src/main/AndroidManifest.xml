@@ -62,6 +62,16 @@
                 <action android:name="com.wyj.treasure.ORDEREDRECEIVER" />
             </intent-filter>
         </receiver>
+        <receiver android:name=".receiver.MyAppWidgetProvider">
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/appwidget_provider_info" />
+
+            <intent-filter>
+                <action android:name="com.wyj.treasure.action.CLICK" />
+                <action android:name="android.appwidget.action.AppWIDGET_UPDATE" />
+            </intent-filter>
+        </receiver>
 
         <activity android:name=".activity.MyLocalBroadcastActivity" />
 
@@ -79,7 +89,11 @@
         <activity android:name=".activity.transition.TransitionsSlideActivity" />
         <activity android:name=".activity.transition.TransitionsRedActivity" />
         <activity android:name=".activity.transition.TransitionsListActivity" />
-        <activity android:name=".activity.transition.TransitionsDetailActivity"></activity>
+        <activity android:name=".activity.transition.TransitionsDetailActivity" />
+        <activity android:name=".activity.GridLayoutManagerActivity" />
+        <activity android:name=".activity.ReflectActivity" />
+        <activity android:name=".activity.RemoteViewWidgetActivity" />
+        <activity android:name=".activity.SwipeDeleteActivity"></activity>
     </application>
 
 </manifest>

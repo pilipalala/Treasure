@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.DongTaiActivity;
+import com.wyj.treasure.activity.GridLayoutManagerActivity;
 import com.wyj.treasure.activity.NetworkChangeActivity;
 import com.wyj.treasure.activity.ServiceActivity;
 import com.wyj.treasure.activity.TinkerActivity;
@@ -31,10 +32,11 @@ public class HomeFragment extends BaseFragment {
 
     private String[] TITLE = {
             "动态添加布局", "广播接收器",
-            "后台服务", "微信热修复", "过渡动画"};
+            "后台服务", "微信热修复", "过渡动画", "RecyclerView通过GridLayoutManager实现多样式布局"};
     private Class<?>[] ACTIVITY = {
             DongTaiActivity.class, NetworkChangeActivity.class,
-            ServiceActivity.class, TinkerActivity.class, TransitionsActivity.class};
+            ServiceActivity.class, TinkerActivity.class,
+            TransitionsActivity.class, GridLayoutManagerActivity.class};
     private List<HomeItem> mDataList;
 
 

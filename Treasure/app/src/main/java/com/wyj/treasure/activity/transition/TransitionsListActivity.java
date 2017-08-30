@@ -61,7 +61,9 @@ public class TransitionsListActivity extends BaseActivity {
     @Override
     protected void initView() {
         getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
-        getWindow().setEnterTransition(new Explode().setDuration(1000));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setEnterTransition(new Explode().setDuration(1000));
+        }
         setContentView(R.layout.activity_transitions_list);
         ButterKnife.bind(this);
     }
@@ -71,14 +73,16 @@ public class TransitionsListActivity extends BaseActivity {
         tvTitle.setText("RecycleView 跳转activity 的过渡动画");
         toolbar.setNavigationOnClickListener(v -> finish());
 
-        addButton.setOutlineProvider(new ViewOutlineProvider() {
-            @Override
-            public void getOutline(View view, Outline outline) {
-                int shapeSize = (int) getResources().getDimension(R.dimen.shape_size);
-                outline.setRoundRect(0, 0, shapeSize, shapeSize, shapeSize / 2);
-            }
-        });
-        addButton.setClipToOutline(true);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            addButton.setOutlineProvider(new ViewOutlineProvider() {
+                @Override
+                public void getOutline(View view, Outline outline) {
+                    int shapeSize = (int) getResources().getDimension(R.dimen.shape_size);
+                    outline.setRoundRect(0, 0, shapeSize, shapeSize, shapeSize / 2);
+                }
+            });
+            addButton.setClipToOutline(true);
+        }
 
         beauties.add(new Beauty(names[0], pics[0], works[0], role[0], picGroups[0]));
 

@@ -126,6 +126,7 @@ public class SimpleNotificationActivity extends BaseActivity {
      * 设置FLAG_NO_CLEAR
      * 该 flag 表示该通知不能被状态栏的清除按钮给清除掉,也不能被手动清除,但能通过 cancel() 方法清除
      * Notification.flags属性可以通过 |= 运算叠加效果
+     *
      */
     private void sendFlagNoClearNotification() {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)

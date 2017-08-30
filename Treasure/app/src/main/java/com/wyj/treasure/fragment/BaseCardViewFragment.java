@@ -34,7 +34,6 @@ public class BaseCardViewFragment extends BaseFragment {
     }
 
 
-
     @Override
     protected void initData() {
         super.initData();
@@ -53,10 +52,12 @@ public class BaseCardViewFragment extends BaseFragment {
         adapter.setData(mData);
         adapter.notifyDataSetChanged();
     }
+
     @Override
     protected void processData() {
 
     }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
