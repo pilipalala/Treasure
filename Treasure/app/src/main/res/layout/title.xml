@@ -11,7 +11,6 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/spinner_bg"
         app:layout_scrollFlags="scroll|enterAlways"
-        app:navigationIcon="@mipmap/icon_top_back"
         app:popupTheme="@style/ToolbarPopupTheme"
         app:theme="@style/ToolBarTheme">
 

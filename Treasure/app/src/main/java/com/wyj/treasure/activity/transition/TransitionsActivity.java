@@ -29,6 +29,7 @@ public class TransitionsActivity extends BaseActivity {
     @Override
     protected void initData() {
         tvTitle.setText("属性动画");
+        toolbar.setNavigationIcon(R.mipmap.icon_top_back);
         toolbar.setNavigationOnClickListener(v -> finish());
     }
 

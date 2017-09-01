@@ -82,8 +82,6 @@ public class TransitionsSlideActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.red_box:
                 TransitionManager.beginDelayedTransition(rlRoot, new Fade());
-
-
                 Intent i = new Intent(this, TransitionsRedActivity.class);
 
                 View sharedView = redBox;

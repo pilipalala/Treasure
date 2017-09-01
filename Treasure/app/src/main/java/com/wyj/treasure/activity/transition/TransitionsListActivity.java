@@ -72,6 +72,7 @@ public class TransitionsListActivity extends BaseActivity {
     @Override
     protected void initData() {
         tvTitle.setText("RecycleView 跳转activity 的过渡动画");
+        toolbar.setNavigationIcon(R.mipmap.icon_top_back);
         toolbar.setNavigationOnClickListener(v -> finish());
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -91,7 +92,7 @@ public class TransitionsListActivity extends BaseActivity {
 
         list.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         list.setItemAnimator(new DefaultItemAnimator());
-
+        list.setHasFixedSize(true);
         adapter = new BeautyAdapter(this, beauties);
         list.setAdapter(adapter);
 

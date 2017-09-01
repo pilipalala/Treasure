@@ -1,6 +1,8 @@
 package com.wyj.treasure.activity.transition;
 
 import android.animation.Animator;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.Toolbar;
 import android.view.ViewAnimationUtils;
 import android.view.animation.DecelerateInterpolator;
@@ -42,8 +44,10 @@ public class TransitionsDetailActivity extends BaseActivity {
         ButterKnife.bind(this);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void initData() {
+        toolbar.setNavigationIcon(R.mipmap.icon_top_back);
         toolbar.setNavigationOnClickListener(v -> close());
         position = getIntent().getIntExtra("pos", 0);
         beauties = TransitionsListActivity.beauties.get(position);
