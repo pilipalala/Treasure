@@ -1,6 +1,7 @@
 package com.wyj.treasure.fragment;
 
 import com.wyj.treasure.R;
+import com.wyj.treasure.activity.AddAttributeActivity;
 import com.wyj.treasure.activity.GridViewChoiceActivity;
 import com.wyj.treasure.activity.ReflectActivity;
 import com.wyj.treasure.activity.SuspensionBarActivity;
@@ -15,6 +16,7 @@ public class DashboardFragment extends BaseCardViewFragment {
         mData.add(new ItemInfo("Recycleview 滑动删除", SwipeDeleteActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("GridView多选", GridViewChoiceActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("RecyclerView悬浮条", SuspensionBarActivity.class, R.mipmap.ic_launcher));
+        mData.add(new ItemInfo("商户端添加属性", AddAttributeActivity.class, R.mipmap.ic_launcher));
         notifyDataChanged();
 
     }

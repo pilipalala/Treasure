@@ -60,4 +60,12 @@
         <!--设置图片的底色，默认透明。-->
         <attr name="civ_fill_color" format="color" />
     </declare-styleable>
+    <declare-styleable name="TagView">
+        <attr name="lineMargin" format="dimension" />
+        <attr name="tagMargin" format="dimension" />
+        <attr name="textPaddingLeft" format="dimension" />
+        <attr name="textPaddingRight" format="dimension" />
+        <attr name="textPaddingTop" format="dimension" />
+        <attr name="textPaddingBottom" format="dimension" />
+    </declare-styleable>
 </resources>

@@ -98,7 +98,9 @@
         <activity android:name=".activity.PullUpToLoadMoreActivity" />
         <activity android:name=".activity.GridViewChoiceActivity" />
         <activity android:name=".activity.SuspensionBarActivity" />
-        <activity android:name=".activity.MultiSuspensionBarActivity"></activity>
+        <activity android:name=".activity.MultiSuspensionBarActivity" />
+        <activity android:name=".activity.AddAttributeActivity" />
+        <activity android:name=".activity.transition.TagRecycleViewActivity"></activity>
     </application>
 
 </manifest>
