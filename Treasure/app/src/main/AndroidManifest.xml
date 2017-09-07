@@ -100,7 +100,8 @@
         <activity android:name=".activity.SuspensionBarActivity" />
         <activity android:name=".activity.MultiSuspensionBarActivity" />
         <activity android:name=".activity.AddAttributeActivity" />
-        <activity android:name=".activity.transition.TagRecycleViewActivity"></activity>
+        <activity android:name=".activity.transition.TagRecycleViewActivity" />
+        <activity android:name=".activity.NotifyAttrActivity"></activity>
     </application>
 
 </manifest>

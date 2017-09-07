@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.transition.TagRecycleViewActivity;
 import com.wyj.treasure.adapter.AddAttrAdapter;
+import com.wyj.treasure.utils.ToastUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,7 +33,20 @@ public class AddAttributeActivity extends AppCompatActivity {
 
     private void initData() {
         rvAttr.setLayoutManager(new LinearLayoutManager(this));
-        rvAttr.setAdapter(new AddAttrAdapter(this));
+        AddAttrAdapter adapter = new AddAttrAdapter(this);
+        rvAttr.setAdapter(adapter);
+        adapter.setOnDeteleListener(new AddAttrAdapter.OnDeteleListener() {
+            @Override
+            public void delete(int position) {
+                ToastUtil.show("删除");
+            }
+        });
+        adapter.setOnNotifyListener(new AddAttrAdapter.OnNotifyListener() {
+            @Override
+            public void notify(int position) {
+                startActivity(new Intent(AddAttributeActivity.this, NotifyAttrActivity.class));
+            }
+        });
     }
 
     @OnClick(R.id.tv_add_attr)

@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.wyj.treasure.R;
 import com.wyj.treasure.tagview.Tag;
@@ -24,8 +25,10 @@ import butterknife.ButterKnife;
  */
 
 public class AddAttrAdapter extends RecyclerView.Adapter<AddAttrAdapter.MyViewHolder> {
-    private final LayoutInflater inflater;
+    private LayoutInflater inflater;
     private Context context;
+    private OnDeteleListener deteleListener;
+    private OnNotifyListener notifyListener;
 
     public AddAttrAdapter(Context context) {
         this.context = context;
@@ -52,6 +55,38 @@ public class AddAttrAdapter extends RecyclerView.Adapter<AddAttrAdapter.MyViewHo
         tagList.add(new Tag("字段 5"));
         tagList.add(new Tag("字段 6"));
         holder.tagviewItemList.addTags(tagList);
+        holder.tvDeteleAttr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (deteleListener != null) {
+                    deteleListener.delete(position);
+                }
+            }
+        });
+        holder.tvNotifyAttr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (notifyListener != null) {
+                    notifyListener.notify(position);
+                }
+            }
+        });
+    }
+
+    public interface OnDeteleListener {
+        void delete(int position);
+    }
+
+    public interface OnNotifyListener {
+        void notify(int position);
+    }
+
+    public void setOnDeteleListener(OnDeteleListener deteleListener) {
+        this.deteleListener = deteleListener;
+    }
+
+    public void setOnNotifyListener(OnNotifyListener notifyListener) {
+        this.notifyListener = notifyListener;
     }
 
     @Override
@@ -62,6 +97,10 @@ public class AddAttrAdapter extends RecyclerView.Adapter<AddAttrAdapter.MyViewHo
     public class MyViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.tagview_item_list)
         TagView tagviewItemList;
+        @BindView(R.id.tv_detele_attr)
+        TextView tvDeteleAttr;
+        @BindView(R.id.tv_notify_attr)
+        TextView tvNotifyAttr;
 
         public MyViewHolder(View itemView) {
             super(itemView);

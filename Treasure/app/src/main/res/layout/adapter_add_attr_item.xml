@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <LinearLayout
@@ -29,16 +30,15 @@
     <com.wyj.treasure.tagview.TagView
         android:id="@+id/tagview_item_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="@dimen/dp_10"
         app:lineMargin="10dp"
         app:tagMargin="10dp"
         app:textPaddingBottom="3dp"
         app:textPaddingLeft="10dp"
         app:textPaddingRight="10dp"
-        app:textPaddingTop="3dp" />
+        app:textPaddingTop="3dp"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
