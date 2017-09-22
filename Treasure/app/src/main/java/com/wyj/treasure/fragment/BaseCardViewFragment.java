@@ -4,6 +4,7 @@ package com.wyj.treasure.fragment;
 import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -25,6 +26,9 @@ public class BaseCardViewFragment extends BaseFragment {
     Unbinder unbinder;
     protected BaseListAdapter adapter;
     protected List<ItemInfo> mData;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    Unbinder unbinder1;
 
     @Override
     protected View initView() {
@@ -37,6 +41,7 @@ public class BaseCardViewFragment extends BaseFragment {
     @Override
     protected void initData() {
         super.initData();
+        toolbar.setNavigationIcon(null);
         mData = new ArrayList<>();
         adapter = new BaseListAdapter(getActivity());
         recycle.setAdapter(adapter);
@@ -62,4 +67,5 @@ public class BaseCardViewFragment extends BaseFragment {
         super.onDestroyView();
         unbinder.unbind();
     }
+
 }

@@ -3,6 +3,7 @@ package com.wyj.treasure.fragment;
 import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
@@ -12,6 +13,7 @@ import android.view.animation.LayoutAnimationController;
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.DongTaiActivity;
 import com.wyj.treasure.activity.GridLayoutManagerActivity;
+import com.wyj.treasure.activity.MyWebViewActivity;
 import com.wyj.treasure.activity.NetworkChangeActivity;
 import com.wyj.treasure.activity.PullUpToLoadMoreActivity;
 import com.wyj.treasure.activity.ServiceActivity;
@@ -32,15 +34,18 @@ public class HomeFragment extends BaseFragment {
     @BindView(R.id.rv_list)
     RecyclerView rvList;
     Unbinder unbinder;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    Unbinder unbinder1;
 
 
     private String[] TITLE = {
             "动态添加布局", "广播接收器",
-            "后台服务", "微信热修复", "过渡动画", "RecyclerView通过GridLayoutManager实现多样式布局","向上拖动查看图文详情控件"};
+            "后台服务", "微信热修复", "过渡动画", "RecyclerView通过GridLayoutManager实现多样式布局", "向上拖动查看图文详情控件", "网页交互"};
     private Class<?>[] ACTIVITY = {
             DongTaiActivity.class, NetworkChangeActivity.class,
             ServiceActivity.class, TinkerActivity.class,
-            TransitionsActivity.class, GridLayoutManagerActivity.class, PullUpToLoadMoreActivity.class};
+            TransitionsActivity.class, GridLayoutManagerActivity.class, PullUpToLoadMoreActivity.class, MyWebViewActivity.class};
     private List<HomeItem> mDataList;
 
 
@@ -59,6 +64,7 @@ public class HomeFragment extends BaseFragment {
     @Override
     protected void initData() {
         super.initData();
+        toolbar.setNavigationIcon(null);
         /*android:layoutAnimation="@anim/anim_layout"*/
         Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.anim_item);
         LayoutAnimationController controller = new LayoutAnimationController(animation);

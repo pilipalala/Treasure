@@ -5,12 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.wyj.treasure.activity.TinkerActivity">
+    tools:context="com.wyj.treasure.activity.StaggeredGridOtherActivity">
 
     <include layout="@layout/title" />
 
-    <Button
-        android:id="@+id/btn_permission"
-        style="@style/default_button_style" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycle"
+        android:layout_width="match_parent"
+        android:padding="@dimen/dp_2"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"></android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

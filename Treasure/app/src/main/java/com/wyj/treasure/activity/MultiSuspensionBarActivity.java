@@ -15,7 +15,6 @@ import butterknife.ButterKnife;
 
 public class MultiSuspensionBarActivity extends BaseActivity {
 
-
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.feed_list)
@@ -28,7 +27,6 @@ public class MultiSuspensionBarActivity extends BaseActivity {
     private MultiFeedAdapter adapter;
     private LinearLayoutManager linearLayoutManager;
     private int mCurrentPosition = 0;
-
 
     @Override
     protected void initView() {

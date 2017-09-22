@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.wyj.treasure.activity.RegularExpressionActivity">
+
+    <include layout="@layout/title" />
+
+    <ImageView
+        android:id="@+id/iv_head"
+        android:layout_width="@dimen/dp_80"
+        android:layout_height="@dimen/dp_80"
+        android:layout_gravity="center" />
+
+    <Button
+        android:id="@+id/btn_gallery"
+        style="@style/default_button_style"
+        android:text="打开相册" />
+
+    <Button
+        android:id="@+id/btn_camera"
+        style="@style/default_button_style"
+        android:text="打开相机" />
+
+    <Button
+        android:id="@+id/btn_scrollto"
+        style="@style/default_button_style"
+        android:text="scrollto" />
+
+    <Button
+        android:id="@+id/btn_scrollby"
+        style="@style/default_button_style"
+        android:text="scrollby" />
+
+    <TextView
+        android:id="@+id/txt"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:background="@color/pink_little"
+        android:text="textview"
+        android:textColor="@color/white" />
+
+
+</LinearLayout>
