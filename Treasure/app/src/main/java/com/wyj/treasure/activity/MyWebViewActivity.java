@@ -8,9 +8,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Build;
-import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.webkit.CookieManager;
@@ -32,7 +30,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyWebViewActivity extends AppCompatActivity implements MyWebChomeClient.OpenFileChooserCallBack {
+public class MyWebViewActivity extends BaseActivity implements MyWebChomeClient.OpenFileChooserCallBack {
     private static final String TAG = "MainActivity";
     private WebView mWebView;
     private String url="file:///android_asset/uploadImgForH5.html";
@@ -45,15 +43,19 @@ public class MyWebViewActivity extends AppCompatActivity implements MyWebChomeCl
 
     // permission Code
     private static final int P_CODE_PERMISSIONS = 101;
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void initView() {
         setContentView(R.layout.activity_my_web_view);
 
         requestPermissionsAndroidM();
 
         mWebView = (WebView) findViewById(R.id.webview);
+    }
 
+    @Override
+    protected void initData() {
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setAllowFileAccess(true);
@@ -89,6 +91,7 @@ public class MyWebViewActivity extends AppCompatActivity implements MyWebChomeCl
         // target your url here.
         mWebView.loadUrl(url);
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode != Activity.RESULT_OK) {

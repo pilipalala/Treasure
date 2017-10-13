@@ -1,7 +1,5 @@
 package com.wyj.treasure.activity;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.Button;
 import android.widget.TextView;
@@ -18,7 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ReflectActivity extends AppCompatActivity {
+public class ReflectActivity extends BaseActivity {
 
     @BindView(R.id.tv_title)
     TextView tvTitle;
@@ -28,10 +26,14 @@ public class ReflectActivity extends AppCompatActivity {
     Button btnClass;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void initView() {
         setContentView(R.layout.activity_reflect);
         ButterKnife.bind(this);
+    }
+
+    @Override
+    protected void initData() {
+
     }
 
     @OnClick(R.id.btn_class)

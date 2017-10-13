@@ -2,9 +2,7 @@ package com.wyj.treasure.activity;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ExpandableListView;
@@ -28,7 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MultipleChoiceActivity extends AppCompatActivity implements ShopcartAdapter.CheckInterface,
+public class MultipleChoiceActivity extends BaseActivity implements ShopcartAdapter.CheckInterface,
         ShopcartAdapter.ModifyCountInterface, ShopcartAdapter.GroupEdtorListener {
 
     @BindView(R.id.back)
@@ -72,14 +70,19 @@ public class MultipleChoiceActivity extends AppCompatActivity implements Shopcar
     private int flag = 0;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void initView() {
         setContentView(R.layout.activity_multiple_choice);
         context = this;
+
+    }
+
+    @Override
+    protected void initData() {
         initDatas();
         ButterKnife.bind(this);
         initEvents();
     }
+
     private void initEvents() {
         selva = new ShopcartAdapter(groups, children, this);
         selva.setCheckInterface(this);// 关键步骤1,设置复选框接口

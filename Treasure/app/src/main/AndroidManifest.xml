@@ -108,7 +108,9 @@
         <activity android:name=".activity.MultipleChoiceActivity" />
         <activity android:name=".activity.MyWebViewActivity" />
         <activity android:name=".activity.StaggeredGridActivity" />
-        <activity android:name=".activity.StaggeredGridOtherActivity"></activity>
+        <activity android:name=".activity.StaggeredGridOtherActivity" />
+        <activity android:name="com.wyj.mvp.UserLoginActivity" />
+        <activity android:name="com.wyj.rxjava.RxJavaActivity" />
     </application>
 
 </manifest>

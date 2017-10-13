@@ -1,7 +1,9 @@
 package com.wyj.treasure.fragment;
 
 
+import android.app.ActivityOptions;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -48,7 +50,11 @@ public class BaseCardViewFragment extends BaseFragment {
         recycle.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         adapter.setOnClickListener(position -> {
             Intent intent = new Intent(getActivity(), mData.get(position).getClz());
-            startActivity(intent);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
+            } else {
+                startActivity(intent);
+            }
         });
     }
 

@@ -1,6 +1,8 @@
 package com.wyj.treasure.fragment;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -78,7 +80,11 @@ public class HomeFragment extends BaseFragment {
         homeAdapter.openLoadAnimation();
         homeAdapter.setOnItemClickListener((adapter, view, position) -> {
             Intent intent = new Intent(getActivity(), ACTIVITY[position]);
-            startActivity(intent);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
+            } else {
+                startActivity(intent);
+            }
         });
         rvList.setAdapter(homeAdapter);
 

@@ -1,5 +1,7 @@
 package com.wyj.treasure.fragment;
 
+import com.wyj.mvp.UserLoginActivity;
+import com.wyj.rxjava.RxJavaActivity;
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.GridViewChoiceActivity;
 import com.wyj.treasure.activity.MultipleChoiceActivity;
@@ -23,6 +25,8 @@ public class DashboardFragment extends BaseCardViewFragment {
         mData.add(new ItemInfo("正则表达式", RegularExpressionActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("多选列表", MultipleChoiceActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("瀑布流", StaggeredGridActivity.class, R.mipmap.ic_launcher));
+        mData.add(new ItemInfo("MVP", UserLoginActivity.class, R.mipmap.ic_launcher));
+        mData.add(new ItemInfo("RxJava", RxJavaActivity.class, R.mipmap.ic_launcher));
         notifyDataChanged();
 
     }

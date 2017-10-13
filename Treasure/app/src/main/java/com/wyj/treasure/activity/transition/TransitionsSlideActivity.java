@@ -4,6 +4,11 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
+import android.support.v4.view.ViewCompat;
+import android.support.v7.widget.Toolbar;
 import android.transition.Explode;
 import android.transition.Fade;
 import android.transition.Slide;
@@ -31,6 +36,10 @@ public class TransitionsSlideActivity extends BaseActivity {
     TextView blackBox;
     @BindView(R.id.rl_root)
     RelativeLayout rlRoot;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     @Override
     protected void initView() {
@@ -40,6 +49,8 @@ public class TransitionsSlideActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        tvTitle.setText("属性动画");
+        toolbar.setNavigationOnClickListener(v -> finish());
 
     }
 
@@ -77,19 +88,12 @@ public class TransitionsSlideActivity extends BaseActivity {
      *             第二、不同场景之间变换的动画效果可以简单的通过使用不同的Transition类来改变
      */
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    @OnClick({R.id.red_box, R.id.green_box, R.id.blue_box, R.id.rl_root})
+    @OnClick({R.id.red_box, R.id.green_box, R.id.blue_box, R.id.rl_root, R.id.black_box})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.red_box:
                 TransitionManager.beginDelayedTransition(rlRoot, new Fade());
-                Intent i = new Intent(this, TransitionsRedActivity.class);
-
-                View sharedView = redBox;
-                String transitionName = getString(R.string.square_blue_name);
-                ActivityOptions transitionActivityOptions = ActivityOptions.makeSceneTransitionAnimation(this, sharedView, transitionName);
-                startActivity(i, transitionActivityOptions.toBundle());
-
-
+                toggleVisibility(redBox, greenBox, blueBox, blackBox);
                 break;
             case R.id.green_box:
                 TransitionManager.beginDelayedTransition(rlRoot, new Slide());
@@ -99,9 +103,22 @@ public class TransitionsSlideActivity extends BaseActivity {
                 TransitionManager.beginDelayedTransition(rlRoot, new Explode());
                 toggleVisibility(redBox, greenBox, blueBox, blackBox);
                 break;
+            case R.id.black_box:
+                Intent i = new Intent(this, TransitionsRedActivity.class);
+                View sharedView = redBox;
+                String transitionBlue = getString(R.string.square_blue_name);
+                ActivityOptions transitionActivityOptions = ActivityOptions.makeSceneTransitionAnimation(this, sharedView, transitionBlue);
+                startActivity(i, transitionActivityOptions.toBundle());
+                break;
             case R.id.rl_root:
-                toggleVisibility(redBox, greenBox, blueBox, blackBox);
-
+                Pair red = new Pair<>(redBox, ViewCompat.getTransitionName(redBox));
+                Pair green = new Pair<>(greenBox, ViewCompat.getTransitionName(greenBox));
+                Pair blue = new Pair<>(blueBox, ViewCompat.getTransitionName(blueBox));
+                Pair black = new Pair<>(blackBox, ViewCompat.getTransitionName(blackBox));
+                ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(this, red, green, blue, black);
+                Intent intent = new Intent(this, TransitionsRedActivity.class);
+                ActivityCompat.startActivity(this,
+                        intent, optionsCompat.toBundle());
                 break;
         }
     }

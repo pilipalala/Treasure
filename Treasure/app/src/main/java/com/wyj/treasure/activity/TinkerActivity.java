@@ -5,9 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.os.Bundle;
 import android.support.annotation.RequiresApi;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.Button;
 import android.widget.TextView;
@@ -18,7 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class TinkerActivity extends AppCompatActivity {
+public class TinkerActivity extends BaseActivity {
 
     private static final int REQUEST_CODE_ASK_PERMISSIONS = 0x11;
     @BindView(R.id.tv_title)
@@ -29,10 +27,14 @@ public class TinkerActivity extends AppCompatActivity {
     Button btnPermission;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void initView() {
         setContentView(R.layout.activity_tinker);
         ButterKnife.bind(this);
+    }
+
+    @Override
+    protected void initData() {
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)

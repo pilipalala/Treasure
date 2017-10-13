@@ -1,6 +1,8 @@
 package com.wyj.treasure.activity;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -57,7 +59,11 @@ public class SuspensionBarActivity extends BaseActivity {
                 switch (item.getItemId()) {
                     case R.id.item_text:
                         Intent intent = new Intent(SuspensionBarActivity.this, MultiSuspensionBarActivity.class);
-                        startActivity(intent);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(SuspensionBarActivity.this).toBundle());
+                        } else {
+                            startActivity(intent);
+                        }
                         break;
                 }
                 return false;
