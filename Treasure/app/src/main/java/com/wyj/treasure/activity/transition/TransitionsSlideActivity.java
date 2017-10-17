@@ -106,7 +106,7 @@ public class TransitionsSlideActivity extends BaseActivity {
             case R.id.black_box:
                 Intent i = new Intent(this, TransitionsRedActivity.class);
                 View sharedView = redBox;
-                String transitionBlue = getString(R.string.square_blue_name);
+                String transitionBlue = getString(R.string.square_red_name);
                 ActivityOptions transitionActivityOptions = ActivityOptions.makeSceneTransitionAnimation(this, sharedView, transitionBlue);
                 startActivity(i, transitionActivityOptions.toBundle());
                 break;

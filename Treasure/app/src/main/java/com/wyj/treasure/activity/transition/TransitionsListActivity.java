@@ -69,6 +69,7 @@ public class TransitionsListActivity extends BaseActivity {
         ButterKnife.bind(this);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void initData() {
         tvTitle.setText("RecycleView 跳转activity 的过渡动画");
@@ -129,7 +130,7 @@ public class TransitionsListActivity extends BaseActivity {
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private Animator createAnimation(View v) {
         Animator animator = ViewAnimationUtils.createCircularReveal(
                 v,
@@ -139,9 +140,12 @@ public class TransitionsListActivity extends BaseActivity {
                 v.getWidth());
         animator.setInterpolator(new AccelerateDecelerateInterpolator());
         animator.setDuration(500);
+
+
         return animator;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void startActivity(final View v, final int position) {
         View pic = v.findViewById(R.id.pic);
         View add_btn = this.findViewById(R.id.add_button);

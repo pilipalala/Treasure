@@ -31,6 +31,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
+
 public class HomeFragment extends BaseFragment {
 
     @BindView(R.id.rv_list)

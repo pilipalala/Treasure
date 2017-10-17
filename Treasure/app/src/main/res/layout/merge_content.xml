@@ -1,0 +1,24 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/btn_vs_showView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="显示ViewStub"/>
+    <Button
+        android:id="@+id/btn_vs_changeHint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="更改ViewStub"/>
+    <Button
+        android:id="@+id/btn_vs_hideView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="隐藏ViewStub"/>
+
+
+</merge>

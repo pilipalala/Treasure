@@ -4,6 +4,7 @@ import com.wyj.mvp.UserLoginActivity;
 import com.wyj.rxjava.RxJavaActivity;
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.GridViewChoiceActivity;
+import com.wyj.treasure.activity.IncludeMergeViewStubActivity;
 import com.wyj.treasure.activity.MultipleChoiceActivity;
 import com.wyj.treasure.activity.NotifyAttrActivity;
 import com.wyj.treasure.activity.ReflectActivity;
@@ -27,6 +28,7 @@ public class DashboardFragment extends BaseCardViewFragment {
         mData.add(new ItemInfo("瀑布流", StaggeredGridActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("MVP", UserLoginActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("RxJava", RxJavaActivity.class, R.mipmap.ic_launcher));
+        mData.add(new ItemInfo("布局优化", IncludeMergeViewStubActivity.class, R.mipmap.ic_launcher));
         notifyDataChanged();
 
     }

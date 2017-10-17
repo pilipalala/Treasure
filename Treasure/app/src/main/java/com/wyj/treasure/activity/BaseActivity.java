@@ -36,9 +36,17 @@ public abstract class BaseActivity extends AppCompatActivity {
             //退出时使用
             getWindow().setExitTransition(fade);
             //第一次进入时使用
-            getWindow().setEnterTransition(slide);
+            getWindow().setEnterTransition(explode);
             //再次进入时使用
-            getWindow().setReenterTransition(explode);
+            getWindow().setReenterTransition(fade);
+            /*如果想让前者完全运行完后者再进来*/
+            getWindow().setAllowEnterTransitionOverlap(false);
+            getWindow().setAllowReturnTransitionOverlap(false);
+
+           /* getWindow().setSharedElementExitTransition(explode);
+            getWindow().setSharedElementEnterTransition(explode);
+            getWindow().setSharedElementReenterTransition(explode);
+            getWindow().setSharedElementReturnTransition(explode);*/
         }
         initView();
         initData();

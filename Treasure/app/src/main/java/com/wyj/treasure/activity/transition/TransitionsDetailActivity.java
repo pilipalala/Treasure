@@ -60,22 +60,26 @@ public class TransitionsDetailActivity extends BaseActivity {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         close();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void close() {
         detailPic.setImageDrawable(getDrawable(beauties.getImageResourceId(this, beauties.picName)));
         finishAfterTransition();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void doSecondAnim() {
         detailPic.setImageDrawable(getDrawable(beauties.getImageResourceId(this, beauties.getPics()[picIndex])));
         Animator animator = createAnimation(detailPic, false);
         animator.start();
     }
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private Animator createAnimation(ImageView view, boolean isFirst) {
         Animator animator;
 
@@ -97,9 +101,18 @@ public class TransitionsDetailActivity extends BaseActivity {
 
         animator.setInterpolator(new DecelerateInterpolator());
         animator.setDuration(500);
+
+
+
+//        animator.setInterpolator(new LinearOutSlowInInterpolator());//out到in
+//        Animator animator1 = ViewAnimationUtils.createCircularReveal(
+//                v, 0, 0, 0, (float) Math.hypot(v.getWidth(), v.getHeight()));//宽的平方加上高的平方的根号
+//        animator1.setInterpolator(new LinearInterpolator());//插补器有没有不影响
+//        animator1.setDuration(2000);
         return animator;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @OnClick(R.id.detail_btn)
     public void onViewClicked() {
 
