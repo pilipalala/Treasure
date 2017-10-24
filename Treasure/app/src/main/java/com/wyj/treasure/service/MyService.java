@@ -13,6 +13,8 @@ import com.wyj.treasure.activity.MainActivity;
 import com.wyj.treasure.utils.LogUtil;
 
 public class MyService extends Service {
+    private int MessageId = 1;
+
     public MyService() {
     }
 
@@ -39,9 +41,7 @@ public class MyService extends Service {
     public void onCreate() {
         super.onCreate();
         LogUtil.d("onCreate");
-
-
-        Intent intent = new Intent(this, MainActivity.class);
+       /* Intent intent = new Intent(this, MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
         Notification notification = new NotificationCompat.Builder(this)
                 .setContentTitle("点击可以跳转到Activity")
@@ -50,23 +50,24 @@ public class MyService extends Service {
                 .setWhen(System.currentTimeMillis())
                 .setContentIntent(pendingIntent)
                 .build();
-
-        startForeground(1000, notification);
-
+        startForeground(1000, notification);*/
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         LogUtil.d("onStartCommand");
+        /*提高优先级*/
+        intent.setClass(this, MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+        Notification notification = new NotificationCompat.Builder(this)
+                .setContentTitle("点击可以跳转到Activity")
+                .setContentText("~~~~~")
+                .setSmallIcon(R.mipmap.ic_launcher_round)
+                .setWhen(System.currentTimeMillis())
+                .setContentIntent(pendingIntent)
+                .build();
+        startForeground(MessageId, notification);
 
-
-        return super.onStartCommand(intent, flags, startId);
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        LogUtil.d("onDestroy");
-
+        return START_STICKY;
     }
 }

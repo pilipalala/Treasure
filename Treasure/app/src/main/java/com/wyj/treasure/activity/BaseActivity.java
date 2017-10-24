@@ -9,6 +9,7 @@ import android.transition.TransitionInflater;
 import android.view.Window;
 
 import com.wyj.treasure.R;
+import com.wyj.treasure.utils.ToastUtil;
 
 /**
  * Created by wangyujie
@@ -21,16 +22,16 @@ public abstract class BaseActivity extends AppCompatActivity {
     /*爆炸效果*/
     Transition explode;
     /*淡化效果*/
-    Transition fade ;
+    Transition fade;
     /*滑动效果*/
-    Transition slide ;
+    Transition slide;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            explode =TransitionInflater.from(this).inflateTransition(R.transition.explode);
+            explode = TransitionInflater.from(this).inflateTransition(R.transition.explode);
             fade = TransitionInflater.from(this).inflateTransition(R.transition.fade);
             slide = TransitionInflater.from(this).inflateTransition(R.transition.slide);
             //退出时使用
@@ -48,8 +49,13 @@ public abstract class BaseActivity extends AppCompatActivity {
             getWindow().setSharedElementReenterTransition(explode);
             getWindow().setSharedElementReturnTransition(explode);*/
         }
-        initView();
-        initData();
+        try {
+            initView();
+            initData();
+        } catch (Exception e) {
+            ToastUtil.show("出现异常");
+
+        }
     }
 
 
@@ -65,4 +71,9 @@ public abstract class BaseActivity extends AppCompatActivity {
      * 加载数据
      */
     protected abstract void initData();
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 }

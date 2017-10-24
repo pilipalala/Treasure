@@ -3,13 +3,17 @@ package com.wyj.treasure.activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.os.Build;
 import android.os.IBinder;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
 import com.wyj.treasure.R;
+import com.wyj.treasure.service.JobWakeUpService;
+import com.wyj.treasure.service.LocalService;
 import com.wyj.treasure.service.MyService;
+import com.wyj.treasure.service.RemoteService;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -49,6 +53,14 @@ public class ServiceActivity extends BaseActivity {
     @Override
     protected void initData() {
         tvTitle.setText("后台服务");
+
+        startService(new Intent(this, LocalService.class));
+        startService(new Intent(this, RemoteService.class));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            startService(new Intent(this, JobWakeUpService.class));
+        }
+
+
         toolbar.setNavigationOnClickListener(v -> finish());
     }
 
@@ -68,8 +80,9 @@ public class ServiceActivity extends BaseActivity {
                 bindService(bind, connection, BIND_AUTO_CREATE);
                 break;
             case R.id.btn_unbind:
-                if (null != connection)
+                if (null != connection) {
                     unbindService(connection);
+                }
                 break;
         }
     }

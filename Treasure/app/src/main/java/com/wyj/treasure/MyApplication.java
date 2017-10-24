@@ -3,6 +3,7 @@ package com.wyj.treasure;
 import android.app.Application;
 import android.content.Context;
 
+import com.mob.MobSDK;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.tencent.tinker.loader.app.ApplicationLike;
 import com.tinkerpatch.sdk.TinkerPatch;
@@ -28,6 +29,8 @@ public class MyApplication extends Application {
         context = getApplicationContext();
         initCrash();
         initError();
+        MobSDK.init(context, "1a29c1dc37d04", "12f463dd9226ddfa631d9199cd230b15");
+
 
 
     }
