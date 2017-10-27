@@ -88,7 +88,6 @@
         </receiver>
 
         <activity android:name=".activity.MyLocalBroadcastActivity" />
-
         <activity android:name=".activity.ServiceActivity" />
         <activity android:name=".notification.SimpleNotificationActivity" />
         <activity android:name=".notification.NotificationEffectActivity" />
@@ -133,10 +132,15 @@
             android:name=".service.RemoteService"
             android:enabled="true"
             android:exported="true"
-            android:process=".remoteservice"/>
-        <service android:name=".service.JobWakeUpService"
+            android:process=".remoteservice" />
+        <service
+            android:name=".service.JobWakeUpService"
             android:enabled="true"
-            android:permission="android.permission.BIND_JOB_SERVICE"/>
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <activity android:name=".activity.Main2Activity" />
+        <activity android:name=".activity.transition.Main3Activity" />
+        <activity android:name=".activity.transition.Main4Activity" />
     </application>
 
 </manifest>
