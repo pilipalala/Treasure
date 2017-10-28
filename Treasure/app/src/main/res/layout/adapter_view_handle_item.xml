@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/dp_10"
+    android:background="@color/white">
+
+    <com.wyj.treasure.widget.CircleImageView
+        android:id="@+id/iv_logo"
+        android:layout_width="@dimen/dp_50"
+        android:layout_height="@dimen/dp_50"
+        android:layout_marginRight="@dimen/dp_10"
+        android:src="@mipmap/avatar1" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/iv_logo"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="我的电脑"
+        android:textColor="@color/background_dark"
+        android:textSize="@dimen/sp_20" />
+
+    <TextView
+        android:id="@+id/tv_lastMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/iv_logo"
+        android:layout_toRightOf="@+id/iv_logo"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="我的电脑"
+        android:textColor="@color/slategray"
+        android:textSize="@dimen/sp_16" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="17:20"
+        android:textColor="@color/slategray"
+        android:textSize="@dimen/sp_16" />
+
+
+</RelativeLayout>
