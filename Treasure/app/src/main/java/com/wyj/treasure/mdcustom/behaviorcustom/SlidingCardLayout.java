@@ -39,7 +39,8 @@ public class SlidingCardLayout extends FrameLayout {
         LayoutInflater.from(context).inflate(R.layout.widget_card, this);
         RecyclerView list = (RecyclerView) findViewById(R.id.list);
         TextView hrader = (TextView) findViewById(R.id.header);
-        list.setAdapter(new SimpleAdapter());
+        SimpleAdapter adapter = new SimpleAdapter(list);
+        list.setAdapter(adapter);
         list.setLayoutManager(new LinearLayoutManager(getContext()));
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.SlidingCardLayout, defStyleAttr, 0);
         hrader.setBackgroundColor(array.getColor(R.styleable.SlidingCardLayout_android_colorBackground, Color.BLACK));

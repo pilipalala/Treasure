@@ -72,4 +72,9 @@
         <attr name="android:colorBackground"/>
         <attr name="android:text"/>
     </declare-styleable>
+    <declare-styleable name="SlidingCardView">
+        <attr name="card_color" format="color"/>
+        <attr name="card_text" format="string"/>
+    </declare-styleable>
+
 </resources>

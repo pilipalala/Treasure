@@ -141,7 +141,8 @@
         <activity android:name=".activity.transition.Main3Activity" />
         <activity android:name=".activity.transition.Main4Activity" />
         <activity android:name=".activity.itemtouch.RecyclerViewItemTouchActivity" />
-        <activity android:name=".mdcustom.behaviorcustom.BehaviorActivity"></activity>
+        <activity android:name=".mdcustom.behaviorcustom.BehaviorActivity"
+            android:theme="@style/BaseTheme"></activity>
     </application>
 
 </manifest>
