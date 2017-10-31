@@ -12,6 +12,7 @@ import com.wyj.treasure.activity.RegularExpressionActivity;
 import com.wyj.treasure.activity.StaggeredGridActivity;
 import com.wyj.treasure.activity.SuspensionBarActivity;
 import com.wyj.treasure.activity.SwipeDeleteActivity;
+import com.wyj.treasure.mdcustom.behaviorcustom.BehaviorActivity;
 import com.wyj.treasure.mode.ItemInfo;
 
 public class DashboardFragment extends BaseCardViewFragment {
@@ -29,6 +30,7 @@ public class DashboardFragment extends BaseCardViewFragment {
         mData.add(new ItemInfo("MVP", UserLoginActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("RxJava", RxJavaActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("布局优化", IncludeMergeViewStubActivity.class, R.mipmap.ic_launcher));
+        mData.add(new ItemInfo("自定义Behavior玩转特效--滑动的卡片", BehaviorActivity.class, R.mipmap.ic_launcher));
         notifyDataChanged();
 
     }

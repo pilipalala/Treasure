@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#C0C0C0"
+        android:paddingTop="@dimen/dp_50" />
+
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50"
+        android:background="#000"
+        android:gravity="center_vertical"
+        android:paddingEnd="@dimen/dp_8"
+        android:paddingStart="@dimen/dp_8"
+        android:paddingTop="@dimen/dp_10"
+        android:textColor="#fff" />
+</merge>

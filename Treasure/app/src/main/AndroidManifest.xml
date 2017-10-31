@@ -140,7 +140,8 @@
         <activity android:name=".activity.Main2Activity" />
         <activity android:name=".activity.transition.Main3Activity" />
         <activity android:name=".activity.transition.Main4Activity" />
-        <activity android:name=".activity.itemtouch.RecyclerViewItemTouchActivity"></activity>
+        <activity android:name=".activity.itemtouch.RecyclerViewItemTouchActivity" />
+        <activity android:name=".mdcustom.behaviorcustom.BehaviorActivity"></activity>
     </application>
 
 </manifest>

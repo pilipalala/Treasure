@@ -1,0 +1,43 @@
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.wyj.treasure.mdcustom.behaviorcustom.BehaviorActivity">
+
+    <com.wyj.treasure.mdcustom.behaviorcustom.SlidingCardLayout
+        android:id="@+id/card_one"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:colorBackground="@color/sandybrown"
+        android:text="卡片壹" />
+
+    <com.wyj.treasure.mdcustom.behaviorcustom.SlidingCardLayout
+        android:id="@+id/card_two"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:colorBackground="@color/violet"
+        android:text="卡片贰" />
+
+    <com.wyj.treasure.mdcustom.behaviorcustom.SlidingCardLayout
+        android:id="@+id/card_three"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:colorBackground="@color/khaki"
+        android:text="卡片叁" />
+
+    <com.wyj.treasure.mdcustom.behaviorcustom.SlidingCardLayout
+        android:id="@+id/card_four"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:colorBackground="@color/magenta"
+        android:text="卡片肆" />
+
+    <com.wyj.treasure.mdcustom.behaviorcustom.SlidingCardLayout
+        android:id="@+id/card_five"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:colorBackground="@color/goldenrod"
+        android:text="卡片伍" />
+
+
+</android.support.design.widget.CoordinatorLayout>

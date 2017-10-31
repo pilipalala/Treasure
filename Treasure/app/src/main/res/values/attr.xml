@@ -68,4 +68,8 @@
         <attr name="textPaddingTop" format="dimension" />
         <attr name="textPaddingBottom" format="dimension" />
     </declare-styleable>
+    <declare-styleable name="SlidingCardLayout">
+        <attr name="android:colorBackground"/>
+        <attr name="android:text"/>
+    </declare-styleable>
 </resources>

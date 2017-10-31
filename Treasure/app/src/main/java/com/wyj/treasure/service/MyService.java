@@ -6,6 +6,8 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
+import android.os.Parcel;
+import android.os.RemoteException;
 import android.support.v4.app.NotificationCompat;
 
 import com.wyj.treasure.R;
@@ -19,6 +21,11 @@ public class MyService extends Service {
     }
 
     public class DownloadBinder extends Binder {
+        @Override
+        protected boolean onTransact(int code, Parcel data, Parcel reply, int flags) throws RemoteException {
+            return super.onTransact(code, data, reply, flags);
+        }
+
         public void startDownload() {
             LogUtil.d("startDownload");
         }
@@ -70,4 +77,5 @@ public class MyService extends Service {
 
         return START_STICKY;
     }
+
 }

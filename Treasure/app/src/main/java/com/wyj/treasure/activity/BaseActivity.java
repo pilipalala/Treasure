@@ -1,14 +1,11 @@
 package com.wyj.treasure.activity;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.transition.Transition;
-import android.transition.TransitionInflater;
-import android.view.Window;
 
-import com.wyj.treasure.R;
+import com.wyj.treasure.utils.LogUtil;
 import com.wyj.treasure.utils.ToastUtil;
 
 /**
@@ -29,7 +26,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+        /*getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             explode = TransitionInflater.from(this).inflateTransition(R.transition.explode);
             fade = TransitionInflater.from(this).inflateTransition(R.transition.fade);
@@ -40,20 +37,21 @@ public abstract class BaseActivity extends AppCompatActivity {
             getWindow().setEnterTransition(explode);
             //再次进入时使用
             getWindow().setReenterTransition(fade);
-            /*如果想让前者完全运行完后者再进来*/
+            *//*如果想让前者完全运行完后者再进来*//*
             getWindow().setAllowEnterTransitionOverlap(false);
             getWindow().setAllowReturnTransitionOverlap(false);
 
-           /* getWindow().setSharedElementExitTransition(explode);
+           *//* getWindow().setSharedElementExitTransition(explode);
             getWindow().setSharedElementEnterTransition(explode);
             getWindow().setSharedElementReenterTransition(explode);
-            getWindow().setSharedElementReturnTransition(explode);*/
-        }
+            getWindow().setSharedElementReturnTransition(explode);*//*
+        }*/
         try {
             initView();
             initData();
         } catch (Exception e) {
             ToastUtil.show("出现异常");
+            LogUtil.e(e.toString());
 
         }
     }
