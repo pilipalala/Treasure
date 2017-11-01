@@ -50,11 +50,10 @@ public class SlidingCardView extends FrameLayout {
         TextView textView = (TextView) findViewById(R.id.header);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
 
-        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.SlidingCardLayout, defStyleAttr, 0);
-        int color = array.getColor(R.styleable.SlidingCardLayout_android_colorBackground, Color.GREEN);
-        String text = array.getString(R.styleable.SlidingCardLayout_android_text);
+        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.SlidingCardView, defStyleAttr, 0);
+        int color = array.getColor(R.styleable.SlidingCardView_card_color, Color.GREEN);
+        String text = array.getString(R.styleable.SlidingCardView_card_text);
         array.recycle();
-
         textView.setText(text);
         textView.setBackgroundColor(color);
 

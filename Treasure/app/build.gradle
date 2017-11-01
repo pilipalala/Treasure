@@ -56,13 +56,6 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    //retrofit
-
-    //Gson converter
-
-    //RxJava2 Adapter
-
-    //okhttp
     compile files('lib/MobTools-2017.0607.1736.jar')
     compile files('lib/MobCommons-2017.0607.1736.jar')
     compile name: 'SMSSDK-3.0.0', ext: 'aar'

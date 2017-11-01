@@ -4,6 +4,8 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.view.ViewCompat;
 import android.view.View;
 
+import com.wyj.treasure.utils.LogUtil;
+
 /**
  * Created by wangyujie
  * Date 2017/10/31
@@ -18,8 +20,10 @@ public class SlidingCardBehavior1 extends CoordinatorLayout.Behavior<SlidingCard
     @Override
     public boolean onMeasureChild(CoordinatorLayout parent, SlidingCardView child, int parentWidthMeasureSpec, int widthUsed, int parentHeightMeasureSpec, int heightUsed) {
         int offset = getChildMeasureOffset(parent, child);
+        LogUtil.e("offset" + offset);
         int height = View.MeasureSpec.getSize(parentHeightMeasureSpec) - offset;
         int heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY);
+
         child.measure(parentWidthMeasureSpec, heightMeasureSpec);
         return true;
     }
@@ -162,8 +166,8 @@ public class SlidingCardBehavior1 extends CoordinatorLayout.Behavior<SlidingCard
             View view = parent.getChildAt(i);
             //排除自己
             if (view != child && view instanceof SlidingCardView) {
-                SlidingCardView SlidingCardView = (SlidingCardView) view;
-                offset += SlidingCardView.getHeaderHeight();
+                SlidingCardView slidingCardView = (SlidingCardView) view;
+                offset += slidingCardView.getHeaderHeight();
             }
         }
         return offset;
@@ -189,6 +193,7 @@ public class SlidingCardBehavior1 extends CoordinatorLayout.Behavior<SlidingCard
      */
     private SlidingCardView getPreviousChild(CoordinatorLayout parent, SlidingCardView child) {
         int cardIndex = parent.indexOfChild(child);
+        LogUtil.e(parent.getChildCount() + "+++++++"+cardIndex);
         for (int i = cardIndex - 1; i >= 0; i--) {
             View view = parent.getChildAt(i);
             if (view instanceof SlidingCardView) {
