@@ -1,5 +1,6 @@
 package com.wyj.treasure.fragment;
 
+import com.wyj.mdcustom.splash.SplashActivity;
 import com.wyj.mvp.UserLoginActivity;
 import com.wyj.rxjava.RxJavaActivity;
 import com.wyj.treasure.R;
@@ -29,6 +30,7 @@ public class DashboardFragment extends BaseCardViewFragment {
         mData.add(new ItemInfo("MVP", UserLoginActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("RxJava", RxJavaActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("布局优化", IncludeMergeViewStubActivity.class, R.mipmap.ic_launcher));
+        mData.add(new ItemInfo("过渡加载特效", SplashActivity.class, R.mipmap.ic_launcher));
         notifyDataChanged();
 
     }

@@ -426,4 +426,14 @@
     <color name="orange_color">#de6838</color>
 
 
+    <array name="splash_circle_colors" >
+
+        <item>@color/right_menu_pressed</item>
+        <item>@color/orange_color</item>
+        <item>@color/btn_blue</item>
+        <item>@color/mediumspringgreen</item>
+        <item>@color/sandybrown</item>
+        <item>@color/indigo</item>
+    </array>
+
 </resources>

@@ -1,10 +1,9 @@
 apply plugin: 'com.android.application'
-apply plugin: 'me.tatarka.retrolambda'
 //apply plugin: 'com.tencent.tinker.patch'//apply tinker插件
 //apply from: 'tinkerpatch.gradle'
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.wyj.treasure"
         minSdkVersion 19
@@ -29,13 +28,13 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            shrinkResources true
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }
         debug {
             minifyEnabled false
-            shrinkResources true
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -56,13 +55,6 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    //retrofit
-
-    //Gson converter
-
-    //RxJava2 Adapter
-
-    //okhttp
     compile files('lib/MobTools-2017.0607.1736.jar')
     compile files('lib/MobCommons-2017.0607.1736.jar')
     compile name: 'SMSSDK-3.0.0', ext: 'aar'
@@ -90,5 +82,5 @@ dependencies {
     compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
-    provided 'com.tinkerpatch.tinker:tinker-android-anno:1.8.0'
+//    provided 'com.tinkerpatch.tinker:tinker-android-anno:1.8.0'
 }

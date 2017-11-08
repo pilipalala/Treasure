@@ -6,17 +6,18 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
+        classpath 'com.android.tools.build:gradle:3.0.0'
         classpath 'com.jakewharton:butterknife-gradle-plugin:8.7.0'
-        classpath 'me.tatarka:gradle-retrolambda:3.2.5'
-        classpath "com.tinkerpatch.sdk:tinkerpatch-gradle-plugin:1.1.8" // TinkerPatch 插件
+//        classpath "com.tinkerpatch.sdk:tinkerpatch-gradle-plugin:1.1.8" // TinkerPatch 插件
     }
 }
 
 allprojects {
     repositories {
         jcenter()
+        google()
         maven { url "https://jitpack.io" }
+        maven {url "https://maven.google.com"}
     }
 }
 
