@@ -1,7 +1,8 @@
 package com.wyj.mdcustom.splash;
 
 import android.content.Context;
-import android.widget.ImageView;
+
+import com.wyj.treasure.R;
 
 /**
  * Created by wangyujie
@@ -10,8 +11,10 @@ import android.widget.ImageView;
  * TODO
  */
 
-public class ContentView extends ImageView {
+public class ContentView extends android.support.v7.widget.AppCompatImageView {
     public ContentView(Context context) {
         super(context);
+        setImageResource(R.mipmap.icon_one);
+        setScaleType(ScaleType.FIT_XY);
     }
 }
