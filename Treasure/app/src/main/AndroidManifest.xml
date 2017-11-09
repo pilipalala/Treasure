@@ -142,6 +142,7 @@
         <activity android:name=".activity.transition.Main4Activity" />
         <activity android:name=".activity.itemtouch.RecyclerViewItemTouchActivity" />
         <activity android:name=".mdcustom.behaviorcustom.BehaviorActivity"/>
+        <activity android:name="com.wyj.mdcustom.splash.SplashActivity"></activity>
     </application>
 
 </manifest>
