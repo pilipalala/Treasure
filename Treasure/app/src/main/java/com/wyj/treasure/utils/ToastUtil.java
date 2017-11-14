@@ -1,5 +1,6 @@
 package com.wyj.treasure.utils;
 
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.widget.Toast;
 
@@ -25,8 +26,12 @@ public class ToastUtil {
         return toast;
     }
 
-    public static Toast show( int text) {
-        return show( String.valueOf(Double.valueOf(text)));
+    public static Toast show(int text) {
+        String string = MyApplication.getContext().getResources().getString(text);
+        if (TextUtils.isEmpty(string)) {
+            return show(String.valueOf(Double.valueOf(text)));
+        } else {
+            return show(string);
+        }
     }
-
 }

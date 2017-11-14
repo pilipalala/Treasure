@@ -1,5 +1,7 @@
 package com.wyj.treasure.activity;
 
+import android.Manifest;
+import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,6 +11,8 @@ import android.transition.TransitionInflater;
 import android.view.Window;
 
 import com.wyj.treasure.R;
+import com.wyj.treasure.permission.PermissionHelper;
+import com.wyj.treasure.permission.PermissionSuccess;
 import com.wyj.treasure.utils.LogUtil;
 import com.wyj.treasure.utils.ToastUtil;
 
@@ -26,6 +30,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     Transition fade;
     /*滑动效果*/
     Transition slide;
+    public final int PERMISSION_REQUEST_CODE = 0x110;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,6 +79,24 @@ public abstract class BaseActivity extends AppCompatActivity {
      * 加载数据
      */
     protected abstract void initData();
+
+
+    /**
+     * @param context
+     */
+    public void requestPermission(Activity context) {
+
+        PermissionHelper.with(this)
+                .requestCode(PERMISSION_REQUEST_CODE)
+                .requestPermission(Manifest.permission.CALL_PHONE)
+                .request();
+
+    }
+
+    @PermissionSuccess(requestCode = PERMISSION_REQUEST_CODE)
+    public void callPhone() {
+
+    }
 
     @Override
     protected void onDestroy() {
