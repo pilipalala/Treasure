@@ -37,7 +37,6 @@ public class BannerViewPagerActivity extends BaseActivity {
             @Override
             public View getView(int position) {
                 ImageView view = new ImageView(BannerViewPagerActivity.this);
-                view.setScaleType(ImageView.ScaleType.CENTER_CROP);
                 view.setImageResource(imageViews[position]);
                 return view;
             }

@@ -19,12 +19,35 @@
         <attr name="textPaddingBottom" format="dimension" />
     </declare-styleable>
     <declare-styleable name="SlidingCardLayout">
-        <attr name="android:colorBackground"/>
-        <attr name="android:text"/>
+        <attr name="android:colorBackground" />
+        <attr name="android:text" />
     </declare-styleable>
     <declare-styleable name="SlidingCardView">
-        <attr name="card_color" format="color"/>
-        <attr name="card_text" format="string"/>
+        <attr name="card_color" format="color" />
+        <attr name="card_text" format="string" />
     </declare-styleable>
 
+
+    <declare-styleable name="BannerView">
+
+        <!--点的选中颜色值-->
+        <attr name="dotIndicatorFocus" format="color|reference" />
+        <!--点的未选中颜色值-->
+        <attr name="dotIndicatorNormal" format="color|reference" />
+        <!--点的大小-->
+        <attr name="dotSize" format="dimension" />
+        <!--点的间距-->
+        <attr name="dotDistance" format="dimension" />
+        <!--点的位置-->
+        <attr name="dotGravity" format="enum">
+            <enum name="center" value="0" />
+            <enum name="right" value="1" />
+            <enum name="left" value="-1" />
+        </attr>
+        <!--底部的颜色-->
+        <attr name="bottomColor" format="color" />
+        <!--图片宽高比-->
+        <attr name="withProportion" format="float" />
+        <attr name="heightProportion" format="float" />
+    </declare-styleable>
 </resources>

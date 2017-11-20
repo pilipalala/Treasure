@@ -1,6 +1,7 @@
 package com.wyj.treasure.viewcustom.bannerviewpager;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -50,7 +51,35 @@ public class BannerView extends RelativeLayout {
      * 当前选中的点的位置
      */
     private int mCurrentPosition = 0;
+    /**
+     * 点的位置
+     */
+    private int mDotGravity = 1;
+    /**
+     * 点的大小
+     */
+    private int mDotSize = 5;
+    /**
+     * 底部颜色
+     */
+    private int mBottomColor = Color.TRANSPARENT;
+    /**
+     * 点的间距
+     */
+    private int mDdotDistance = 8;
+
+
     private Context mContext;
+    /**
+     * 底部容器
+     */
+    private RelativeLayout mBottomView;
+    /**
+     * 宽高比
+     * */
+    private float mWithProportion = 4;
+    private float mHeightProportion = 3;
+    private int width;
 
     public BannerView(Context context) {
         this(context, null);
@@ -65,11 +94,52 @@ public class BannerView extends RelativeLayout {
         mContext = context;
         //把布局加载到该view里面
         inflate(context, R.layout.ui_banner_layout, this);
-        //初始化view
+        initAttribute(attrs);
         initView();
-        mIndicatorFocusDrawable = new ColorDrawable(Color.RED);
-        mIndicatorNormalDrawable = new ColorDrawable(Color.WHITE);
+        getMeasuredWidth();
     }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        if (mHeightProportion == 0 || mWithProportion == 0) {
+            return;
+        }
+
+        width = MeasureSpec.getSize(widthMeasureSpec);
+
+    }
+
+    /**
+     * 初始化自定义属性
+     *
+     * @param attrs
+     */
+    private void initAttribute(AttributeSet attrs) {
+        TypedArray array = mContext.obtainStyledAttributes(attrs, R.styleable.BannerView);
+        //点的颜色
+        mIndicatorFocusDrawable = array.getDrawable(R.styleable.BannerView_dotIndicatorFocus);
+        if (null == mIndicatorFocusDrawable) {
+            mIndicatorFocusDrawable = new ColorDrawable(Color.RED);
+        }
+        mIndicatorNormalDrawable = array.getDrawable(R.styleable.BannerView_dotIndicatorNormal);
+        if (null == mIndicatorNormalDrawable) {
+            mIndicatorNormalDrawable = new ColorDrawable(Color.WHITE);
+        }
+        //点的位置
+        mDotGravity = array.getInt(R.styleable.BannerView_dotGravity, mDotGravity);
+        //点的大小
+        mDotSize = (int) array.getDimension(R.styleable.BannerView_dotSize, dip2px(mDotSize));
+        //点的间距
+        mDdotDistance = (int) array.getDimension(R.styleable.BannerView_dotDistance, dip2px(mDdotDistance));
+        mBottomColor = array.getColor(R.styleable.BannerView_bottomColor, mBottomColor);
+        mWithProportion = array.getFloat(R.styleable.BannerView_withProportion, mWithProportion);
+        mHeightProportion = array.getFloat(R.styleable.BannerView_heightProportion, mHeightProportion);
+        array.recycle();
+    }
+    /**
+     * 点的大小 点的颜色 点的位置 点的间距
+     * */
 
     /**
      * 初始化view
@@ -78,7 +148,8 @@ public class BannerView extends RelativeLayout {
         mBannerVp = (BannerViewPager) findViewById(R.id.banner_vp);
         mBannerDescTv = (TextView) findViewById(R.id.tv_banner_desc);
         mDotContainerView = (LinearLayout) findViewById(R.id.dot_container);
-        mBannerVp.getChildCount();
+        mBottomView = (RelativeLayout) findViewById(R.id.rl_bottom);
+        mBottomView.setBackgroundColor(mBottomColor);
     }
 
     /**
@@ -100,6 +171,10 @@ public class BannerView extends RelativeLayout {
                 pageSelect(position);
             }
         });
+        getMeasuredWidth();
+        int height = (int) ( width * mHeightProportion / mWithProportion);
+        //指定宽高
+        getLayoutParams().height = height;
     }
 
     private void pageSelect(int position) {
@@ -130,19 +205,19 @@ public class BannerView extends RelativeLayout {
         /**
          * 设置点的位置
          * */
-        mDotContainerView.setGravity(Gravity.RIGHT);
+        mDotContainerView.setGravity(getDotGravity());
+
         /**
          * 获取轮播图的数量
          * */
         int count = mAdapter.getCount();
         for (int i = 0; i < count; i++) {
-
             DotIndicatorView indicatorView = new DotIndicatorView(mContext);
             /**
              * 设置圆点 的大小
              * */
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(dip2px(5), dip2px(5));
-            params.setMargins(dip2px(5), 0, dip2px(5), 0);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(mDotSize, mDotSize);
+            params.leftMargin = mDdotDistance;
             if (i == 0) {
                 //选中位置
                 indicatorView.setDrawable(mIndicatorFocusDrawable);
@@ -150,7 +225,6 @@ public class BannerView extends RelativeLayout {
                 //未选中的
                 indicatorView.setDrawable(mIndicatorNormalDrawable);
             }
-
             indicatorView.setLayoutParams(params);
             mDotContainerView.addView(indicatorView);
 
@@ -177,4 +251,21 @@ public class BannerView extends RelativeLayout {
         mBannerVp.startRoll();
     }
 
+    /**
+     * 获取点的位置
+     *
+     * @return
+     */
+    public int getDotGravity() {
+        switch (mDotGravity) {
+            case 0:
+                return Gravity.CENTER;
+            case 1:
+                return Gravity.RIGHT;
+            case -1:
+                return Gravity.LEFT;
+            default:
+                return Gravity.RIGHT;
+        }
+    }
 }
