@@ -5,13 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".mvp.GirlListActivity">
+    tools:context="com.wyj.treasure.viewcustom.bannerviewpager.BannerViewPagerActivity">
 
-    <include layout="@layout/title" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_girl"
+    <com.wyj.treasure.viewcustom.bannerviewpager.BannerView
+        android:id="@+id/banner_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="@dimen/dp_150" />
 
 </LinearLayout>

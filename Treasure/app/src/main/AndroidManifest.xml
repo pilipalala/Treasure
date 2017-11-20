@@ -113,10 +113,10 @@
         <activity android:name=".activity.MyWebViewActivity" />
         <activity android:name=".activity.StaggeredGridActivity" />
         <activity android:name=".activity.StaggeredGridOtherActivity" />
-        <activity android:name="com.wyj.mvp.UserLoginActivity" />
-        <activity android:name="com.wyj.rxjava.RxJavaActivity" />
+        <activity android:name=".mvp.UserLoginActivity" />
+        <activity android:name=".rxjava.RxJavaActivity" />
         <activity android:name=".activity.IncludeMergeViewStubActivity" />
-        <activity android:name="com.wyj.mvp.GirlListActivity" />
+        <activity android:name=".mvp.GirlListActivity" />
         <activity android:name=".activity.LoginActivity" />
 
         <service
@@ -141,8 +141,9 @@
         <activity android:name=".activity.transition.Main3Activity" />
         <activity android:name=".activity.transition.Main4Activity" />
         <activity android:name=".activity.itemtouch.RecyclerViewItemTouchActivity" />
-        <activity android:name=".mdcustom.behaviorcustom.BehaviorActivity"/>
-        <activity android:name="com.wyj.mdcustom.splash.SplashActivity"></activity>
+        <activity android:name=".mdcustom.behaviorcustom.BehaviorActivity" />
+        <activity android:name=".mdcustom.splash.SplashActivity" />
+        <activity android:name=".viewcustom.bannerviewpager.BannerViewPagerActivity"></activity>
     </application>
 
 </manifest>

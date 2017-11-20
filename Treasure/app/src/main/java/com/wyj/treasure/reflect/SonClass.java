@@ -11,27 +11,28 @@ import com.wyj.treasure.utils.ToastUtil;
 public class SonClass extends FatherClass {
 
 
-    private String mSonName;
-    protected int mSonAge;
     public String mSonBirthday;
+    public int mSonAge = 10;
+    private String mSonName;
 
     public void printSonMsg() {
         ToastUtil.show("Son Msg - name:" + mSonName + "; age:" + mSonAge);
     }
-    private  String getmSonName() {
+
+    private String getmSonName() {
         return mSonName;
     }
 
-    private  void setmSonName(String mSonName) {
+    private void setmSonName(String mSonName) {
         this.mSonName = mSonName;
     }
 
 
-    private  int getmSonAge() {
+    private int getmSonAge() {
         return mSonAge;
     }
 
-    private  void setmSonAge(int mSonAge) {
+    private void setmSonAge(int mSonAge) {
         this.mSonAge = mSonAge;
     }
 }

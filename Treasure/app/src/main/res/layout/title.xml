@@ -17,9 +17,11 @@
         app:theme="@style/ToolBarTheme">
 
         <LinearLayout
+            android:id="@+id/ll_sub_title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
+            android:visibility="visible"
             android:orientation="horizontal">
 
             <ImageView

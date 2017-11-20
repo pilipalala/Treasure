@@ -10,8 +10,27 @@
     <include layout="@layout/title" />
 
     <Button
-        android:id="@+id/btn_class"
+        android:id="@+id/btn_getFields"
         style="@style/default_button_style"
-        android:text="获取类的信息" />
+        android:text="获得类的属性" />
+
+    <Button
+        android:id="@+id/btn_getMethods"
+        style="@style/default_button_style"
+        android:text="获得类的方法" />
+    <Button
+        android:id="@+id/btn_getClass"
+        style="@style/default_button_style"
+        android:text="获得类对象" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_class"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </ScrollView>
 
 </LinearLayout>

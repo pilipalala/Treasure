@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.transition.Transition;
@@ -11,6 +12,7 @@ import android.transition.TransitionInflater;
 import android.view.Window;
 
 import com.wyj.treasure.R;
+import com.wyj.treasure.permission.PermissionFail;
 import com.wyj.treasure.permission.PermissionHelper;
 import com.wyj.treasure.permission.PermissionSuccess;
 import com.wyj.treasure.utils.LogUtil;
@@ -24,14 +26,13 @@ import com.wyj.treasure.utils.ToastUtil;
  */
 
 public abstract class BaseActivity extends AppCompatActivity {
+    public final int PERMISSION_REQUEST_CODE = 0x110;
     /*爆炸效果*/
     Transition explode;
     /*淡化效果*/
     Transition fade;
     /*滑动效果*/
     Transition slide;
-    public final int PERMISSION_REQUEST_CODE = 0x110;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -96,6 +97,19 @@ public abstract class BaseActivity extends AppCompatActivity {
     @PermissionSuccess(requestCode = PERMISSION_REQUEST_CODE)
     public void callPhone() {
 
+
+    }
+
+    @PermissionFail(requestCode = PERMISSION_REQUEST_CODE)
+    public void callPhoneFail() {
+
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        PermissionHelper.requestPermissionsResult(this, requestCode, permissions);
     }
 
     @Override

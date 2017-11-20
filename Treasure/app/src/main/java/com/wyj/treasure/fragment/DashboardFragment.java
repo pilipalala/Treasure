@@ -1,8 +1,5 @@
 package com.wyj.treasure.fragment;
 
-import com.wyj.mdcustom.splash.SplashActivity;
-import com.wyj.mvp.UserLoginActivity;
-import com.wyj.rxjava.RxJavaActivity;
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.GridViewChoiceActivity;
 import com.wyj.treasure.activity.IncludeMergeViewStubActivity;
@@ -14,7 +11,11 @@ import com.wyj.treasure.activity.StaggeredGridActivity;
 import com.wyj.treasure.activity.SuspensionBarActivity;
 import com.wyj.treasure.activity.SwipeDeleteActivity;
 import com.wyj.treasure.mdcustom.behaviorcustom.BehaviorActivity;
+import com.wyj.treasure.mdcustom.splash.SplashActivity;
 import com.wyj.treasure.mode.ItemInfo;
+import com.wyj.treasure.mvp.UserLoginActivity;
+import com.wyj.treasure.rxjava.RxJavaActivity;
+import com.wyj.treasure.viewcustom.bannerviewpager.BannerViewPagerActivity;
 
 public class DashboardFragment extends BaseCardViewFragment {
 
@@ -33,8 +34,7 @@ public class DashboardFragment extends BaseCardViewFragment {
         mData.add(new ItemInfo("布局优化", IncludeMergeViewStubActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("自定义Behavior玩转特效--滑动的卡片", BehaviorActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("过渡加载特效", SplashActivity.class, R.mipmap.ic_launcher));
+        mData.add(new ItemInfo("自动轮播图", BannerViewPagerActivity.class, R.mipmap.ic_launcher));
         notifyDataChanged();
-
     }
-
 }
