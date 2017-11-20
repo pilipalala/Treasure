@@ -93,7 +93,6 @@ public class MyAppWidgetProvider extends AppWidgetProvider {
     }
 
     /**
-     * @param context
      * @param bitmap
      * @param degree
      * @return
