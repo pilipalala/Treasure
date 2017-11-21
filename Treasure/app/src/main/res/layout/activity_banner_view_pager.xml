@@ -4,20 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/pink"
     android:orientation="vertical"
     tools:context="com.wyj.treasure.viewcustom.bannerviewpager.BannerViewPagerActivity">
+
+    <include layout="@layout/title" />
 
     <com.wyj.treasure.viewcustom.bannerviewpager.BannerView
         android:id="@+id/banner_view"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="150dp"
         app:bottomColor="#88000000"
         app:dotDistance="@dimen/dp_8"
         app:dotGravity="right"
         app:dotIndicatorFocus="@color/sandybrown"
         app:dotIndicatorNormal="@color/ligntgray"
         app:dotSize="@dimen/dp_5"
-        app:heightProportion="3"
-        app:withProportion="5" />
+        app:heightProportion="564"
+        app:withProportion="1000" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/announcement_publisher"
+        android:text="@string/lrc" />
+
 
 </LinearLayout>

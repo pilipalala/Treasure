@@ -31,6 +31,10 @@ public class BannerView extends RelativeLayout {
      */
     private TextView mBannerDescTv;
     /**
+     * 底部容器
+     */
+    private RelativeLayout mBottomView;
+    /**
      * 轮播  点 的容器
      */
     private LinearLayout mDotContainerView;
@@ -70,16 +74,12 @@ public class BannerView extends RelativeLayout {
 
 
     private Context mContext;
-    /**
-     * 底部容器
-     */
-    private RelativeLayout mBottomView;
+
     /**
      * 宽高比
-     * */
-    private float mWithProportion = 4;
-    private float mHeightProportion = 3;
-    private int width;
+     */
+    private float mWithProportion = 4, mHeightProportion = 3;
+
 
     public BannerView(Context context) {
         this(context, null);
@@ -96,18 +96,6 @@ public class BannerView extends RelativeLayout {
         inflate(context, R.layout.ui_banner_layout, this);
         initAttribute(attrs);
         initView();
-        getMeasuredWidth();
-    }
-
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        if (mHeightProportion == 0 || mWithProportion == 0) {
-            return;
-        }
-
-        width = MeasureSpec.getSize(widthMeasureSpec);
-
     }
 
     /**
@@ -132,14 +120,31 @@ public class BannerView extends RelativeLayout {
         mDotSize = (int) array.getDimension(R.styleable.BannerView_dotSize, dip2px(mDotSize));
         //点的间距
         mDdotDistance = (int) array.getDimension(R.styleable.BannerView_dotDistance, dip2px(mDdotDistance));
+        //底部背景颜色
         mBottomColor = array.getColor(R.styleable.BannerView_bottomColor, mBottomColor);
+        //视图宽高比
         mWithProportion = array.getFloat(R.styleable.BannerView_withProportion, mWithProportion);
         mHeightProportion = array.getFloat(R.styleable.BannerView_heightProportion, mHeightProportion);
         array.recycle();
     }
-    /**
-     * 点的大小 点的颜色 点的位置 点的间距
-     * */
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+        if (heightMode == MeasureSpec.AT_MOST) {
+            int height = (int) (widthMeasureSpec * mHeightProportion / mWithProportion);
+            setMeasuredDimension(widthMeasureSpec, height);
+        }
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        int width = w;
+        int height = (int) (width * mHeightProportion / mWithProportion);
+        getLayoutParams().height = height;
+    }
 
     /**
      * 初始化view
@@ -149,7 +154,13 @@ public class BannerView extends RelativeLayout {
         mBannerDescTv = (TextView) findViewById(R.id.tv_banner_desc);
         mDotContainerView = (LinearLayout) findViewById(R.id.dot_container);
         mBottomView = (RelativeLayout) findViewById(R.id.rl_bottom);
+        //设置底部背景色
         mBottomView.setBackgroundColor(mBottomColor);
+
+    }
+
+    public void setOnBannerItemClickListener(BannerViewPager.OnItemClickListener listener) {
+        mBannerVp.setOnItemClickListener(listener);
     }
 
     /**
@@ -171,10 +182,6 @@ public class BannerView extends RelativeLayout {
                 pageSelect(position);
             }
         });
-        getMeasuredWidth();
-        int height = (int) ( width * mHeightProportion / mWithProportion);
-        //指定宽高
-        getLayoutParams().height = height;
     }
 
     private void pageSelect(int position) {
@@ -196,6 +203,8 @@ public class BannerView extends RelativeLayout {
          * 3.设置广告位描述
          * */
         mBannerDescTv.setText(mAdapter.getBannerDesc(mCurrentPosition));
+
+
     }
 
     /**
@@ -231,6 +240,7 @@ public class BannerView extends RelativeLayout {
         }
         mBannerDescTv.setText(mAdapter.getBannerDesc(0));
     }
+
 
     /**
      * 把dip转成px

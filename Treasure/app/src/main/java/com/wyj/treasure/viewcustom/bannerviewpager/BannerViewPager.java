@@ -6,11 +6,14 @@ import android.os.Message;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -47,6 +50,14 @@ public class BannerViewPager extends ViewPager {
         }
     };
 
+    /**
+     * 界面复用
+     */
+    private List<View> mConverViews;
+    /**
+     * 点击事件接口
+     */
+    private OnItemClickListener listener;
 
     public BannerViewPager(Context context) {
         this(context, null);
@@ -70,6 +81,22 @@ public class BannerViewPager extends ViewPager {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        mConverViews = new ArrayList<>();
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent ev) {
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_DOWN://按下
+                mHandler.removeMessages(SCROLL_MSG);
+                break;
+            case MotionEvent.ACTION_UP://松开
+                startRoll();
+                break;
+            default:
+                break;
+        }
+        return super.onTouchEvent(ev);
     }
 
     /**
@@ -88,8 +115,11 @@ public class BannerViewPager extends ViewPager {
      */
     public void setAdapter(BannerAdapter adapter) {
         mAdapter = adapter;
-//        设置viewpager的adapter
+        //设置viewpager的adapter
         setAdapter(new BannerPagerAdapter());
+        //设置中间位置
+        int item = Integer.MAX_VALUE / 2 - Integer.MAX_VALUE / 2 % adapter.getCount();//要保证是图片个数
+        setCurrentItem(item);
     }
 
     /**
@@ -112,6 +142,28 @@ public class BannerViewPager extends ViewPager {
         super.onDetachedFromWindow();
         mHandler.removeMessages(SCROLL_MSG);
         mHandler = null;
+    }
+
+    /**
+     * 获取复用界面
+     *
+     * @return
+     */
+    public View getConverView() {
+        for (int i = 0; i < mConverViews.size(); i++) {
+            if (mConverViews.get(i).getParent() != null) {
+                return mConverViews.get(i);
+            }
+        }
+        return null;
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
+    public interface OnItemClickListener {
+        void onclick(int position);
     }
 
     private class BannerPagerAdapter extends PagerAdapter {
@@ -137,10 +189,17 @@ public class BannerViewPager extends ViewPager {
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             //Adapter设计模式 为了完全让用户自定义
-            View bannerItemView = mAdapter.getView(position % mAdapter.getCount());
+            View bannerItemView = mAdapter.getView(position % mAdapter.getCount(), getConverView());
             container.addView(bannerItemView);
+            bannerItemView.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        listener.onclick(position % mAdapter.getCount());
+                    }
+                }
+            });
             return bannerItemView;
-
         }
 
         /**
@@ -153,8 +212,7 @@ public class BannerViewPager extends ViewPager {
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
             container.removeView((View) object);
-            object = null;
-
+            mConverViews.add((View) object);
         }
     }
 }
