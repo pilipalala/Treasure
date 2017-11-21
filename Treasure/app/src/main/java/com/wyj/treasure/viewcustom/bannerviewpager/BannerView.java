@@ -7,13 +7,17 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.wyj.treasure.R;
+import com.wyj.treasure.utils.LogUtil;
 
 /**
  * @author wangyujie
@@ -79,6 +83,10 @@ public class BannerView extends RelativeLayout {
      * 宽高比
      */
     private float mWithProportion = 4, mHeightProportion = 3;
+    /**
+     * 是否正在滑动
+     */
+    private boolean isDragging = false;
 
 
     public BannerView(Context context) {
@@ -180,6 +188,53 @@ public class BannerView extends RelativeLayout {
                  * 监听当前选中的位置
                  * */
                 pageSelect(position);
+            }
+
+            /**
+             * 当页面滚动状态变化的时候回调
+             * 静止-->滑动
+             * 滑动-->静止
+             * 静止-->拖拽
+             *
+             * @param state
+             */
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                if (state == ViewPager.SCROLL_STATE_DRAGGING) {//拖拽
+                    Log.e("onTouchListener", "onTouch: " + "/拖拽");
+                    isDragging = true;
+                    mBannerVp.stopRoll();
+                } else if (state == ViewPager.SCROLL_STATE_SETTLING) {//滑动
+                    Log.e("onTouchListener", "onTouch: " + "/滑动");
+                } else if (state == ViewPager.SCROLL_STATE_IDLE && isDragging) {//静止
+                    isDragging = false;
+                    Log.e("onTouchListener", "onTouch: " + "/静止");
+                    mBannerVp.startRoll();
+                }
+
+            }
+        });
+        mBannerVp.setOnItemTouchListener(new BannerViewPager.OnItemTouchListener() {
+            @Override
+            public void onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN://按下
+                        LogUtil.i("onTouchListener" + "onTouch: " + "按下");
+                        mBannerVp.stopRoll();
+                        break;
+                    case MotionEvent.ACTION_UP://松开
+                        LogUtil.i("onTouchListener" + "onTouch: " + "松开");
+                        startRoll();
+                        break;
+                    case MotionEvent.ACTION_CANCEL://取消
+                        /**
+                         * 按下并滑动一段距离后会触发取消事件
+                         * */
+                        Log.e("onTouchListener", "onTouch: " + "取消");
+                        break;
+                    default:
+                        break;
+                }
             }
         });
     }

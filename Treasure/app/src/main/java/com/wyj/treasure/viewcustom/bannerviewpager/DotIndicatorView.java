@@ -76,6 +76,9 @@ public class DotIndicatorView extends View {
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
         //再把原来的bitmap给绘制到新的圆上面
         canvas.drawBitmap(bitmap, 0, 0, paint);
+        //内存优化 回收Bitmap
+        bitmap.recycle();
+        bitmap = null;
         return circleBitmap;
 
     }
