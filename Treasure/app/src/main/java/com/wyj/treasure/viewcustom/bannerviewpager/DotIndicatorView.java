@@ -50,7 +50,6 @@ public class DotIndicatorView extends View {
 
             //画圆
             Bitmap bitmap = drawableToBitmap(drawable);
-            //
             Bitmap circleBitmap = getCircleBitmap(bitmap);
             canvas.drawBitmap(circleBitmap, 0, 0, null);
         }

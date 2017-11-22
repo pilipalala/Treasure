@@ -1,10 +1,29 @@
 package com.wyj.treasure;
 
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.os.Environment;
 import android.os.Looper;
 import android.os.Process;
+import android.text.TextUtils;
 
+import com.wyj.treasure.utils.LogUtil;
 import com.wyj.treasure.utils.ToastUtil;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.io.Writer;
+import java.lang.reflect.Field;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by wangyujie
@@ -14,10 +33,17 @@ import com.wyj.treasure.utils.ToastUtil;
  */
 
 public class CrashHandler implements Thread.UncaughtExceptionHandler {
-    private static CrashHandler mInstance;
-
+    private volatile static CrashHandler mInstance;
     private Thread.UncaughtExceptionHandler mDefaultHandler;
     private Context mContext;
+    /**
+     * 存储设备信息和异常信息
+     */
+    private Map<String, String> mInfo = new HashMap<>();
+    /**
+     * 文件日期格式
+     */
+    private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
 
     public CrashHandler() {
     }
@@ -53,7 +79,6 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
     @Override
     public void uncaughtException(Thread t, Throwable e) {
-
         if (!handlerExection(e)) {
             /*未处理  调用系统默认的处理器处理*/
             if (mDefaultHandler != null) {
@@ -68,7 +93,6 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             }
             Process.killProcess(Process.myPid());
             System.exit(1);
-
         }
     }
 
@@ -82,7 +106,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         if (e == null) {
             return false;
         }
-        new Thread(){
+        new Thread() {
             @Override
             public void run() {
                 Looper.prepare();
@@ -93,15 +117,95 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         //收集错误信息
         collectErrorInfo();
         //保存错误信息
-        saveErrorInfo();
+        saveErrorInfo(e);
         return false;
     }
 
-    private void saveErrorInfo() {
-        
+    /**
+     * 保存错误信息
+     *
+     * @param e
+     */
+    private void saveErrorInfo(Throwable e) {
+        StringBuffer sb = new StringBuffer();
+        for (Map.Entry<String, String> entry : mInfo.entrySet()) {
+            String keyName = entry.getKey();
+            String value = entry.getValue();
+            sb.append(keyName + "=" + value + "\n");
+        }
+        Writer writer = new StringWriter();
+        PrintWriter printWriter = new PrintWriter(writer);
+        e.printStackTrace(printWriter);
+        Throwable cause = e.getCause();
+        while (cause != null) {
+            cause.printStackTrace(printWriter);
+            cause = e.getCause();
+        }
+        printWriter.close();
+        String result = writer.toString();
+
+
+        sb.append(result);
+        LogUtil.e(result);
+
+        long timeMillis = System.currentTimeMillis();
+        String time = dateFormat.format(new Date());
+
+        String fileName = "crash-" + time + "-" + timeMillis + ".log";
+
+        /**
+         * 判断有没有SD卡
+         * */
+        if (Environment.getExternalStorageDirectory().equals(Environment.MEDIA_MOUNTED)) {
+            String path = "/sdcard/crash";
+            File dir = new File(path);
+            //判断该文件夹存不存在
+            if (!dir.exists()) {
+                dir.mkdir();
+            }
+            FileOutputStream fos = null;
+            try {
+                fos = new FileOutputStream(path + fileName);
+                fos.write(sb.toString().getBytes());
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            } finally {
+                try {
+                    fos.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        }
     }
 
+    /**
+     * 收集错误信息
+     */
     private void collectErrorInfo() {
+        PackageManager pm = mContext.getPackageManager();
+        try {
+            PackageInfo pi = pm.getPackageInfo(mContext.getPackageName(), PackageManager.GET_ACTIVITIES);
+            if (pi != null) {
+                String versionName = TextUtils.isEmpty(pi.versionName) ? "未设置版本名称" : pi.versionName;
+                String versionCode = String.valueOf(pi.versionCode);
+                mInfo.put("versionName", versionName);
+                mInfo.put("versionCode", versionCode);
+            }
+            Field[] fields = Build.class.getFields();
+            if (fields != null && fields.length > 0) {
+                for (Field field : fields) {
+                    field.setAccessible(true);
+                    try {
+                        mInfo.put(field.getName(), field.get(null).toString());
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
 
     }
 }

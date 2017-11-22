@@ -16,7 +16,7 @@ public class BannerScroller extends Scroller {
     /**
      * 动画持续的时间
      */
-    private int mScrollerDuration = 1000;
+    private int mScrollerDuration = 300;
 
     public BannerScroller(Context context) {
         this(context, null);

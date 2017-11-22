@@ -2,6 +2,7 @@ package com.wyj.treasure;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.v4.BuildConfig;
 
 import com.mob.MobSDK;
 import com.tencent.bugly.crashreport.CrashReport;
@@ -28,7 +29,7 @@ public class MyApplication extends Application {
         initTinkerPatch();
         context = getApplicationContext();
         initCrash();
-        initError();
+//        initError();
         MobSDK.init(context, "1a29c1dc37d04", "12f463dd9226ddfa631d9199cd230b15");
 
 
@@ -58,7 +59,8 @@ public class MyApplication extends Application {
      * 错误统计
      */
     private void initCrash() {
-        CrashReport.initCrashReport(getApplicationContext(), "42788188ed", false);
+        CrashHandler.getInstance().init(this);
+        CrashReport.initCrashReport(getApplicationContext(), "42788188ed", BuildConfig.DEBUG);
         CrashReport.setUserSceneTag(context, 20170811); // 上报后的Crash会显示该标签
     }
 

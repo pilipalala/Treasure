@@ -333,4 +333,17 @@ public class BannerView extends RelativeLayout {
                 return Gravity.RIGHT;
         }
     }
+    /**
+     * 隐藏页面指示器
+     */
+    public void hidePageIndicator() {
+        mDotContainerView.setVisibility(View.INVISIBLE);
+    }
+
+    /**
+     * 显示页面指示器
+     */
+    public void showPageIndicator() {
+        mDotContainerView.setVisibility(View.VISIBLE);
+    }
 }

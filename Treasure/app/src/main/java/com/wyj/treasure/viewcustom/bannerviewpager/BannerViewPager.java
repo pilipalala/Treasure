@@ -46,18 +46,6 @@ public class BannerViewPager extends ViewPager {
      * 改变viewpager切换的速率
      */
     private BannerScroller mScroller;
-    private Handler mHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            if (msg.what == SCROLL_MSG) {
-                //每隔一段时间后切换到下一页
-                setCurrentItem(getCurrentItem() + 1);
-                //继续循环执行
-                startRoll();
-            }
-        }
-    };
-
     /**
      * 界面复用
      */
@@ -65,8 +53,34 @@ public class BannerViewPager extends ViewPager {
     /**
      * 点击事件接口
      */
-    private OnItemClickListener listener;
+    private OnItemClickListener clickListener;
     private OnItemTouchListener touchListener;
+    /**
+     * 是否可以滚动
+     */
+    private boolean mScrollAble = true;
+    private Handler mHandler;
+
+    //管理Activity的生命周期
+    Application.ActivityLifecycleCallbacks activityLifecycleCallbacks = new ActivityLifecycle() {
+        @Override
+        public void onActivityResumed(Activity activity) {
+            LogUtil.i("onActivityResumed");
+            if (activity == mActivity) {
+                //开始轮播
+                startRoll();
+            }
+        }
+
+        @Override
+        public void onActivityPaused(Activity activity) {
+            LogUtil.i("onActivityPaused");
+            if (activity == mActivity) {
+                //停止轮播
+                mHandler.removeMessages(SCROLL_MSG);
+            }
+        }
+    };
 
     public BannerViewPager(Context context) {
         this(context, null);
@@ -92,6 +106,22 @@ public class BannerViewPager extends ViewPager {
             e.printStackTrace();
         }
         mConverViews = new ArrayList<>();
+        initHandler();
+
+    }
+
+    private void initHandler() {
+        mHandler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                if (msg.what == SCROLL_MSG) {
+                    //每隔一段时间后切换到下一页
+                    setCurrentItem(getCurrentItem() + 1);
+                    //继续循环执行
+                    startRoll();
+                }
+            }
+        };
     }
 
     /**
@@ -116,20 +146,30 @@ public class BannerViewPager extends ViewPager {
         int item = Integer.MAX_VALUE / 2 - Integer.MAX_VALUE / 2 % adapter.getCount();//要保证是图片个数
         setCurrentItem(item);
 
-        //管理Activity的生命周期
-        mActivity.getApplication().registerActivityLifecycleCallbacks(activityLifecycleCallbacks);
     }
 
     /**
      * 2.实现自动轮播
      */
     public void startRoll() {
-        //清楚消息
-        mHandler.removeMessages(SCROLL_MSG);
 
-        mHandler.sendEmptyMessageDelayed(SCROLL_MSG, SCROOL_CUT_DOWN_TIME);
+        // adapter不能是空
+        if (mAdapter == null) {
+            return;
+        }
+        // 判断是不是只有一条数据
+        mScrollAble = mAdapter.getCount() != 1;
+        if (mScrollAble && mHandler != null) {
+            // 清除消息
+            mHandler.removeMessages(SCROLL_MSG);
+            // 消息  延迟时间  让用户自定义  有一个默认  3500
+            mHandler.sendEmptyMessageDelayed(SCROLL_MSG, SCROOL_CUT_DOWN_TIME);
+        }
     }
 
+    /**
+     * 停止轮播
+     */
     public void stopRoll() {
         mHandler.removeMessages(SCROLL_MSG);
     }
@@ -145,6 +185,17 @@ public class BannerViewPager extends ViewPager {
         mHandler = null;
         mActivity.getApplication().unregisterActivityLifecycleCallbacks(activityLifecycleCallbacks);
         super.onDetachedFromWindow();
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        if (mAdapter != null) {
+            initHandler();
+            startRoll();
+            // 管理Activity的生命周期
+            mActivity.getApplication().registerActivityLifecycleCallbacks(activityLifecycleCallbacks);
+        }
+        super.onAttachedToWindow();
     }
 
     /**
@@ -167,7 +218,7 @@ public class BannerViewPager extends ViewPager {
      * @param listener
      */
     public void setOnItemClickListener(OnItemClickListener listener) {
-        this.listener = listener;
+        this.clickListener = listener;
     }
 
     /**
@@ -215,8 +266,8 @@ public class BannerViewPager extends ViewPager {
             bannerItemView.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (listener != null) {
-                        listener.onclick(position % mAdapter.getCount());
+                    if (clickListener != null) {
+                        clickListener.onclick(position % mAdapter.getCount());
                     }
                 }
             });
@@ -245,25 +296,4 @@ public class BannerViewPager extends ViewPager {
             mConverViews.add((View) object);
         }
     }
-
-    //管理Activity的生命周期
-    Application.ActivityLifecycleCallbacks activityLifecycleCallbacks = new ActivityLifecycle() {
-        @Override
-        public void onActivityResumed(Activity activity) {
-            LogUtil.i("onActivityResumed");
-            if (activity == mActivity) {
-                //开始轮播
-                startRoll();
-            }
-        }
-
-        @Override
-        public void onActivityPaused(Activity activity) {
-            LogUtil.i("onActivityPaused");
-            if (activity == mActivity) {
-                //停止轮播
-                mHandler.removeMessages(SCROLL_MSG);
-            }
-        }
-    };
 }
