@@ -29,7 +29,7 @@ import java.util.Map;
  * Created by wangyujie
  * Date 2017/11/21
  * Time 23:19
- * TODO
+ * TODO 捕获全局的异常
  */
 
 public class CrashHandler implements Thread.UncaughtExceptionHandler {
@@ -146,7 +146,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
 
         sb.append(result);
-        LogUtil.e(result);
+        LogUtil.e("===" + sb + "===" + result + "===");
 
         long timeMillis = System.currentTimeMillis();
         String time = dateFormat.format(new Date());
@@ -156,8 +156,8 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         /**
          * 判断有没有SD卡
          * */
-        if (Environment.getExternalStorageDirectory().equals(Environment.MEDIA_MOUNTED)) {
-            String path = "/sdcard/crash";
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            String path = "/sdcard/crash/";
             File dir = new File(path);
             //判断该文件夹存不存在
             if (!dir.exists()) {

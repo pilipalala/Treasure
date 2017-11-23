@@ -1,5 +1,6 @@
 package com.wyj.treasure.reflect;
 
+import com.wyj.treasure.utils.LogUtil;
 import com.wyj.treasure.utils.ToastUtil;
 
 /**
@@ -11,12 +12,12 @@ import com.wyj.treasure.utils.ToastUtil;
 public class SonClass extends FatherClass {
 
 
-    public String mSonBirthday;
     public int mSonAge = 10;
-    private String mSonName;
+    private String mSonName = "pilipalaKing";
 
     public void printSonMsg() {
         ToastUtil.show("Son Msg - name:" + mSonName + "; age:" + mSonAge);
+        LogUtil.e("Son Msg - name:" + mSonName + "; age:" + mSonAge);
     }
 
     private String getmSonName() {
@@ -33,6 +34,7 @@ public class SonClass extends FatherClass {
     }
 
     private void setmSonAge(int mSonAge) {
+        LogUtil.e("Son Msg - setmSonAge:" + mSonName + "; age:" + mSonAge);
         this.mSonAge = mSonAge;
     }
 }

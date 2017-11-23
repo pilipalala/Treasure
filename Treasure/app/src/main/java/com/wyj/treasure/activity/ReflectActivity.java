@@ -98,6 +98,21 @@ public class ReflectActivity extends BaseActivity {
             tvClass.setText(sb.toString());
             toolbar.setSubtitle("获得类的所有方法信息");
         }
+
+
+        try {
+            Method printSonMsg = mClass.getDeclaredMethod("printSonMsg");
+            //执行printSonMsg
+            printSonMsg.invoke(mClass.newInstance(), null);
+            // 获取setmSonAge方法
+            Method method = mClass.getDeclaredMethod("setmSonAge", int.class);
+            // 如果是 private 或者 package 权限的，一定要赋予其访问权限
+            method.setAccessible(true);
+            // 调用setmSonAge的对象和传入setmSonAge的值
+            method.invoke(mClass.newInstance(), 23);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**

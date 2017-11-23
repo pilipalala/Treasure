@@ -15,6 +15,7 @@ import com.wyj.treasure.R;
 import com.wyj.treasure.permission.PermissionFail;
 import com.wyj.treasure.permission.PermissionHelper;
 import com.wyj.treasure.permission.PermissionSuccess;
+import com.wyj.treasure.utils.ActivityCollector;
 import com.wyj.treasure.utils.LogUtil;
 import com.wyj.treasure.utils.ToastUtil;
 
@@ -57,13 +58,13 @@ public abstract class BaseActivity extends AppCompatActivity {
             getWindow().setSharedElementReenterTransition(explode);
             getWindow().setSharedElementReturnTransition(explode);
         }
+        ActivityCollector.addActivity(this);
         try {
             initView();
             initData();
         } catch (Exception e) {
             ToastUtil.show("出现异常");
             LogUtil.e(e.toString());
-
         }
     }
 
@@ -115,5 +116,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        ActivityCollector.removeActivity(this);
     }
 }

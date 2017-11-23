@@ -2,6 +2,8 @@ package com.wyj.treasure.utils;
 
 import android.app.ActivityManager;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
@@ -14,6 +16,11 @@ import java.util.List;
  */
 
 public class MyUtils {
+    /**
+     * 获取屏幕宽度
+     * @param context
+     * @return
+     */
     public static int getScreenWidth(Context context) {
         WindowManager wm = (WindowManager) context
                 .getSystemService(Context.WINDOW_SERVICE);
@@ -43,5 +50,23 @@ public class MyUtils {
             }
         }
         return isWork;
+    }
+    /**
+     * 网络是否可用
+     *
+     * @param context
+     * @return
+     */
+    public static boolean isNetworkAvailable(Context context) {
+        ConnectivityManager mgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo[] info = mgr.getAllNetworkInfo();
+        if (info != null) {
+            for (int i = 0; i < info.length; i++) {
+                if (info[i].getState() == NetworkInfo.State.CONNECTED) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
