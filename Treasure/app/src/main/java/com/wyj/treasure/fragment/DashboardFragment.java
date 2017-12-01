@@ -16,6 +16,7 @@ import com.wyj.treasure.mode.ItemInfo;
 import com.wyj.treasure.mvp.UserLoginActivity;
 import com.wyj.treasure.rxjava.RxJavaActivity;
 import com.wyj.treasure.viewcustom.bannerviewpager.BannerViewPagerActivity;
+import com.wyj.treasure.viewcustom.colortracktextview.ColorTrackActivity;
 
 public class DashboardFragment extends BaseCardViewFragment {
 
@@ -35,6 +36,7 @@ public class DashboardFragment extends BaseCardViewFragment {
         mData.add(new ItemInfo("自定义Behavior玩转特效--滑动的卡片", BehaviorActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("过渡加载特效", SplashActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("自动轮播图", BannerViewPagerActivity.class, R.mipmap.ic_launcher));
+        mData.add(new ItemInfo("字体变色", ColorTrackActivity.class, R.mipmap.ic_launcher));
         notifyDataChanged();
     }
 }

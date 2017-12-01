@@ -82,7 +82,7 @@ public class BannerView extends RelativeLayout {
     /**
      * 宽高比
      */
-    private float mWithProportion = 4, mHeightProportion = 3;
+    private float mWidthProportion = 4, mHeightProportion = 3;
     /**
      * 是否正在滑动
      */
@@ -131,7 +131,7 @@ public class BannerView extends RelativeLayout {
         //底部背景颜色
         mBottomColor = array.getColor(R.styleable.BannerView_bottomColor, mBottomColor);
         //视图宽高比
-        mWithProportion = array.getFloat(R.styleable.BannerView_withProportion, mWithProportion);
+        mWidthProportion = array.getFloat(R.styleable.BannerView_withProportion, mWidthProportion);
         mHeightProportion = array.getFloat(R.styleable.BannerView_heightProportion, mHeightProportion);
         array.recycle();
     }
@@ -141,7 +141,7 @@ public class BannerView extends RelativeLayout {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
         if (heightMode == MeasureSpec.AT_MOST) {
-            int height = (int) (widthMeasureSpec * mHeightProportion / mWithProportion);
+            int height = (int) (widthMeasureSpec * mHeightProportion / mWidthProportion);
             setMeasuredDimension(widthMeasureSpec, height);
         }
     }
@@ -149,9 +149,6 @@ public class BannerView extends RelativeLayout {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        int width = w;
-        int height = (int) (width * mHeightProportion / mWithProportion);
-        getLayoutParams().height = height;
     }
 
     /**
@@ -181,6 +178,19 @@ public class BannerView extends RelativeLayout {
         mBannerVp.setAdapter(adapter);
         //初始化点的指示器
         initDotIndicator();
+        post(new Runnable() {
+            @Override
+            public void run() {
+                // 动态指定宽高  计算高度
+                int width = getMeasuredWidth();
+                // 计算高度
+                int height = (int) (width * mHeightProportion / mWidthProportion);
+                // 指定宽高
+                getLayoutParams().height = height;
+                mBannerVp.getLayoutParams().height = height;
+            }
+        });
+
         mBannerVp.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {

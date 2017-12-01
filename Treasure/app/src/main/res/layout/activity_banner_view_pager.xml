@@ -13,7 +13,7 @@
     <com.wyj.treasure.viewcustom.bannerviewpager.BannerView
         android:id="@+id/banner_view"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="0dp"
         app:bottomColor="#88000000"
         app:dotDistance="@dimen/dp_8"
         app:dotGravity="right"

@@ -63,6 +63,6 @@ public class BannerViewPagerActivity extends BaseActivity implements BannerViewP
 
     @Override
     public void onclick(int position) {
-        ToastUtil.show("第" + position + "张");
+        ToastUtil.show("第" + (position+1) + "张");
     }
 }

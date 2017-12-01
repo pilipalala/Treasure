@@ -103,7 +103,7 @@ public class ReflectActivity extends BaseActivity {
         try {
             Method printSonMsg = mClass.getDeclaredMethod("printSonMsg");
             //执行printSonMsg
-            printSonMsg.invoke(mClass.newInstance(), null);
+            printSonMsg.invoke(mClass.newInstance(), new Object[0]);
             // 获取setmSonAge方法
             Method method = mClass.getDeclaredMethod("setmSonAge", int.class);
             // 如果是 private 或者 package 权限的，一定要赋予其访问权限
