@@ -1,6 +1,7 @@
 package com.wyj.treasure.viewcustom.colortracktextview;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -8,6 +9,8 @@ import android.graphics.Rect;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+
+import com.wyj.treasure.R;
 
 /**
  * @author wangyujie
@@ -36,6 +39,14 @@ public class ColorTrackTextView extends android.support.v7.widget.AppCompatTextV
      * 当前朝向
      */
     private Direction mDirection = Direction.LEFE_TO_RIGHT;
+    /**
+     *
+     * */
+    private int mOridianColor = Color.BLACK;
+    /**
+     *
+     * */
+    private int mChangeColor = Color.RED;
 
     public ColorTrackTextView(Context context) {
         this(context, null);
@@ -47,13 +58,36 @@ public class ColorTrackTextView extends android.support.v7.widget.AppCompatTextV
 
     public ColorTrackTextView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ColorTrackTextView);
+        mOridianColor = typedArray.getColor(R.styleable.ColorTrackTextView_oridianColor, mOridianColor);
+        mChangeColor = typedArray.getColor(R.styleable.ColorTrackTextView_changeColor, mChangeColor);
+
+
+        typedArray.recycle();
         initPaint();
     }
 
     private void initPaint() {
-        mOriginPaint = getPaints(Color.BLACK);
-        mChangePaint = getPaints(Color.RED);
+        mOriginPaint = getPaints(mOridianColor);
+        mChangePaint = getPaints(mChangeColor);
+    }
 
+    /**
+     * 设置原始不变色的字体颜色
+     *
+     * @param color
+     */
+    public void setOridianColor(int color) {
+        mOridianColor = color;
+    }
+
+    /**
+     * 设置变色字体的颜色
+     *
+     * @param color
+     */
+    public void setChangeColor(int color) {
+        mChangeColor = color;
     }
 
     /**

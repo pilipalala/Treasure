@@ -76,7 +76,7 @@ public class HomeFragment extends BaseFragment {
         LayoutAnimationController controller = new LayoutAnimationController(animation);
         controller.setDelay(0.5f);
         controller.setAnimation(animation);
-        controller.setOrder(LayoutAnimationController.ORDER_NORMAL);
+        controller.setOrder(LayoutAnimationController.ORDER_RANDOM);
         rvList.setLayoutAnimation(controller);
         rvList.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         dealWithData();
