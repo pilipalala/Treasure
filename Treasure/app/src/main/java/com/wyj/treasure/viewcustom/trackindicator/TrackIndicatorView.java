@@ -76,9 +76,21 @@ public class TrackIndicatorView extends HorizontalScrollView implements ViewPage
 
         //循环添加itemview
         for (int i = 0; i < count; i++) {
-            View view = mAdapter.getView(i, this);
-            mIndicatorGroup.addView(view);
+            View itemView = mAdapter.getView(i, this);
+            mIndicatorGroup.addView(itemView);
+            //点击事件
+            if (mViewPager != null) {
+                switchItemClick(i, itemView);
+            }
         }
+    }
+
+    private void switchItemClick(int i, View itemView) {
+        itemView.setOnClickListener(v -> {
+
+            mViewPager.setCurrentItem(i);
+
+        });
     }
 
     public void setAdapter(IndicatorAdapter adapter, ViewPager viewPager) {
