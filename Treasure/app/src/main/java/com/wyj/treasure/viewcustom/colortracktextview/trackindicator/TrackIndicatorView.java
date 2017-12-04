@@ -1,4 +1,4 @@
-package com.wyj.treasure.viewcustom.trackindicator;
+package com.wyj.treasure.viewcustom.colortracktextview.trackindicator;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -6,7 +6,6 @@ import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.HorizontalScrollView;
-import android.widget.LinearLayout;
 
 import com.wyj.treasure.R;
 
@@ -24,7 +23,7 @@ public class TrackIndicatorView extends HorizontalScrollView implements ViewPage
     /**
      * 指示器条目的容器
      */
-    private LinearLayout mIndicatorGroup;
+    private IndicatorGroupView mIndicatorGroup;
     /**
      * 指定一屏幕可见显示多少
      */
@@ -39,6 +38,18 @@ public class TrackIndicatorView extends HorizontalScrollView implements ViewPage
      */
     private ViewPager mViewPager;
 
+    /**
+     * 当前位置
+     */
+    private int mCurrentPosition = 0;
+
+    /**
+     * 是否执行scroll
+     * 解决点击抖动的问题
+     */
+    private boolean mIsExecuteScroll = false;
+
+
     public TrackIndicatorView(Context context) {
         this(context, null);
     }
@@ -49,7 +60,7 @@ public class TrackIndicatorView extends HorizontalScrollView implements ViewPage
 
     public TrackIndicatorView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        mIndicatorGroup = new LinearLayout(context);
+        mIndicatorGroup = new IndicatorGroupView(context);
         addView(mIndicatorGroup);
         initAttribute(context, attrs);
     }
@@ -76,21 +87,42 @@ public class TrackIndicatorView extends HorizontalScrollView implements ViewPage
 
         //循环添加itemview
         for (int i = 0; i < count; i++) {
-            View itemView = mAdapter.getView(i, this);
-            mIndicatorGroup.addView(itemView);
+            View itemView = mAdapter.getView(i, mIndicatorGroup);
+            mIndicatorGroup.addItemView(itemView);
             //点击事件
             if (mViewPager != null) {
                 switchItemClick(i, itemView);
             }
         }
+        //默认点亮第一个itemview
+        mAdapter.setHightLightIndicator(mIndicatorGroup.getItemView(0));
     }
 
     private void switchItemClick(int i, View itemView) {
         itemView.setOnClickListener(v -> {
-
-            mViewPager.setCurrentItem(i);
+            mViewPager.setCurrentItem(i, true);
+            //移动itemview
+            smoothscrollIndicator(i);
+            //移动下标
+            mIndicatorGroup.scrollBottomTrack(i);
 
         });
+    }
+
+    /**
+     * 点击itemview移动指示器  带动画
+     *
+     * @param position
+     */
+    private void smoothscrollIndicator(int position) {
+        //当前总共的位置
+        float totalScroll = (position) * mItemWidth;
+        //左边的偏移
+        float offsetScroll = (getWidth() - mItemWidth) / 2;
+        //最终的一个偏移量
+        int finalScroll = (int) (totalScroll - offsetScroll);
+        //调用scrollTo
+        smoothScrollTo(finalScroll, 0);
     }
 
     public void setAdapter(IndicatorAdapter adapter, ViewPager viewPager) {
@@ -107,14 +139,18 @@ public class TrackIndicatorView extends HorizontalScrollView implements ViewPage
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
-        if (changed) {
+        if (changed && mItemWidth == 0) {
+
             //指定item的宽度
             mItemWidth = getItemWidth();
             for (int i = 0; i < mAdapter.getCount(); i++) {
-                View childAt = mIndicatorGroup.getChildAt(i);
+                View childAt = mIndicatorGroup.getItemView(i);
                 childAt.getLayoutParams().width = mItemWidth;
                 childAt.requestLayout();
             }
+            //添加底部跟踪的指示器
+
+            mIndicatorGroup.addBottomTrackView(mAdapter.getBottomTrackView(), mItemWidth);
         }
     }
 
@@ -139,7 +175,7 @@ public class TrackIndicatorView extends HorizontalScrollView implements ViewPage
         int maxItemWidth = 0;
 
         for (int i = 0; i < mAdapter.getCount(); i++) {
-            int currentItemWidth = mIndicatorGroup.getChildAt(i).getMeasuredWidth();
+            int currentItemWidth = mIndicatorGroup.getItemView(i).getMeasuredWidth();
             maxItemWidth = Math.max(currentItemWidth, maxItemWidth);
         }
 
@@ -163,7 +199,13 @@ public class TrackIndicatorView extends HorizontalScrollView implements ViewPage
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-        scrollCurrentIndicator(position, positionOffset);
+        //如果是点击就不要 执行onPageScrolled方法
+        if (mIsExecuteScroll) {
+            //滚动的时候不断的调用
+            scrollCurrentIndicator(position, positionOffset);
+            mIndicatorGroup.scrollBottomTrack(position, positionOffset);
+        }
+
 
     }
 
@@ -183,15 +225,27 @@ public class TrackIndicatorView extends HorizontalScrollView implements ViewPage
         //调用scrollTo
         scrollTo(finalScroll, 0);
 
+
+
+
+
     }
 
     @Override
     public void onPageSelected(int position) {
-
+        //上一个位置重置
+        mAdapter.setResetIndicator(mIndicatorGroup.getItemView(mCurrentPosition));
+        mCurrentPosition = position;
+        //将当前位置点亮
+        mAdapter.setHightLightIndicator(mIndicatorGroup.getItemView(mCurrentPosition));
     }
 
     @Override
     public void onPageScrollStateChanged(int state) {
-
+        if (state == ViewPager.SCROLL_STATE_DRAGGING) {
+            mIsExecuteScroll = true;
+        } else if (state == ViewPager.SCROLL_STATE_IDLE) {
+            mIsExecuteScroll = false;
+        }
     }
 }

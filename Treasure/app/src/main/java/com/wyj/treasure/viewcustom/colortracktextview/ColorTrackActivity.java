@@ -1,9 +1,11 @@
 package com.wyj.treasure.viewcustom.colortracktextview;
 
+import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -11,8 +13,8 @@ import android.widget.TextView;
 
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.BaseActivity;
-import com.wyj.treasure.viewcustom.trackindicator.IndicatorAdapter;
-import com.wyj.treasure.viewcustom.trackindicator.TrackIndicatorView;
+import com.wyj.treasure.viewcustom.colortracktextview.trackindicator.IndicatorAdapter;
+import com.wyj.treasure.viewcustom.colortracktextview.trackindicator.TrackIndicatorView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,8 +33,12 @@ public class ColorTrackActivity extends BaseActivity {
     ViewPager viewPager;
     @BindView(R.id.tv_title)
     TextView tvTitle;
-    private String[] items = {"直播", "推荐", "视频视频视频", "图片", "段子", "精华"};
+    private String[] items = {"直播", "推荐", "视频", "图片", "段子", "精华", "同城", "游戏"};
     private List<ColorTrackTextView> mIndicators;
+    /**
+     * 是否滑动
+     * */
+    private boolean isSettling = false;
 
     @Override
     protected void initView() {
@@ -60,14 +66,37 @@ public class ColorTrackActivity extends BaseActivity {
             }
 
             @Override
+            public void setResetIndicator(View view) {
+                TextView textView = (TextView) view;
+                textView.setTextColor(Color.BLACK);
+            }
+
+            @Override
+            public void setHightLightIndicator(View view) {
+                TextView textView = (TextView) view;
+                textView.setTextColor(Color.RED);
+
+            }
+
+            @Override
+            public View getBottomTrackView() {
+                View view = new View(ColorTrackActivity.this);
+                view.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 3));
+                view.setBackgroundColor(Color.RED);
+                return view;
+            }
+
+            @Override
             public View getView(int position, ViewGroup parent) {
-                ColorTrackTextView trackTextView = new ColorTrackTextView(ColorTrackActivity.this);
+                TextView trackTextView = new TextView(ColorTrackActivity.this);
+//                ColorTrackTextView trackTextView = new ColorTrackTextView(ColorTrackActivity.this);
                 trackTextView.setTextSize(20);
+                trackTextView.setGravity(Gravity.CENTER);
                 trackTextView.setText(items[position]);
-                mIndicators.add(trackTextView);
+//                mIndicators.add(trackTextView);
                 return trackTextView;
             }
-        },viewPager);
+        }, viewPager);
 
     }
 
@@ -101,16 +130,17 @@ public class ColorTrackActivity extends BaseActivity {
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                ColorTrackTextView left = mIndicators.get(position);
-                left.setDirection(ColorTrackTextView.Direction.RIGHT_TO_LEFT);
-                left.setCurrentProgress(1 - positionOffset);
-                try {
-                    ColorTrackTextView right = mIndicators.get(position + 1);
-                    right.setDirection(ColorTrackTextView.Direction.LEFE_TO_RIGHT);
-                    right.setCurrentProgress(positionOffset);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+
+//                ColorTrackTextView left = mIndicators.get(position);
+//                left.setDirection(ColorTrackTextView.Direction.RIGHT_TO_LEFT);
+//                left.setCurrentProgress(1 - positionOffset);
+//                try {
+//                    ColorTrackTextView right = mIndicators.get(position + 1);
+//                    right.setDirection(ColorTrackTextView.Direction.LEFE_TO_RIGHT);
+//                    right.setCurrentProgress(positionOffset);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
             }
 
             @Override
@@ -120,6 +150,7 @@ public class ColorTrackActivity extends BaseActivity {
 
             @Override
             public void onPageScrollStateChanged(int state) {
+
 
             }
         });

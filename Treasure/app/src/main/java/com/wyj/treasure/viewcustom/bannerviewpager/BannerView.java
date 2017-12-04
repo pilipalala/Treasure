@@ -178,18 +178,20 @@ public class BannerView extends RelativeLayout {
         mBannerVp.setAdapter(adapter);
         //初始化点的指示器
         initDotIndicator();
-        post(new Runnable() {
+        /*post(new Runnable() {
             @Override
             public void run() {
-                // 动态指定宽高  计算高度
-                int width = getMeasuredWidth();
-                // 计算高度
-                int height = (int) (width * mHeightProportion / mWidthProportion);
-                // 指定宽高
-                getLayoutParams().height = height;
-                mBannerVp.getLayoutParams().height = height;
+
             }
-        });
+        });*/
+        // 动态指定宽高  计算高度
+        int width = getMeasuredWidth();
+        // 计算高度
+        int height = (int) (width * mHeightProportion / mWidthProportion);
+        // 指定宽高
+        getLayoutParams().height = height;
+        mBannerVp.getLayoutParams().height = height;
+        requestLayout();
 
         mBannerVp.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
