@@ -9,7 +9,7 @@ import android.view.ViewGroup;
  *         TODO
  */
 
-public abstract class IndicatorAdapter {
+public abstract class IndicatorAdapter<T extends View> {
     /**
      * 获取总共的显示条数
      */
@@ -18,19 +18,19 @@ public abstract class IndicatorAdapter {
     /**
      * 根据当前的位置获取view
      */
-    public abstract View getView(int position, ViewGroup parent);
+    public abstract T getView(int position, ViewGroup parent);
 
     /**
      * 高亮当前位置
      */
-    public void setHightLightIndicator(View view) {
+    public void setHightLightIndicator(T view) {
 
     }
 
     /**
      * 重置当前位置
      */
-    public void setResetIndicator(View view) {
+    public void setResetIndicator(T view) {
 
     }
 

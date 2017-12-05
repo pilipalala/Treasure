@@ -49,6 +49,8 @@ public class TrackIndicatorView extends HorizontalScrollView implements ViewPage
      */
     private boolean mIsExecuteScroll = false;
 
+    private boolean mSmoothScroll;
+
 
     public TrackIndicatorView(Context context) {
         this(context, null);
@@ -100,7 +102,7 @@ public class TrackIndicatorView extends HorizontalScrollView implements ViewPage
 
     private void switchItemClick(int i, View itemView) {
         itemView.setOnClickListener(v -> {
-            mViewPager.setCurrentItem(i, true);
+            mViewPager.setCurrentItem(i, mSmoothScroll);
             //移动itemview
             smoothscrollIndicator(i);
             //移动下标
@@ -126,10 +128,14 @@ public class TrackIndicatorView extends HorizontalScrollView implements ViewPage
     }
 
     public void setAdapter(IndicatorAdapter adapter, ViewPager viewPager) {
+        setAdapter(adapter, viewPager, true);
+    }
+
+    public void setAdapter(IndicatorAdapter adapter, ViewPager viewPager, boolean smoothScroll) {
         this.mViewPager = viewPager;
+        this.mSmoothScroll = smoothScroll;
         viewPager.addOnPageChangeListener(this);
         setAdapter(adapter);
-
     }
 
     /**
@@ -205,8 +211,6 @@ public class TrackIndicatorView extends HorizontalScrollView implements ViewPage
             scrollCurrentIndicator(position, positionOffset);
             mIndicatorGroup.scrollBottomTrack(position, positionOffset);
         }
-
-
     }
 
     /**
@@ -224,9 +228,6 @@ public class TrackIndicatorView extends HorizontalScrollView implements ViewPage
         int finalScroll = (int) (totalScroll - offsetScroll);
         //调用scrollTo
         scrollTo(finalScroll, 0);
-
-
-
 
 
     }

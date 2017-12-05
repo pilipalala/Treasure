@@ -144,8 +144,14 @@ public class BannerView extends RelativeLayout {
             int height = (int) (widthMeasureSpec * mHeightProportion / mWidthProportion);
             setMeasuredDimension(widthMeasureSpec, height);
         }
+        // 动态指定宽高  计算高度
+        int width = getMeasuredWidth();
+        // 计算高度
+        int height = (int) (width * mHeightProportion / mWidthProportion);
+        // 指定宽高
+        getLayoutParams().height = height;
+        requestLayout();
     }
-
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
@@ -178,20 +184,13 @@ public class BannerView extends RelativeLayout {
         mBannerVp.setAdapter(adapter);
         //初始化点的指示器
         initDotIndicator();
-        /*post(new Runnable() {
+        post(new Runnable() {
             @Override
             public void run() {
 
             }
-        });*/
-        // 动态指定宽高  计算高度
-        int width = getMeasuredWidth();
-        // 计算高度
-        int height = (int) (width * mHeightProportion / mWidthProportion);
-        // 指定宽高
-        getLayoutParams().height = height;
-        mBannerVp.getLayoutParams().height = height;
-        requestLayout();
+        });
+
 
         mBannerVp.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
@@ -223,7 +222,6 @@ public class BannerView extends RelativeLayout {
                     Log.e("onTouchListener", "onTouch: " + "/静止");
                     mBannerVp.startRoll();
                 }
-
             }
         });
         mBannerVp.setOnItemTouchListener(new BannerViewPager.OnItemTouchListener() {

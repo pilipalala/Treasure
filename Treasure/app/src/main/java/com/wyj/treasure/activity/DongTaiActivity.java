@@ -126,8 +126,7 @@ public class DongTaiActivity extends BaseActivity {
     public void showDialogList(final String tittle, final TextView tv,
                                final String[] array) {
         AlertDialog.Builder builder = null;
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                DongTaiActivity.this, android.R.layout.simple_list_item_1,
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(DongTaiActivity.this, android.R.layout.simple_list_item_1,
                 array);
         // if (Build.VERSION.SDK_INT >= 14) {
         // builder = new AlertDialog.Builder(this, R.style.style_date_picker);

@@ -58,7 +58,7 @@ public class ColorTrackActivity extends BaseActivity {
         });
 //        initIndicator();
         initViewPager();
-        indicatorView.setAdapter(new IndicatorAdapter() {
+        indicatorView.setAdapter(new IndicatorAdapter<ColorTrackTextView>() {
             @Override
             public int getCount() {
                 return items.length;
@@ -66,15 +66,15 @@ public class ColorTrackActivity extends BaseActivity {
             }
 
             @Override
-            public void setResetIndicator(View view) {
-                TextView textView = (TextView) view;
-                textView.setTextColor(Color.BLACK);
+            public void setResetIndicator(ColorTrackTextView view) {
+                view.setDirection(ColorTrackTextView.Direction.RIGHT_TO_LEFT);
+                view.setCurrentProgress(0);
             }
 
             @Override
-            public void setHightLightIndicator(View view) {
-                TextView textView = (TextView) view;
-                textView.setTextColor(Color.RED);
+            public void setHightLightIndicator(ColorTrackTextView view) {
+                view.setDirection(ColorTrackTextView.Direction.RIGHT_TO_LEFT);
+                view.setCurrentProgress(1);
 
             }
 
@@ -87,16 +87,16 @@ public class ColorTrackActivity extends BaseActivity {
             }
 
             @Override
-            public View getView(int position, ViewGroup parent) {
-                TextView trackTextView = new TextView(ColorTrackActivity.this);
-//                ColorTrackTextView trackTextView = new ColorTrackTextView(ColorTrackActivity.this);
+            public ColorTrackTextView getView(int position, ViewGroup parent) {
+//                TextView trackTextView = new TextView(ColorTrackActivity.this);
+                ColorTrackTextView trackTextView = new ColorTrackTextView(ColorTrackActivity.this);
                 trackTextView.setTextSize(20);
                 trackTextView.setGravity(Gravity.CENTER);
                 trackTextView.setText(items[position]);
-//                mIndicators.add(trackTextView);
+                mIndicators.add(trackTextView);
                 return trackTextView;
             }
-        }, viewPager);
+        }, viewPager,false);
 
     }
 
@@ -131,16 +131,16 @@ public class ColorTrackActivity extends BaseActivity {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-//                ColorTrackTextView left = mIndicators.get(position);
-//                left.setDirection(ColorTrackTextView.Direction.RIGHT_TO_LEFT);
-//                left.setCurrentProgress(1 - positionOffset);
-//                try {
-//                    ColorTrackTextView right = mIndicators.get(position + 1);
-//                    right.setDirection(ColorTrackTextView.Direction.LEFE_TO_RIGHT);
-//                    right.setCurrentProgress(positionOffset);
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
+                ColorTrackTextView left = mIndicators.get(position);
+                left.setDirection(ColorTrackTextView.Direction.RIGHT_TO_LEFT);
+                left.setCurrentProgress(1 - positionOffset);
+                try {
+                    ColorTrackTextView right = mIndicators.get(position + 1);
+                    right.setDirection(ColorTrackTextView.Direction.LEFE_TO_RIGHT);
+                    right.setCurrentProgress(positionOffset);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override

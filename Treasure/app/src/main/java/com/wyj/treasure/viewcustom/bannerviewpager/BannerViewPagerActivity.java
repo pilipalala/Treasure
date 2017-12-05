@@ -1,7 +1,9 @@
 package com.wyj.treasure.viewcustom.bannerviewpager;
 
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.BaseActivity;
@@ -14,6 +16,10 @@ public class BannerViewPagerActivity extends BaseActivity implements BannerViewP
 
     @BindView(R.id.banner_view)
     BannerView bannerView;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     private Integer[] imageViews = {
             R.mipmap.ai_1, R.mipmap.ai_2,
@@ -33,6 +39,8 @@ public class BannerViewPagerActivity extends BaseActivity implements BannerViewP
 
     @Override
     protected void initData() {
+        toolbar.setNavigationOnClickListener(v -> finish());
+        tvTitle.setText("无限广告轮播");
         bannerView.setAdapter(new BannerAdapter() {
             @Override
             public View getView(int position, View converView) {
@@ -63,6 +71,8 @@ public class BannerViewPagerActivity extends BaseActivity implements BannerViewP
 
     @Override
     public void onclick(int position) {
-        ToastUtil.show("第" + (position+1) + "张");
+        ToastUtil.show("第" + (position + 1) + "张");
     }
+
+
 }

@@ -107,7 +107,6 @@
         <activity android:name=".activity.SuspensionBarActivity" />
         <activity android:name=".activity.MultiSuspensionBarActivity" />
         <activity android:name=".activity.transition.TagRecycleViewActivity" />
-        <activity android:name=".activity.NotifyAttrActivity" />
         <activity android:name=".activity.RegularExpressionActivity" />
         <activity android:name=".activity.MultipleChoiceActivity" />
         <activity android:name=".activity.MyWebViewActivity" />
