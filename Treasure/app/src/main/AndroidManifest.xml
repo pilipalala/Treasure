@@ -144,7 +144,9 @@
         <activity android:name=".mdcustom.splash.SplashActivity" />
         <activity android:name=".viewcustom.bannerviewpager.BannerViewPagerActivity" />
         <activity android:name="com.wyj.handler.HandlerActivity" />
-        <activity android:name=".viewcustom.colortracktextview.ColorTrackActivity"></activity>
+        <activity android:name=".viewcustom.colortracktextview.ColorTrackActivity" />
+        <activity android:name=".customcontrol.AnimationActivity" />
+        <activity android:name=".customcontrol.CustomControlActivity"></activity>
     </application>
 
 </manifest>

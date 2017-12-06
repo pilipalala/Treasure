@@ -9,6 +9,7 @@ import com.wyj.treasure.activity.RegularExpressionActivity;
 import com.wyj.treasure.activity.StaggeredGridActivity;
 import com.wyj.treasure.activity.SuspensionBarActivity;
 import com.wyj.treasure.activity.SwipeDeleteActivity;
+import com.wyj.treasure.customcontrol.CustomControlActivity;
 import com.wyj.treasure.mdcustom.behaviorcustom.BehaviorActivity;
 import com.wyj.treasure.mdcustom.splash.SplashActivity;
 import com.wyj.treasure.mode.ItemInfo;
@@ -35,6 +36,7 @@ public class DashboardFragment extends BaseCardViewFragment {
         mData.add(new ItemInfo("过渡加载特效", SplashActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("自动轮播图", BannerViewPagerActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("字体变色", ColorTrackActivity.class, R.mipmap.ic_launcher));
+        mData.add(new ItemInfo("自定义控件三部曲", CustomControlActivity.class, R.mipmap.ic_launcher));
         notifyDataChanged();
     }
 }

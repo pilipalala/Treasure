@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.wyj.treasure.customcontrol.AnimationActivity">
+
+    <include
+        android:id="@+id/title"
+        layout="@layout/title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title">
+
+        <Button
+            android:id="@+id/btn_alpha"
+            style="@style/default_button_style"
+            android:layout_margin="@dimen/dp_1"
+            android:layout_weight="1"
+            android:text="alpha" />
+
+        <Button
+            android:id="@+id/btn_scale"
+            style="@style/default_button_style"
+            android:layout_margin="@dimen/dp_1"
+            android:layout_weight="1"
+            android:text="scale" />
+
+        <Button
+            android:id="@+id/btn_translate"
+            style="@style/default_button_style"
+            android:layout_margin="@dimen/dp_1"
+            android:layout_weight="1"
+            android:text="translate" />
+
+        <Button
+            android:id="@+id/btn_rotate"
+            style="@style/default_button_style"
+            android:layout_margin="@dimen/dp_1"
+            android:layout_weight="1"
+            android:text="rotate" />
+
+        <Button
+            android:id="@+id/btn_set"
+            style="@style/default_button_style"
+            android:layout_margin="@dimen/dp_1"
+            android:layout_weight="1"
+            android:text="set" />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tv_item"
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="@dimen/dp_200"
+        android:layout_centerInParent="true"
+        android:background="@color/btn_blue" />
+
+    <View
+        android:layout_width="@dimen/dp_5"
+        android:layout_height="@dimen/dp_5"
+        android:layout_alignTop="@+id/tv_item"
+        android:layout_toLeftOf="@+id/tv_item"
+        android:background="@color/black" />
+
+
+</RelativeLayout>
