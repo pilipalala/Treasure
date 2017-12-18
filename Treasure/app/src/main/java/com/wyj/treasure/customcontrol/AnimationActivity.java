@@ -90,7 +90,7 @@ public class AnimationActivity extends BaseActivity {
                 animation = AnimationUtils.loadAnimation(mContext, R.anim.anim_rotate);
                 break;
             case R.id.btn_set:
-
+                animation = AnimationUtils.loadAnimation(mContext, R.anim.anim_set);
                 break;
         }
         tvItem.startAnimation(animation);

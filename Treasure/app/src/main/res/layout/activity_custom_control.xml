@@ -13,6 +13,14 @@
         android:id="@+id/btn_anima"
         style="@style/default_button_style"
         android:text="动画篇" />
+    <Button
+        android:id="@+id/btn_valueanimator"
+        style="@style/default_button_style"
+        android:text="ValueAnimator" />
+    <Button
+        android:id="@+id/btn_objectanimator"
+        style="@style/default_button_style"
+        android:text="ObjectAnimator" />
 
 
 </LinearLayout>

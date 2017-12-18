@@ -146,7 +146,11 @@
         <activity android:name="com.wyj.handler.HandlerActivity" />
         <activity android:name=".viewcustom.colortracktextview.ColorTrackActivity" />
         <activity android:name=".customcontrol.AnimationActivity" />
-        <activity android:name=".customcontrol.CustomControlActivity"></activity>
+        <activity android:name=".customcontrol.CustomControlActivity" />
+        <activity android:name=".customcontrol.Interpolator" />
+        <activity android:name=".customcontrol.ValueAnimatorActivity" />
+        <activity android:name=".constraintlayout.ConstraintLayoutActivity" />
+        <activity android:name=".customcontrol.ObjectanimatorActivity"></activity>
     </application>
 
 </manifest>
