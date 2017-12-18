@@ -1,6 +1,7 @@
 package com.wyj.treasure;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -118,7 +119,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         collectErrorInfo();
         //保存错误信息
         saveErrorInfo(e);
-        return false;
+        return true;
     }
 
     /**
@@ -150,19 +151,26 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
         long timeMillis = System.currentTimeMillis();
         String time = dateFormat.format(new Date());
-
-        String fileName = "crash-" + time + "-" + timeMillis + ".log";
+        File dir = new File(mContext.getFilesDir() +
+                File.separator + "crash" + File.separator);
+        String fileName = dir.toString() + File.separator + "crash-" + time + "-" + timeMillis + ".log";
 
         /**
          * 判断有没有SD卡
          * */
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             String path = "/sdcard/crash/";
-            File dir = new File(path);
-            //判断该文件夹存不存在
+//            File dir = new File(path);
+            //先删除之前的异常信息
+            if (dir.exists()) {
+                //删除该目录下的所有子文件
+                deleteDir(dir);
+            }
+            //创建新文件夹
             if (!dir.exists()) {
                 dir.mkdir();
             }
+
             FileOutputStream fos = null;
             try {
                 fos = new FileOutputStream(path + fileName);
@@ -175,6 +183,16 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
+            }
+        }
+        cacheCrashFile(fileName);
+    }
+
+    private void deleteDir(File dir) {
+        if (dir.isDirectory()) {
+            File[] files = dir.listFiles();
+            for (File file : files) {
+                file.delete();
             }
         }
     }
@@ -206,6 +224,18 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
+
+    }
+
+    private void cacheCrashFile(String fileName) {
+        SharedPreferences sp = mContext.getSharedPreferences("crash", Context.MODE_PRIVATE);
+        sp.edit().putString("CRASH_FILE_NAME", fileName).commit();
+
+    }
+
+    private String getCrashFile() {
+        SharedPreferences sp = mContext.getSharedPreferences("crash", Context.MODE_PRIVATE);
+        return sp.getString("CRASH_FILE_NAME", "");
 
     }
 }
