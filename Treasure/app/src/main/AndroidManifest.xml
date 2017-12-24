@@ -150,7 +150,8 @@
         <activity android:name=".customcontrol.Interpolator" />
         <activity android:name=".customcontrol.ValueAnimatorActivity" />
         <activity android:name=".constraintlayout.ConstraintLayoutActivity" />
-        <activity android:name=".customcontrol.ObjectanimatorActivity"></activity>
+        <activity android:name=".customcontrol.ObjectanimatorActivity" />
+        <activity android:name=".customcontrol.AnimatorSetActivity"></activity>
     </application>
 
 </manifest>
