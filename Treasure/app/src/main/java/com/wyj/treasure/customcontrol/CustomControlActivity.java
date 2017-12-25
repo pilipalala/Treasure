@@ -33,7 +33,8 @@ public class CustomControlActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.btn_anima, R.id.btn_valueanimator,R.id.btn_objectanimator,R.id.btn_property})
+
+    @OnClick({R.id.btn_anima, R.id.btn_valueanimator,R.id.btn_objectanimator,R.id.btn_animatorset})
     public void onViewClicked(View view) {
         Intent intent = new Intent();
         switch (view.getId()) {
@@ -48,6 +49,9 @@ public class CustomControlActivity extends BaseActivity {
                 break;
             case R.id.btn_property:
                 intent.setClass(CustomControlActivity.this, ObjectanimatorActivity.class);
+                break;
+            case R.id.btn_animatorset:
+                intent.setClass(CustomControlActivity.this, AnimatorSetActivity.class);
                 break;
         }
         startActivity(intent);

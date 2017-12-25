@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/title"
+        layout="@layout/title" />
+
+    <Button
+        android:id="@+id/btn_playSequentially"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/title"
+        android:padding="10dp"
+        android:text="playSequentially"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/btn_playTogether"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/title"
+        android:padding="10dp"
+        android:text="playTogether"
+        android:textAllCaps="false" />
+
+    <TextView
+        android:id="@+id/tv_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="30dp"
+        android:background="#ff00ff"
+        android:padding="10dp"
+        android:text="textview" />
+
+    <TextView
+        android:id="@+id/tv_animatorset"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="#ffff00"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="AnimatorSet" />
+
+</RelativeLayout>
