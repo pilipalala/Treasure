@@ -47,8 +47,8 @@ public class ValueAnimatorActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.bt_start_point:
-                mypointview.doPointFloatAnim();
-//                mypointview.doPointAnim();
+//                mypointview.doPointFloatAnim();
+                mypointview.doPointAnim();
                 break;
             case R.id.bt_start_object:
                 animator = ValueAnimator.ofObject(new CharEvaluator(), new Character('A'), new Character('Z'));

@@ -21,6 +21,10 @@
         android:id="@+id/btn_objectanimator"
         style="@style/default_button_style"
         android:text="ObjectAnimator" />
+    <Button
+        android:id="@+id/btn_property"
+        style="@style/default_button_style"
+        android:text="PropertyValuesHolder与Keyframe" />
 
 
 </LinearLayout>

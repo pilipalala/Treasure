@@ -20,12 +20,14 @@ public class ObjectanimatorActivity extends BaseActivity {
     Toolbar toolbar;
     @BindView(R.id.tv)
     TextView tv;
+    @BindView(R.id.mypointview)
+    MyPointView mypointview;
     private ObjectAnimator animator;
 
 
     @Override
     protected void initView() {
-        setContentView(R.layout.activity_objectanimator);
+        setContentView(R.layout.activity_object_animator);
         ButterKnife.bind(this);
 
     }
@@ -36,7 +38,7 @@ public class ObjectanimatorActivity extends BaseActivity {
         tvTitle.setText("ObjectAnimator的使用");
     }
 
-    @OnClick({R.id.bt_start, R.id.bt_start_argb, R.id.bt_start_object, R.id.bt_start_point})
+    @OnClick({R.id.bt_start, R.id.bt_start_argb,R.id.bt_start_rotation, R.id.bt_start_point})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.bt_start:
@@ -46,18 +48,22 @@ public class ObjectanimatorActivity extends BaseActivity {
                  * 第三个参数是可变长参数，这个就跟ValueAnimator中的可变长参数的意义一样了，
                  * 就是指这个属性值是从哪变到哪。像我们上面的代码中指定的就是将textview的alpha属性从0变到1再变到0；
                  * */
-                animator = ObjectAnimator.ofFloat(tv, "alpha", 1, 0);
+                animator = ObjectAnimator.ofFloat(tv, "alpha", 1, 0,1);
                 animator.setDuration(3000);
                 animator.start();
                 break;
-            case R.id.bt_start_argb:
+            case R.id.bt_start_rotation:
                 animator = ObjectAnimator.ofFloat(tv, "rotationY", 0, 270);
                 animator.setDuration(2000);
                 animator.start();
                 break;
-            case R.id.bt_start_object:
+            case R.id.bt_start_argb:
+
                 break;
             case R.id.bt_start_point:
+                animator = ObjectAnimator.ofFloat(mypointview, "pointRadius", 0, 270,100);
+                animator.setDuration(2000);
+                animator.start();
                 break;
         }
     }

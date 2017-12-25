@@ -20,7 +20,7 @@ import com.wyj.treasure.utils.LogUtil;
  */
 
 public class MyPointView extends View {
-    private Point mPoint;
+    private Point mPoint = new Point(10);
     private float mPointFloat;
 
     public MyPointView(Context context) {
@@ -38,14 +38,15 @@ public class MyPointView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        Paint paint = new Paint();
-        paint.setAntiAlias(true);
-        paint.setColor(Color.RED);
-        paint.setStyle(Paint.Style.FILL);
-        LogUtil.i("mPointFloat---onDraw-----" + mPointFloat);
-        canvas.drawCircle(300, 300, mPointFloat, paint);
+
         if (mPoint != null) {
-//            canvas.drawCircle(500, 500, mPoint.getRadius(), paint);
+            Paint paint = new Paint();
+            paint.setAntiAlias(true);
+            paint.setColor(Color.RED);
+            paint.setStyle(Paint.Style.FILL);
+            LogUtil.i("mPointFloat---onDraw-----" + mPointFloat);
+//            canvas.drawCircle(300, 300, mPointFloat, paint);
+            canvas.drawCircle(500, 500, mPoint.getRadius(), paint);
         }
     }
 
@@ -76,6 +77,14 @@ public class MyPointView extends View {
             }
         });
         animator.start();
+    }
+
+    public void setPointRadius(float radius) {
+        mPoint.setRadius(radius);
+        invalidate();
+    }
+    public float getPointRadius(){
+        return 50f;
     }
 
     private class PointEvaluator implements TypeEvaluator<Point> {
