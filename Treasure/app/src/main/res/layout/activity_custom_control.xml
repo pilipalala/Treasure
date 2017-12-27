@@ -29,6 +29,18 @@
         android:id="@+id/btn_animatorset"
         style="@style/default_button_style"
         android:text="AnimatorSet" />
+    <Button
+        android:id="@+id/btn_drawingarticles_one"
+        style="@style/default_button_style"
+        android:text="绘图篇-概述及基本几何图形绘制" />
+    <Button
+        android:id="@+id/btn_drawingarticles_two"
+        style="@style/default_button_style"
+        android:text="绘图篇-路径及文字" />
+    <Button
+        android:id="@+id/btn_drawingarticles_range"
+        style="@style/default_button_style"
+        android:text="区域(Range)" />
 
 
 </LinearLayout>

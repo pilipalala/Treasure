@@ -27,17 +27,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.WelcomeActivity">
+        <activity
+            android:name=".activity.MainActivity"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activity.MainActivity"
-            android:label="@string/app_name"
-            android:launchMode="singleTask" />
+        <activity android:name=".activity.WelcomeActivity" />
         <activity
             android:name="com.mob.tools.MobUIShell"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -151,7 +150,11 @@
         <activity android:name=".customcontrol.ValueAnimatorActivity" />
         <activity android:name=".constraintlayout.ConstraintLayoutActivity" />
         <activity android:name=".customcontrol.ObjectanimatorActivity" />
-        <activity android:name=".customcontrol.AnimatorSetActivity"></activity>
+        <activity android:name=".customcontrol.AnimatorSetActivity" />
+        <activity android:name=".customcontrol.DrawingArticlesOneActivity" />
+        <activity android:name=".customcontrol.DrawingArticlesTwoActivity" />
+        <activity android:name=".customcontrol.DrawingArticlesTextActivity" />
+        <activity android:name=".customcontrol.DrawingArticlesRangeActivity"></activity>
     </application>
 
 </manifest>

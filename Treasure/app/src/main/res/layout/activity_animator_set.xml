@@ -28,6 +28,16 @@
         android:text="playTogether"
         android:textAllCaps="false" />
 
+    <Button
+        android:id="@+id/btn_setStartDelay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/btn_playTogether"
+        android:padding="10dp"
+        android:text="setStartDelay"
+        android:textAllCaps="false" />
+
     <TextView
         android:id="@+id/tv_text"
         android:layout_width="wrap_content"
@@ -49,5 +59,62 @@
         android:gravity="center"
         android:padding="10dp"
         android:text="AnimatorSet" />
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/tv_text">
+
+        <Button
+            android:id="@+id/item1"
+            android:layout_width="@dimen/dp_45"
+            android:layout_height="@dimen/dp_45"
+            android:layout_gravity="right|bottom"
+            android:background="@color/yellow"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/item2"
+            android:layout_width="@dimen/dp_45"
+            android:layout_height="@dimen/dp_45"
+            android:layout_gravity="right|bottom"
+            android:background="@color/pink"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/item3"
+            android:layout_width="@dimen/dp_45"
+            android:layout_height="@dimen/dp_45"
+            android:layout_gravity="right|bottom"
+            android:background="@color/announcement_publisher"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/item4"
+            android:layout_width="@dimen/dp_45"
+            android:layout_height="@dimen/dp_45"
+            android:layout_gravity="right|bottom"
+            android:background="@color/darker_gray"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/item5"
+            android:layout_width="@dimen/dp_45"
+            android:layout_height="@dimen/dp_45"
+            android:layout_gravity="right|bottom"
+            android:background="@color/orange"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/menu"
+            android:layout_width="@dimen/dp_50"
+            android:layout_height="@dimen/dp_50"
+            android:layout_gravity="right|bottom"
+            android:background="@color/red" />
+
+
+    </FrameLayout>
 
 </RelativeLayout>
