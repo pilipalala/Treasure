@@ -41,6 +41,10 @@
         android:id="@+id/btn_drawingarticles_range"
         style="@style/default_button_style"
         android:text="区域(Range)" />
+    <Button
+        android:id="@+id/btn_bezier"
+        style="@style/default_button_style"
+        android:text="贝赛尔曲线" />
 
 
 </LinearLayout>
