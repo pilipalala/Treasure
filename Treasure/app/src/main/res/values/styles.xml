@@ -1,7 +1,5 @@
 <resources>
 
-
-
     <!-- Base application theme. -->
     <style name="BaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
@@ -9,10 +7,6 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-
-
-
-
 
 
     <!-- Base application theme. -->
@@ -24,8 +18,6 @@
     </style>
     <!-- Toolbar主题设置-->
     <style name="ToolBarTheme" parent="@style/ThemeOverlay.AppCompat.Light">
-        <!-- 更换Toolbar OVerFlow menu icon -->
-        <!--<item name="actionOverflowButtonStyle">@style/ActionButton.Overflow.More</item>-->
         <!--对应的就是右上角三个圆点的颜色-->
         <item name="android:textColorSecondary">@color/white</item>
         <!--Toolbar 标题文字颜色-->
@@ -50,14 +42,6 @@
         <!--把该属性改为false即可使menu位置位于toolbar之下-->
     </style>
 
-
-    <!--android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_5"
-                android:background="@color/spinner_bg"
-                android:text="发送一个 FLAG_ONGONG_EVENT 的通知,不能被移除"
-                android:textAllCaps="false"
-                android:textColor="@color/white" -->
     <style name="default_button_style">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -75,6 +59,30 @@
     <!-- 普通号 , 黑色 -->
     <style name="textStyle.Normal.black" parent="textStyle.Normal">
         <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="myDialog" parent="@android:style/Theme.Dialog">
+        <!--边框-->
+        <item name="android:windowFrame">@null</item>
+        <!--是否浮在activity上-->
+        <item name="android:windowIsFloating">true</item>
+        <!--无标题-->
+        <item name="android:windowIsTranslucent">true</item>
+        <!--背景透明-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--模糊-->
+        <item name="android:backgroundDimEnabled">true</item>
+
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="dialog_from_bottom_anim">
+        <item name="android:windowEnterAnimation">@anim/anim_dialog_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/anim_dialog_bottom_out</item>
+
+    </style>
+    <style name="dialog_scal_anim">
+        <item name="android:windowEnterAnimation">@anim/anim_dialog_scale</item>
     </style>
 
 
