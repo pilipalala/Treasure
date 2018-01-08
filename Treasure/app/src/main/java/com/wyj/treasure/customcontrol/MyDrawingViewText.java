@@ -154,7 +154,7 @@ public class MyDrawingViewText extends View {
         String familyName = "宋体";
         Typeface font = Typeface.create(familyName, Typeface.NORMAL);
         paint1.setTypeface(font);
-        canvas.drawText("噼哩啪啦", 10, 1300, paint1);
+        canvas.drawText("piliPala", 10, 1300, paint1);
 
 
     }

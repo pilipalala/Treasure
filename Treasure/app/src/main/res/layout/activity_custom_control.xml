@@ -41,6 +41,10 @@
         android:id="@+id/btn_drawingarticles_range"
         style="@style/default_button_style"
         android:text="区域(Range)" />
+    <Button
+        android:id="@+id/btn_draw_text"
+        style="@style/default_button_style"
+        android:text="drawText()详解" />
 
 
 </LinearLayout>

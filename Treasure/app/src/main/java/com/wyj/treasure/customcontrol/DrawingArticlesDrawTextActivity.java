@@ -9,7 +9,7 @@ import com.wyj.treasure.activity.BaseActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class DrawingArticlesRangeActivity extends BaseActivity {
+public class DrawingArticlesDrawTextActivity extends BaseActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -21,6 +21,8 @@ public class DrawingArticlesRangeActivity extends BaseActivity {
     MyDrawingViewText viewText;
     @BindView(R.id.view_region)
     MyDrawingRegionView viewRegion;
+    @BindView(R.id.view_drawtext)
+    MyDrawingDrawText viewDrawText;
 
     @Override
     protected void initView() {
@@ -33,6 +35,7 @@ public class DrawingArticlesRangeActivity extends BaseActivity {
         viewOne.setVisibility(View.GONE);
         viewTwo.setVisibility(View.GONE);
         viewText.setVisibility(View.GONE);
-        viewRegion.setVisibility(View.VISIBLE);
+        viewRegion.setVisibility(View.GONE);
+        viewDrawText.setVisibility(View.VISIBLE);
     }
 }

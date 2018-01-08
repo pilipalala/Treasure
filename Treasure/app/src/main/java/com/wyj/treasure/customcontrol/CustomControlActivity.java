@@ -34,7 +34,7 @@ public class CustomControlActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.btn_anima, R.id.btn_valueanimator, R.id.btn_objectanimator, R.id.btn_animatorset, R.id.btn_drawingarticles_one,R.id.btn_drawingarticles_two,R.id.btn_drawingarticles_range})
+    @OnClick({R.id.btn_anima, R.id.btn_valueanimator,R.id.btn_draw_text, R.id.btn_objectanimator, R.id.btn_animatorset, R.id.btn_drawingarticles_one,R.id.btn_drawingarticles_two,R.id.btn_drawingarticles_range})
     public void onViewClicked(View view) {
         Intent intent = new Intent();
         switch (view.getId()) {
@@ -61,6 +61,9 @@ public class CustomControlActivity extends BaseActivity {
                 break;
             case R.id.btn_drawingarticles_range:
                 intent.setClass(CustomControlActivity.this, DrawingArticlesRangeActivity.class);
+                break;
+            case R.id.btn_draw_text:
+                intent.setClass(CustomControlActivity.this, DrawingArticlesDrawTextActivity.class);
                 break;
         }
         startActivity(intent);

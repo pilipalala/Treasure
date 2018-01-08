@@ -24,10 +24,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <com.wyj.treasure.customcontrol.MyRegionView
+    <com.wyj.treasure.customcontrol.MyDrawingRegionView
         android:id="@+id/view_region"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone" />
+    <com.wyj.treasure.customcontrol.MyDrawingDrawText
+        android:id="@+id/view_drawtext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
 
 </LinearLayout>

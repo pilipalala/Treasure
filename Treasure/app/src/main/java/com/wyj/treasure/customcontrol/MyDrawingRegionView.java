@@ -18,19 +18,19 @@ import android.view.View;
  *         TODO
  */
 
-public class MyRegionView extends View {
+public class MyDrawingRegionView extends View {
 
     private Context mContext;
 
-    public MyRegionView(Context context) {
+    public MyDrawingRegionView(Context context) {
         this(context, null);
     }
 
-    public MyRegionView(Context context, @Nullable AttributeSet attrs) {
+    public MyDrawingRegionView(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public MyRegionView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public MyDrawingRegionView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
     }
