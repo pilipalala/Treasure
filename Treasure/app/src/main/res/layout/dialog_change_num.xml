@@ -3,9 +3,7 @@
     android:layout_width="300dp"
     android:layout_height="160dp"
     android:background="@drawable/dialog_bg"
-    android:orientation="vertical"
-
-    >
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
@@ -23,7 +21,6 @@
         android:layout_height="36dip"
         android:layout_marginTop="20dp"
         android:gravity="center"
-
         android:orientation="horizontal">
 
         <Button

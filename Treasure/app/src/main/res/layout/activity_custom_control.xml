@@ -45,6 +45,10 @@
         android:id="@+id/btn_draw_text"
         style="@style/default_button_style"
         android:text="drawText()详解" />
+	<Button
+        android:id="@+id/btn_bezier"
+        style="@style/default_button_style"
+        android:text="贝赛尔曲线" />
 
 
 </LinearLayout>

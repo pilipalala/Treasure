@@ -155,7 +155,8 @@
         <activity android:name=".customcontrol.DrawingArticlesTwoActivity" />
         <activity android:name=".customcontrol.DrawingArticlesTextActivity" />
         <activity android:name=".customcontrol.DrawingArticlesRangeActivity" />
-        <activity android:name=".customcontrol.DrawingArticlesDrawTextActivity"></activity>
+        <activity android:name=".customcontrol.DrawingArticlesDrawTextActivity"/>
+        <activity android:name=".customcontrol.BezierActivity"></activity>
     </application>
 
 </manifest>
