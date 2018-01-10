@@ -1,9 +1,11 @@
 package com.wyj.navigationbar;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 /**
  * Created by wangyujie
@@ -12,13 +14,38 @@ import android.view.ViewGroup;
  * TODO 头部的Builder基类
  */
 
-public abstract class AbsNavigationBar implements INavigationBar {
+public abstract class AbsNavigationBar<P extends AbsNavigationBar.Builder.AbsNavigationParams> implements INavigationBar {
 
-    private Builder.AbsNavigationParams mPramas;
 
-    public AbsNavigationBar(Builder.AbsNavigationParams mPramas) {
+    private P mPramas;
+    private View navigationView;
+
+    public AbsNavigationBar(P mPramas) {
         this.mPramas = mPramas;
         createAndBindView();
+    }
+
+    public P getPramas() {
+        return mPramas;
+    }
+
+    public void setText(int viewId, String mTitle) {
+        TextView textView = findViewById(viewId);
+        if (!TextUtils.isEmpty(mTitle)) {
+            textView.setVisibility(View.VISIBLE);
+            textView.setText(mTitle);
+        }
+    }
+
+    public void setOnClickListener(int viewId, View.OnClickListener listener) {
+        if (listener != null) {
+            findViewById(viewId).setOnClickListener(listener);
+        }
+    }
+
+    public <T extends View> T findViewById(int viewId) {
+        View view = navigationView.findViewById(viewId);
+        return (T) view;
     }
 
     /**
@@ -26,7 +53,7 @@ public abstract class AbsNavigationBar implements INavigationBar {
      */
     private void createAndBindView() {
         //1、创建view
-        View navigationView = LayoutInflater.from(mPramas.mContext).inflate(bindLayoutId(), mPramas.mParent, false);
+        navigationView = LayoutInflater.from(mPramas.mContext).inflate(bindLayoutId(), mPramas.mParent, false);
         //2、添加
         mPramas.mParent.addView(navigationView, 0);
         applyView();
@@ -46,6 +73,7 @@ public abstract class AbsNavigationBar implements INavigationBar {
         public static class AbsNavigationParams {
             public Context mContext;
             public ViewGroup mParent;
+
 
             public AbsNavigationParams(Context context, ViewGroup parent) {
                 this.mContext = context;

@@ -1,5 +1,6 @@
 package com.wyj.treasure.fragment;
 
+import com.wyj.navigationbar.NavigationBarActivity;
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.GridViewChoiceActivity;
 import com.wyj.treasure.activity.IncludeMergeViewStubActivity;
@@ -37,6 +38,7 @@ public class DashboardFragment extends BaseCardViewFragment {
         mData.add(new ItemInfo("自动轮播图", BannerViewPagerActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("字体变色", ColorTrackActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("自定义控件三部曲", CustomControlActivity.class, R.mipmap.ic_launcher));
+        mData.add(new ItemInfo("NavigationBar", NavigationBarActivity.class, R.mipmap.ic_launcher));
         notifyDataChanged();
     }
 }
