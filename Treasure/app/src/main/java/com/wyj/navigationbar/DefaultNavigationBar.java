@@ -1,5 +1,6 @@
 package com.wyj.navigationbar;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,10 +27,12 @@ public class DefaultNavigationBar extends AbsNavigationBar<DefaultNavigationBar.
     @Override
     public void applyView() {
         /*绑定参数*/
-        setText(R.id.tv_title,getPramas().mTitle);
-        setText(R.id.tv_right_title,getPramas().mRightTitle);
-        setOnClickListener(R.id.tv_right_title,getPramas().mRightClickListener);
+        setText(R.id.tv_title, getPramas().mTitle);
+        setText(R.id.tv_right_title, getPramas().mRightTitle);
+        setOnClickListener(R.id.tv_right_title, getPramas().mRightClickListener);
+        setToolBarOnClickListener(R.id.toolbar, getPramas().mLeftClickListener);
     }
+
 
 
 
@@ -39,6 +42,12 @@ public class DefaultNavigationBar extends AbsNavigationBar<DefaultNavigationBar.
         public Builder(Context context, ViewGroup parent) {
             super(context, parent);
             P = new DefaultNavigationPrams(context, parent);
+
+        }
+
+        public Builder(Context context) {
+            super(context, null);
+            P = new DefaultNavigationPrams(context, null);
 
         }
 
@@ -61,6 +70,7 @@ public class DefaultNavigationBar extends AbsNavigationBar<DefaultNavigationBar.
             P.mTitle = title;
             return this;
         }
+
         public DefaultNavigationBar.Builder setRightTitle(String rightTitle) {
             P.mRightTitle = rightTitle;
             return this;
@@ -76,8 +86,25 @@ public class DefaultNavigationBar extends AbsNavigationBar<DefaultNavigationBar.
             P.mRightIcon = rightIcon;
             return this;
         }
+
+        /**
+         * 设置右边的点击事件
+         *
+         * @param listener
+         * @return
+         */
         public DefaultNavigationBar.Builder setRightClickListener(View.OnClickListener listener) {
             P.mRightClickListener = listener;
+            return this;
+        }
+        /**
+         * 设置左边的点击事件
+         *
+         * @param listener
+         * @return
+         */
+        public DefaultNavigationBar.Builder setLeftClickListener(View.OnClickListener listener) {
+            P.mLeftClickListener = listener;
             return this;
         }
 
@@ -87,6 +114,12 @@ public class DefaultNavigationBar extends AbsNavigationBar<DefaultNavigationBar.
             public int mRightIcon;
             public View.OnClickListener mRightClickListener;
             public String mRightTitle;
+            public View.OnClickListener mLeftClickListener = new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ((Activity)mContext).finish();
+                }
+            };
 
             public DefaultNavigationPrams(Context context, ViewGroup parent) {
                 super(context, parent);

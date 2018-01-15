@@ -16,18 +16,18 @@ import android.view.WindowManager;
  * TODO
  */
 
-public class MyAlertController {
+public class BaseAlertController {
 
-    private MyAlertDialog mDialog;
+    private BaseAlertDialog mDialog;
     private Window mWindow;
     private DialogViewHelper mViewHelper;
-
-    public MyAlertController(MyAlertDialog dialog, Window window) {
+    /*TODO BaseAlertDialog_7*/
+    public BaseAlertController(BaseAlertDialog dialog, Window window) {
         this.mDialog = dialog;
         this.mWindow = window;
     }
 
-    public MyAlertDialog getDialog() {
+    public BaseAlertDialog getDialog() {
         return mDialog;
     }
 
@@ -87,19 +87,18 @@ public class MyAlertController {
         public int mWidth = ViewGroup.LayoutParams.WRAP_CONTENT;
         /*设置高度*/
         public int mHeight = ViewGroup.LayoutParams.WRAP_CONTENT;
-        ;
         /*设置位置*/
         public int mGravity = Gravity.CENTER;
         /*设置动画*/
         public int mAnimation = 0;
 
-
+        /*TODO BaseAlertDialog_3*/
         public AlertParams(Context context, int themeResId) {
             this.mContext = context;
             this.mThemeResId = themeResId;
         }
-
-        public void apply(MyAlertController mAlert) {
+        /*TODO BaseAlertDialog_8*/
+        public void apply(BaseAlertController mAlert) {
             /*设置参数*/
             DialogViewHelper viewHelper = null;
 

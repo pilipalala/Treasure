@@ -13,6 +13,7 @@ import com.wyj.treasure.MyApplication;
  * TODO Toast工具类
  */
 
+
 public class ToastUtil {
     private static Toast toast;
 

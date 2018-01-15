@@ -45,7 +45,7 @@ public class BezierView extends View {
         mPath.reset();
         int originY = 300;
         int halfWaveLen = mItemWaveLength / 2;
-        mPath.moveTo(-mItemWaveLength+dx, originY);
+        mPath.moveTo(-mItemWaveLength+dx, originY+dx);
         for (int i = -mItemWaveLength; i < getWidth() + mItemWaveLength; i += mItemWaveLength) {
             mPath.rQuadTo(halfWaveLen / 2, -50, halfWaveLen, 0);
             mPath.rQuadTo(halfWaveLen / 2, 50, halfWaveLen, 0);
