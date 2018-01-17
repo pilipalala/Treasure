@@ -49,7 +49,7 @@ public class CustomControlActivity extends BaseActivity {
                 intent.setClass(CustomControlActivity.this, ObjectanimatorActivity.class);
                 break;
             case R.id.btn_property:
-                intent.setClass(CustomControlActivity.this, ObjectanimatorActivity.class);
+                intent.setClass(CustomControlActivity.this, PropertyActivity.class);
                 break;
             case R.id.btn_animatorset:
                 intent.setClass(CustomControlActivity.this, AnimatorSetActivity.class);

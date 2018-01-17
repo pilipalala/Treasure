@@ -152,6 +152,7 @@ public class BannerView extends RelativeLayout {
         getLayoutParams().height = height;
         requestLayout();
     }
+
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
@@ -343,6 +344,7 @@ public class BannerView extends RelativeLayout {
                 return Gravity.RIGHT;
         }
     }
+
     /**
      * 隐藏页面指示器
      */

@@ -1,0 +1,46 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/title" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/bt_start"
+            style="@style/default_button_style"
+            android:layout_width="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:padding="10dp"
+            android:text="start anim" />
+
+
+
+        <Button
+            android:id="@+id/bt_start_point"
+            style="@style/default_button_style"
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:padding="10dp"
+            android:text="start point anim" />
+
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_50"
+            android:background="@color/red"
+            android:padding="10dp"
+            android:text="Hello pilipala" />
+        <com.wyj.treasure.customcontrol.MyPointView
+            android:id="@+id/mypointview"
+            android:layout_below="@+id/bt_start_object"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
+</LinearLayout>
