@@ -1,5 +1,6 @@
 package com.wyj.navigationbar;
 
+import android.app.Activity;
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -52,8 +53,18 @@ public abstract class AbsNavigationBar<P extends AbsNavigationBar.Builder.AbsNav
      * 绑定和创建view
      */
     private void createAndBindView() {
+        if (mPramas.mParent == null) {
+            /*ViewGroup activityRoot = (ViewGroup) ((Activity) mPramas.mContext).findViewById(android.R.id.content);
+            mPramas.mParent = (ViewGroup) activityRoot.getChildAt(0);*/
+            ViewGroup activityRoot = (ViewGroup) ((Activity) mPramas.mContext).getWindow().getDecorView();
+            mPramas.mParent = (ViewGroup) activityRoot.getChildAt(0);
+        }
+        if (mPramas.mParent == null) {
+            return;
+        }
         //1、创建view
-        navigationView = LayoutInflater.from(mPramas.mContext).inflate(bindLayoutId(), mPramas.mParent, false);
+        navigationView = LayoutInflater.from(mPramas.mContext).inflate(bindLayoutId(),
+                mPramas.mParent, false);
         //2、添加
         mPramas.mParent.addView(navigationView, 0);
         applyView();
