@@ -172,6 +172,7 @@ public class ColorTrackTextView extends android.support.v7.widget.AppCompatTextV
         canvas.clipRect(new Rect(start, 0, end, getHeight()));
         //获取字体的范围bounds
         Rect rect = new Rect();
+        //获取指定字符串所对应的最小矩形
         paint.getTextBounds(text, 0, text.length(), rect);
         int textWidth = rect.width();
 
@@ -179,13 +180,29 @@ public class ColorTrackTextView extends android.support.v7.widget.AppCompatTextV
         int x = (getWidth() - textWidth) / 2;
         //获取中心点到基线的距离
         int dy = getDy(rect, paint);
-        //int dy = getDy(rect);
 
         //计算基线的位置
         int baseLine = (getHeight() + rect.height()) / 2 - dy;
+
+        int baseLineHeight = getBaselineHeight(paint);
+
         //y 代表基线 baseLine
         canvas.drawText(text, x, baseLine, paint);
         canvas.restore();
+    }
+
+    /**
+     * 根据中心点 获取 baseLine
+     * @param paint
+     * @return
+     */
+    public int getBaselineHeight(Paint paint) {
+        int baseLine;
+        Paint.FontMetricsInt fontMetrics = paint.getFontMetricsInt();
+
+        baseLine = getHeight() / 2 + (fontMetrics.bottom - fontMetrics.top) / 2 - fontMetrics.bottom;
+
+        return baseLine;
     }
 
     private int getDy(Rect rect) {

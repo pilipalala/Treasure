@@ -12,7 +12,7 @@
 
     <com.wyj.treasure.viewcustom.bannerviewpager.BannerView
         android:id="@+id/banner_view"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:bottomColor="#88000000"
         app:dotDistance="@dimen/dp_8"

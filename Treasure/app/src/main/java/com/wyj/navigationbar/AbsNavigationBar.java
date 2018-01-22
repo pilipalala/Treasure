@@ -2,6 +2,7 @@ package com.wyj.navigationbar;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,6 +45,13 @@ public abstract class AbsNavigationBar<P extends AbsNavigationBar.Builder.AbsNav
         }
     }
 
+    public void setToolBarOnClickListener(int viewId, View.OnClickListener listener) {
+        if (listener != null) {
+            Toolbar toolbar = (Toolbar) findViewById(viewId);
+            toolbar.setNavigationOnClickListener(listener);
+        }
+    }
+
     public <T extends View> T findViewById(int viewId) {
         View view = navigationView.findViewById(viewId);
         return (T) view;
@@ -63,8 +71,9 @@ public abstract class AbsNavigationBar<P extends AbsNavigationBar.Builder.AbsNav
             return;
         }
         //1、创建view
-        navigationView = LayoutInflater.from(mPramas.mContext).inflate(bindLayoutId(),
-                mPramas.mParent, false);
+
+        navigationView = LayoutInflater.from(mPramas.mContext).inflate(bindLayoutId(), mPramas.mParent, false);
+
         //2、添加
         mPramas.mParent.addView(navigationView, 0);
         applyView();

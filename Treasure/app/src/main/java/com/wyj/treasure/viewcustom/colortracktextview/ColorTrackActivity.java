@@ -33,7 +33,7 @@ public class ColorTrackActivity extends BaseActivity {
     ViewPager viewPager;
     @BindView(R.id.tv_title)
     TextView tvTitle;
-    private String[] items = {"直播", "推荐", "视频", "图片", "段子", "精华", "同城", "游戏"};
+    private String[] items = {"直播", "Jpg'h", "视频", "图片", "段子", "精华", "同城", "游戏"};
     private List<ColorTrackTextView> mIndicators;
     /**
      * 是否滑动

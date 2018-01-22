@@ -5,6 +5,7 @@ import com.wyj.treasure.R;
 import com.wyj.treasure.activity.GridViewChoiceActivity;
 import com.wyj.treasure.activity.IncludeMergeViewStubActivity;
 import com.wyj.treasure.activity.MultipleChoiceActivity;
+import com.wyj.treasure.activity.MyLinearlayoutActivity;
 import com.wyj.treasure.activity.ReflectActivity;
 import com.wyj.treasure.activity.RegularExpressionActivity;
 import com.wyj.treasure.activity.StaggeredGridActivity;
@@ -39,6 +40,7 @@ public class DashboardFragment extends BaseCardViewFragment {
         mData.add(new ItemInfo("字体变色", ColorTrackActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("自定义控件三部曲", CustomControlActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("NavigationBar", NavigationBarActivity.class, R.mipmap.ic_launcher));
+        mData.add(new ItemInfo("LinearlayoutActivity", MyLinearlayoutActivity.class, R.mipmap.ic_launcher));
         notifyDataChanged();
     }
 }

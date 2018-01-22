@@ -20,7 +20,7 @@ public class DialogViewHelper {
     private View mContentView;
     /*防止内存泄漏*/
     private SparseArray<WeakReference<View>> viewArray;
-
+    /*TODO BaseAlertDialog_9*/
     public DialogViewHelper(Context mContext, int mViewLayoutResId) {
         this();
         this.mContext = mContext;

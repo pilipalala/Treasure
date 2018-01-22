@@ -15,16 +15,17 @@ import com.wyj.treasure.R;
  * TODO
  */
 
-public class MyAlertDialog extends Dialog {
-    private MyAlertController mAlert;
+public class BaseAlertDialog extends Dialog {
+    private BaseAlertController mAlert;
 
-    public MyAlertDialog(@NonNull Context context) {
+    public BaseAlertDialog(@NonNull Context context) {
         this(context, R.style.myDialog);
     }
 
-    public MyAlertDialog(@NonNull Context context, int themeResId) {
+    /*TODO BaseAlertDialog_6*/
+    public BaseAlertDialog(@NonNull Context context, int themeResId) {
         super(context, themeResId);
-        mAlert = new MyAlertController(this, getWindow());
+        mAlert = new BaseAlertController(this, getWindow());
     }
 
     /**
@@ -53,18 +54,19 @@ public class MyAlertDialog extends Dialog {
 
     public static class Builder {
 
-        private MyAlertController.AlertParams P;
+        private BaseAlertController.AlertParams P;
 
+        /*TODO BaseAlertDialog_1*/
         public Builder(Context context) {
             this(context, R.style.myDialog);
         }
-
+        /*TODO BaseAlertDialog_2*/
         public Builder(Context context, int themeResId) {
-            P = new MyAlertController.AlertParams(context, themeResId);
+            P = new BaseAlertController.AlertParams(context, themeResId);
         }
-
-        public MyAlertDialog create() {
-            final MyAlertDialog dialog = new MyAlertDialog(P.mContext, P.mThemeResId);
+        /*TODO BaseAlertDialog_5*/
+        public BaseAlertDialog create() {
+            final BaseAlertDialog dialog = new BaseAlertDialog(P.mContext, P.mThemeResId);
             P.apply(dialog.mAlert);
             dialog.setCancelable(P.mCancelable);
             if (P.mCancelable) {
@@ -78,8 +80,9 @@ public class MyAlertDialog extends Dialog {
             return dialog;
         }
 
-        public MyAlertDialog show() {
-            final MyAlertDialog dialog = create();
+        /*TODO BaseAlertDialog_4*/
+        public BaseAlertDialog show() {
+            final BaseAlertDialog dialog = create();
             dialog.show();
             return dialog;
         }

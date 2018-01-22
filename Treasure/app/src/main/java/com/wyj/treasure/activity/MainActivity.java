@@ -102,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
         initragment();
         check(0);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
     }
 
     private void initragment() {
