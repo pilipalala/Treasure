@@ -16,6 +16,7 @@ import com.wyj.treasure.mdcustom.behaviorcustom.BehaviorActivity;
 import com.wyj.treasure.mdcustom.splash.SplashActivity;
 import com.wyj.treasure.mode.ItemInfo;
 import com.wyj.treasure.mvp.UserLoginActivity;
+import com.wyj.treasure.popup.PopupWindowActivity;
 import com.wyj.treasure.rxjava.RxJavaActivity;
 import com.wyj.treasure.viewcustom.bannerviewpager.BannerViewPagerActivity;
 import com.wyj.treasure.viewcustom.colortracktextview.ColorTrackActivity;
@@ -41,6 +42,7 @@ public class DashboardFragment extends BaseCardViewFragment {
         mData.add(new ItemInfo("自定义控件三部曲", CustomControlActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("NavigationBar", NavigationBarActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("LinearlayoutActivity", MyLinearlayoutActivity.class, R.mipmap.ic_launcher));
+        mData.add(new ItemInfo("PopupWindow", PopupWindowActivity.class, R.mipmap.ic_launcher));
         notifyDataChanged();
     }
 }

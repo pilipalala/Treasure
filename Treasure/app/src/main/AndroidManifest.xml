@@ -159,7 +159,8 @@
         <activity android:name=".customcontrol.BezierActivity" />
         <activity android:name="com.wyj.navigationbar.NavigationBarActivity" />
         <activity android:name=".activity.MyLinearlayoutActivity" />
-        <activity android:name=".customcontrol.PropertyActivity"></activity>
+        <activity android:name=".customcontrol.PropertyActivity" />
+        <activity android:name=".popup.PopupWindowActivity"></activity>
     </application>
 
 </manifest>

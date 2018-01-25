@@ -173,6 +173,9 @@ public class SplashView extends View {
 
     }
 
+    /**
+     * 策略模式
+     */
     private abstract class SplashState {
         public abstract void drawState(Canvas canvas);
     }

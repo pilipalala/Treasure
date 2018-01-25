@@ -30,14 +30,24 @@ public class ReflectActivity extends BaseActivity {
 
     private void getClassObj() {
 
+        //获取类类型的方法
+        //方法一：
         Class<?> cls1 = SonClass.class;
-
+        //方法二：
         SonClass sonClass = new SonClass();
         Class<?> cls2 = sonClass.getClass();
 
+        //方法三：
         Class<?> cls3 = null;
         try {
             cls3 = Class.forName("com.wyj.treasure.reflect.SonClass");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        //方法四：（不建议使用）
+        Class cls4 = null;
+        try {
+            cls4 = getClassLoader().loadClass("com.wyj.treasure.reflect.SonClass");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -45,7 +55,8 @@ public class ReflectActivity extends BaseActivity {
         StringBuilder sb = new StringBuilder();
         sb.append("cls1: ").append(cls1).append("\n\n");
         sb.append("cls2: ").append(cls2).append("\n\n");
-        sb.append("cls3: ").append(cls3);
+        sb.append("cls3: ").append(cls3).append("\n\n");
+        sb.append("cls4: ").append(cls4);
         tvClass.setText(sb.toString());
         toolbar.setSubtitle("三种方式获得类对象");
     }
