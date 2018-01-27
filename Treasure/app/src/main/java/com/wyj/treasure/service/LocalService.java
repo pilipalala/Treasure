@@ -37,7 +37,7 @@ public class LocalService extends Service {
                 while (true) {
                     LogUtil.v("测试");
                     try {
-                        Thread.sleep(2000);
+                        Thread.sleep(1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

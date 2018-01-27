@@ -8,7 +8,6 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.0'
         classpath 'com.jakewharton:butterknife-gradle-plugin:8.7.0'
-//        classpath "com.tinkerpatch.sdk:tinkerpatch-gradle-plugin:1.1.8" // TinkerPatch 插件
     }
 }
 
