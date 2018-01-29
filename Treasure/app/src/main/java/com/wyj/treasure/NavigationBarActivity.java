@@ -1,23 +1,27 @@
-package com.wyj.navigationbar;
+package com.wyj.treasure;
 
 import android.os.AsyncTask;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.wyj.treasure.R;
+import com.wyj.navigationbar.DefaultNavigationBar;
+import com.wyj.treasure.activity.BaseActivity;
 import com.wyj.treasure.utils.LogUtil;
 import com.wyj.treasure.utils.ToastUtil;
 
-public class NavigationBarActivity extends AppCompatActivity {
+public class NavigationBarActivity extends BaseActivity {
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void initView() {
         setContentView(R.layout.activity_navigation_bar);
+    }
+
+    @Override
+    protected void initData() {
         MyAsyncTask task = new MyAsyncTask();
         task.execute("http://www.baidu.com");
+
         DefaultNavigationBar builder = new DefaultNavigationBar.Builder(this, (ViewGroup) findViewById(R.id.view_group))
                 .setTitle("标题")
                 .setRightTitle("右边")
@@ -25,13 +29,14 @@ public class NavigationBarActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         ToastUtil.show("右边");
+
                     }
                 })
                 .builder();
     }
 
 
-    public class MyAsyncTask extends AsyncTask<String,Integer,Void>{
+    public class MyAsyncTask extends AsyncTask<String, Integer, Void> {
 
         @Override
         protected Void doInBackground(String... strings) {
@@ -40,6 +45,5 @@ public class NavigationBarActivity extends AppCompatActivity {
 
         }
     }
-
 
 }

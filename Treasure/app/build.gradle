@@ -34,11 +34,11 @@ android {
     /**
      * 给生成的apk文件重命名，
      */
-//    android.applicationVariants.all { variant ->
-//        variant.outputs.all {
-//            outputFileName = "${keystoreProperties['app_name']}${releaseTime()}.apk"
-//        }
-//    }
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "${keystoreProperties['app_name']}${releaseTime()}.apk"
+        }
+    }
     /**
      * 二、自定义签名配置
      */
@@ -81,15 +81,6 @@ android {
         checkReleaseBuilds false
         abortOnError false
     }
-
-
-
-
-
-
-
-
-
     sourceSets { main { aidl.srcDirs = ['src/main/aidl', 'src/main/aidl/'] } }
 
 

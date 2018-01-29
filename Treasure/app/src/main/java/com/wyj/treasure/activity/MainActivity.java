@@ -1,5 +1,7 @@
 package com.wyj.treasure.activity;
 
+import android.content.ComponentName;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -26,18 +28,21 @@ public class MainActivity extends AppCompatActivity {
     private HomeFragment homeFragment;
     private DashboardFragment dashboardFragment;
     private NotificationsFragment notificationsFragment;
-
+    private ComponentName name;
+    private PackageManager mPm;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = item -> {
         switch (item.getItemId()) {
             case R.id.navigation_home:
                 check(0);
+
                 return true;
             case R.id.navigation_dashboard:
                 check(1);
                 return true;
             case R.id.navigation_notifications:
                 check(2);
+                enableComponent(name);
                 return true;
         }
         return false;
@@ -99,12 +104,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initData() {
+        mPm = getApplicationContext().getPackageManager();
+        name = new ComponentName(
+                getBaseContext(),
+                "com.wyj.treasure.MainAliasActivity");
         initragment();
         check(0);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
     }
-
+    private void enableComponent(ComponentName componentName) {
+        mPm.setComponentEnabledSetting(getComponentName(),
+                PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                PackageManager.DONT_KILL_APP);
+        mPm.setComponentEnabledSetting(componentName,
+                PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                PackageManager.DONT_KILL_APP);
+    }
     private void initragment() {
         mBaseFragment = new ArrayList<>();
         homeFragment = new HomeFragment();

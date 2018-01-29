@@ -18,6 +18,7 @@
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
 
     <application
         android:name=".MyApplication"
@@ -27,8 +28,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".activity.MainActivity"
+        <activity android:name=".activity.MainActivity"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,6 +36,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity-alias
+            android:name="com.wyj.treasure.MainAliasActivity"
+            android:enabled="false"
+            android:icon="@mipmap/git"
+            android:label="treasure"
+            android:targetActivity=".activity.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
         <activity android:name=".activity.WelcomeActivity" />
         <activity
             android:name="com.mob.tools.MobUIShell"
@@ -148,7 +160,6 @@
         <activity android:name=".customcontrol.CustomControlActivity" />
         <activity android:name=".customcontrol.Interpolator" />
         <activity android:name=".customcontrol.ValueAnimatorActivity" />
-        <activity android:name=".constraintlayout.ConstraintLayoutActivity" />
         <activity android:name=".customcontrol.ObjectanimatorActivity" />
         <activity android:name=".customcontrol.AnimatorSetActivity" />
         <activity android:name=".customcontrol.DrawingArticlesOneActivity" />
@@ -157,10 +168,11 @@
         <activity android:name=".customcontrol.DrawingArticlesRangeActivity" />
         <activity android:name=".customcontrol.DrawingArticlesDrawTextActivity" />
         <activity android:name=".customcontrol.BezierActivity" />
-        <activity android:name="com.wyj.navigationbar.NavigationBarActivity" />
+        <activity android:name=".NavigationBarActivity" />
         <activity android:name=".activity.MyLinearlayoutActivity" />
         <activity android:name=".customcontrol.PropertyActivity" />
-        <activity android:name=".popup.PopupWindowActivity"></activity>
+        <activity android:name=".popup.PopupWindowActivity" />
+        <activity android:name=".MainAliasActivity"></activity>
     </application>
 
 </manifest>

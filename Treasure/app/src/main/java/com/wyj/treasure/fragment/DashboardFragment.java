@@ -1,6 +1,6 @@
 package com.wyj.treasure.fragment;
 
-import com.wyj.navigationbar.NavigationBarActivity;
+import com.wyj.treasure.NavigationBarActivity;
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.GridViewChoiceActivity;
 import com.wyj.treasure.activity.IncludeMergeViewStubActivity;
