@@ -28,7 +28,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.MainActivity"
+        <activity
+            android:name=".activity.MainActivity"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,14 +37,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity-alias
-            android:name="com.wyj.treasure.MainAliasActivity"
+            android:name=".MainAliasActivity"
             android:enabled="false"
             android:icon="@mipmap/git"
             android:label="treasure"
             android:targetActivity=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity-alias>
@@ -172,7 +175,8 @@
         <activity android:name=".activity.MyLinearlayoutActivity" />
         <activity android:name=".customcontrol.PropertyActivity" />
         <activity android:name=".popup.PopupWindowActivity" />
-        <activity android:name=".MainAliasActivity"></activity>
+        <activity android:name=".MainAliasActivity" />
+        <activity android:name="com.wyj.baseadapter.RecycleViewActivity"></activity>
     </application>
 
 </manifest>
