@@ -175,8 +175,8 @@
         <activity android:name=".activity.MyLinearlayoutActivity" />
         <activity android:name=".customcontrol.PropertyActivity" />
         <activity android:name=".popup.PopupWindowActivity" />
-        <activity android:name=".MainAliasActivity" />
-        <activity android:name="com.wyj.baseadapter.RecycleViewActivity"></activity>
+        <activity android:name="com.wyj.baseadapter.RecyclerViewActivity" />
+        <activity android:name=".activity.ChangeLaucherActivity"></activity>
     </application>
 
 </manifest>

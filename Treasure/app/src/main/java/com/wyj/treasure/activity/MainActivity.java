@@ -7,6 +7,8 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
+import android.view.View;
 
 import com.wyj.treasure.R;
 import com.wyj.treasure.fragment.BaseFragment;
@@ -28,25 +30,23 @@ public class MainActivity extends AppCompatActivity {
     private HomeFragment homeFragment;
     private DashboardFragment dashboardFragment;
     private NotificationsFragment notificationsFragment;
-    private ComponentName name;
-    private PackageManager mPm;
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = item -> {
         switch (item.getItemId()) {
             case R.id.navigation_home:
                 check(0);
-
                 return true;
             case R.id.navigation_dashboard:
                 check(1);
                 return true;
             case R.id.navigation_notifications:
                 check(2);
-                enableComponent(name);
                 return true;
         }
         return false;
     };
+
 
     private void check(int position) {
         BaseFragment to = getFragment(position);
@@ -104,22 +104,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        mPm = getApplicationContext().getPackageManager();
-        name = new ComponentName(
-                getBaseContext(),
-                "com.wyj.treasure.MainAliasActivity");
         initragment();
         check(0);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
-    private void enableComponent(ComponentName componentName) {
-        mPm.setComponentEnabledSetting(getComponentName(),
-                PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
-                PackageManager.DONT_KILL_APP);
-        mPm.setComponentEnabledSetting(componentName,
-                PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
-                PackageManager.DONT_KILL_APP);
-    }
+
+
+
+
     private void initragment() {
         mBaseFragment = new ArrayList<>();
         homeFragment = new HomeFragment();
@@ -130,4 +122,9 @@ public class MainActivity extends AppCompatActivity {
         mBaseFragment.add(notificationsFragment);
     }
 
+    public void other() {
+        View layoutView = View.inflate(this, R.layout.activity_main, null);
+        layoutView = LayoutInflater.from(this).inflate(R.layout.activity_main, null);
+        layoutView = LayoutInflater.from(this).inflate(R.layout.activity_main, null, false);
+    }
 }

@@ -15,7 +15,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class RecycleViewActivity extends BaseActivity {
+public class RecyclerViewActivity extends BaseActivity {
 
     @BindView(R.id.tv_title)
     TextView tvTitle;
@@ -36,7 +36,6 @@ public class RecycleViewActivity extends BaseActivity {
         getData();
         CategoryListAdapter adapter = new CategoryListAdapter(this, data, R.layout.adapter_layout);
         recyclerView.setAdapter(adapter);
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         adapter.setOnItemClick(new ItemClickListener() {
             @Override

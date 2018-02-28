@@ -8,6 +8,10 @@ def releaseTime() {
     return new Date().format("MM.dd", TimeZone.getTimeZone("UTC"))
 }
 
+def getAppName() {
+    return "Treasure"
+}
+
 android {
     compileSdkVersion 26
     buildToolsVersion '26.0.2'
@@ -25,7 +29,7 @@ android {
         /* 动态添加 string.xml 字段；
           注意，这里是添加，在 string.xml 不能有这个字段，会重名！！！
           */
-        resValue "string", "app_name", keystoreProperties['app_name']
+        resValue "string", "app_name", getAppName()
         ndk {
             // 设置支持的SO库架构
             abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
@@ -36,7 +40,7 @@ android {
      */
     android.applicationVariants.all { variant ->
         variant.outputs.all {
-            outputFileName = "${keystoreProperties['app_name']}${releaseTime()}.apk"
+            outputFileName = "${getAppName()}${releaseTime()}.apk"
         }
     }
     /**
@@ -44,6 +48,12 @@ android {
      */
     signingConfigs {
         release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+        }
+        debug {
             keyAlias keystoreProperties['keyAlias']
             keyPassword keystoreProperties['keyPassword']
             storeFile file(keystoreProperties['storeFile'])

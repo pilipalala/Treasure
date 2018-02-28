@@ -12,8 +12,9 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 
-import com.wyj.baseadapter.RecycleViewActivity;
+import com.wyj.baseadapter.RecyclerViewActivity;
 import com.wyj.treasure.R;
+import com.wyj.treasure.activity.ChangeLaucherActivity;
 import com.wyj.treasure.activity.DongTaiActivity;
 import com.wyj.treasure.activity.GridLayoutManagerActivity;
 import com.wyj.treasure.activity.MyWebViewActivity;
@@ -48,13 +49,13 @@ public class HomeFragment extends BaseFragment {
             "后台服务", "微信热修复", "过渡动画",
             "RecyclerView通过GridLayoutManager实现多样式布局",
             "向上拖动查看图文详情控件", "网页交互",
-    "万能adapter"};
+    "万能adapter","动态更换图片"};
     private Class<?>[] ACTIVITY = {
             DongTaiActivity.class, NetworkChangeActivity.class,
             ServiceActivity.class, TinkerActivity.class,
             TransitionsActivity.class, GridLayoutManagerActivity.class,
             PullUpToLoadMoreActivity.class, MyWebViewActivity.class,
-            RecycleViewActivity.class};
+            RecyclerViewActivity.class,ChangeLaucherActivity.class};
     private List<HomeItem> mDataList;
 
 

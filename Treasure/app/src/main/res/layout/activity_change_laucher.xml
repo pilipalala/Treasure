@@ -4,6 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainAliasActivity">
+    tools:context="com.wyj.treasure.activity.ChangeLaucherActivity">
+
+    <include
+        android:id="@+id/title"
+        layout="@layout/title" />
+
+    <Button
+        android:id="@+id/btn_change"
+        style="@style/default_button_style"
+        android:text="更换图标"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
 
 </android.support.constraint.ConstraintLayout>
