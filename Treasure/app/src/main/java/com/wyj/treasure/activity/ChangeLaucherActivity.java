@@ -1,16 +1,11 @@
 package com.wyj.treasure.activity;
 
-import android.app.ActivityManager;
 import android.content.ComponentName;
-import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
 import com.wyj.treasure.R;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,16 +42,16 @@ public class ChangeLaucherActivity extends BaseActivity {
         disableComponent(componentNameDefault);
         enableComponent(componentName);
         //Intent 重启 Launcher 应用
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.addCategory(Intent.CATEGORY_HOME);
-        intent.addCategory(Intent.CATEGORY_DEFAULT);
-        List<ResolveInfo> resolves = packageManager.queryIntentActivities(intent, 0);
-        for (ResolveInfo res : resolves) {
-            if (res.activityInfo != null) {
-                ActivityManager am = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
-                am.killBackgroundProcesses(res.activityInfo.packageName);
-            }
-        }
+//        Intent intent = new Intent(Intent.ACTION_MAIN);
+//        intent.addCategory(Intent.CATEGORY_HOME);
+//        intent.addCategory(Intent.CATEGORY_DEFAULT);
+//        List<ResolveInfo> resolves = packageManager.queryIntentActivities(intent, 0);
+//        for (ResolveInfo res : resolves) {
+//            if (res.activityInfo != null) {
+//                ActivityManager am = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+//                am.killBackgroundProcesses(res.activityInfo.packageName);
+//            }
+//        }
     }
     /**
      * 启动组件

@@ -7,6 +7,11 @@ import com.mob.MobSDK;
 import com.tencent.tinker.loader.app.ApplicationLike;
 import com.tinkerpatch.sdk.TinkerPatch;
 import com.tinkerpatch.sdk.loader.TinkerPatchApplicationLike;
+import com.wyj.treasure.utils.LogUtil;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 
 /**
  * Created by wangyujie
@@ -19,6 +24,13 @@ public class MyApplication extends Application {
     private static Context context;
     private ApplicationLike tinkerApplicationLike;
 
+    /**
+     * 获取全局的 Context
+     */
+    public static Context getContext() {
+        return context;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -27,7 +39,12 @@ public class MyApplication extends Application {
         initCrash();
 //        initError();
         MobSDK.init(context, "1a29c1dc37d04", "12f463dd9226ddfa631d9199cd230b15");
+        String processName = getProcessName();
+        if (getPackageName().equals(processName)) {
+            LogUtil.d("AndroidApplication onCreate=" + processName);
+        }
 
+        LogUtil.d("MyApplication---onCreate");
 
 
     }
@@ -61,13 +78,6 @@ public class MyApplication extends Application {
     }
 
     /**
-     * 获取全局的 Context
-     */
-    public static Context getContext() {
-        return context;
-    }
-
-    /**
      * 拦截app闪退
      */
     private void initError() {
@@ -83,5 +93,18 @@ public class MyApplication extends Application {
 ////                .errorActivity(YourCustomErrorActivity.class) //default: null (default error activity)
 ////                .eventListener(new YourCustomEventListener()) //default: null
 //                .apply();
+    }
+
+    public String getProcessName() {
+        try {
+            File file = new File("/proc/" + android.os.Process.myPid() + "/" + "cmdline");
+            BufferedReader mBufferedReader = new BufferedReader(new FileReader(file));
+            String processName = mBufferedReader.readLine().trim();
+            mBufferedReader.close();
+            return processName;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

@@ -1,14 +1,10 @@
 package com.wyj.treasure.activity;
 
-import android.content.ComponentName;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
-import android.view.View;
 
 import com.wyj.treasure.R;
 import com.wyj.treasure.fragment.BaseFragment;
@@ -30,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
     private HomeFragment homeFragment;
     private DashboardFragment dashboardFragment;
     private NotificationsFragment notificationsFragment;
-
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = item -> {
         switch (item.getItemId()) {
@@ -102,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
         initData();
 
     }
-
     private void initData() {
         initragment();
         check(0);
@@ -120,11 +114,5 @@ public class MainActivity extends AppCompatActivity {
         mBaseFragment.add(homeFragment);
         mBaseFragment.add(dashboardFragment);
         mBaseFragment.add(notificationsFragment);
-    }
-
-    public void other() {
-        View layoutView = View.inflate(this, R.layout.activity_main, null);
-        layoutView = LayoutInflater.from(this).inflate(R.layout.activity_main, null);
-        layoutView = LayoutInflater.from(this).inflate(R.layout.activity_main, null, false);
     }
 }
