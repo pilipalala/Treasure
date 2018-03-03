@@ -19,6 +19,7 @@ import com.wyj.process.ProcessActivity;
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.ChangeLaucherActivity;
 import com.wyj.treasure.activity.DongTaiActivity;
+import com.wyj.treasure.activity.ExternalStorageActivity;
 import com.wyj.treasure.activity.GridLayoutManagerActivity;
 import com.wyj.treasure.activity.MyWebViewActivity;
 import com.wyj.treasure.activity.NetworkChangeActivity;
@@ -55,14 +56,14 @@ public class HomeFragment extends BaseFragment {
             "RecyclerView通过GridLayoutManager实现多样式布局",
             "向上拖动查看图文详情控件", "网页交互",
             "万能adapter", "动态更换图片",
-            "多进程通信"};
+            "多进程通信", "Android存储路径"};
     private Class<?>[] ACTIVITY = {
             DongTaiActivity.class, NetworkChangeActivity.class,
             ServiceActivity.class, TinkerActivity.class,
             TransitionsActivity.class, GridLayoutManagerActivity.class,
             PullUpToLoadMoreActivity.class, MyWebViewActivity.class,
             RecyclerViewActivity.class, ChangeLaucherActivity.class,
-            ProcessActivity.class};
+            ProcessActivity.class, ExternalStorageActivity.class};
     private List<HomeItem> mDataList;
 
 

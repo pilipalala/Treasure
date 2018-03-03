@@ -79,7 +79,6 @@
     <style name="dialog_from_bottom_anim">
         <item name="android:windowEnterAnimation">@anim/anim_dialog_bottom_in</item>
         <item name="android:windowExitAnimation">@anim/anim_dialog_bottom_out</item>
-
     </style>
     <style name="dialog_scal_anim">
         <item name="android:windowEnterAnimation">@anim/anim_dialog_scale</item>

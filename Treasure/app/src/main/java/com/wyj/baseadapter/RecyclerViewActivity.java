@@ -46,7 +46,7 @@ public class RecyclerViewActivity extends BaseActivity {
         adapter.setOnItemLongClick(new ItemLongClickListener() {
             @Override
             public void onItemLongClick(int position) {
-                ToastUtil.show(data.get(position)+"Long");
+                ToastUtil.show(data.get(position) + "Long");
             }
         });
     }

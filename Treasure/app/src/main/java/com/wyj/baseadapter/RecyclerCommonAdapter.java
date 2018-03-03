@@ -26,7 +26,7 @@ public abstract class RecyclerCommonAdapter<T> extends RecyclerView.Adapter<View
     private ItemClickListener listener;
     private ItemLongClickListener longListener;
 
-    public RecyclerCommonAdapter(Context context,List<T> mData, int mLayoutId) {
+    public RecyclerCommonAdapter(Context context, List<T> mData, int mLayoutId) {
         this.mContext = context;
         this.mLayoutId = mLayoutId;
         this.mData = mData;
@@ -41,7 +41,7 @@ public abstract class RecyclerCommonAdapter<T> extends RecyclerView.Adapter<View
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        convert(holder,mData.get(position),position);
+        convert(holder, mData.get(position), position);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,19 +63,21 @@ public abstract class RecyclerCommonAdapter<T> extends RecyclerView.Adapter<View
         });
 
     }
+
     public void setOnItemClick(ItemClickListener listener) {
         this.listener = listener;
-    }public void setOnItemLongClick(ItemLongClickListener longListener) {
+    }
+
+    public void setOnItemLongClick(ItemLongClickListener longListener) {
         this.longListener = longListener;
     }
 
     /**
      * @param holder
-     * @param data 当前条目
+     * @param data     当前条目
      * @param position 当前位置
      */
-    public abstract void convert(ViewHolder holder, T data, int position) ;
-
+    public abstract void convert(ViewHolder holder, T data, int position);
 
 
     @Override
