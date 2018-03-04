@@ -43,7 +43,7 @@ public class RecyclerViewItemTouchActivity extends BaseActivity implements Start
         adapter = new RecycleViewHandleAdapter(getData(), this);
         recyclerView.setAdapter(adapter);
 
-
+        /*条目触摸帮助类*/
         ItemTouchHelper.Callback callback = new ItemTouchHelperCallback(adapter);
         itemTouchHelper = new ItemTouchHelper(callback);
         itemTouchHelper.attachToRecyclerView(recyclerView);
@@ -51,6 +51,7 @@ public class RecyclerViewItemTouchActivity extends BaseActivity implements Start
     }
 
     private List<ViewHandleMode> getData() {
+
         List<ViewHandleMode> lsit = new ArrayList<>();
         lsit.add(new ViewHandleMode("零", "17:20", "暂无消息", R.mipmap.avatar3));
         lsit.add(new ViewHandleMode("壹", "17:20", "暂无消息", R.mipmap.avatar1));
@@ -74,6 +75,7 @@ public class RecyclerViewItemTouchActivity extends BaseActivity implements Start
 
     @Override
     public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
+//        点击就能拖拽
         itemTouchHelper.startDrag(viewHolder);
     }
 

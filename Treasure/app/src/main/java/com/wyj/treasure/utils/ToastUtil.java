@@ -28,7 +28,12 @@ public class ToastUtil {
     }
 
     public static Toast show(int text) {
-        String string = MyApplication.getContext().getResources().getString(text);
+        String string = null;
+        try {
+            string = MyApplication.getContext().getResources().getString(text);
+        } catch (Exception e) {
+
+        }
         if (TextUtils.isEmpty(string)) {
             return show(String.valueOf(Double.valueOf(text)));
         } else {

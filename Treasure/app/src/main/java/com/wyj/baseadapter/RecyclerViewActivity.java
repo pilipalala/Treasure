@@ -1,8 +1,10 @@
 package com.wyj.baseadapter;
 
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.TextView;
 
 import com.wyj.treasure.R;
@@ -14,6 +16,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class RecyclerViewActivity extends BaseActivity {
 
@@ -23,7 +26,10 @@ public class RecyclerViewActivity extends BaseActivity {
     Toolbar toolbar;
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
+    @BindView(R.id.tv_right_title)
+    TextView tvRightTitle;
     private List<String> data;
+    private RecyclerView.ItemDecoration decoration;
 
     @Override
     protected void initView() {
@@ -33,9 +39,13 @@ public class RecyclerViewActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        tvRightTitle.setVisibility(View.VISIBLE);
+        tvRightTitle.setText("切换");
         getData();
         CategoryListAdapter adapter = new CategoryListAdapter(this, data, R.layout.adapter_layout);
         recyclerView.setAdapter(adapter);
+        decoration = new DividerListViewItemDecoration(this, LinearLayoutManager.VERTICAL);
+        recyclerView.addItemDecoration(decoration);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         adapter.setOnItemClick(new ItemClickListener() {
             @Override
@@ -55,6 +65,26 @@ public class RecyclerViewActivity extends BaseActivity {
         data = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
             data.add("" + i);
+        }
+    }
+
+
+    boolean isChange = false;
+
+    @OnClick(R.id.tv_right_title)
+    public void onViewClicked() {
+        recyclerView.removeItemDecoration(decoration);
+        if (isChange) {
+            isChange = false;
+            recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+            decoration = new DividerListViewItemDecoration(this, LinearLayoutManager.VERTICAL);
+            recyclerView.addItemDecoration(decoration);
+
+        } else {
+            isChange = true;
+            decoration = new DividerGridViewItemDecoration(this);
+            recyclerView.setLayoutManager(new GridLayoutManager(this, 4));
+            recyclerView.addItemDecoration(decoration);
         }
     }
 }

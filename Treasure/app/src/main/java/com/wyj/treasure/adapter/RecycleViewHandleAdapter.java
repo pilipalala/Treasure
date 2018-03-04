@@ -43,7 +43,7 @@ public class RecycleViewHandleAdapter extends RecyclerView.Adapter<RecycleViewHa
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.ivLogo.setImageResource(list.get(position).getLogo());
+//        holder.ivLogo.setImageResource(list.get(position).getLogo());
         holder.tvName.setText(list.get(position).getName());
         holder.tvLastMsg.setText(list.get(position).getLastMsg());
         holder.tvTime.setText(list.get(position).getTime());
@@ -68,12 +68,13 @@ public class RecycleViewHandleAdapter extends RecyclerView.Adapter<RecycleViewHa
         Collections.swap(list, fromPosition, toPosition);
         //2、刷新adapter
         notifyItemMoved(fromPosition, toPosition);
-        return false;
+        return true;
     }
 
     @Override
     public void onItemSwiped(int position) {
         list.remove(position);
+        notifyDataSetChanged();
         notifyItemRemoved(position);
     }
 
