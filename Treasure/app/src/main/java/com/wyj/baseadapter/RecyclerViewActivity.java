@@ -44,8 +44,10 @@ public class RecyclerViewActivity extends BaseActivity {
         getData();
         CategoryListAdapter adapter = new CategoryListAdapter(this, data, R.layout.adapter_layout);
         recyclerView.setAdapter(adapter);
-        decoration = new DividerListViewItemDecoration(this, LinearLayoutManager.VERTICAL);
+//        decoration = new DividerListViewItemDecoration(this, LinearLayoutManager.VERTICAL);
+        decoration = new TimelineItemDecoration(this);
         recyclerView.addItemDecoration(decoration);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         adapter.setOnItemClick(new ItemClickListener() {
             @Override

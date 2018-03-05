@@ -19,14 +19,14 @@ import android.view.View;
 public class DividerListViewItemDecoration extends RecyclerView.ItemDecoration {
 
 
-    private int mOritation = LinearLayoutManager.VERTICAL;
-    private Drawable mDivider;
     int[] attrs = new int[]{
             android.R.attr.listDivider
     };
+    private int mOritation = LinearLayoutManager.VERTICAL;
+    private Drawable mDivider;
 
 
-    public DividerListViewItemDecoration(Context context , int oritation) {
+    public DividerListViewItemDecoration(Context context, int oritation) {
         TypedArray array = context.obtainStyledAttributes(attrs);
         mDivider = array.getDrawable(0);
         setOritation(oritation);
@@ -40,7 +40,7 @@ public class DividerListViewItemDecoration extends RecyclerView.ItemDecoration {
     }
 
     @Override
-    public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
+    public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
         if (mOritation == LinearLayoutManager.VERTICAL) {
             drawVertical(c, parent);
         } else {
@@ -98,9 +98,6 @@ public class DividerListViewItemDecoration extends RecyclerView.ItemDecoration {
         }
 
 
-
-
-
     }
 
     @Override
@@ -112,5 +109,13 @@ public class DividerListViewItemDecoration extends RecyclerView.ItemDecoration {
         } else {
             outRect.set(0, 0, mDivider.getIntrinsicWidth(), 0);
         }
+
+
+        /*---------------------另一种方法---------------------------*/
+//        super.getItemOffsets(outRect, view, parent, state);
+//        //如果不是第一个，则设置top的值。
+//        if (parent.getChildAdapterPosition(view) != 0) {
+//
+//        }
     }
 }

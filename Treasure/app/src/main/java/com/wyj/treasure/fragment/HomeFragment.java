@@ -52,8 +52,8 @@ public class HomeFragment extends BaseFragment {
 
     private String[] TITLE = {
             "动态添加布局", "广播接收器",
-            "后台服务", "微信热修复", "过渡动画",
-            "RecyclerView通过GridLayoutManager实现多样式布局",
+            "后台服务", "微信热修复",
+            "过渡动画",  "RecyclerView通过GridLayoutManager实现多样式布局",
             "向上拖动查看图文详情控件", "网页交互",
             "万能adapter", "动态更换图片",
             "多进程通信", "Android存储路径"};
