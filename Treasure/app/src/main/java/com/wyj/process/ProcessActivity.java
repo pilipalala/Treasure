@@ -12,6 +12,7 @@ import android.os.Messenger;
 import android.os.RemoteException;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.widget.Button;
 
 import com.wyj.treasure.IMyAidlInterface;
@@ -45,6 +46,11 @@ public class ProcessActivity extends AppCompatActivity {
 //        initIBinder();
         initMessenger();
 
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        return super.dispatchTouchEvent(ev);
 
     }
 

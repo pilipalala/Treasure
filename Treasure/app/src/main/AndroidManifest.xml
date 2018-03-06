@@ -203,7 +203,8 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".activity.ExternalStorageActivity"></activity>
+        <activity android:name=".activity.ExternalStorageActivity" />
+        <activity android:name="com.wyj.touch.TouchDemoActivity"></activity>
     </application>
 
 </manifest>
