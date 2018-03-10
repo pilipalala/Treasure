@@ -7,8 +7,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.wyj.treasure.mvp.bean.User;
-import com.wyj.treasure.mvp.biz.IUserLoginView;
-import com.wyj.treasure.mvp.biz.UserLoginPresenter;
+import com.wyj.treasure.mvp.view.IUserLoginView;
+import com.wyj.treasure.mvp.presenter.UserLoginPresenter;
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.BaseActivity;
 import com.wyj.treasure.utils.ToastUtil;
@@ -77,7 +77,8 @@ public class UserLoginActivity extends BaseActivity implements IUserLoginView {
 
     @Override
     public void toMainActivity(User user) {
-        ToastUtil.show("login success , to MainActivity");
+        ToastUtil.show("login success , " +
+                user.getUsername()+"to MainActivity");
         startActivity(new Intent(this, GirlListActivity.class));
     }
 

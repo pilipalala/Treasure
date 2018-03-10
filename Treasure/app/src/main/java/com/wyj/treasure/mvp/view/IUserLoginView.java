@@ -1,4 +1,4 @@
-package com.wyj.treasure.mvp.biz;
+package com.wyj.treasure.mvp.view;
 
 import com.wyj.treasure.mvp.bean.User;
 

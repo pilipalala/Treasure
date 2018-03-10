@@ -79,7 +79,7 @@ public class RecyclerViewActivity extends BaseActivity {
         if (isChange) {
             isChange = false;
             recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-            decoration = new DividerListViewItemDecoration(this, LinearLayoutManager.VERTICAL);
+            decoration = new DividerListViewItemDecoration(this, LinearLayoutManager.VERTICAL,R.color.grey);
             recyclerView.addItemDecoration(decoration);
 
         } else {

@@ -1,8 +1,11 @@
-package com.wyj.treasure.mvp.biz;
+package com.wyj.treasure.mvp.presenter;
 
 import android.os.Handler;
 
 import com.wyj.treasure.mvp.bean.User;
+import com.wyj.treasure.mvp.model.IUserBiz;
+import com.wyj.treasure.mvp.model.UserBizImp;
+import com.wyj.treasure.mvp.view.IUserLoginView;
 
 /**
  * Created by wangyujie
@@ -17,12 +20,12 @@ public class UserLoginPresenter {
 
     public UserLoginPresenter(IUserLoginView userLoginView) {
         this.userLoginView = userLoginView;
-        this.userBiz = new UserBiz();
+        this.userBiz = new UserBizImp();
     }
 
     public void login() {
         userLoginView.showLoading();
-        userBiz.login(userLoginView.getUserName(), userLoginView.getPassword(), new OnLoginListener() {
+        userBiz.login(userLoginView.getUserName(), userLoginView.getPassword(), new IUserBiz.OnLoginListener() {
             @Override
             public void loginSuccess(final User user) {
                 //需要在UI线程执行

@@ -8,15 +8,13 @@ import java.util.List;
 
 /**
  * Created by wangyujie
- * on 2017/10/17.17:14
+ * on 2017/10/17.16:09
  * TODO
  */
 
-public class GirlModeImpV2 implements IGirlModel{
-
+public class GirlModeImp implements IGirlModel {
     @Override
     public void loadGirl(GirlOnLoadListener loadListener) {
-
         List<Girl> data = new ArrayList<>();
         data.add(new Girl("1颗星", "", R.mipmap.avatar1));
         data.add(new Girl("3颗星", "", R.mipmap.avatar2));
@@ -26,6 +24,5 @@ public class GirlModeImpV2 implements IGirlModel{
         data.add(new Girl("5颗星", "", R.mipmap.taeyeon_three));
         /*回调监听*/
         loadListener.onComplete(data);
-
     }
 }

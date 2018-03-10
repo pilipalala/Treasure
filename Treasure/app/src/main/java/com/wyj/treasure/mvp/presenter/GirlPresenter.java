@@ -1,7 +1,7 @@
 package com.wyj.treasure.mvp.presenter;
 
 import com.wyj.treasure.mvp.bean.Girl;
-import com.wyj.treasure.mvp.model.GirlModeImpV2;
+import com.wyj.treasure.mvp.model.GirlModeImp;
 import com.wyj.treasure.mvp.model.IGirlModel;
 import com.wyj.treasure.mvp.view.IGirlView;
 
@@ -9,18 +9,28 @@ import java.util.List;
 
 /**
  * Created by wangyujie
- * on 2017/10/17.17:13
+ * on 2017/10/17.16:17
  * TODO
  */
 
-public class GirlPresenterV2 extends BasePresenter<IGirlView> {
-
-
+public class GirlPresenter {
+    /*view interface*/
     IGirlView mGirlView;
-    IGirlModel mGirlModel = new GirlModeImpV2();
-    public GirlPresenterV2(IGirlView mGirlView) {
+    /*model interface*/
+    IGirlModel mGirlModel = new GirlModeImp();
+
+    /**
+     * 通过构造方法实例化mGirlView
+     *
+     * @param mGirlView
+     */
+    public GirlPresenter(IGirlView mGirlView) {
         this.mGirlView = mGirlView;
     }
+
+    /**
+     * bind view and model
+     */
     public void fetch() {
         /*显示进度条*/
         mGirlView.showLoading();
@@ -37,5 +47,6 @@ public class GirlPresenterV2 extends BasePresenter<IGirlView> {
 
 
     }
+
 
 }

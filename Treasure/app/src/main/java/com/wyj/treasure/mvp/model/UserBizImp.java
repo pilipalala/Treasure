@@ -1,4 +1,4 @@
-package com.wyj.treasure.mvp.biz;
+package com.wyj.treasure.mvp.model;
 
 import com.wyj.treasure.mvp.bean.User;
 
@@ -8,7 +8,7 @@ import com.wyj.treasure.mvp.bean.User;
  * TODO
  */
 
-public class UserBiz implements IUserBiz {
+public class UserBizImp implements IUserBiz {
     @Override
     public void login(String userName, String password, OnLoginListener onLoginListener) {
         new Thread(){

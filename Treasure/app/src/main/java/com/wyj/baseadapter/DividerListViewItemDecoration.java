@@ -3,6 +3,7 @@ package com.wyj.baseadapter;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,6 +20,7 @@ import android.view.View;
 public class DividerListViewItemDecoration extends RecyclerView.ItemDecoration {
 
 
+    private final Paint mPaint;
     int[] attrs = new int[]{
             android.R.attr.listDivider
     };
@@ -26,9 +28,11 @@ public class DividerListViewItemDecoration extends RecyclerView.ItemDecoration {
     private Drawable mDivider;
 
 
-    public DividerListViewItemDecoration(Context context, int oritation) {
+    public DividerListViewItemDecoration(Context context, int oritation, int color) {
         TypedArray array = context.obtainStyledAttributes(attrs);
         mDivider = array.getDrawable(0);
+        mPaint = new Paint();
+        mPaint.setColor(color);
         setOritation(oritation);
     }
 
@@ -109,13 +113,5 @@ public class DividerListViewItemDecoration extends RecyclerView.ItemDecoration {
         } else {
             outRect.set(0, 0, mDivider.getIntrinsicWidth(), 0);
         }
-
-
-        /*---------------------另一种方法---------------------------*/
-//        super.getItemOffsets(outRect, view, parent, state);
-//        //如果不是第一个，则设置top的值。
-//        if (parent.getChildAdapterPosition(view) != 0) {
-//
-//        }
     }
 }

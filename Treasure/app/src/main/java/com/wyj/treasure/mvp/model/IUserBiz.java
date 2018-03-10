@@ -1,4 +1,6 @@
-package com.wyj.treasure.mvp.biz;
+package com.wyj.treasure.mvp.model;
+
+import com.wyj.treasure.mvp.bean.User;
 
 /**
  * Created by wangyujie
@@ -8,4 +10,8 @@ package com.wyj.treasure.mvp.biz;
 
 public interface IUserBiz {
     public void login(String userName, String password, OnLoginListener onLoginListener);
+    public interface OnLoginListener {
+        void loginSuccess(User user);
+        void loginFailed();
+    }
 }

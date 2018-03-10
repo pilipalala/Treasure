@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.wyj.treasure.mvp.adapter.GirlAdapter;
 import com.wyj.treasure.mvp.bean.Girl;
-import com.wyj.treasure.mvp.presenter.GirlPresenterV1;
+import com.wyj.treasure.mvp.presenter.GirlPresenter;
 import com.wyj.treasure.mvp.view.IGirlView;
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.BaseActivity;
@@ -39,7 +39,7 @@ public class GirlListActivity extends BaseActivity implements IGirlView {
         tvTitle.setText("MVP_DEMO");
         toolbar.setNavigationOnClickListener(v -> finish());
         /*中间者 让他触发加载数据*/
-        new GirlPresenterV1(this).fetch();
+        new GirlPresenter(this).fetch();
     }
 
     @Override
