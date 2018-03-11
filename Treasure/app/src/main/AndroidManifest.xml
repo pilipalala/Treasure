@@ -204,7 +204,9 @@
             android:exported="true" />
 
         <activity android:name=".activity.ExternalStorageActivity" />
-        <activity android:name="com.wyj.touch.TouchDemoActivity"></activity>
+        <activity android:name="com.wyj.touch.TouchDemoActivity" />
+        <activity android:name="com.wyj.welcome.WelcomeActivity" />
+        <activity android:name="com.wyj.retrofit.RetroFitActivity"></activity>
     </application>
 
 </manifest>

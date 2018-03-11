@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.wyj.treasure.mvp.presenter.BasePresenter;
+import com.wyj.treasure.mvp.presenter.GetPhoneInfoPresenter;
 
 /**
  * Created by wangyujie
@@ -12,32 +12,44 @@ import com.wyj.treasure.mvp.presenter.BasePresenter;
  * TODO
  */
 
-public abstract class MVPBaseActivity<V, T extends BasePresenter<V>> extends AppCompatActivity {
+public abstract class MVPBaseActivity extends AppCompatActivity implements GetPhoneInfoContract.view {
 
-    protected T mPresenter;
+    private GetPhoneInfoContract.Presenter mPresenter;
+
+    @Override
+    public void setTime(String time) {
+
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        /*创建Presenter*/
-        mPresenter = createPresenter();
-        /*内存泄漏*/
-        /*关联view*/
-        mPresenter.attachView((V)this);
-
+        new GetPhoneInfoPresenter(this);
 
     }
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        mPresenter.start();
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();
         /*解除关联*/
-        mPresenter.detachView();
     }
 
-    /**
-     * @return
-     */
-    protected abstract T createPresenter();
+    @Override
+    public void setPresenter(GetPhoneInfoContract.Presenter presenter) {
+        mPresenter = presenter;
+    }
 }

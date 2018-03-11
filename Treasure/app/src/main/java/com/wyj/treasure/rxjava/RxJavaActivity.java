@@ -46,10 +46,10 @@ public class RxJavaActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-//        initRxJava();
-//        RxJavaForThread();
-//        RxJava();
-//        RxJavaForMap();
+        initRxJava();
+        RxJavaForThread();
+        RxJava();
+        RxJavaForMap();
         RxJavaForZip();
     }
 
