@@ -79,7 +79,7 @@ public class UserLoginActivity extends BaseActivity implements IUserLoginView {
     public void toMainActivity(User user) {
         ToastUtil.show("login success , " +
                 user.getUsername()+"to MainActivity");
-        startActivity(new Intent(this, GirlListActivity.class));
+        startActivity(new Intent(this, MVPActivity.class));
     }
 
     @Override

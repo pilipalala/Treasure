@@ -1,5 +1,8 @@
 package com.wyj.treasure.mvp.presenter;
 
+import com.wyj.treasure.mvp.model.IMode;
+import com.wyj.treasure.mvp.view.IView;
+
 import java.lang.ref.WeakReference;
 
 /**
@@ -8,15 +11,22 @@ import java.lang.ref.WeakReference;
  * TODO
  */
 
-public class BasePresenter<T> {
-    protected WeakReference<T> mViewRef;
-    public void attachView(T view) {
-        mViewRef = new WeakReference<T>(view);
+public abstract class BasePresenter<M extends IMode, V extends IView> implements IPresenter {
+    protected WeakReference mViewRef;
+    protected V iVIew;
+    protected M iMode;
+
+
+    @Override
+    public void attachView(IView view) {
+        mViewRef = new WeakReference(view);
     }
 
     /**
      * 解除管理
      */
+
+    @Override
     public void detachView() {
         if (mViewRef != null) {
             mViewRef.clear();
@@ -24,7 +34,16 @@ public class BasePresenter<T> {
         }
     }
 
-    protected T getView() {
-        return mViewRef.get();
+    @Override
+    public V getIView() {
+        return (V) mViewRef.get();
     }
+
+    @Override
+    public M getiModel() {
+        return loadMode();
+
+    }
+
+    public abstract M loadMode();
 }
