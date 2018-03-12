@@ -205,7 +205,9 @@
 
         <activity android:name=".activity.ExternalStorageActivity" />
         <activity android:name="com.wyj.touch.TouchDemoActivity" />
-        <activity android:name=".mvp.MVPActivity"></activity>
+        <activity android:name=".mvp.MVPActivity"/>
+        <activity android:name="com.wyj.welcome.WelcomeActivity" />
+        <activity android:name="com.wyj.retrofit.RetroFitActivity"></activity>
     </application>
 
 </manifest>

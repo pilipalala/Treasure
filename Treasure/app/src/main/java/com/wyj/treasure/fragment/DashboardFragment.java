@@ -20,6 +20,7 @@ import com.wyj.treasure.popup.PopupWindowActivity;
 import com.wyj.treasure.rxjava.RxJavaActivity;
 import com.wyj.treasure.viewcustom.bannerviewpager.BannerViewPagerActivity;
 import com.wyj.treasure.viewcustom.colortracktextview.ColorTrackActivity;
+import com.wyj.welcome.WelcomeActivity;
 
 public class DashboardFragment extends BaseCardViewFragment {
 
@@ -43,6 +44,7 @@ public class DashboardFragment extends BaseCardViewFragment {
         mData.add(new ItemInfo("NavigationBar", NavigationBarActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("LinearlayoutActivity", MyLinearlayoutActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("PopupWindow", PopupWindowActivity.class, R.mipmap.ic_launcher));
+        mData.add(new ItemInfo("平行空间效果", WelcomeActivity.class, R.mipmap.ic_launcher));
         notifyDataChanged();
     }
 }
