@@ -12,56 +12,56 @@ import android.view.ViewGroup;
 import com.wyj.treasure.R;
 
 public class WelcompagerTransformer implements PageTransformer, OnPageChangeListener {
-	private static final float ROT_MOD = -15f;
-	private int pageIndex;
-	private boolean pageChanged = true;
+    private static final float ROT_MOD = -15f;
+    private int pageIndex;
+    private boolean pageChanged = true;
 
-	/**
-	 * ´Ë·½·¨ÊÇ»¬¶¯µÄÊ±ºòÃ¿Ò»¸öÒ³ÃæView¶¼»áµ÷ÓÃ¸Ã·½·¨
-	 * view:µ±Ç°µÄÒ³Ãæ
-	 * position:µ±Ç°»¬¶¯µÄÎ»ÖÃ
-	 * ÊÓ²îĞ§¹û£ºÔÚViewÕı³£»¬¶¯µÄÇé¿öÏÂ£¬¸øµ±Ç°View»òÕßµ±Ç°viewÀïÃæµÄÃ¿Ò»¸ö×ÓviewÀ´Ò»¸ö¼ÓËÙ¶È
-	 * ¶øÇÒÃ¿Ò»¸ö¼ÓËÙ¶È´óĞ¡²»Ò»Ñù¡£
-	 * 
-	 */
-	@Override
-	public void transformPage(View view, float position) {
-		ViewGroup v = (ViewGroup) view.findViewById(R.id.rl);
-		final MyScrollView mscv = (MyScrollView) v.findViewById(R.id.mscv);
-		View bg1 = v.findViewById(R.id.imageView0);
-		View bg2 = v.findViewById(R.id.imageView0_2);
-		View bg_container = v.findViewById(R.id.bg_container);
-		
-		int bg1_green = view.getContext().getResources().getColor(R.color.bg1_green);
-		int bg2_blue = view.getContext().getResources().getColor(R.color.bg2_blue);
+    /**
+     * æ­¤æ–¹æ³•æ˜¯æ»‘åŠ¨çš„æ—¶å€™æ¯ä¸€ä¸ªé¡µé¢Viewéƒ½ä¼šè°ƒç”¨è¯¥æ–¹æ³•
+     * view:å½“å‰çš„é¡µé¢
+     * position:å½“å‰æ»‘åŠ¨çš„ä½ç½®
+     * è§†å·®æ•ˆæœï¼šåœ¨Viewæ­£å¸¸æ»‘åŠ¨çš„æƒ…å†µä¸‹ï¼Œç»™å½“å‰Viewæˆ–è€…å½“å‰viewé‡Œé¢çš„æ¯ä¸€ä¸ªå­viewæ¥ä¸€ä¸ªåŠ é€Ÿåº¦
+     * è€Œä¸”æ¯ä¸€ä¸ªåŠ é€Ÿåº¦å¤§å°ä¸ä¸€æ ·ã€‚
+     */
+    @Override
+    public void transformPage(View view, float position) {
+        ViewGroup v = (ViewGroup) view.findViewById(R.id.rl);
+        final MyScrollView mscv = (MyScrollView) v.findViewById(R.id.mscv);
+        View bg1 = v.findViewById(R.id.imageView0);
+        View bg2 = v.findViewById(R.id.imageView0_2);
+        View bg_container = v.findViewById(R.id.bg_container);
+
+        int bg1_green = view.getContext().getResources().getColor(R.color.bg1_green);
+        int bg2_blue = view.getContext().getResources().getColor(R.color.bg2_blue);
 //			int bg3_green = view.getContext().getResources().getColor(R.color.bg3_green);
-		
-		Integer tag = (Integer) view.getTag();
-		View parent = (View) view.getParent();
+
+        Integer tag = (Integer) view.getTag();
+        View parent = (View) view.getParent();
 //		if(parent instanceof ViewPager){
 //			System.out.println("yes~~~~~~~~~~~tag:"+tag+", position:"+position);
 //		}
-		//ÑÕÉ«¹ÀÖµÆ÷
-		ArgbEvaluator evaluator = new ArgbEvaluator();
-		int color = bg1_green;
-		if(tag.intValue()==pageIndex){
-			switch (pageIndex) {
-			case 0:
-				color = (int) evaluator.evaluate(Math.abs(position), bg1_green, bg2_blue);
-				break;
-			case 1:
-				color = (int) evaluator.evaluate(Math.abs(position), bg2_blue, bg1_green);
-				break;
-			case 2:
-				color = (int) evaluator.evaluate(Math.abs(position), bg1_green, bg2_blue);
-				break;
-			default:
-				break;
-			}
-			//ÉèÖÃÕû¸öviewpagerµÄ±³¾°ÑÕÉ«
-			parent.setBackgroundColor(color);
-			
-			 //¶¯»­ ±äÉ«    
+
+        //é¢œè‰²ä¼°å€¼å™¨
+        ArgbEvaluator evaluator = new ArgbEvaluator();
+        int color = bg1_green;
+        if (tag.intValue() == pageIndex) {
+            switch (pageIndex) {
+                case 0:
+                    color = (int) evaluator.evaluate(Math.abs(position), bg1_green, bg2_blue);
+                    break;
+                case 1:
+                    color = (int) evaluator.evaluate(Math.abs(position), bg2_blue, bg1_green);
+                    break;
+                case 2:
+                    color = (int) evaluator.evaluate(Math.abs(position), bg1_green, bg2_blue);
+                    break;
+                default:
+                    break;
+            }
+            //è®¾ç½®æ•´ä¸ªviewpagerçš„èƒŒæ™¯é¢œè‰²
+            parent.setBackgroundColor(color);
+
+            //åŠ¨ç”» å˜è‰²
 //		    ObjectAnimator colorAnim = ObjectAnimator.ofInt(this, "backgroundColor", bg1_green, bg2_blue);  
 ////		    ObjectAnimator colorAnim = ObjectAnimator.ofInt(this, "backgroundColor", CYAN, BLUE, RED);  
 //		    colorAnim.setTarget(parent);  
@@ -70,42 +70,40 @@ public class WelcompagerTransformer implements PageTransformer, OnPageChangeList
 //		    colorAnim.setRepeatMode(ValueAnimator.REVERSE);  
 //		    colorAnim.setDuration(3000);  
 //		    colorAnim.start();  
-		}
-		
-		if(position==0){
-			System.out.println("position==0");
-			//pageChanged×÷ÓÃ--½â¾öÎÊÌâ£ºÖ»ÓĞÔÚÇĞ»»Ò³ÃæµÄÊ±ºò²ÅÕ¹Ê¾Æ½ÒÆ¶¯»­£¬Èç¹û²»ÅĞ¶ÏÔò»áÖ»ÊÇÒÆ¶¯Ò»µãµãµ±Ç°Ò³ÃæËÉ¿ªÒ²»áÖ´ĞĞÒ»´ÎÆ½ÒÆ¶¯»­
-			if(pageChanged){
-				bg1.setVisibility(View.VISIBLE);
-				bg2.setVisibility(View.VISIBLE);
-				
-				ObjectAnimator animator_bg1 = ObjectAnimator.ofFloat(bg1, "translationX", 0,-bg1.getWidth());
-				animator_bg1.setDuration(400);
-				animator_bg1.addUpdateListener(new AnimatorUpdateListener() {
-					
-					@Override
-					public void onAnimationUpdate(ValueAnimator animation) {
-						mscv.smoothScrollTo((int) (mscv.getWidth()*animation.getAnimatedFraction()), 0);
-					}
-				});
-				animator_bg1.start();
-				
-				ObjectAnimator animator_bg2 = ObjectAnimator.ofFloat(bg2, "translationX", bg2.getWidth(),0);
-				animator_bg2.setDuration(400);
-				animator_bg2.start();
-				pageChanged= false;
-			}
-		}else 
-		if(position==-1||position==1){//ËùÓĞĞ§¹û¸´Ô­
-			bg2.setTranslationX(0);
-			bg1.setTranslationX(0);
-			mscv.smoothScrollTo(0, 0);
-		}else 
-			if(position<1&&position>-1){
-				
-			final float width = bg1.getWidth();
-			final float height = bg1.getHeight();
-			final float rotation = ROT_MOD * position * -1.25f;
+        }
+
+        if (position == 0) {
+            System.out.println("position==0");
+            //pageChangedä½œç”¨--è§£å†³é—®é¢˜ï¼šåªæœ‰åœ¨åˆ‡æ¢é¡µé¢çš„æ—¶å€™æ‰å±•ç¤ºå¹³ç§»åŠ¨ç”»ï¼Œå¦‚æœä¸åˆ¤æ–­åˆ™ä¼šåªæ˜¯ç§»åŠ¨ä¸€ç‚¹ç‚¹å½“å‰é¡µé¢æ¾å¼€ä¹Ÿä¼šæ‰§è¡Œä¸€æ¬¡å¹³ç§»åŠ¨ç”»
+            if (pageChanged) {
+                bg1.setVisibility(View.VISIBLE);
+                bg2.setVisibility(View.VISIBLE);
+
+                ObjectAnimator animator_bg1 = ObjectAnimator.ofFloat(bg1, "translationX", 0, -bg1.getWidth());
+                animator_bg1.setDuration(400);
+                animator_bg1.addUpdateListener(new AnimatorUpdateListener() {
+
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator animation) {
+                        mscv.smoothScrollTo((int) (mscv.getWidth() * animation.getAnimatedFraction()), 0);
+                    }
+                });
+                animator_bg1.start();
+
+                ObjectAnimator animator_bg2 = ObjectAnimator.ofFloat(bg2, "translationX", bg2.getWidth(), 0);
+                animator_bg2.setDuration(400);
+                animator_bg2.start();
+                pageChanged = false;
+            }
+        } else if (position == -1 || position == 1) {//æ‰€æœ‰æ•ˆæœå¤åŸ
+            bg2.setTranslationX(0);
+            bg1.setTranslationX(0);
+            mscv.smoothScrollTo(0, 0);
+        } else if (position < 1 && position > -1) {
+
+            final float width = bg1.getWidth();
+            final float height = bg1.getHeight();
+            final float rotation = ROT_MOD * position * -1.25f;
 
 //			bg1.setPivotX(width * 0.5f);
 //			bg1.setPivotY(height);
@@ -113,28 +111,28 @@ public class WelcompagerTransformer implements PageTransformer, OnPageChangeList
 //			bg2.setPivotX(width * 0.5f);
 //			bg2.setPivotY(height);
 //			bg2.setRotation(rotation);
-			//ÕâÀï²»È¥·Ö±ğ´¦Àíbg1¡¢bg2£¬¶øÊÇÓÃ°ü¹üµÄ¸¸ÈİÆ÷Ö´ĞĞ¶¯»­£¬Ä¿µÄÊÇ±ÜÃâÄÑÒÔ´¦ÀíÁ½¸öbgµÄÊôĞÔÎ»ÖÃ»Ö¸´¡£
-			bg_container.setPivotX(width * 0.5f);
-			bg_container.setPivotY(height);
-			bg_container.setRotation(rotation);
-		}
-	}
+            //è¿™é‡Œä¸å»åˆ†åˆ«å¤„ç†bg1ã€bg2ï¼Œè€Œæ˜¯ç”¨åŒ…è£¹çš„çˆ¶å®¹å™¨æ‰§è¡ŒåŠ¨ç”»ï¼Œç›®çš„æ˜¯é¿å…éš¾ä»¥å¤„ç†ä¸¤ä¸ªbgçš„å±æ€§ä½ç½®æ¢å¤ã€‚
+            bg_container.setPivotX(width * 0.5f);
+            bg_container.setPivotY(height);
+            bg_container.setRotation(rotation);
+        }
+    }
 
-	@Override
-	public void onPageScrolled(int position, float positionOffset,
-			int positionOffsetPixels) {
-		System.out.println("position:"+position+", positionOffset:"+positionOffset);
-	}
+    @Override
+    public void onPageScrolled(int position, float positionOffset,
+                               int positionOffsetPixels) {
+        System.out.println("position:" + position + ", positionOffset:" + positionOffset);
+    }
 
-	@Override
-	public void onPageSelected(int position) {
-		pageIndex = position;
-		pageChanged = true;
-		System.out.println("position_selected:"+position);
-	}
+    @Override
+    public void onPageSelected(int position) {
+        pageIndex = position;
+        pageChanged = true;
+        System.out.println("position_selected:" + position);
+    }
 
-	@Override
-	public void onPageScrollStateChanged(int state) {
-	}
+    @Override
+    public void onPageScrollStateChanged(int state) {
+    }
 
 }

@@ -29,26 +29,26 @@ public class Book implements Parcelable {
     private int bookId;
     private boolean isNew;
 
-    public Book(String name, int bookId,boolean isNew) {
+    public Book(String name, int bookId, boolean isNew) {
         this.bookName = name;
         this.bookId = bookId;
         this.isNew = isNew;
     }
 
     public Book(Parcel source) {
-        //然后我们再生成这个对象的同时，再把这个对象的属性都赋值好，切记要按照上面写入的顺序来读取出来赋值。
-        bookId = source.readInt();
+        //然后我们再生成这个对象的同时，再把这个对象的属性都赋值好，
+        //切记要按照上面写入的顺序来读取出来赋值。
         bookName = source.readString();
+        bookId = source.readInt();
         isNew = source.readInt() == 1;
     }
 
     @Override
     public String toString() {
         return "Book{" +
-                "CREATOR=" + CREATOR +
-                ", bookName='" + bookName + '\'' +
-                ", bookId=" + bookId +
-                ", isNew=" + isNew +
+                "bookName=" + getBookName() +
+                ", bookId=" + getBookId() +
+                ", isNew=" + isNew() +
                 '}';
     }
 

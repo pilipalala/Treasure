@@ -21,6 +21,9 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
 
+    <permission
+        android:name="com.wyj.process.permission.ACCESS_BOOK_SERVICE"
+        android:protectionLevel="normal" />
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -200,6 +203,7 @@
             android:exported="true" />
         <service
             android:name="com.wyj.process.MessengerSer"
+            android:process=":MessengerSer"
             android:enabled="true"
             android:exported="true" />
 
