@@ -214,7 +214,13 @@
         <activity android:name="com.wyj.welcome.WelcomeActivity" />
         <activity android:name="com.wyj.retrofit.RetroFitActivity" />
         <activity android:name="com.wyj.handler.HandlerThreadActivity" />
-        <activity android:name="com.wyj.handler.NewHandlerThreadActivity"></activity>
+        <activity android:name="com.wyj.handler.NewHandlerThreadActivity" />
+        <activity android:name="com.wyj.handler.AsyncTaskActivity" />
+        <activity android:name="com.wyj.handler.IntentServiceActivity" />
+
+        <service
+            android:name="com.wyj.handler.MyIntentService"
+            android:exported="false"></service>
     </application>
 
 </manifest>
