@@ -13,7 +13,7 @@ import java.util.UUID;
  * TODO
  */
 
-public class HandlerActivity extends BaseActivity {
+public class CustomHandlerActivity extends BaseActivity {
 
     @Override
     protected void initView() {

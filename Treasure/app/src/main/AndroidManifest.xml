@@ -24,6 +24,7 @@
     <permission
         android:name="com.wyj.process.permission.ACCESS_BOOK_SERVICE"
         android:protectionLevel="normal" />
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -162,7 +163,7 @@
         <activity android:name=".mdcustom.behaviorcustom.BehaviorActivity" />
         <activity android:name=".mdcustom.splash.SplashActivity" />
         <activity android:name=".viewcustom.bannerviewpager.BannerViewPagerActivity" />
-        <activity android:name="com.wyj.handler.HandlerActivity" />
+        <activity android:name="com.wyj.handler.CustomHandlerActivity" />
         <activity android:name=".viewcustom.colortracktextview.ColorTrackActivity" />
         <activity android:name=".customcontrol.AnimationActivity" />
         <activity android:name=".customcontrol.CustomControlActivity" />
@@ -203,15 +204,17 @@
             android:exported="true" />
         <service
             android:name="com.wyj.process.MessengerSer"
-            android:process=":MessengerSer"
             android:enabled="true"
-            android:exported="true" />
+            android:exported="true"
+            android:process=":MessengerSer" />
 
         <activity android:name=".activity.ExternalStorageActivity" />
         <activity android:name="com.wyj.touch.TouchDemoActivity" />
-        <activity android:name=".mvp.MVPActivity"/>
+        <activity android:name=".mvp.MVPActivity" />
         <activity android:name="com.wyj.welcome.WelcomeActivity" />
-        <activity android:name="com.wyj.retrofit.RetroFitActivity"></activity>
+        <activity android:name="com.wyj.retrofit.RetroFitActivity" />
+        <activity android:name="com.wyj.handler.HandlerThreadActivity" />
+        <activity android:name="com.wyj.handler.NewHandlerThreadActivity"></activity>
     </application>
 
 </manifest>

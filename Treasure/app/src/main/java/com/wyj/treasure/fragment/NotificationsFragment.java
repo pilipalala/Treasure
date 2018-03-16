@@ -1,7 +1,9 @@
 package com.wyj.treasure.fragment;
 
 
-import com.wyj.handler.HandlerActivity;
+import com.wyj.handler.CustomHandlerActivity;
+import com.wyj.handler.HandlerThreadActivity;
+import com.wyj.handler.NewHandlerThreadActivity;
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.NotificationStyleActivity;
 import com.wyj.treasure.activity.RemoteViewWidgetActivity;
@@ -20,7 +22,9 @@ public class NotificationsFragment extends BaseCardViewFragment {
         mData.add(new ItemInfo("Notification 样式", NotificationStyleActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("RemoteView 桌面小部件", RemoteViewWidgetActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("拖动排序效果", RecyclerViewItemTouchActivity.class, R.mipmap.ic_launcher));
-        mData.add(new ItemInfo("Handler", HandlerActivity.class, R.mipmap.ic_launcher));
+        mData.add(new ItemInfo("HandlerThread", HandlerThreadActivity.class, R.mipmap.ic_launcher));
+        mData.add(new ItemInfo("CustomHandler", CustomHandlerActivity.class, R.mipmap.ic_launcher));
+        mData.add(new ItemInfo("NewHandlerThreadActivity", NewHandlerThreadActivity.class, R.mipmap.ic_launcher));
 
         notifyDataChanged();
     }
