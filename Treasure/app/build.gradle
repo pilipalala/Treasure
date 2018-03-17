@@ -136,4 +136,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
     implementation 'com.squareup.okhttp3:okhttp:3.9.1'
+    compile 'com.github.promeg:tinypinyin:1.0.0'
 }

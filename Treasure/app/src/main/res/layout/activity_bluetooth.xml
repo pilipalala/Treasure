@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.wyj.bluetooth.BluetoothActivity">
+
+    <include
+        android:id="@+id/title"
+        layout="@layout/title" />
+
+    <Button
+        android:id="@+id/btn_open"
+        style="@style/default_button_style"
+        android:text="开启蓝牙"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+    <Button
+        android:id="@+id/btn_close"
+        style="@style/default_button_style"
+        android:text="关闭蓝牙"
+        app:layout_constraintTop_toBottomOf="@+id/btn_open" />
+
+    <Button
+        android:id="@+id/btn_search"
+        style="@style/default_button_style"
+        android:text="搜索"
+        app:layout_constraintTop_toBottomOf="@+id/btn_close" />
+    <Button
+        android:id="@+id/btn_print"
+        style="@style/default_button_style"
+        android:text="打印"
+        app:layout_constraintTop_toBottomOf="@+id/btn_search" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_bluetooth"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_print" />
+</android.support.constraint.ConstraintLayout>

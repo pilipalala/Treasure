@@ -7,6 +7,10 @@ import android.support.annotation.Nullable;
 
 public class MyIntentService extends IntentService {
 
+    public MyIntentService() {
+        super("IntentService");
+    }
+
     /**
      * Creates an IntentService.  Invoked by your subclass's constructor.
      *
