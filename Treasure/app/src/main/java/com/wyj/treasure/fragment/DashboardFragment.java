@@ -1,6 +1,7 @@
 package com.wyj.treasure.fragment;
 
 import com.wyj.handler.AsyncTaskActivity;
+import com.wyj.touch.TouchDemoActivity;
 import com.wyj.treasure.NavigationBarActivity;
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.GridViewChoiceActivity;
@@ -47,6 +48,7 @@ public class DashboardFragment extends BaseCardViewFragment {
         mData.add(new ItemInfo("PopupWindow", PopupWindowActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("平行空间效果", WelcomeActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("AsyncTask", AsyncTaskActivity.class, R.mipmap.ic_launcher));
+        mData.add(new ItemInfo("TouchDemoActivity", TouchDemoActivity.class, R.mipmap.ic_launcher));
         notifyDataChanged();
     }
 }

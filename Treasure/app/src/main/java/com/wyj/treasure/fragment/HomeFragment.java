@@ -15,6 +15,7 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 
 import com.wyj.baseadapter.RecyclerViewActivity;
+import com.wyj.bitmap.BitmapActivity;
 import com.wyj.process.ProcessActivity;
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.ChangeLaucherActivity;
@@ -56,14 +57,16 @@ public class HomeFragment extends BaseFragment {
             "过渡动画",  "RecyclerView通过GridLayoutManager实现多样式布局",
             "向上拖动查看图文详情控件", "网页交互",
             "万能adapter", "动态更换图片",
-            "多进程通信", "Android存储路径"};
+            "多进程通信", "Android存储路径",
+            "BitmapActivity"};
     private Class<?>[] ACTIVITY = {
             DongTaiActivity.class, NetworkChangeActivity.class,
             ServiceActivity.class, TinkerActivity.class,
             TransitionsActivity.class, GridLayoutManagerActivity.class,
             PullUpToLoadMoreActivity.class, MyWebViewActivity.class,
             RecyclerViewActivity.class, ChangeLaucherActivity.class,
-            ProcessActivity.class, ExternalStorageActivity.class};
+            ProcessActivity.class, ExternalStorageActivity.class,
+            BitmapActivity.class};
     private List<HomeItem> mDataList;
 
 

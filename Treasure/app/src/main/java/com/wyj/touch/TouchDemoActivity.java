@@ -1,5 +1,6 @@
 package com.wyj.touch;
 
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -30,6 +31,36 @@ public class TouchDemoActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                LogUtil.d("TouchDemoActivity ---dispatchTouchEvent---按下");
+                break;
+            case MotionEvent.ACTION_UP:
+                LogUtil.d("TouchDemoActivity ---dispatchTouchEvent---抬起");
+                break;
+
+        }
+        return super.dispatchTouchEvent(ev);
+
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                LogUtil.d("TouchDemoActivity ---dispatchTouchEvent---按下");
+                break;
+            case MotionEvent.ACTION_UP:
+                LogUtil.d("TouchDemoActivity ---dispatchTouchEvent---抬起");
+                break;
+
+        }
+        return super.onTouchEvent(event);
 
     }
 

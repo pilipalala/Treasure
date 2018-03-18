@@ -230,6 +230,7 @@
             android:exported="false" />
 
         <activity android:name="com.wyj.bluetooth.BluetoothActivity" />
+        <activity android:name="com.wyj.bitmap.BitmapActivity"></activity>
     </application>
 
 </manifest>
