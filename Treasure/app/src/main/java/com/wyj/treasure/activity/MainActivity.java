@@ -1,9 +1,11 @@
 package com.wyj.treasure.activity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 
 import com.wyj.treasure.R;
@@ -99,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
         initNotification();
 
     }
+
     /**
      * 获取通知栏权限
      * 如果没有打开通知权限则跳到设置界面
@@ -106,16 +109,20 @@ public class MainActivity extends AppCompatActivity {
     public void initNotification() {
         boolean enabled = MyUtils.isNotificationEnabled(this);
         if (!enabled) {
-            MyUtils.toSetting(MainActivity.this);
+            new AlertDialog.Builder(this).setTitle("提示").setMessage("请开启通知栏权限！").setNegativeButton("不去", null).setPositiveButton("好", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    MyUtils.toSetting(MainActivity.this);
+                }
+            }).show();
         }
     }
+
     private void initData() {
         initragment();
         check(0);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
-
-
 
 
     private void initragment() {

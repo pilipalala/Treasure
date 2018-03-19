@@ -28,7 +28,7 @@
             <LinearLayout
                 android:id="@+id/head_layout"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="wrap_content"
                 android:fitsSystemWindows="true"
                 android:orientation="vertical"
                 app:layout_collapseMode="parallax"
@@ -200,7 +200,7 @@
             app:tabIndicatorColor="@color/colorPrimary"
             app:tabIndicatorHeight="2.0dp"
             app:tabSelectedTextColor="@color/colorPrimary"
-            app:tabTextColor="@color/pink">
+            app:tabTextColor="@color/magenta">
 
             <android.support.design.widget.TabItem
                 android:layout_width="match_parent"

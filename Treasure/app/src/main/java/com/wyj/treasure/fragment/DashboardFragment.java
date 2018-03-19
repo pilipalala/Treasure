@@ -6,8 +6,7 @@ import com.wyj.colortracktextview.ColorTrackActivity;
 import com.wyj.countdown.CountDownActivity;
 import com.wyj.handler.AsyncTaskActivity;
 import com.wyj.index.QuickIndexActivity;
-import com.wyj.materialdesign.drawerlayout.DrawerLayoutMainActivity;
-import com.wyj.materialdesign.recyclerview.BottomSheetActivity;
+import com.wyj.materialdesign.MaterialDesignActivity;
 import com.wyj.touch.TouchDemoActivity;
 import com.wyj.treasure.NavigationBarActivity;
 import com.wyj.treasure.PxDpActivity;
@@ -57,8 +56,7 @@ public class DashboardFragment extends BaseCardViewFragment {
         mData.add(new ItemInfo("CountDownActivity", CountDownActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("快速索引", QuickIndexActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("PX和DIP", PxDpActivity.class, R.mipmap.ic_launcher));
-        mData.add(new ItemInfo("抽屉视图", DrawerLayoutMainActivity.class, R.mipmap.ic_launcher));
-        mData.add(new ItemInfo("BottomSheet", BottomSheetActivity.class, R.mipmap.ic_launcher));
+        mData.add(new ItemInfo("Materialdesign", MaterialDesignActivity.class, R.mipmap.ic_launcher));
         notifyDataChanged();
     }
 }

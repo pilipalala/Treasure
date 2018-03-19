@@ -2,6 +2,8 @@ package com.wyj.materialdesign.recyclerview;
 
 import android.annotation.TargetApi;
 import android.os.Build;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
@@ -9,6 +11,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.GestureDetector;
 import android.view.Menu;
@@ -23,7 +26,6 @@ import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.wyj.treasure.R;
-import com.wyj.treasure.activity.BaseActivity;
 import com.wyj.treasure.adapter.FragmentViewPagerAdapter;
 import com.wyj.treasure.fragment.XiTuFragment;
 
@@ -34,7 +36,7 @@ import butterknife.ButterKnife;
 import jp.wasabeef.glide.transformations.BlurTransformation;
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
-public class XiTuActivity extends BaseActivity {
+public class XiTuActivity extends AppCompatActivity {
     @BindView(R.id.head_iv)
     ImageView headIv;
     @BindView(R.id.one)
@@ -65,20 +67,14 @@ public class XiTuActivity extends BaseActivity {
     private CollapsingToolbarLayoutState state;
     private boolean isClose = false;
 
-    private enum CollapsingToolbarLayoutState {
-        EXPANDED,
-        COLLAPSED,
-        INTERNEDIATE
-    }
-
-
     @Override
-    protected void initView() {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_xi_tu);
         ButterKnife.bind(this);
+        initData();
     }
 
-    @Override
     protected void initData() {
 
         /*2、实例化手势识别器*/
@@ -113,11 +109,8 @@ public class XiTuActivity extends BaseActivity {
             }
         });
         fragments = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            if (i == 0) {
-            } else {
-                fragments.add(new XiTuFragment(tabTitles[i], 5 + i));
-            }
+        for (int i = 0; i < tabTitles.length; i++) {
+            fragments.add(new XiTuFragment(tabTitles[i], 5 + i));
         }
 
         setSupportActionBar(toolbar);
@@ -181,18 +174,14 @@ public class XiTuActivity extends BaseActivity {
         //tablayout和viewpager建立联系为什么不用下面这个方法呢？自己去研究一下，可能收获更多
 //        toolbarTab.setupWithViewPager(mainVpContainer);
 
-        mainVpContainer.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener
-                (toolbarTab));
-        toolbarTab.setOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener
-                (mainVpContainer));
+        mainVpContainer.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(toolbarTab));
+        toolbarTab.setOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mainVpContainer));
 
 
         loadBlurAndSetStatusBar();
-        Glide.with(this).load(R.mipmap.head).bitmapTransform(new RoundedCornersTransformation(this,
-                90, 0)).into(headIv);
+        Glide.with(this).load(R.mipmap.head).bitmapTransform(new RoundedCornersTransformation(this, 90, 0)).into(headIv);
 
     }
-
 
     /**
      * 设置毛玻璃效果和沉浸栏
@@ -221,5 +210,11 @@ public class XiTuActivity extends BaseActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.base_toolbar_menu, menu);
         return true;
+    }
+
+    private enum CollapsingToolbarLayoutState {
+        EXPANDED,
+        COLLAPSED,
+        INTERNEDIATE
     }
 }

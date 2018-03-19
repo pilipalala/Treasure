@@ -80,11 +80,25 @@ public class PaletteActivity extends AppCompatActivity {
 
             }
         });*/
+
+
         builder.generate(new Palette.PaletteAsyncListener() {
             @Override
             public void onGenerated(Palette palette) {
-                    /*获取到充满活力的这种色调*/
-                Palette.Swatch vibrant = palette.getVibrantSwatch();
+
+                /*获取到充满活力的这种色调*/
+                Palette.Swatch vibrant = palette.getVibrantSwatch();//有活力
+                Palette.Swatch c = palette.getDarkVibrantSwatch();//有活力 暗色
+                Palette.Swatch d = palette.getLightVibrantSwatch();//有活力 亮色
+                Palette.Swatch f = palette.getMutedSwatch();//柔和
+                Palette.Swatch a = palette.getDarkMutedSwatch();//柔和 暗色
+                Palette.Swatch b = palette.getLightMutedSwatch();//柔和 亮色
+
+                int color1 = vibrant.getBodyTextColor();//内容颜色
+                int color2 = vibrant.getTitleTextColor();//标题颜色
+                int color3 = vibrant.getRgb();//rgb颜色
+
+
                     /*根据调色板Palette获取到图片中的颜色设置到Toolbar和tab中背景*/
                 if (vibrant == null) return;
                 toolbarTab.setBackgroundColor(vibrant.getRgb());

@@ -20,7 +20,7 @@ import java.util.Random;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class RecyclerViewActivity extends BaseActivity {
+public class RecyclerRefreshActivity extends BaseActivity {
 
     @BindView(R.id.rv_recycleview)
     RecyclerView rvRecycleview;
@@ -133,15 +133,15 @@ public class RecyclerViewActivity extends BaseActivity {
             @Override
             public void setOnItemClick(View itemView, int position) {
                 if (position % 5 == 0) {
-                    startActivity(new Intent(RecyclerViewActivity.this, RecyclerViewDetailActivity.class));
+                    startActivity(new Intent(RecyclerRefreshActivity.this, RecyclerViewDetailActivity.class));
                 } else if (position % 5 == 1) {
-                    startActivity(new Intent(RecyclerViewActivity.this, XiTuActivity.class));
+                    startActivity(new Intent(RecyclerRefreshActivity.this, XiTuActivity.class));
                 } else if (position % 5 == 2) {
-                    startActivity(new Intent(RecyclerViewActivity.this, PaletteActivity.class));
+                    startActivity(new Intent(RecyclerRefreshActivity.this, PaletteActivity.class));
                 } else if (position % 5 == 3) {
-                    startActivity(new Intent(RecyclerViewActivity.this, HeadimageScaleActivity.class));
+                    startActivity(new Intent(RecyclerRefreshActivity.this, HeadimageScaleActivity.class));
                 }
-                Toast.makeText(RecyclerViewActivity.this, position + "\n" + data.get(position).getTitle(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(RecyclerRefreshActivity.this, position + "\n" + data.get(position).getTitle(), Toast.LENGTH_SHORT).show();
             }
         });
     }
