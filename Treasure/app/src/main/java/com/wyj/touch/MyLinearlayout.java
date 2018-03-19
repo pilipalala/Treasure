@@ -61,6 +61,7 @@ public class MyLinearlayout extends LinearLayout {
                 break;
 
         }
+        super.onTouchEvent(event);
         return super.onTouchEvent(event);
 
     }

@@ -21,7 +21,7 @@
     <color name="recom">#F46900</color>
     <color name="open_view_bg">#EDEDED</color>
     <color name="more_pop_text_color">#8A8A8A</color>
-
+    <color name="recoveryColorPrimaryDark">@color/hotpink</color>
     <color name="color_int_picture">#ffffff</color>
 
     <!-- 除了主页外其他Activity背景颜色 -->

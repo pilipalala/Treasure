@@ -1,8 +1,16 @@
 package com.wyj.treasure.fragment;
 
+import com.wyj.SkateMenu.SwipeDeleteActivity;
+import com.wyj.bannerviewpager.BannerViewPagerActivity;
+import com.wyj.colortracktextview.ColorTrackActivity;
+import com.wyj.countdown.CountDownActivity;
 import com.wyj.handler.AsyncTaskActivity;
+import com.wyj.index.QuickIndexActivity;
+import com.wyj.materialdesign.drawerlayout.DrawerLayoutMainActivity;
+import com.wyj.materialdesign.recyclerview.BottomSheetActivity;
 import com.wyj.touch.TouchDemoActivity;
 import com.wyj.treasure.NavigationBarActivity;
+import com.wyj.treasure.PxDpActivity;
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.GridViewChoiceActivity;
 import com.wyj.treasure.activity.IncludeMergeViewStubActivity;
@@ -12,7 +20,6 @@ import com.wyj.treasure.activity.ReflectActivity;
 import com.wyj.treasure.activity.RegularExpressionActivity;
 import com.wyj.treasure.activity.StaggeredGridActivity;
 import com.wyj.treasure.activity.SuspensionBarActivity;
-import com.wyj.treasure.activity.SwipeDeleteActivity;
 import com.wyj.treasure.customcontrol.CustomControlActivity;
 import com.wyj.treasure.mdcustom.behaviorcustom.BehaviorActivity;
 import com.wyj.treasure.mdcustom.splash.SplashActivity;
@@ -20,8 +27,6 @@ import com.wyj.treasure.mode.ItemInfo;
 import com.wyj.treasure.mvp.UserLoginActivity;
 import com.wyj.treasure.popup.PopupWindowActivity;
 import com.wyj.treasure.rxjava.RxJavaActivity;
-import com.wyj.treasure.viewcustom.bannerviewpager.BannerViewPagerActivity;
-import com.wyj.treasure.viewcustom.colortracktextview.ColorTrackActivity;
 import com.wyj.welcome.WelcomeActivity;
 
 public class DashboardFragment extends BaseCardViewFragment {
@@ -49,6 +54,11 @@ public class DashboardFragment extends BaseCardViewFragment {
         mData.add(new ItemInfo("平行空间效果", WelcomeActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("AsyncTask", AsyncTaskActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("TouchDemoActivity", TouchDemoActivity.class, R.mipmap.ic_launcher));
+        mData.add(new ItemInfo("CountDownActivity", CountDownActivity.class, R.mipmap.ic_launcher));
+        mData.add(new ItemInfo("快速索引", QuickIndexActivity.class, R.mipmap.ic_launcher));
+        mData.add(new ItemInfo("PX和DIP", PxDpActivity.class, R.mipmap.ic_launcher));
+        mData.add(new ItemInfo("抽屉视图", DrawerLayoutMainActivity.class, R.mipmap.ic_launcher));
+        mData.add(new ItemInfo("BottomSheet", BottomSheetActivity.class, R.mipmap.ic_launcher));
         notifyDataChanged();
     }
 }

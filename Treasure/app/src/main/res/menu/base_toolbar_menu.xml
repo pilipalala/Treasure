@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_item1"
+        android:title="item_01"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_search"
+        android:icon="@mipmap/ic_searchic_search"
+        android:title="无线"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_notification"
+        android:icon="@mipmap/action_notification"
+        android:title="星星"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_item2"
+        android:title="item_02"
+        app:showAsAction="never">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/item1"
+                    android:title="item1" />
+                <item
+                    android:id="@+id/item2"
+                    android:title="item2" />
+                <item
+                    android:id="@+id/item3"
+                    android:title="item3" />
+            </group>
+        </menu>
+    </item>
+</menu>

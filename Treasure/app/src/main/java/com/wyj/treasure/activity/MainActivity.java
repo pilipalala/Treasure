@@ -11,6 +11,7 @@ import com.wyj.treasure.fragment.BaseFragment;
 import com.wyj.treasure.fragment.DashboardFragment;
 import com.wyj.treasure.fragment.HomeFragment;
 import com.wyj.treasure.fragment.NotificationsFragment;
+import com.wyj.treasure.utils.MyUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,7 +96,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         initData();
+        initNotification();
 
+    }
+    /**
+     * 获取通知栏权限
+     * 如果没有打开通知权限则跳到设置界面
+     */
+    public void initNotification() {
+        boolean enabled = MyUtils.isNotificationEnabled(this);
+        if (!enabled) {
+            MyUtils.toSetting(MainActivity.this);
+        }
     }
     private void initData() {
         initragment();

@@ -6,11 +6,11 @@
     android:layout_height="match_parent"
     android:background="@color/pink"
     android:orientation="vertical"
-    tools:context="com.wyj.treasure.viewcustom.bannerviewpager.BannerViewPagerActivity">
+    tools:context="com.wyj.bannerviewpager.BannerViewPagerActivity">
 
     <include layout="@layout/title" />
 
-    <com.wyj.treasure.viewcustom.bannerviewpager.BannerView
+    <com.wyj.bannerviewpager.BannerView
         android:id="@+id/banner_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

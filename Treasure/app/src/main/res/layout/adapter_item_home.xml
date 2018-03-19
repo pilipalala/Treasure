@@ -31,11 +31,11 @@
                 android:layout_gravity="center"
                 android:fontFamily="sans-serif-condensed"
                 android:gravity="center"
-                android:textColor="@color/title"
-                android:textStyle="bold"
-                android:text="Animation"
-                android:textSize="18sp"
                 android:maxLines="2"
+                android:text="Animation"
+                android:textColor="@color/title"
+                android:textSize="18sp"
+                android:textStyle="bold"
                 app:minTextSize="12sp" />
 
         </LinearLayout>

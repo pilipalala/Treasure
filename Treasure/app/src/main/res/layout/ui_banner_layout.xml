@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.wyj.treasure.viewcustom.bannerviewpager.BannerViewPager
+    <com.wyj.bannerviewpager.BannerViewPager
         android:id="@+id/banner_vp"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

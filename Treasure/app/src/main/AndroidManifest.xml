@@ -128,7 +128,8 @@
         <activity android:name=".activity.GridLayoutManagerActivity" />
         <activity android:name=".activity.ReflectActivity" />
         <activity android:name=".activity.RemoteViewWidgetActivity" />
-        <activity android:name=".activity.SwipeDeleteActivity" />
+        <activity android:name="com.wyj.SkateMenu.SwipeDeleteActivity" />
+        <activity android:name="com.wyj.SkateMenu.SkateMenuActivity" />
         <activity android:name=".activity.PullUpToLoadMoreActivity" />
         <activity android:name=".activity.GridViewChoiceActivity" />
         <activity android:name=".activity.SuspensionBarActivity" />
@@ -169,9 +170,9 @@
         <activity android:name=".activity.itemtouch.RecyclerViewItemTouchActivity" />
         <activity android:name=".mdcustom.behaviorcustom.BehaviorActivity" />
         <activity android:name=".mdcustom.splash.SplashActivity" />
-        <activity android:name=".viewcustom.bannerviewpager.BannerViewPagerActivity" />
+        <activity android:name="com.wyj.bannerviewpager.BannerViewPagerActivity" />
         <activity android:name="com.wyj.handler.CustomHandlerActivity" />
-        <activity android:name=".viewcustom.colortracktextview.ColorTrackActivity" />
+        <activity android:name="com.wyj.colortracktextview.ColorTrackActivity" />
         <activity android:name=".customcontrol.AnimationActivity" />
         <activity android:name=".customcontrol.CustomControlActivity" />
         <activity android:name=".customcontrol.Interpolator" />
@@ -191,6 +192,7 @@
         <activity android:name="com.wyj.baseadapter.RecyclerViewActivity" />
         <activity android:name=".activity.ChangeLaucherActivity" />
         <activity android:name="com.wyj.process.ProcessActivity" />
+        <activity android:name=".PxDpActivity" />
 
         <service
             android:name="com.wyj.process.ProcessService"
@@ -230,7 +232,16 @@
             android:exported="false" />
 
         <activity android:name="com.wyj.bluetooth.BluetoothActivity" />
-        <activity android:name="com.wyj.bitmap.BitmapActivity"></activity>
+        <activity android:name="com.wyj.bitmap.BitmapActivity" />
+        <activity android:name="com.wyj.countdown.CountDownActivity" />
+        <activity android:name="com.wyj.countdown.CountDownRunnableActivity" />
+        <activity android:name="com.wyj.countdown.CountDownTimerActivity" />
+        <activity android:name="com.wyj.index.QuickIndexActivity" />
+        <activity android:name="com.wyj.bannerviewpager.GuangGaoTiaoActivity"/>
+        <activity android:name="com.wyj.materialdesign.drawerlayout.DrawerLayoutMainActivity"/>
+        <activity android:name="com.wyj.materialdesign.drawerlayout.DrawerLayout_BelowToolbarActivity"/>
+        <activity android:name="com.wyj.materialdesign.drawerlayout.DrawerLayout_OtherActivity"/>
+        <activity android:name="com.wyj.materialdesign.drawerlayout.DrawerLayoutDemoActivity"/>
     </application>
 
 </manifest>

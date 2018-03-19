@@ -137,4 +137,7 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
     implementation 'com.squareup.okhttp3:okhttp:3.9.1'
     compile 'com.github.promeg:tinypinyin:1.0.0'
+    implementation files('lib/pinyin4j-2.5.0.jar')
+    compile 'com.android.support:palette-v7:26.0.2'
+    compile 'jp.wasabeef:glide-transformations:2.0.1'
 }

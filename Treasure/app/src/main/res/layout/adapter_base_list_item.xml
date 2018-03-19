@@ -25,17 +25,19 @@
                 android:layout_height="100dp"
                 android:src="@mipmap/ic_launcher" />
 
-            <TextView
+            <me.grantland.widget.AutofitTextView
                 android:id="@+id/text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="sans-serif-condensed"
                 android:gravity="center"
+                android:maxLines="2"
                 android:text="Animation"
                 android:textColor="@color/title"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:minTextSize="12sp" />
         </LinearLayout>
 
 
