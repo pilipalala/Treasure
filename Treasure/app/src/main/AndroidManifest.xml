@@ -237,11 +237,20 @@
         <activity android:name="com.wyj.countdown.CountDownRunnableActivity" />
         <activity android:name="com.wyj.countdown.CountDownTimerActivity" />
         <activity android:name="com.wyj.index.QuickIndexActivity" />
-        <activity android:name="com.wyj.bannerviewpager.GuangGaoTiaoActivity"/>
-        <activity android:name="com.wyj.materialdesign.drawerlayout.DrawerLayoutMainActivity"/>
-        <activity android:name="com.wyj.materialdesign.drawerlayout.DrawerLayout_BelowToolbarActivity"/>
-        <activity android:name="com.wyj.materialdesign.drawerlayout.DrawerLayout_OtherActivity"/>
-        <activity android:name="com.wyj.materialdesign.drawerlayout.DrawerLayoutDemoActivity"/>
+        <activity android:name="com.wyj.bannerviewpager.GuangGaoTiaoActivity" />
+        <activity android:name="com.wyj.materialdesign.drawerlayout.DrawerLayoutMainActivity" />
+        <activity android:name="com.wyj.materialdesign.drawerlayout.DrawerLayout_BelowToolbarActivity" />
+        <activity android:name="com.wyj.materialdesign.drawerlayout.DrawerLayout_OtherActivity" />
+        <activity android:name="com.wyj.materialdesign.drawerlayout.DrawerLayoutDemoActivity" />
+        <activity android:name="com.wyj.materialdesign.recyclerview.BottomSheetActivity" />
+        <activity android:name="com.wyj.materialdesign.recyclerview.HeadimageScaleActivity" />
+        <activity android:name="com.wyj.materialdesign.recyclerview.PaletteActivity" />
+        <activity android:name="com.wyj.materialdesign.recyclerview.RecyclerViewDetailActivity"
+            android:theme="@style/ImageTranslucentTheme"/>
+        <activity android:name="com.wyj.materialdesign.recyclerview.RecyclerViewActivity" />
+        <activity android:name="com.wyj.materialdesign.recyclerview.StyleActivity" />
+        <activity android:name="com.wyj.materialdesign.recyclerview.XiTuActivity" />
+        <activity android:name="com.wyj.materialdesign.toolbar.ToolBarActivity" />
     </application>
 
 </manifest>
