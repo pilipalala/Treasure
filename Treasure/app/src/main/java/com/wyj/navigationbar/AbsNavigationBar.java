@@ -47,7 +47,7 @@ public abstract class AbsNavigationBar<P extends AbsNavigationBar.Builder.AbsNav
 
     public void setToolBarOnClickListener(int viewId, View.OnClickListener listener) {
         if (listener != null) {
-            Toolbar toolbar = (Toolbar) findViewById(viewId);
+            Toolbar toolbar = findViewById(viewId);
             toolbar.setNavigationOnClickListener(listener);
         }
     }

@@ -100,8 +100,8 @@ public class BottomSheetActivity extends BaseActivity {
                 final BottomSheetDialog dialog = new BottomSheetDialog(this);
                 View inflate = getLayoutInflater().inflate(R.layout.bottom_sheet_dialog, null);
                 dialog.setContentView(inflate);
-                Button bsdButton = (Button) inflate.findViewById(R.id.bsd_button);
-                TextView textView = (TextView) inflate.findViewById(R.id.bsd_text);
+                Button bsdButton = inflate.findViewById(R.id.bsd_button);
+                TextView textView = inflate.findViewById(R.id.bsd_text);
 
                 textView.setText("BottomSheetDialog");
                 bsdButton.setOnClickListener(new View.OnClickListener() {

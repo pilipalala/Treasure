@@ -71,8 +71,8 @@ public class SkateMenuActivity extends BaseActivity {
             if (convertView == null) {
                 holder = new MyViewHolder();
                 convertView = LayoutInflater.from(SkateMenuActivity.this).inflate(R.layout.item_main, null);
-                holder.item_content = (TextView) convertView.findViewById(R.id.item_content);
-                holder.item_menu = (TextView) convertView.findViewById(R.id.item_menu);
+                holder.item_content = convertView.findViewById(R.id.item_content);
+                holder.item_menu = convertView.findViewById(R.id.item_menu);
 
                 convertView.setTag(holder);
 

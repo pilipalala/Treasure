@@ -9,8 +9,8 @@ import com.wyj.treasure.mvp.bean.User;
  */
 
 public interface IUserBiz {
-    public void login(String userName, String password, OnLoginListener onLoginListener);
-    public interface OnLoginListener {
+    void login(String userName, String password, OnLoginListener onLoginListener);
+    interface OnLoginListener {
         void loginSuccess(User user);
         void loginFailed();
     }

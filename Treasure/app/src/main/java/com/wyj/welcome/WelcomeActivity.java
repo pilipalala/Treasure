@@ -24,7 +24,7 @@ public class WelcomeActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_welcome_);
-		vp = (ViewPager)findViewById(R.id.vp);
+		vp = findViewById(R.id.vp);
 		
 		WelcomePagerAdapter adapter = new WelcomePagerAdapter(getSupportFragmentManager());
 		System.out.println("offset:"+vp.getOffscreenPageLimit());

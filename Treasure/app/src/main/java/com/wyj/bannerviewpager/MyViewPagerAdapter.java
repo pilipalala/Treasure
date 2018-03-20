@@ -21,11 +21,11 @@ public class MyViewPagerAdapter extends PagerAdapter {
     private setClickListener clickListener;
 
     public interface setTouchListener {
-        public void onTouch(View view, MotionEvent motionEvent);
+        void onTouch(View view, MotionEvent motionEvent);
     }
 
     public interface setClickListener {
-        public void onClick(View view, int position);
+        void onClick(View view, int position);
     }
 
     public MyViewPagerAdapter(Context context, ArrayList<ImageView> imageViewList) {

@@ -32,13 +32,13 @@ public class UserLoginActivity extends BaseActivity implements IUserLoginView {
     }
 
     private void initViews() {
-        mEtUsername = (EditText) findViewById(R.id.id_et_username);
-        mEtPassword = (EditText) findViewById(R.id.id_et_password);
+        mEtUsername = findViewById(R.id.id_et_username);
+        mEtPassword = findViewById(R.id.id_et_password);
 
-        mBtnClear = (Button) findViewById(R.id.id_btn_clear);
-        mBtnLogin = (Button) findViewById(R.id.id_btn_login);
+        mBtnClear = findViewById(R.id.id_btn_clear);
+        mBtnLogin = findViewById(R.id.id_btn_login);
 
-        mPbLoading = (ProgressBar) findViewById(R.id.id_pb_loading);
+        mPbLoading = findViewById(R.id.id_pb_loading);
         mBtnLogin.setOnClickListener(v -> {
             mUserLoginPresenter.login();
         });

@@ -45,7 +45,7 @@ public class DrawerLayout_BelowToolbarActivity extends AppCompatActivity impleme
         drawerLayout.setDrawerListener(toggle);
         drawerLayout.setScrimColor(Color.TRANSPARENT);//去除左右抽屉划出后内容显示页背景的灰色
         toggle.syncState();//该方法会自动和Toolbar关联, 将开关的图片显示在了Toolbar上
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 

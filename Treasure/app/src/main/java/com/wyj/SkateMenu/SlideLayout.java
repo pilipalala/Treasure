@@ -199,7 +199,7 @@ public class SlideLayout extends FrameLayout {
      */
     public void closeMenu() {
         /*目标--》0*/
-        int distanceX = (int) (0 - getScrollX());
+        int distanceX = 0 - getScrollX();
         scroller.startScroll(getScrollX(), getScrollY(), distanceX, getScrollY());
         invalidate();/*强制刷新*/
         if (listener != null) {

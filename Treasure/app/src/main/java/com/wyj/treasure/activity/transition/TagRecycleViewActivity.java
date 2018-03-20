@@ -24,7 +24,7 @@ public class TagRecycleViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tag_recycle_view);
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler);
+        RecyclerView recyclerView = findViewById(R.id.recycler);
         MyAdapter adapter = new MyAdapter(mDataSet);
         assert recyclerView != null;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -53,11 +53,11 @@ public class TagRecycleViewActivity extends AppCompatActivity {
             if (viewType == 0) {
                 View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_text, parent, false);
                 vh = new ViewHolder(v);
-                vh.textView = (TextView) v.findViewById(R.id.tv);
+                vh.textView = v.findViewById(R.id.tv);
             } else {
                 View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_tag, parent, false);
                 vh = new ViewHolder(v);
-                vh.tagView = (TagView) v.findViewById(R.id.tagview_item_list);
+                vh.tagView = v.findViewById(R.id.tagview_item_list);
             }
             return vh;
         }

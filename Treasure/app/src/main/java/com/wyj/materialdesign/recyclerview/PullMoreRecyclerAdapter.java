@@ -120,7 +120,7 @@ public class PullMoreRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     }
 
     interface OnItemClickListener {
-        public void setOnItemClick(View itemView, int position);
+        void setOnItemClick(View itemView, int position);
     }
 
     /**

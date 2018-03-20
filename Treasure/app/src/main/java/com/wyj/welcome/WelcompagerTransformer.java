@@ -25,8 +25,8 @@ public class WelcompagerTransformer implements PageTransformer, OnPageChangeList
      */
     @Override
     public void transformPage(View view, float position) {
-        ViewGroup v = (ViewGroup) view.findViewById(R.id.rl);
-        final MyScrollView mscv = (MyScrollView) v.findViewById(R.id.mscv);
+        ViewGroup v = view.findViewById(R.id.rl);
+        final MyScrollView mscv = v.findViewById(R.id.mscv);
         View bg1 = v.findViewById(R.id.imageView0);
         View bg2 = v.findViewById(R.id.imageView0_2);
         View bg_container = v.findViewById(R.id.bg_container);

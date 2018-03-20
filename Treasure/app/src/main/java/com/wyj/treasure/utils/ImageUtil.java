@@ -88,9 +88,6 @@ public class ImageUtil {
             return false;
         }
         File f = new File(path);
-        if (!f.exists()) {
-            return false;
-        }
-        return true;
+        return f.exists();
     }
 }

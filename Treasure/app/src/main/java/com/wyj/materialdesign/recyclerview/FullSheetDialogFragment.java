@@ -28,7 +28,7 @@ public class FullSheetDialogFragment extends BottomSheetDialogFragment implement
         BottomSheetDialog dialog = (BottomSheetDialog) super.onCreateDialog(savedInstanceState);
         View view = View.inflate(getContext(), R.layout.bottom_sheet_dialog, null);
         dialog.setContentView(view);
-        bsdButton = (Button) view.findViewById(R.id.bsd_button);
+        bsdButton = view.findViewById(R.id.bsd_button);
         bsdButton.setOnClickListener(this);
         behavior = BottomSheetBehavior.from((View) view.getParent());
         return dialog;

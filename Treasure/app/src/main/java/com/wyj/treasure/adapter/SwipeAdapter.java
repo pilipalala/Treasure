@@ -87,9 +87,9 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.MyViewHolder
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            btn_Delete = (TextView) itemView.findViewById(R.id.tv_delete);
-            textView = (TextView) itemView.findViewById(R.id.text);
-            layout_content = (ViewGroup) itemView.findViewById(R.id.layout_content);
+            btn_Delete = itemView.findViewById(R.id.tv_delete);
+            textView = itemView.findViewById(R.id.text);
+            layout_content = itemView.findViewById(R.id.layout_content);
 
             ((SlidingButtonView) itemView).setSlidingButtonListener(SwipeAdapter.this);
         }

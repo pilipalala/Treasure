@@ -37,8 +37,8 @@ public class SlidingCardLayout extends FrameLayout {
     public SlidingCardLayout(@NonNull Context context, @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         LayoutInflater.from(context).inflate(R.layout.widget_card, this);
-        RecyclerView list = (RecyclerView) findViewById(R.id.list);
-        TextView hrader = (TextView) findViewById(R.id.header);
+        RecyclerView list = findViewById(R.id.list);
+        TextView hrader = findViewById(R.id.header);
         SimpleAdapter adapter = new SimpleAdapter(list);
         list.setAdapter(adapter);
         list.setLayoutManager(new LinearLayoutManager(getContext()));

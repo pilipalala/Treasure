@@ -47,8 +47,8 @@ public class SlidingCardView extends FrameLayout {
 
     private void init(final Context context, AttributeSet attrs, int defStyleAttr) {
         LayoutInflater.from(context).inflate(R.layout.widget_card, this);
-        TextView textView = (TextView) findViewById(R.id.header);
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
+        TextView textView = findViewById(R.id.header);
+        RecyclerView recyclerView = findViewById(R.id.list);
 
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.SlidingCardView, defStyleAttr, 0);
         int color = array.getColor(R.styleable.SlidingCardView_card_color, Color.GREEN);

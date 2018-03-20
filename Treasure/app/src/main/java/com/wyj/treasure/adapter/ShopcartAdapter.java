@@ -482,7 +482,7 @@ public class ShopcartAdapter extends BaseExpandableListAdapter {
         final AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.setView(alertDialogView);
         count = goodinfo.getCount();
-       final EditText editText = (EditText) alertDialogView.findViewById(R.id.et_num);
+       final EditText editText = alertDialogView.findViewById(R.id.et_num);
         editText.setText(""+goodinfo.getCount());//设置dialog的数量初始值
         //自动弹出软键盘
         alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
@@ -492,10 +492,10 @@ public class ShopcartAdapter extends BaseExpandableListAdapter {
                 imm.toggleSoftInput(0, InputMethodManager.HIDE_IMPLICIT_ONLY);
             }
         });
-        final Button btadd= (Button) alertDialogView.findViewById(R.id.bt_add);
-        final Button btreduce= (Button) alertDialogView.findViewById(R.id.bt_reduce);
-        final TextView cancle= (TextView) alertDialogView.findViewById(R.id.tv_cancle);
-        final TextView sure= (TextView) alertDialogView.findViewById(R.id.tv_sure);
+        final Button btadd= alertDialogView.findViewById(R.id.bt_add);
+        final Button btreduce= alertDialogView.findViewById(R.id.bt_reduce);
+        final TextView cancle= alertDialogView.findViewById(R.id.tv_cancle);
+        final TextView sure= alertDialogView.findViewById(R.id.tv_sure);
         cancle.setOnClickListener(new OnClickListener() { //取消按钮
             @Override
             public void onClick(View v) {

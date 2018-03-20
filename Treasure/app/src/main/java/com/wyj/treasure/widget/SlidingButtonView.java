@@ -46,7 +46,7 @@ public class SlidingButtonView extends HorizontalScrollView {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
         if(!once){
-            mTextView_Delete = (TextView) findViewById(R.id.tv_delete);
+            mTextView_Delete = findViewById(R.id.tv_delete);
             once = true;
         }
 

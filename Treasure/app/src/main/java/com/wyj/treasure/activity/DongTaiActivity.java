@@ -76,9 +76,9 @@ public class DongTaiActivity extends BaseActivity {
     private void saveViewInstance(View inflatView) {
         ViewHolder vh = new ViewHolder();
         vh.setId(mark);
-        TextView tv_target = (TextView) inflatView.findViewById(R.id.et_target);
-        EditText et_work = (EditText) inflatView.findViewById(R.id.et_work);
-        EditText et_count = (EditText) inflatView.findViewById(R.id.et_count);
+        TextView tv_target = inflatView.findViewById(R.id.et_target);
+        EditText et_work = inflatView.findViewById(R.id.et_work);
+        EditText et_count = inflatView.findViewById(R.id.et_count);
         // 注册监听事件
         tv_target.setOnClickListener(targetListener);
         et_work.setOnClickListener(workListener);

@@ -1,8 +1,6 @@
 package com.wyj.materialdesign;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
@@ -15,12 +13,13 @@ import com.wyj.materialdesign.recyclerview.StyleActivity;
 import com.wyj.materialdesign.recyclerview.XiTuActivity;
 import com.wyj.materialdesign.toolbar.TabLayoutMainActivity;
 import com.wyj.treasure.R;
+import com.wyj.treasure.activity.BaseActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MaterialDesignActivity extends AppCompatActivity {
+public class MaterialDesignActivity extends BaseActivity {
 
     @BindView(R.id.tv_title)
     TextView tvTitle;
@@ -28,10 +27,14 @@ public class MaterialDesignActivity extends AppCompatActivity {
     Toolbar toolbar;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void initView() {
         setContentView(R.layout.activity_material_design);
         ButterKnife.bind(this);
+    }
+
+    @Override
+    protected void initData() {
+
     }
 
     @OnClick({R.id.btn_drawerlayout, R.id.btn_bottomsheet,

@@ -9,11 +9,7 @@ package com.wyj.treasure.mvp.model;
 public class LoginModel implements IMode {
     public boolean login(String username, String pwd) {
         boolean isLogin = false;
-        if ("wyj".equals(username) && "123".equals(pwd)) {
-            isLogin = true;
-        } else {
-            isLogin = false;
-        }
+        isLogin = "wyj".equals(username) && "123".equals(pwd);
         return isLogin;
     }
 }

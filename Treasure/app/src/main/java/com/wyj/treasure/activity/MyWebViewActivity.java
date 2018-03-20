@@ -51,7 +51,7 @@ public class MyWebViewActivity extends BaseActivity implements MyWebChomeClient.
 
         requestPermissionsAndroidM();
 
-        mWebView = (WebView) findViewById(R.id.webview);
+        mWebView = findViewById(R.id.webview);
     }
 
     @Override

@@ -65,7 +65,7 @@ public class StaggeredGridOtherAdapter extends RecyclerView.Adapter<StaggeredGri
 
         public ViewHolder(View itemView) {
             super(itemView);
-            ivImage = (ImageView) itemView.findViewById(R.id.ivImage);
+            ivImage = itemView.findViewById(R.id.ivImage);
         }
 
     }

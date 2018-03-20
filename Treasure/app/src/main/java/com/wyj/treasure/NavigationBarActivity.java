@@ -19,7 +19,7 @@ public class NavigationBarActivity extends BaseActivity {
     protected void initData() {
 
 
-        DefaultNavigationBar builder = new DefaultNavigationBar.Builder(this, (ViewGroup) findViewById(R.id.view_group))
+        DefaultNavigationBar builder = new DefaultNavigationBar.Builder(this, findViewById(R.id.view_group))
                 .setTitle("标题")
                 .setRightTitle("右边")
                 .setRightClickListener(new View.OnClickListener() {

@@ -60,7 +60,7 @@ public class XiTuFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_my_item, null);
-        myRecyclerView = (RecyclerView) view.findViewById(R.id.myRecyclerView);
+        myRecyclerView = view.findViewById(R.id.myRecyclerView);
         return view;
 
     }

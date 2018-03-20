@@ -15,6 +15,6 @@ import java.lang.annotation.Target;
 /*什么时候检测*/
 @Retention(RetentionPolicy.RUNTIME)
 public @interface PermissionFail {
-    public int requestCode();//请求码
+    int requestCode();//请求码
 
 }

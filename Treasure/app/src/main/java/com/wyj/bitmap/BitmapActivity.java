@@ -4,7 +4,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
-import android.os.Environment;
 
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.BaseActivity;
@@ -23,7 +22,8 @@ public class BitmapActivity extends BaseActivity {
     protected void initView() {
         setContentView(R.layout.activity_bitmap);
 
-        sdFile = Environment.getExternalStorageDirectory();
+        sdFile = getExternalCacheDir();
+
         imageFile = new File(sdFile, "image.jpg");
     }
 

@@ -59,9 +59,9 @@ public abstract class BaseActivity extends AppCompatActivity {
             getWindow().setSharedElementReturnTransition(explode);
         }
         ActivityCollector.addActivity(this);
-        try {
             initView();
             initData();
+        try {
         } catch (Exception e) {
             ToastUtil.show("出现异常");
             LogUtil.e(e.toString());

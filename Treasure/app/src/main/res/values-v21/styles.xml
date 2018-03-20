@@ -5,7 +5,6 @@
         <!-- 允许使用transitions -->
         <item name="android:windowContentTransitions">true</item>
 
-
         <!--设置进入动画      通过分解方式进入-->
         <item name="android:windowEnterTransition">@transition/explode</item>
         <!--设置退出动画      通过分解方式退出-->
@@ -13,7 +12,59 @@
 
         <item name="android:windowReenterTransition">@transition/explode</item>
         <item name="android:windowReturnTransition">@transition/explode</item>
+    </style>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--Toolbar背景颜色-->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <!--通知栏颜色-->
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <!--RadioButton EditText光标颜色 -->
+        <item name="colorAccent">@color/colorAccent</item>
 
-
+    </style>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <!--背景透明，不设滑动关闭时背景就是黑的。-->
+        <item name="android:windowIsTranslucent">true</item>
+        <!--Activity右滑进出的动画，觉得这个不好看随便换成自己的-->
+        <!--<item name="android:windowAnimationStyle">@style/SlideRightAnimation</item>-->
+    </style>
+    <style name="ImageTranslucentTheme" parent="AppTheme.NoActionBar">
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <!--Android 5.x开始需要把颜色设置透明，否则导航栏会呈现系统默认的浅灰色-->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+    <style name="transparentText" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">#00000000</item>
+    </style>
+    <!-- Toolbar菜单设置-->
+    <style name="ToolbarPopupTheme" parent="@style/ThemeOverlay.AppCompat.Dark">
+        <!--新增一个item，用于控制menu-->
+        <item name="actionOverflowMenuStyle">@style/OverflowMenuStyle</item>
+        <!--Toolbar 菜单样式 菜单背景颜色-->
+        <item name="android:colorBackground">@color/colorPrimary</item>
+    </style>
+    <!--修改toolbar弹出菜单的位置-->
+    <style name="OverflowMenuStyle" parent="Widget.AppCompat.Light.PopupMenu.Overflow">
+        <item name="overlapAnchor">false</item>
+        <!--把该属性改为false即可使menu位置位于toolbar之下-->
+    </style>
+    <!-- Toolbar主题设置-->
+    <style name="ToolBarTheme" parent="@style/ThemeOverlay.AppCompat.Light">
+        <!-- 更换Toolbar OVerFlow menu icon -->
+        <!--<item name="actionOverflowButtonStyle">@style/ActionButton.Overflow.More</item>-->
+        <!--对应的就是右上角三个圆点的颜色-->
+        <item name="android:textColorSecondary">#FFFFFF</item>
+        <!--Toolbar 标题文字颜色-->
+        <item name="android:textColorPrimary">@color/white</item>
+        <!-- 设置 toolbar 溢出菜单和自定义文字的颜色 -->
+        <item name="android:textColor">@color/recoveryColorPrimaryDark</item>
+        <!-- 设置toolbar 菜单的字体大小和溢出菜单文字大小-->
+        <item name="android:textSize">14sp</item>
+        <!-- 设置 toobar上菜单文字的颜色 -->
+        <item name="android:actionMenuTextColor">@color/white</item>
     </style>
 </resources>

@@ -94,7 +94,7 @@ public class IncludeMergeViewStubActivity extends BaseActivity {
                 // 所以使用try catch ,当此处发现exception 的时候，在catch中使用setVisibility()重新显示
                 try {
                     View vsContent = viewStub.inflate();
-                    hintText = (TextView) vsContent.findViewById(R.id.tv_vsContent);
+                    hintText = vsContent.findViewById(R.id.tv_vsContent);
                 } catch (Exception e) {
                     viewStub.setVisibility(View.VISIBLE);
                 } finally {
@@ -102,8 +102,8 @@ public class IncludeMergeViewStubActivity extends BaseActivity {
                 }
                 break;
             case R.id.btn_vs_changeHint:
-                LinearLayout vsLayout = (LinearLayout) findViewById(R.id.viewStub_new);
-                TextView textView = (TextView) vsLayout.findViewById(R.id.tv_vsContent);
+                LinearLayout vsLayout = findViewById(R.id.viewStub_new);
+                TextView textView = vsLayout.findViewById(R.id.tv_vsContent);
                 textView.setText("网络异常，无法刷新，请检查网络");
                 break;
             case R.id.btn_vs_hideView:

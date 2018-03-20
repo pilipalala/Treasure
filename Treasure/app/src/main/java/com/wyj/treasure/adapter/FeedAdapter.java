@@ -70,9 +70,9 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedHolder> {
 
         public FeedHolder(View itemView) {
             super(itemView);
-            mIvAvatar = (ImageView) itemView.findViewById(R.id.iv_avatar);
-            mIvContent = (ImageView) itemView.findViewById(R.id.iv_content);
-            mTvNickname = (TextView) itemView.findViewById(R.id.tv_nickname);
+            mIvAvatar = itemView.findViewById(R.id.iv_avatar);
+            mIvContent = itemView.findViewById(R.id.iv_content);
+            mTvNickname = itemView.findViewById(R.id.tv_nickname);
         }
     }
 }

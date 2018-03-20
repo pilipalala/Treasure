@@ -13,16 +13,16 @@ import java.util.Map;
 
 public interface EngineCallBack {
     //开始执行，执行之前会回调的方法
-    public void onPreExecute(Context context, Map<String, Object> params);
+    void onPreExecute(Context context, Map<String, Object> params);
 
     //错误回调
-    public void onError(Exception e);
+    void onError(Exception e);
 
     //成功回调
-    public void onSuccess(String result);
+    void onSuccess(String result);
 
     //默认回调
-    public final EngineCallBack ENGINE_CALL_BACK = new EngineCallBack() {
+    EngineCallBack ENGINE_CALL_BACK = new EngineCallBack() {
         @Override
         public void onPreExecute(Context context, Map<String, Object> params) {
 

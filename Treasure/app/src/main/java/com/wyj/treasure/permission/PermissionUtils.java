@@ -74,7 +74,7 @@ public class PermissionUtils {
          * */
         try {
             method.setAccessible(true);//允许执行私有方法
-            method.invoke(reflectObject, new Object[]{});
+            method.invoke(reflectObject);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {

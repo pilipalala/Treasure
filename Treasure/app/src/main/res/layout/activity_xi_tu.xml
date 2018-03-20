@@ -24,13 +24,14 @@
             app:expandedTitleMarginStart="48dp"
             app:expandedTitleTextAppearance="@style/transparentText"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
+            <!--@+id/head_layout 一定要为 match_parent-->
             <LinearLayout
                 android:id="@+id/head_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
                 android:orientation="vertical"
+                android:visibility="visible"
                 app:layout_collapseMode="parallax"
                 app:layout_collapseParallaxMultiplier="0.7">
 
@@ -38,7 +39,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_40"
-                    android:padding="@dimen/sp_20">
+                    android:padding="@dimen/dp_20">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -86,7 +87,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/sp_20">
+                    android:padding="@dimen/dp_20">
 
 
                     <LinearLayout

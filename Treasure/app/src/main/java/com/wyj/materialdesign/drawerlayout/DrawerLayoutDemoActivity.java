@@ -30,11 +30,11 @@ public class DrawerLayoutDemoActivity extends AppCompatActivity
         setContentView(R.layout.activity_drawer_layout_demo);
 
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,7 +43,7 @@ public class DrawerLayoutDemoActivity extends AppCompatActivity
             }
         });
         //DrawerLayout监听器
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.setScrimColor(Color.TRANSPARENT);//去除左右抽屉划出后内容显示页背景的灰色
         int openDrawerContentDescRes = R.string.navigation_drawer_open;  //菜单显示时的中文描述
         int closeDrawerContentDescRes = R.string.navigation_drawer_close; //菜单关闭时的中文描述
@@ -54,9 +54,9 @@ public class DrawerLayoutDemoActivity extends AppCompatActivity
         //设置显示三横杠
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
-        ImageView imageView = (ImageView) headerView.findViewById(R.id.imageView);
+        ImageView imageView = headerView.findViewById(R.id.imageView);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,7 +77,7 @@ public class DrawerLayoutDemoActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -135,7 +135,7 @@ public class DrawerLayoutDemoActivity extends AppCompatActivity
             Toast.makeText(this, "Send", Toast.LENGTH_SHORT).show();
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

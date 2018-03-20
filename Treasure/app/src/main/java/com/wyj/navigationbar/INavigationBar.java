@@ -9,8 +9,8 @@ package com.wyj.navigationbar;
 
 public interface INavigationBar {
 
-    public int bindLayoutId();
+    int bindLayoutId();
 
     //绑定头部
-    public void applyView();
+    void applyView();
 }

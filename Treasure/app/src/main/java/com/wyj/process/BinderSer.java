@@ -8,7 +8,7 @@ import android.os.IBinder;
 
 public class BinderSer extends Service {
     private int count;
-    private IBinder  myBinder = new MyBinder();;
+    private IBinder  myBinder = new MyBinder();
     private boolean quit = false;
 
 

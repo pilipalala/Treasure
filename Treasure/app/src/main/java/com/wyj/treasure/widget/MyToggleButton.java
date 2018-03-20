@@ -116,12 +116,8 @@ public class MyToggleButton extends View implements View.OnClickListener {
                 break;
             case MotionEvent.ACTION_UP:
                 if (!isEnableClick) {
-                    if (slideLeft > slidLeftMax / 2) {
-                        //显示按钮开
-                        isOpen = true;
-                    } else {
-                        isOpen = false;
-                    }
+                    //显示按钮开
+                    isOpen = slideLeft > slidLeftMax / 2;
                     flushView();
                 }
                 break;

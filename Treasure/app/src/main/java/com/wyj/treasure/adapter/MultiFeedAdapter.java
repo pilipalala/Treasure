@@ -93,7 +93,7 @@ public class MultiFeedAdapter extends RecyclerView.Adapter {
 
         public TimeHolder(View itemView) {
             super(itemView);
-            mTvTime = (TextView) itemView.findViewById(R.id.tv_time);
+            mTvTime = itemView.findViewById(R.id.tv_time);
         }
     }
 

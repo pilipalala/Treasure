@@ -61,7 +61,7 @@ public class HeadimageScaleActivity extends BaseActivity {
         metric = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metric);
         // 设置图片初始大小 这里我设为满屏的16:9
-        ViewGroup.LayoutParams lp = (ViewGroup.LayoutParams) image.getLayoutParams();
+        ViewGroup.LayoutParams lp = image.getLayoutParams();
         lp.width = metric.widthPixels;
         lp.height = metric.widthPixels * 9 / 16;
         image.setLayoutParams(lp);
@@ -84,7 +84,7 @@ public class HeadimageScaleActivity extends BaseActivity {
         scrollView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                ViewGroup.LayoutParams lp = (ViewGroup.LayoutParams) image
+                ViewGroup.LayoutParams lp = image
                         .getLayoutParams();
                 switch (motionEvent.getAction()) {
                     case MotionEvent.ACTION_UP:
@@ -118,7 +118,7 @@ public class HeadimageScaleActivity extends BaseActivity {
 
     // 回弹动画 (使用了属性动画)
     public void replyImage() {
-        final ViewGroup.LayoutParams lp = (ViewGroup.LayoutParams) image
+        final ViewGroup.LayoutParams lp = image
                 .getLayoutParams();
         final float w = image.getLayoutParams().width;// 图片当前宽度
         final float h = image.getLayoutParams().height;// 图片当前高度
