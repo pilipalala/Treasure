@@ -1,5 +1,9 @@
 package com.wyj.treasure.rxjava;
 
+import android.os.Bundle;
+
+import com.wyj.treasure.R;
+import com.wyj.treasure.activity.BaseActivity;
 import com.wyj.treasure.rxjava.entity.LoginRequest;
 import com.wyj.treasure.rxjava.entity.LoginResponse;
 import com.wyj.treasure.rxjava.entity.RegisterRequest;
@@ -9,8 +13,6 @@ import com.wyj.treasure.rxjava.entity.UserBaseInfoResponse;
 import com.wyj.treasure.rxjava.entity.UserExtraInfoRequest;
 import com.wyj.treasure.rxjava.entity.UserExtraInfoResponse;
 import com.wyj.treasure.rxjava.entity.UserInfo;
-import com.wyj.treasure.R;
-import com.wyj.treasure.activity.BaseActivity;
 import com.wyj.treasure.utils.LogUtil;
 import com.wyj.treasure.utils.ToastUtil;
 
@@ -239,6 +241,10 @@ public class RxJavaActivity extends BaseActivity {
                 });
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
 
     /**
      * 通过Map, 可以将上游发来的事件转换为任意的类型, 可以是一个Object, 也可以是一个集合

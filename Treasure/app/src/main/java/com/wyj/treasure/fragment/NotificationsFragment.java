@@ -8,6 +8,7 @@ import com.wyj.handler.NewHandlerThreadActivity;
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.NotificationStyleActivity;
 import com.wyj.treasure.activity.RemoteViewWidgetActivity;
+import com.wyj.treasure.activity.VolumeAdjustmentActivity;
 import com.wyj.treasure.activity.itemtouch.RecyclerViewItemTouchActivity;
 import com.wyj.treasure.mode.ItemInfo;
 import com.wyj.treasure.notification.NotificationEffectActivity;
@@ -27,6 +28,7 @@ public class NotificationsFragment extends BaseCardViewFragment {
         mData.add(new ItemInfo("CustomHandler", CustomHandlerActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("NewHandlerThreadActivity", NewHandlerThreadActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("蓝牙", BluetoothActivity.class, R.mipmap.ic_launcher));
+        mData.add(new ItemInfo("调节音量", VolumeAdjustmentActivity.class, R.mipmap.ic_launcher));
 
         notifyDataChanged();
     }

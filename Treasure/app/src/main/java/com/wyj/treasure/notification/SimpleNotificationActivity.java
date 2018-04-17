@@ -126,7 +126,6 @@ public class SimpleNotificationActivity extends BaseActivity {
      * 设置FLAG_NO_CLEAR
      * 该 flag 表示该通知不能被状态栏的清除按钮给清除掉,也不能被手动清除,但能通过 cancel() 方法清除
      * Notification.flags属性可以通过 |= 运算叠加效果
-     *
      */
     private void sendFlagNoClearNotification() {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
@@ -180,6 +179,7 @@ public class SimpleNotificationActivity extends BaseActivity {
         notification.flags |= Notification.FLAG_ONGOING_EVENT;
         notifyManager.notify(DEFAULT_NOTIFICATION_ID, notification);
     }
+
     /**
      * 发送一个简单的通知,只带有小图标、标题、内容
      */
@@ -190,6 +190,7 @@ public class SimpleNotificationActivity extends BaseActivity {
                 .setContentText("只有小图标、标题、内容");
         notifyManager.notify(1, builder.build());
     }
+
     /**
      * 发送一个具有大图标的简单通知
      * 当setSmallIcon与setLargeIcon同时存在时,smallIcon显示在通知的右下角,largeIcon显示在左侧
@@ -204,7 +205,7 @@ public class SimpleNotificationActivity extends BaseActivity {
         notifyManager.notify(2, builder.build());
     }
 
-    @OnClick({R.id.btn_send_simplest_notification, R.id.btn_send_simplest_notification_with_large_icon, R.id.btn_send_simplest_notification_with_action,R.id.btn_remove_all_notification, R.id.btn_send_notification, R.id.btn_remove_notification, R.id.btn_send_notification_with_tag, R.id.btn_remove_notification_with_tag, R.id.btn_send_ten_notification, R.id.btn_send_flag_no_clear_notification, R.id.btn_send_flag_ongoing_event_notification, R.id.btn_send_flag_auto_cancecl_notification})
+    @OnClick({R.id.btn_send_simplest_notification, R.id.btn_send_simplest_notification_with_large_icon, R.id.btn_send_simplest_notification_with_action, R.id.btn_remove_all_notification, R.id.btn_send_notification, R.id.btn_remove_notification, R.id.btn_send_notification_with_tag, R.id.btn_remove_notification_with_tag, R.id.btn_send_ten_notification, R.id.btn_send_flag_no_clear_notification, R.id.btn_send_flag_ongoing_event_notification, R.id.btn_send_flag_auto_cancecl_notification})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_remove_all_notification:
@@ -257,6 +258,7 @@ public class SimpleNotificationActivity extends BaseActivity {
                 break;
         }
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

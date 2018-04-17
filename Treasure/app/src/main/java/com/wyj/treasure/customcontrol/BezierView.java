@@ -74,7 +74,7 @@ public class BezierView extends View {
 //    public boolean onTouchEvent(MotionEvent event) {
 //        switch (event.getAction()) {
 //            case MotionEvent.ACTION_DOWN:
-//                mPath.moveTo(event.getX(), event.getY());
+//                 mPath.moveTo(event.getX(), event.getY());
 //                return true;
 //            case MotionEvent.ACTION_MOVE:
 //                mPath.lineTo(event.getX(), event.getY());
