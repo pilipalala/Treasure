@@ -14,11 +14,11 @@ import com.wyj.treasure.R;
 
 /**
  * @author wangyujie
- *         on 2017/11/30.15:51
- *         TODO 颜色跟踪的textview
- *         <p>
- *         <p>
- *         知识点 canvas 的 掌握
+ * on 2017/11/30.15:51
+ * TODO 颜色跟踪的textview
+ * <p>
+ * <p>
+ * 知识点 canvas 的 掌握
  */
 
 public class ColorTrackTextView extends android.support.v7.widget.AppCompatTextView {
@@ -192,7 +192,24 @@ public class ColorTrackTextView extends android.support.v7.widget.AppCompatTextV
     }
 
     /**
-     * 根据中心点 获取 baseLine
+     * <img width="570" height="220" src="http://upload-images.jianshu.io/upload_images/5017748-f2495c62aeaef2b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="">
+     * <p>
+     * 假设我们是在画布Canvas的顶部绘制一行文字，规定一行文字的高度是y，
+     * 文字区域的高度是Height（TOP和BOTTOM之间，TOP到0和BOTTOM到y的距离相等，这样文字才看起来是居中）。
+     * 因此，0到y和TOP到BOTTOM的中线是重合的，y轴坐标都是y/2。
+     * <p>
+     * 我们要绘制一行文字时，设计必然会告诉我们0到y的距离，所以中线的位置也是固定的y/2，
+     * 那么我们设置了Paint的文字大小后，Ascent和Descent又能直接得到，就可以算出中线到基线的距离，公式如下：
+     * <p>
+     * 基线到中线的距离=(Descent+Ascent)/2-Descent
+     * <p>
+     * 注意，实际获取到的Ascent是负数。公式推导过程如下：
+     * 中线到BOTTOM的距离是(Descent+Ascent)/2，这个距离又等于Descent+中线到基线的距离，
+     * 即(Descent+Ascent)/2=基线到中线的距离+Descent。
+     * <p>
+     * 有了基线到中线的距离，我们只要知道任何一行文字中线的位置，就可以马上得到基线的位置，
+     * 从而得到Canvas的drawText方法中参数y的值。
+     *
      * @param paint
      * @return
      */

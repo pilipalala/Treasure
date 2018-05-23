@@ -247,11 +247,13 @@
             android:theme="@style/ImageTranslucentTheme" />
         <activity android:name="com.wyj.materialdesign.recyclerview.RecyclerRefreshActivity" />
         <activity android:name="com.wyj.materialdesign.recyclerview.StyleActivity" />
-        <activity android:name="com.wyj.materialdesign.recyclerview.XiTuActivity"
-            android:theme="@style/ImageTranslucentTheme"/>
+        <activity
+            android:name="com.wyj.materialdesign.recyclerview.XiTuActivity"
+            android:theme="@style/ImageTranslucentTheme" />
         <activity android:name="com.wyj.materialdesign.toolbar.ToolBarActivity" />
         <activity android:name="com.wyj.materialdesign.toolbar.TabLayoutMainActivity" />
-        <activity android:name="com.wyj.materialdesign.MaterialDesignActivity"></activity>
+        <activity android:name="com.wyj.materialdesign.MaterialDesignActivity" />
+        <activity android:name=".activity.VolumeAdjustmentActivity"></activity>
     </application>
 
 </manifest>
