@@ -128,8 +128,8 @@
         <activity android:name=".activity.GridLayoutManagerActivity" />
         <activity android:name=".activity.ReflectActivity" />
         <activity android:name=".activity.RemoteViewWidgetActivity" />
-        <activity android:name="com.wyj.SkateMenu.SwipeDeleteActivity" />
-        <activity android:name="com.wyj.SkateMenu.SkateMenuActivity" />
+        <activity android:name="com.wyj.skatemenu.SwipeDeleteActivity" />
+        <activity android:name="com.wyj.skatemenu.SkateMenuActivity" />
         <activity android:name=".activity.PullUpToLoadMoreActivity" />
         <activity android:name=".activity.GridViewChoiceActivity" />
         <activity android:name=".activity.SuspensionBarActivity" />

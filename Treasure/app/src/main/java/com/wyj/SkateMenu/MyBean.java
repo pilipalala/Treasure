@@ -1,4 +1,4 @@
-package com.wyj.SkateMenu;
+package com.wyj.skatemenu;
 
 /**
  * Created by wangyujie

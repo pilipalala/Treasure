@@ -1,4 +1,4 @@
-package com.wyj.SkateMenu;
+package com.wyj.skatemenu;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

@@ -1,4 +1,4 @@
-package com.wyj.SkateMenu;
+package com.wyj.skatemenu;
 
 import android.content.Intent;
 import android.support.v7.widget.DefaultItemAnimator;

@@ -1,6 +1,6 @@
 package com.wyj.treasure.fragment;
 
-import com.wyj.SkateMenu.SwipeDeleteActivity;
+import com.wyj.skatemenu.SwipeDeleteActivity;
 import com.wyj.bannerviewpager.BannerViewPagerActivity;
 import com.wyj.colortracktextview.ColorTrackActivity;
 import com.wyj.countdown.CountDownActivity;
