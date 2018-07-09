@@ -253,7 +253,8 @@
         <activity android:name="com.wyj.materialdesign.toolbar.ToolBarActivity" />
         <activity android:name="com.wyj.materialdesign.toolbar.TabLayoutMainActivity" />
         <activity android:name="com.wyj.materialdesign.MaterialDesignActivity" />
-        <activity android:name=".activity.VolumeAdjustmentActivity"></activity>
+        <activity android:name=".activity.VolumeAdjustmentActivity" />
+        <activity android:name="com.wyj.waveview.VoiceWaveActivity"></activity>
     </application>
 
 </manifest>

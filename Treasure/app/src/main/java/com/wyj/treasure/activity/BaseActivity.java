@@ -19,6 +19,8 @@ import com.wyj.treasure.utils.ActivityCollector;
 import com.wyj.treasure.utils.LogUtil;
 import com.wyj.treasure.utils.ToastUtil;
 
+import butterknife.ButterKnife;
+
 /**
  * Created by wangyujie
  * Date 2017/7/31
@@ -59,8 +61,9 @@ public abstract class BaseActivity extends AppCompatActivity {
             getWindow().setSharedElementReturnTransition(explode);
         }
         ActivityCollector.addActivity(this);
-            initView();
-            initData();
+        initView();
+        ButterKnife.bind(this);
+        initData();
         try {
         } catch (Exception e) {
             ToastUtil.show("出现异常");

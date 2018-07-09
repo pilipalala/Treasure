@@ -1,12 +1,12 @@
 package com.wyj.treasure.fragment;
 
-import com.wyj.skatemenu.SwipeDeleteActivity;
 import com.wyj.bannerviewpager.BannerViewPagerActivity;
 import com.wyj.colortracktextview.ColorTrackActivity;
 import com.wyj.countdown.CountDownActivity;
 import com.wyj.handler.AsyncTaskActivity;
 import com.wyj.index.QuickIndexActivity;
 import com.wyj.materialdesign.MaterialDesignActivity;
+import com.wyj.skatemenu.SwipeDeleteActivity;
 import com.wyj.touch.TouchDemoActivity;
 import com.wyj.treasure.NavigationBarActivity;
 import com.wyj.treasure.PxDpActivity;
@@ -26,6 +26,7 @@ import com.wyj.treasure.mode.ItemInfo;
 import com.wyj.treasure.mvp.UserLoginActivity;
 import com.wyj.treasure.popup.PopupWindowActivity;
 import com.wyj.treasure.rxjava.RxJavaActivity;
+import com.wyj.waveview.VoiceWaveActivity;
 import com.wyj.welcome.WelcomeActivity;
 
 public class DashboardFragment extends BaseCardViewFragment {
@@ -57,6 +58,7 @@ public class DashboardFragment extends BaseCardViewFragment {
         mData.add(new ItemInfo("快速索引", QuickIndexActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("PX和DIP", PxDpActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("Materialdesign", MaterialDesignActivity.class, R.mipmap.ic_launcher));
+        mData.add(new ItemInfo("VoiceWaveView", VoiceWaveActivity.class, R.mipmap.ic_launcher));
         notifyDataChanged();
     }
 }

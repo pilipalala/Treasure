@@ -439,4 +439,10 @@
         <item>@color/indigo</item>
     </array>
 
+    <color name="mms_voice_primary_end">#0582f4</color>
+    <color name="mms_voice_primary_start">#0582f4</color>
+    <color name="mms_voice_secondary_end">#0582f4</color>
+    <color name="mms_voice_secondary_start">#0582f4</color>
+    <color name="mms_voice_fill_bottom">#320582f4</color>
+    <color name="mms_voice_fill_top">#0a0582f4</color>
 </resources>
