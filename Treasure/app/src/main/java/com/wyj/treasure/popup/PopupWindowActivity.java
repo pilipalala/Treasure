@@ -25,9 +25,8 @@ public class PopupWindowActivity extends BaseActivity {
 
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_popup_window);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return R.layout.activity_popup_window;
     }
 
     @Override

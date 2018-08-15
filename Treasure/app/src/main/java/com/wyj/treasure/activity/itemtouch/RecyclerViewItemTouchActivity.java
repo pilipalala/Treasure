@@ -15,30 +15,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class RecyclerViewItemTouchActivity extends BaseActivity implements StartDragListener {
 
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
     private RecycleViewHandleAdapter adapter;
     private ItemTouchHelper itemTouchHelper;
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_recycler_view_item_handle);
-        ButterKnife.bind(this);
-
+    protected int initView() {
+        return R.layout.activity_recycler_view_item_handle;
     }
 
     @Override
     protected void initData() {
-        tvTitle.setText("拖拽排序效果");
-        toolbar.setNavigationOnClickListener(v -> finish());
+        setTitle("拖拽排序效果");
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new RecycleViewHandleAdapter(getData(), this);
         recyclerView.setAdapter(adapter);

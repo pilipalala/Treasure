@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -21,7 +20,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class DongTaiActivity extends BaseActivity {
@@ -34,10 +32,6 @@ public class DongTaiActivity extends BaseActivity {
     Button btSave;
     @BindView(R.id.ll_dongtai_main)
     LinearLayout llDongtaiMain;
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
     private ArrayList<ViewHolder> ls_vh;
     private LayoutInflater inflater;
     private View childView;
@@ -45,21 +39,13 @@ public class DongTaiActivity extends BaseActivity {
 
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_dong_tai);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return R.layout.activity_dong_tai;
     }
 
     @Override
     protected void initData() {
-
-        tvTitle.setText("动态添加布局");
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        setTitle("动态添加布局");
         String data = getIntent().getStringExtra("data");
         String str = getIntent().getStringExtra("str");
         LogUtil.d("data--->" + data);

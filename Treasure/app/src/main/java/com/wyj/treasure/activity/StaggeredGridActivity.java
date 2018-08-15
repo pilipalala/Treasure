@@ -2,8 +2,6 @@ package com.wyj.treasure.activity;
 
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.support.v7.widget.Toolbar;
-import android.widget.TextView;
 
 import com.wyj.treasure.R;
 import com.wyj.treasure.adapter.StaggeredGridAdapter;
@@ -11,14 +9,9 @@ import com.wyj.treasure.adapter.StaggeredGridAdapter;
 import java.util.ArrayList;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class StaggeredGridActivity extends BaseActivity {
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
     @BindView(R.id.recycle)
     RecyclerView recycle;
     private StaggeredGridAdapter adapter;
@@ -84,21 +77,20 @@ public class StaggeredGridActivity extends BaseActivity {
             "http://img.my.csdn.net/uploads/201508/05/1438760420_7188.jpg",
             "http://img.my.csdn.net/uploads/201508/05/1438760419_4123.jpg",
     };
+
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_staggered_grid);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return R.layout.activity_staggered_grid;
     }
 
     @Override
     protected void initData() {
-        toolbar.setNavigationOnClickListener(v -> finish());
-        tvTitle.setText("瀑布流");
         recycle.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         adapter = new StaggeredGridAdapter();
         recycle.setAdapter(adapter);
         adapter.replaceAll(getData());
     }
+
     public ArrayList<String> getData() {
         ArrayList<String> list = new ArrayList<>();
         for (String url : imageUrls) {

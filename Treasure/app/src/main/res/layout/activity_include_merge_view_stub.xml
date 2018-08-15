@@ -8,10 +8,6 @@
     tools:context="com.wyj.treasure.activity.IncludeMergeViewStubActivity">
 
 
-    <include
-        android:id="@+id/title"
-        layout="@layout/title" />
-
     <LinearLayout
         android:id="@+id/merge"
         android:layout_width="match_parent"

@@ -28,26 +28,19 @@ import butterknife.OnClick;
  */
 public class SimpleNotificationActivity extends BaseActivity {
 
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
     private NotificationManager notifyManager;
     public static final int DEFAULT_NOTIFICATION_ID = 1;
     public static final String NOTIFICATION_TAG = "littlejie";
     private Bitmap mLargeIcon;
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_simple_notification);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return R.layout.activity_simple_notification;
     }
 
     @Override
     protected void initData() {
-        tvTitle.setText("使用通知栏");
-        toolbar.setNavigationOnClickListener(v -> finish());
-
+        setTitle("使用通知栏");
 
         /**1、首先需要一个 NotificationManager 来对通知进行管理，
          * 可以调用 Context 的  getSystemService()方法获取到。

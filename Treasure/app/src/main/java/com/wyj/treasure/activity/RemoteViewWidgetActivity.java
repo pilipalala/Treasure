@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import com.wyj.treasure.R;
 
-public class RemoteViewWidgetActivity extends AppCompatActivity {
+public class RemoteViewWidgetActivity extends BaseActivity {
 
     /**
      * 1、定义 小部件界面
@@ -24,8 +24,12 @@ public class RemoteViewWidgetActivity extends AppCompatActivity {
      * updatePeriodMillis定义小工具的自动更新周期，毫秒为单位，每隔一个周期，小工具的自动更新就会触发
      */
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_remote_view_widget);
+    protected int initView() {
+        return R.layout.activity_remote_view_widget;
+    }
+
+    @Override
+    protected void initData() {
+
     }
 }

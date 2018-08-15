@@ -16,8 +16,8 @@ import java.util.UUID;
 public class CustomHandlerActivity extends BaseActivity {
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_handler);
+    protected int initView() {
+        return R.layout.activity_handler;
     }
 
     @Override

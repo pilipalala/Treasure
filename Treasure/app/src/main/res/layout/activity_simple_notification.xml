@@ -7,7 +7,6 @@
     android:orientation="vertical"
     tools:context="com.wyj.treasure.notification.SimpleNotificationActivity">
 
-    <include layout="@layout/title" />
 
     <ScrollView
         android:layout_width="match_parent"

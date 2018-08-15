@@ -45,7 +45,6 @@ public class BaseListAdapter extends RecyclerView.Adapter<BaseListAdapter.ViewHo
     }
     public void setOnClickListener(OnClickListener listener) {
         this.listener = listener;
-
     }
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {

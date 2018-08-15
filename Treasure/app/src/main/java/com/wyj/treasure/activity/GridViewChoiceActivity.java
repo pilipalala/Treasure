@@ -12,7 +12,6 @@ import com.wyj.treasure.utils.ToastUtil;
 import java.util.ArrayList;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class GridViewChoiceActivity extends BaseActivity {
 
@@ -23,14 +22,12 @@ public class GridViewChoiceActivity extends BaseActivity {
     private MultipleChoiceAdapter choiceAdapter;
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_grid_view_choice);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return R.layout.activity_grid_view_choice;
     }
 
     @Override
     protected void initData() {
-
         timeList = new ArrayList<>();
         times = getResources().getStringArray(R.array.time);
         for (int i = 0; i < times.length; i++) {

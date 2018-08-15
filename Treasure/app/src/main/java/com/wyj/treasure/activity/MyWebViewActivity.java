@@ -33,7 +33,7 @@ import java.util.List;
 public class MyWebViewActivity extends BaseActivity implements MyWebChomeClient.OpenFileChooserCallBack {
     private static final String TAG = "MainActivity";
     private WebView mWebView;
-    private String url="file:///android_asset/uploadImgForH5.html";
+    private String url = "file:///android_asset/uploadImgForH5.html";
     private static final int REQUEST_CODE_PICK_IMAGE = 0;
     private static final int REQUEST_CODE_IMAGE_CAPTURE = 1;
 
@@ -46,16 +46,16 @@ public class MyWebViewActivity extends BaseActivity implements MyWebChomeClient.
 
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_my_web_view);
+    protected int initView() {
+        return R.layout.activity_my_web_view;
 
-        requestPermissionsAndroidM();
-
-        mWebView = findViewById(R.id.webview);
     }
 
     @Override
     protected void initData() {
+        requestPermissionsAndroidM();
+
+        mWebView = findViewById(R.id.webview);
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setAllowFileAccess(true);

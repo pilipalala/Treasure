@@ -19,7 +19,6 @@ import com.wyj.treasure.activity.BaseActivity;
 import java.util.regex.Pattern;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ToolBarActivity extends BaseActivity implements Toolbar.OnMenuItemClickListener, View.OnClickListener, TextWatcher {
@@ -50,9 +49,8 @@ public class ToolBarActivity extends BaseActivity implements Toolbar.OnMenuItemC
 
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_tool_bar);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return R.layout.activity_tool_bar;
     }
 
     @Override

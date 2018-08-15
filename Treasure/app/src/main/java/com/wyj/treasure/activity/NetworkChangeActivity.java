@@ -3,38 +3,34 @@ package com.wyj.treasure.activity;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.wyj.treasure.R;
+import com.wyj.treasure.mode.ItemInfo;
 import com.wyj.treasure.receiver.NetworkChangeReceiver;
-import com.wyj.treasure.utils.ToastUtil;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class NetworkChangeActivity extends BaseActivity {
-    @BindView(R.id.btn_sendBroadcast)
-    Button btnSendBroadcast;
-    @BindView(R.id.btn_sendOrderedBroadcast)
-    Button btnSendOrderedBroadcast;
-    @BindView(R.id.btn_localBroadcast)
-    Button btnLocalBroadcast;
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
     private IntentFilter intentFilter;
     private NetworkChangeReceiver receiver;
 
+    @Override
+    protected List<ItemInfo> getListData() {
+        mData.add(new ItemInfo("发送自定义广播(标准)", MyReceiverActivity.class, 0));
+        mData.add(new ItemInfo("发送自定义广播(有序)", MyOrderlyBroadcastActivity.class, 0));
+        mData.add(new ItemInfo("发送本地广播", MyLocalBroadcastActivity.class, 0));
+        return super.getListData();
+    }
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_network_change);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return R.layout.activity_network_change;
     }
 
     /**
@@ -44,16 +40,7 @@ public class NetworkChangeActivity extends BaseActivity {
      */
     @Override
     protected void initData() {
-        tvTitle.setText("广播接收器");
-
-        tvTitle.setOnClickListener(v -> ToastUtil.show("广播接收器"));
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        setTitle("广播接收器");
         intentFilter = new IntentFilter();
         /*动态注册*/
         intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
@@ -67,28 +54,4 @@ public class NetworkChangeActivity extends BaseActivity {
         unregisterReceiver(receiver);
     }
 
-    @OnClick({R.id.btn_sendBroadcast, R.id.btn_sendOrderedBroadcast, R.id.btn_localBroadcast})
-    public void onViewClicked(View view) {
-        Intent intent = new Intent();
-        switch (view.getId()) {
-            case R.id.btn_sendBroadcast:
-                intent.setClass(this, MyReceiverActivity.class);
-                break;
-            case R.id.btn_sendOrderedBroadcast:
-                intent.setClass(this, MyOrderlyBroadcastActivity.class);
-                break;
-            case R.id.btn_localBroadcast:
-                intent.setClass(this, MyLocalBroadcastActivity.class);
-                break;
-        }
-        startActivity(intent);
-
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 }

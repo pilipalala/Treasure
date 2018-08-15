@@ -1,31 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_drawer_layout_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/title" />
-
-    <Button
-        android:id="@+id/drawer_layout_simple"
-        style="@style/default_button_style"
-        android:onClick="doclick"
-        android:text="基本DrawerLayout+NavigationView"
-        android:textAllCaps="false" />
-
-    <Button
-        android:id="@+id/drawer_layout_below"
-        style="@style/default_button_style"
-        android:onClick="doclick"
-        android:text="NavigationView在Toolbar下方"
-        android:textAllCaps="false" />
-
-    <Button
-        android:id="@+id/drawer_layout_layout"
-        style="@style/default_button_style"
-        android:onClick="doclick"
-        android:text="DrawerLayout+其他布局"
-        android:textAllCaps="false" />
 </LinearLayout>

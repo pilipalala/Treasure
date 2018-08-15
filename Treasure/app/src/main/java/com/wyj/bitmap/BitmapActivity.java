@@ -7,10 +7,12 @@ import android.graphics.Rect;
 
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.BaseActivity;
+import com.wyj.treasure.mode.ItemInfo;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.List;
 
 public class BitmapActivity extends BaseActivity {
 
@@ -19,16 +21,21 @@ public class BitmapActivity extends BaseActivity {
 
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_bitmap);
-
-        sdFile = getExternalCacheDir();
-
-        imageFile = new File(sdFile, "image.jpg");
+    protected int initView() {
+        return R.layout.activity_bitmap;
     }
 
     @Override
+    protected List<ItemInfo> getListData() {
+        return null;
+    }
+
+
+    @Override
     protected void initData() {
+        sdFile = getExternalCacheDir();
+
+        imageFile = new File(sdFile, "image.jpg");
 //        BitmapFactory.decodeResource()
 
 //        BitmapFactory.decodeStream()

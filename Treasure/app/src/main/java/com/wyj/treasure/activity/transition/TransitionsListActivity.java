@@ -31,14 +31,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class TransitionsListActivity extends BaseActivity {
 
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
     @BindView(R.id.list)
     RecyclerView list;
     @BindView(R.id.add_button)
@@ -57,25 +52,25 @@ public class TransitionsListActivity extends BaseActivity {
     private BeautyAdapter adapter;
     private boolean isAdd = true;
 
+    @Override
+    public boolean isStartAnimation() {
+        return false;
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
-    protected void initView() {
+    protected int initView() {
         getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setEnterTransition(new Explode().setDuration(1000));
         }
-        setContentView(R.layout.activity_transitions_list);
-        ButterKnife.bind(this);
+        return R.layout.activity_transitions_list;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void initData() {
-        tvTitle.setText("RecycleView 跳转activity 的过渡动画");
-        toolbar.setNavigationIcon(R.mipmap.icon_top_back);
-        toolbar.setNavigationOnClickListener(v -> finish());
-
+       setTitle("RecycleView 跳转activity 的过渡动画");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             addButton.setOutlineProvider(new ViewOutlineProvider() {
                 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)

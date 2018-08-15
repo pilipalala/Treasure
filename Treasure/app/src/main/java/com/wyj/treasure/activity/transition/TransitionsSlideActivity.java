@@ -21,7 +21,6 @@ import com.wyj.treasure.R;
 import com.wyj.treasure.activity.BaseActivity;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class TransitionsSlideActivity extends BaseActivity {
@@ -36,21 +35,20 @@ public class TransitionsSlideActivity extends BaseActivity {
     TextView blackBox;
     @BindView(R.id.rl_root)
     RelativeLayout rlRoot;
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_transitions_slide);
-        ButterKnife.bind(this);
+    public boolean isStartAnimation() {
+        return false;
+    }
+
+    @Override
+    protected int initView() {
+        return R.layout.activity_transitions_slide;
     }
 
     @Override
     protected void initData() {
-        tvTitle.setText("属性动画");
-        toolbar.setNavigationOnClickListener(v -> finish());
+        setTitle("属性动画");
 
     }
 
@@ -92,8 +90,11 @@ public class TransitionsSlideActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.red_box:
-                TransitionManager.beginDelayedTransition(rlRoot, new Fade());
-                toggleVisibility(redBox, greenBox, blueBox, blackBox);
+                Intent i = new Intent(this, TransitionsRedActivity.class);
+                View sharedView = redBox;
+                String transitionBlue = getString(R.string.square_red_name);
+                ActivityOptions transitionActivityOptions = ActivityOptions.makeSceneTransitionAnimation(this, sharedView, transitionBlue);
+                startActivity(i, transitionActivityOptions.toBundle());
                 break;
             case R.id.green_box:
                 TransitionManager.beginDelayedTransition(rlRoot, new Slide());
@@ -104,11 +105,8 @@ public class TransitionsSlideActivity extends BaseActivity {
                 toggleVisibility(redBox, greenBox, blueBox, blackBox);
                 break;
             case R.id.black_box:
-                Intent i = new Intent(this, TransitionsRedActivity.class);
-                View sharedView = redBox;
-                String transitionBlue = getString(R.string.square_red_name);
-                ActivityOptions transitionActivityOptions = ActivityOptions.makeSceneTransitionAnimation(this, sharedView, transitionBlue);
-                startActivity(i, transitionActivityOptions.toBundle());
+                TransitionManager.beginDelayedTransition(rlRoot, new Fade());
+                toggleVisibility(redBox, greenBox, blueBox, blackBox);
                 break;
             case R.id.rl_root:
                 Pair red = new Pair<>(redBox, ViewCompat.getTransitionName(redBox));

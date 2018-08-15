@@ -14,7 +14,6 @@ import java.util.Collections;
 import java.util.Comparator;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class QuickIndexActivity extends BaseActivity {
 
@@ -33,34 +32,24 @@ public class QuickIndexActivity extends BaseActivity {
 
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_quick_index);
-        ButterKnife.bind(this);
-        indexAdapter = new IndexAdapter(this);
-        initData();
-        lvMain.setAdapter(indexAdapter);
-        indexAdapter.setData(persons);
-
-        ivWords.setOnIndexChangeListener(new IndexView.OnIndexChangeListener() {
-            @Override
-            public void onIndexChange(String word) {
-                updateWord(word);
-                updateListView(word);
-            }
-        });
+    protected int initView() {
+        return R.layout.activity_quick_index;
     }
 
     private void updateListView(String word) {
         for (int i = 0; i <persons.size(); i++) {
-            if (word.equals(PinYinUtils.getPinYin(persons.get(i).getPinyin().substring(0,1)))) {
+            if (word.equals(persons.get(i).getPinyin().substring(0,1))) {
                 lvMain.setSelection(i);
                 return;
             }
         }
     }
 
+    /**
+     * 屏幕中间显示字母
+     * @param word
+     */
     private void updateWord(String word) {
-    /*显示*/
         tvWord.setVisibility(View.VISIBLE);
         tvWord.setText(word);
         handler.removeCallbacksAndMessages(null);
@@ -78,7 +67,31 @@ public class QuickIndexActivity extends BaseActivity {
      */
     @Override
     protected void initData() {
+        initPerson();
+        indexAdapter = new IndexAdapter(this);
+        lvMain.setAdapter(indexAdapter);
+        indexAdapter.setData(persons);
+        ivWords.setOnIndexChangeListener(new IndexView.OnIndexChangeListener() {
+            @Override
+            public void onIndexChange(String word) {
+                updateWord(word);
+                updateListView(word);
+            }
+        });
 
+
+
+        //排序
+        Collections.sort(persons, new Comparator<Person>() {
+            @Override
+            public int compare(Person lhs, Person rhs) {
+                return lhs.getPinyin().compareTo(rhs.getPinyin());
+            }
+        });
+
+    }
+
+    private void initPerson() {
         persons = new ArrayList<>();
         persons.add(new Person("张晓飞"));
         persons.add(new Person("杨光福"));
@@ -116,15 +129,5 @@ public class QuickIndexActivity extends BaseActivity {
 
         persons.add(new Person("阿三"));
         persons.add(new Person("李博俊"));
-
-
-        //排序
-        Collections.sort(persons, new Comparator<Person>() {
-            @Override
-            public int compare(Person lhs, Person rhs) {
-                return lhs.getPinyin().compareTo(rhs.getPinyin());
-            }
-        });
-
     }
 }

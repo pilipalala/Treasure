@@ -1,5 +1,6 @@
 package wyj.com.javaproject;
 
+import java.awt.Font;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -24,9 +25,9 @@ public class XmlToXls {
     public static void main(String args[]) {
         txtFilePath = chooseStrings();
         if (txtFilePath != null) {
-            String inputValue = JOptionPane.showInputDialog("请输入目标语言(英文,分隔)");
+            String inputValue = JOptionPane.showInputDialog(null,"请输入目标语言(空格分隔)",JOptionPane.PLAIN_MESSAGE);
             if (inputValue != null) {
-                String[] languages = inputValue.split(",");
+                String[] languages = inputValue.split(" ");
                 for (String language : languages) {
                     System.out.println(language);
                 }
@@ -48,7 +49,7 @@ public class XmlToXls {
             String element = null;
             int index = 0;
             Label labelKey = new Label(0, 0, "KEY");
-            Label labelValue = new Label(1, 0, "VALUE");
+            Label labelValue = new Label(1, 0, "中文");
             // 将定义好列名添加到工作表中
             sheet.addCell(labelKey);
             sheet.addCell(labelValue);

@@ -9,7 +9,6 @@ import com.wyj.treasure.R;
 import com.wyj.treasure.activity.BaseActivity;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class NewHandlerThreadActivity extends BaseActivity implements Handler.Callback {
@@ -25,9 +24,8 @@ public class NewHandlerThreadActivity extends BaseActivity implements Handler.Ca
 
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_new_handler_thread);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return R.layout.activity_new_handler_thread;
     }
 
     @Override

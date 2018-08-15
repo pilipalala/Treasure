@@ -144,7 +144,6 @@
         <activity android:name=".rxjava.RxJavaActivity" />
         <activity android:name=".activity.IncludeMergeViewStubActivity" />
         <activity android:name=".mvp.GirlListActivity" />
-        <activity android:name=".activity.LoginActivity" />
 
         <service
             android:name=".service.MyService"
@@ -222,7 +221,6 @@
         <activity android:name="com.wyj.handler.HandlerThreadActivity" />
         <activity android:name="com.wyj.handler.NewHandlerThreadActivity" />
         <activity android:name="com.wyj.handler.AsyncTaskActivity" />
-        <activity android:name="com.wyj.handler.IntentServiceActivity" />
 
         <service
             android:name="com.wyj.handler.MyIntentService"
@@ -237,8 +235,12 @@
         <activity android:name="com.wyj.bannerviewpager.GuangGaoTiaoActivity" />
         <activity android:name="com.wyj.materialdesign.drawerlayout.DrawerLayoutMainActivity" />
         <activity android:name="com.wyj.materialdesign.drawerlayout.DrawerLayout_BelowToolbarActivity" />
-        <activity android:name="com.wyj.materialdesign.drawerlayout.DrawerLayout_OtherActivity" />
-        <activity android:name="com.wyj.materialdesign.drawerlayout.DrawerLayoutDemoActivity" />
+        <activity
+            android:name="com.wyj.materialdesign.drawerlayout.DrawerLayout_OtherActivity"
+            android:theme="@style/ImageTranslucentTheme" />
+        <activity
+            android:name="com.wyj.materialdesign.drawerlayout.DrawerLayoutDemoActivity"
+            android:theme="@style/ImageTranslucentTheme" />
         <activity android:name="com.wyj.materialdesign.recyclerview.BottomSheetActivity" />
         <activity android:name="com.wyj.materialdesign.recyclerview.HeadimageScaleActivity" />
         <activity android:name="com.wyj.materialdesign.recyclerview.PaletteActivity" />
@@ -254,7 +256,8 @@
         <activity android:name="com.wyj.materialdesign.toolbar.TabLayoutMainActivity" />
         <activity android:name="com.wyj.materialdesign.MaterialDesignActivity" />
         <activity android:name=".activity.VolumeAdjustmentActivity" />
-        <activity android:name="com.wyj.waveview.VoiceWaveActivity"></activity>
+        <activity android:name="com.wyj.waveview.VoiceWaveActivity" />
+        <activity android:name="com.wyj.notification.NotificationActivity"></activity>
     </application>
 
 </manifest>

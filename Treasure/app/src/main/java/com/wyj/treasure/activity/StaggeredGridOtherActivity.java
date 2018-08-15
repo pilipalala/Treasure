@@ -11,7 +11,6 @@ import com.wyj.treasure.adapter.StaggeredGridOtherAdapter;
 import java.util.ArrayList;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class StaggeredGridOtherActivity extends BaseActivity {
     @BindView(R.id.toolbar)
@@ -86,9 +85,8 @@ public class StaggeredGridOtherActivity extends BaseActivity {
 
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_staggered_grid_other);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return R.layout.activity_staggered_grid_other;
     }
 
     @Override

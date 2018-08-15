@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.Button;
@@ -21,15 +20,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class RegularExpressionActivity extends BaseActivity {
-
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
     @BindView(R.id.iv_head)
     ImageView ivHead;
     @BindView(R.id.btn_gallery)
@@ -44,21 +37,19 @@ public class RegularExpressionActivity extends BaseActivity {
     private static String path = "/sdcard/myHead/";// sd路径
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_regular_expression);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return R.layout.activity_regular_expression;
     }
 
     @Override
     protected void initData() {
-        toolbar.setNavigationOnClickListener(v -> finish());
         int scaledTouchSlop = ViewConfiguration.get(this).getScaledTouchSlop();
 
 
     }
 
 
-    @OnClick({R.id.btn_gallery, R.id.btn_camera, R.id.btn_scrollto,R.id.btn_scrollby})
+    @OnClick({R.id.btn_gallery, R.id.btn_camera, R.id.btn_scrollto, R.id.btn_scrollby})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_scrollby:

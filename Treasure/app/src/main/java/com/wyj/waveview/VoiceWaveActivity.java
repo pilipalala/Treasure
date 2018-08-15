@@ -13,11 +13,6 @@ import com.wyj.treasure.activity.BaseActivity;
 import butterknife.BindView;
 
 public class VoiceWaveActivity extends BaseActivity implements VoiceSinWaveView.IFade {
-
-    @BindView(R.id.iv_close)
-    ImageView ivClose;
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
     @BindView(R.id.coutent)
     LinearLayout coutent;
     @BindView(R.id.seekBar)
@@ -30,8 +25,8 @@ public class VoiceWaveActivity extends BaseActivity implements VoiceSinWaveView.
 
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_voice_wave);
+    protected int initView() {
+        return R.layout.activity_voice_wave;
     }
 
     @Override

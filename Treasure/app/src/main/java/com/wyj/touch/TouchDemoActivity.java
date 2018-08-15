@@ -10,13 +10,12 @@ import com.wyj.treasure.activity.BaseActivity;
 import com.wyj.treasure.utils.LogUtil;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class TouchDemoActivity extends BaseActivity {
 
     @BindView(R.id.button1)
-    Button button1;
+    MyTextView button1;
     @BindView(R.id.button2)
     Button button2;
     @BindView(R.id.my_layout)
@@ -24,9 +23,8 @@ public class TouchDemoActivity extends BaseActivity {
 
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_touch_demo);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return R.layout.activity_touch_demo;
     }
 
     @Override

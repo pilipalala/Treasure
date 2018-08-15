@@ -1,11 +1,9 @@
 package com.wyj.treasure.activity;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 
 import com.wyj.treasure.R;
@@ -13,7 +11,6 @@ import com.wyj.treasure.fragment.BaseFragment;
 import com.wyj.treasure.fragment.DashboardFragment;
 import com.wyj.treasure.fragment.HomeFragment;
 import com.wyj.treasure.fragment.NotificationsFragment;
-import com.wyj.treasure.utils.MyUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         BaseFragment to = getFragment(position);
         switchFragment(mFragment, to);
     }
+
 
     public BaseFragment getFragment(int position) {
         BaseFragment baseFragment = mBaseFragment.get(position);
@@ -98,34 +96,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         initData();
-        initNotification();
+
 
     }
 
-    /**
-     * 获取通知栏权限
-     * 如果没有打开通知权限则跳到设置界面
-     */
-    public void initNotification() {
-        boolean enabled = MyUtils.isNotificationEnabled(this);
-        if (!enabled) {
-            new AlertDialog.Builder(this).setTitle("提示").setMessage("请开启通知栏权限！").setNegativeButton("不去", null).setPositiveButton("好", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    MyUtils.toSetting(MainActivity.this);
-                }
-            }).show();
-        }
-    }
+
 
     private void initData() {
-        initragment();
+        initFragment();
         check(0);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
 
-    private void initragment() {
+    private void initFragment() {
         mBaseFragment = new ArrayList<>();
         homeFragment = new HomeFragment();
         dashboardFragment = new DashboardFragment();

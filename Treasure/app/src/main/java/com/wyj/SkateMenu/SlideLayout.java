@@ -1,4 +1,4 @@
-package com.wyj.skatemenu;
+package com.wyj.SkateMenu;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

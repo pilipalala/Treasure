@@ -7,8 +7,6 @@
     android:orientation="vertical"
     tools:context="com.wyj.treasure.activity.ReflectActivity">
 
-    <include layout="@layout/title" />
-
     <Button
         android:id="@+id/btn_getFields"
         style="@style/default_button_style"
@@ -18,6 +16,7 @@
         android:id="@+id/btn_getMethods"
         style="@style/default_button_style"
         android:text="获得类的方法" />
+
     <Button
         android:id="@+id/btn_getClass"
         style="@style/default_button_style"

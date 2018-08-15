@@ -5,10 +5,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/title" />
 
     <Button
         android:id="@+id/timeBtn"
+        android:text="点击开始"
         style="@style/default_button_style" />
 
 </LinearLayout>

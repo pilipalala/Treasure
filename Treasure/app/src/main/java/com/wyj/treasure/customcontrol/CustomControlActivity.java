@@ -1,75 +1,39 @@
 package com.wyj.treasure.customcontrol;
 
-import android.content.Intent;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.TextView;
 
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.BaseActivity;
+import com.wyj.treasure.mode.ItemInfo;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+import java.util.List;
+
 
 public class CustomControlActivity extends BaseActivity {
 
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
 
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_custom_control);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return R.layout.activity_custom_control;
     }
 
     @Override
     protected void initData() {
-        toolbar.setNavigationOnClickListener(v -> finish());
-        tvTitle.setText("自定义控件三部曲");
-
+        setTitle("自定义控件三部曲");
     }
 
-    @OnClick({R.id.btn_anima, R.id.btn_valueanimator, R.id.btn_objectanimator,R.id.btn_draw_text,
-            R.id.btn_property, R.id.btn_animatorset, R.id.btn_drawingarticles_one,
-            R.id.btn_drawingarticles_two, R.id.btn_drawingarticles_range, R.id.btn_bezier})
-    public void onViewClicked(View view) {
-        Intent intent = new Intent();
-        switch (view.getId()) {
-            case R.id.btn_anima:
-                intent.setClass(CustomControlActivity.this, AnimationActivity.class);
-                break;
-            case R.id.btn_valueanimator:
-                intent.setClass(CustomControlActivity.this, ValueAnimatorActivity.class);
-                break;
-            case R.id.btn_objectanimator:
-                intent.setClass(CustomControlActivity.this, ObjectanimatorActivity.class);
-                break;
-            case R.id.btn_property:
-                intent.setClass(CustomControlActivity.this, PropertyActivity.class);
-                break;
-            case R.id.btn_animatorset:
-                intent.setClass(CustomControlActivity.this, AnimatorSetActivity.class);
-                break;
-            case R.id.btn_drawingarticles_one:
-                intent.setClass(CustomControlActivity.this, DrawingArticlesOneActivity.class);
-                break;
-            case R.id.btn_drawingarticles_two:
-                intent.setClass(CustomControlActivity.this, DrawingArticlesTwoActivity.class);
-                break;
-            case R.id.btn_drawingarticles_range:
-                intent.setClass(CustomControlActivity.this, DrawingArticlesRangeActivity.class);
-                break;
-            case R.id.btn_draw_text:
-                intent.setClass(CustomControlActivity.this, DrawingArticlesDrawTextActivity.class);
-				break;
-            case R.id.btn_bezier:
-                intent.setClass(CustomControlActivity.this, BezierActivity.class);
-                break;
-        }
-        startActivity(intent);
+    @Override
+    protected List<ItemInfo> getListData() {
+        mData.add(new ItemInfo("动画篇",AnimationActivity.class , 0));
+        mData.add(new ItemInfo("ValueAnimator",ValueAnimatorActivity.class , 0));
+        mData.add(new ItemInfo("ObjectAnimator",ObjectanimatorActivity.class , 0));
+        mData.add(new ItemInfo("PropertyValuesHolder与Keyframe",PropertyActivity.class , 0));
+        mData.add(new ItemInfo("AnimatorSet",AnimatorSetActivity.class , 0));
+        mData.add(new ItemInfo("绘图篇-概述及基本几何图形绘制",DrawingArticlesOneActivity.class , 0));
+        mData.add(new ItemInfo("绘图篇-路径及文字",DrawingArticlesTwoActivity.class , 0));
+        mData.add(new ItemInfo("区域(Range)",DrawingArticlesRangeActivity.class , 0));
+        mData.add(new ItemInfo("drawText()详解",DrawingArticlesDrawTextActivity.class , 0));
+        mData.add(new ItemInfo("贝赛尔曲线",BezierActivity.class , 0));
+        return super.getListData();
     }
 }

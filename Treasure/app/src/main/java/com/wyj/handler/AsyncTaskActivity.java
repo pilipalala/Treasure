@@ -1,24 +1,20 @@
 package com.wyj.handler;
 
 import android.os.AsyncTask;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.BaseActivity;
+import com.wyj.treasure.mode.ItemInfo;
+
+import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class AsyncTaskActivity extends BaseActivity {
-
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
     @BindView(R.id.text)
     TextView text;
     @BindView(R.id.progress_bar)
@@ -26,10 +22,13 @@ public class AsyncTaskActivity extends BaseActivity {
     private MyAsyncTask task;
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_async_task);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return R.layout.activity_async_task;
+    }
 
+    @Override
+    protected List<ItemInfo> getListData() {
+        return null;
     }
 
     @Override

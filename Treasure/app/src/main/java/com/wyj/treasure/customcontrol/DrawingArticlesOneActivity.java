@@ -7,12 +7,9 @@ import com.wyj.treasure.R;
 import com.wyj.treasure.activity.BaseActivity;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class DrawingArticlesOneActivity extends BaseActivity {
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
     @BindView(R.id.view_one)
     MyDrawingViewOne viewOne;
     @BindView(R.id.view_two)
@@ -21,14 +18,13 @@ public class DrawingArticlesOneActivity extends BaseActivity {
     MyDrawingViewText viewText;
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_drawing_articles);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return R.layout.activity_drawing_articles;
     }
 
     @Override
     protected void initData() {
-        toolbar.setNavigationOnClickListener(v -> finish());
+
         viewOne.setVisibility(View.VISIBLE);
         viewTwo.setVisibility(View.GONE);
         viewText.setVisibility(View.GONE);

@@ -1,7 +1,6 @@
 package com.wyj.bannerviewpager;
 
 import android.content.Intent;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,17 +10,12 @@ import com.wyj.treasure.activity.BaseActivity;
 import com.wyj.treasure.utils.ToastUtil;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class BannerViewPagerActivity extends BaseActivity implements BannerViewPager.OnItemClickListener {
 
     @BindView(R.id.banner_view)
     BannerView bannerView;
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
     @BindView(R.id.tv_right_title)
     TextView tvRightTitle;
 
@@ -36,17 +30,16 @@ public class BannerViewPagerActivity extends BaseActivity implements BannerViewP
             "6", "7", "8", "9", "10"};
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_banner_view_pager);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return R.layout.activity_banner_view_pager;
     }
 
     @Override
     protected void initData() {
-        tvRightTitle.setText("下一个");
-        tvRightTitle.setVisibility(View.VISIBLE);
-        toolbar.setNavigationOnClickListener(v -> finish());
-        tvTitle.setText("无限广告轮播");
+        setRightTitle("下一个", v -> {
+            startActivity(new Intent(this, GuangGaoTiaoActivity.class));
+        });
+        setTitle("无限广告轮播");
         bannerView.setAdapter(new BannerAdapter() {
             @Override
             public View getView(int position, View converView) {
@@ -80,8 +73,4 @@ public class BannerViewPagerActivity extends BaseActivity implements BannerViewP
         ToastUtil.show("第" + (position + 1) + "张");
     }
 
-    @OnClick(R.id.tv_right_title)
-    public void onViewClicked() {
-        startActivity(new Intent(this, GuangGaoTiaoActivity.class));
-    }
 }

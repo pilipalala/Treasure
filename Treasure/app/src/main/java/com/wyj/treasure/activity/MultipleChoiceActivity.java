@@ -1,6 +1,5 @@
 package com.wyj.treasure.activity;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
@@ -23,7 +22,6 @@ import java.util.Map;
 import java.util.Random;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MultipleChoiceActivity extends BaseActivity implements ShopcartAdapter.CheckInterface,
@@ -61,7 +59,6 @@ public class MultipleChoiceActivity extends BaseActivity implements ShopcartAdap
     LinearLayout llCart;
     @BindView(R.id.layout_cart_empty)
     LinearLayout cart_empty;
-    private Context context;
     private double totalPrice = 0.00;// 购买的商品总价
     private int totalCount = 0;// 购买的商品总数量
     private ShopcartAdapter selva;
@@ -70,16 +67,18 @@ public class MultipleChoiceActivity extends BaseActivity implements ShopcartAdap
     private int flag = 0;
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_multiple_choice);
-        context = this;
+    protected int initView() {
+        return 0;
+    }
 
+    @Override
+    protected int contentView() {
+        return R.layout.activity_multiple_choice;
     }
 
     @Override
     protected void initData() {
         initDatas();
-        ButterKnife.bind(this);
         initEvents();
     }
 
@@ -115,9 +114,9 @@ public class MultipleChoiceActivity extends BaseActivity implements ShopcartAdap
         }
 
         //购物车已清空
-        if(count==0){
+        if (count == 0) {
             clearCart();
-        } else{
+        } else {
             title.setText("购物车" + "(" + count + ")");
         }
     }
@@ -128,6 +127,7 @@ public class MultipleChoiceActivity extends BaseActivity implements ShopcartAdap
         llCart.setVisibility(View.GONE);
         cart_empty.setVisibility(View.VISIBLE);
     }
+
     /**
      * 模拟数据<br>
      * 遵循适配器的数据列表填充原则，组元素被放在一个List中，对应的组元素下辖的子元素被放在Map中，<br>
@@ -138,13 +138,14 @@ public class MultipleChoiceActivity extends BaseActivity implements ShopcartAdap
             groups.add(new StoreInfo(i + "", "天猫店铺" + (i + 1) + "号店"));
             List<GoodsInfo> products = new ArrayList<GoodsInfo>();
             for (int j = 0; j <= i; j++) {
-                int[] img = {R.mipmap.auto_header, R.mipmap.avatar1, R.mipmap.avatar2,R.mipmap.avatar3,R.mipmap.avatar4,R.mipmap.avatar3,R.mipmap.avatar1,};
+                int[] img = {R.mipmap.auto_header, R.mipmap.avatar1, R.mipmap.avatar2, R.mipmap.avatar3, R.mipmap.avatar4, R.mipmap.avatar3, R.mipmap.avatar1,};
                 products.add(new GoodsInfo(j + "", "商品", groups.get(i).getName() + "的第" + (j + 1) + "个商品", 12.00 + new Random().nextInt(23), new Random().nextInt(5) + 1, "豪华", "1", img[i * j], 6.00 + new Random().nextInt(13)));
             }
             children.put(groups.get(i).getId(), products);// 将组元素的一个唯一值，这里取Id，作为子元素List的Key
         }
 
     }
+
     /**
      * 删除操作<br>
      * 1.不要边遍历边删除，容易出现数组越界的情况<br>
@@ -311,9 +312,9 @@ public class MultipleChoiceActivity extends BaseActivity implements ShopcartAdap
         tvTotalPrice.setText("￥" + totalPrice);
         tvGoToPay.setText("去支付(" + totalCount + ")");
         //计算购物车的金额为0时候清空购物车的视图
-        if(totalCount==0){
+        if (totalCount == 0) {
             setCartNum();
-        } else{
+        } else {
             title.setText("购物车" + "(" + totalCount + ")");
         }
     }
@@ -327,10 +328,10 @@ public class MultipleChoiceActivity extends BaseActivity implements ShopcartAdap
                 break;
             case R.id.tv_delete:
                 if (totalCount == 0) {
-                    Toast.makeText(context, "请选择要移除的商品", Toast.LENGTH_LONG).show();
+                    Toast.makeText(mContext, "请选择要移除的商品", Toast.LENGTH_LONG).show();
                     return;
                 }
-                alert = new AlertDialog.Builder(context).create();
+                alert = new AlertDialog.Builder(mContext).create();
                 alert.setTitle("操作提示");
                 alert.setMessage("您确定要将这些商品从购物车中移除吗？");
                 alert.setButton(DialogInterface.BUTTON_NEGATIVE, "取消",
@@ -351,10 +352,10 @@ public class MultipleChoiceActivity extends BaseActivity implements ShopcartAdap
                 break;
             case R.id.tv_go_to_pay:
                 if (totalCount == 0) {
-                    Toast.makeText(context, "请选择要支付的商品", Toast.LENGTH_LONG).show();
+                    Toast.makeText(mContext, "请选择要支付的商品", Toast.LENGTH_LONG).show();
                     return;
                 }
-                alert = new AlertDialog.Builder(context).create();
+                alert = new AlertDialog.Builder(mContext).create();
                 alert.setTitle("操作提示");
                 alert.setMessage("总计:\n" + totalCount + "种商品\n" + totalPrice + "元");
                 alert.setButton(DialogInterface.BUTTON_NEGATIVE, "取消",
@@ -389,14 +390,14 @@ public class MultipleChoiceActivity extends BaseActivity implements ShopcartAdap
                 break;
             case R.id.tv_share:
                 if (totalCount == 0) {
-                    Toast.makeText(context, "请选择要分享的商品", Toast.LENGTH_LONG).show();
+                    Toast.makeText(mContext, "请选择要分享的商品", Toast.LENGTH_LONG).show();
                     return;
                 }
                 Toast.makeText(MultipleChoiceActivity.this, "分享成功", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.tv_save:
                 if (totalCount == 0) {
-                    Toast.makeText(context, "请选择要保存的商品", Toast.LENGTH_LONG).show();
+                    Toast.makeText(mContext, "请选择要保存的商品", Toast.LENGTH_LONG).show();
                     return;
                 }
                 Toast.makeText(MultipleChoiceActivity.this, "保存成功", Toast.LENGTH_SHORT).show();
@@ -423,10 +424,10 @@ public class MultipleChoiceActivity extends BaseActivity implements ShopcartAdap
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        selva=null;
+        selva = null;
         groups.clear();
-        totalPrice=0;
-        totalCount=0;
+        totalPrice = 0;
+        totalCount = 0;
         children.clear();
     }
 }

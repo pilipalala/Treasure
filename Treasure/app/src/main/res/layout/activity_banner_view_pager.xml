@@ -8,7 +8,6 @@
     android:orientation="vertical"
     tools:context="com.wyj.bannerviewpager.BannerViewPagerActivity">
 
-    <include layout="@layout/title" />
 
     <com.wyj.bannerviewpager.BannerView
         android:id="@+id/banner_view"

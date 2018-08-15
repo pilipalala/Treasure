@@ -22,6 +22,7 @@ public class CountDownTimerButton extends Button implements View.OnClickListener
     private long temp_duration;
     private String clickBeffor = "倒计时开始";//点击前
     private String clickAfter = "秒后重新开始";//点击后
+
     public CountDownTimerButton(Context context) {
         super(context);
         mContext = context;
@@ -33,10 +34,11 @@ public class CountDownTimerButton extends Button implements View.OnClickListener
         mContext = context;
         setOnClickListener(this);
     }
-    private Handler mHandler = new Handler(){
+
+    private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            CountDownTimerButton.this.setText(temp_duration/1000 + clickAfter);
+            CountDownTimerButton.this.setText(temp_duration / 1000 + clickAfter);
             temp_duration -= 1000;
             if (temp_duration < 0) {//倒计时结束
                 CountDownTimerButton.this.setEnabled(true);
@@ -45,11 +47,12 @@ public class CountDownTimerButton extends Button implements View.OnClickListener
             }
         }
     };
+
     @Override
     public void setOnClickListener(OnClickListener onClickListener) {//提供外部访问方法
         if (onClickListener instanceof CountDownTimerButton) {
             super.setOnClickListener(onClickListener);
-        }else{
+        } else {
             this.mOnClickListener = onClickListener;
         }
     }
@@ -63,7 +66,7 @@ public class CountDownTimerButton extends Button implements View.OnClickListener
     }
 
     //计时开始
-    private void startTimer(){
+    private void startTimer() {
         temp_duration = duration;
         CountDownTimerButton.this.setEnabled(false);
         mTimer = new Timer();
@@ -77,7 +80,7 @@ public class CountDownTimerButton extends Button implements View.OnClickListener
     }
 
     //计时结束
-    private void stopTimer(){
+    private void stopTimer() {
         if (mTask != null) {
             mTask.cancel();
             mTask = null;

@@ -22,9 +22,8 @@ public class DrawingArticlesTextActivity extends BaseActivity {
 
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_drawing_articles);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return R.layout.activity_drawing_articles;
     }
 
     @Override

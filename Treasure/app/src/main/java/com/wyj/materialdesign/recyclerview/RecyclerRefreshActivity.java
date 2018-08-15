@@ -18,7 +18,6 @@ import java.util.List;
 import java.util.Random;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class RecyclerRefreshActivity extends BaseActivity {
 
@@ -33,9 +32,14 @@ public class RecyclerRefreshActivity extends BaseActivity {
     private LinearLayoutManager layoutManager;
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_recycler_view);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return 0;
+    }
+
+    @Override
+    protected int contentView() {
+        return R.layout.activity_recycler_view;
+
     }
 
     @Override

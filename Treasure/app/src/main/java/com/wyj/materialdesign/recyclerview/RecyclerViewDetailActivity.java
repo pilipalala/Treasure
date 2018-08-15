@@ -14,7 +14,6 @@ import com.wyj.treasure.R;
 import com.wyj.treasure.activity.BaseActivity;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class RecyclerViewDetailActivity extends BaseActivity {
 
@@ -30,9 +29,14 @@ public class RecyclerViewDetailActivity extends BaseActivity {
     TextView tvDetail;
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_recycler_view_detail);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return EMPTY_VIEW;
+    }
+
+    @Override
+    protected int contentView() {
+        return R.layout.activity_recycler_view_detail;
+
     }
 
     @Override

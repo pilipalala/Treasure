@@ -7,57 +7,6 @@
     android:orientation="vertical"
     tools:context="com.wyj.treasure.customcontrol.AnimationActivity">
 
-    <include layout="@layout/title" />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <Button
-                android:id="@+id/btn_anima"
-                style="@style/default_button_style"
-                android:text="动画篇" />
-            <Button
-                android:id="@+id/btn_valueanimator"
-                style="@style/default_button_style"
-                android:text="ValueAnimator" />
-            <Button
-                android:id="@+id/btn_objectanimator"
-                style="@style/default_button_style"
-                android:text="ObjectAnimator" />
-            <Button
-                android:id="@+id/btn_property"
-                style="@style/default_button_style"
-                android:text="PropertyValuesHolder与Keyframe" />
-            <Button
-                android:id="@+id/btn_animatorset"
-                style="@style/default_button_style"
-                android:text="AnimatorSet" />
-            <Button
-                android:id="@+id/btn_drawingarticles_one"
-                style="@style/default_button_style"
-                android:text="绘图篇-概述及基本几何图形绘制" />
-            <Button
-                android:id="@+id/btn_drawingarticles_two"
-                style="@style/default_button_style"
-                android:text="绘图篇-路径及文字" />
-            <Button
-                android:id="@+id/btn_drawingarticles_range"
-                style="@style/default_button_style"
-                android:text="区域(Range)" />
-            <Button
-                android:id="@+id/btn_draw_text"
-                style="@style/default_button_style"
-                android:text="drawText()详解" />
-            <Button
-                android:id="@+id/btn_bezier"
-                style="@style/default_button_style"
-                android:text="贝赛尔曲线" />
-        </LinearLayout>
-    </ScrollView>
 
 
 </LinearLayout>

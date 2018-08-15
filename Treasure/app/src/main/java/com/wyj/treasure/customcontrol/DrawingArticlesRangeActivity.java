@@ -11,8 +11,6 @@ import butterknife.ButterKnife;
 
 public class DrawingArticlesRangeActivity extends BaseActivity {
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
     @BindView(R.id.view_one)
     MyDrawingViewOne viewOne;
     @BindView(R.id.view_two)
@@ -23,9 +21,8 @@ public class DrawingArticlesRangeActivity extends BaseActivity {
     MyDrawingRegionView viewRegion;
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_drawing_articles);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return R.layout.activity_drawing_articles;
     }
 
     @Override

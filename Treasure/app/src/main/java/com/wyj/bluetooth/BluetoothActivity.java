@@ -24,6 +24,7 @@ import android.widget.TextView;
 
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.BaseActivity;
+import com.wyj.treasure.mode.ItemInfo;
 import com.wyj.treasure.utils.LogUtil;
 import com.wyj.treasure.utils.ToastUtil;
 
@@ -35,17 +36,12 @@ import java.util.Map;
 import java.util.UUID;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class BluetoothActivity extends BaseActivity {
     final static int TASK_TYPE_CONNECT = 1;
     final static int TASK_TYPE_PRINT = 2;
     Handler mHandler = new Handler();
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
     @BindView(R.id.rv_bluetooth)
     RecyclerView rvBluetooth;
     @BindView(R.id.btn_search)
@@ -224,14 +220,18 @@ public class BluetoothActivity extends BaseActivity {
     }
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_bluetooth);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return R.layout.activity_bluetooth;
+    }
+
+    @Override
+    protected List<ItemInfo> getListData() {
+        return null;
     }
 
     @Override
     protected void initData() {
-        tvTitle.setText("蓝牙");
+        setTitle("蓝牙");
         //1、获取 BluetoothAdapter
         BluetoothManager bluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
         mBluetoothAdapter = bluetoothManager.getAdapter();

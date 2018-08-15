@@ -17,7 +17,6 @@ import android.widget.TextView;
 import com.wyj.treasure.R;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -47,24 +46,17 @@ import butterknife.OnClick;
  * 采用FLAG_UPDATE_CURRENT标记位，那么之前弹出的PendingIntent会被更新，最终它们和最新的一条保存完全一致，包括其中的Extras，并且这些通知都是可以打开的。
  */
 public class NotificationStyleActivity extends BaseActivity {
-
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
     private NotificationManager manager;
     private Bitmap mLargeIcon;
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_notification_style);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return R.layout.activity_notification_style;
     }
 
     @Override
     protected void initData() {
-        tvTitle.setText("Notification 样式");
-        toolbar.setNavigationOnClickListener(v -> finish());
+        setTitle("Notification 样式");
         manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mLargeIcon = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_round);
     }

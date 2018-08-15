@@ -14,15 +14,10 @@ import com.wyj.treasure.R;
 import com.wyj.treasure.activity.BaseActivity;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class TransitionsDetailActivity extends BaseActivity {
 
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
     @BindView(R.id.detail_pic)
     ImageView detailPic;
     @BindView(R.id.detail_btn)
@@ -37,18 +32,19 @@ public class TransitionsDetailActivity extends BaseActivity {
     private Beauty beauties;
     private int picIndex = 0;
 
+    @Override
+    public boolean isStartAnimation() {
+        return false;
+    }
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_transitions_detail);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return R.layout.activity_transitions_detail;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void initData() {
-        toolbar.setNavigationIcon(R.mipmap.icon_top_back);
-        toolbar.setNavigationOnClickListener(v -> close());
         position = getIntent().getIntExtra("pos", 0);
         beauties = TransitionsListActivity.beauties.get(position);
         detailPic.setTransitionName(position + "pic");

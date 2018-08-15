@@ -2,11 +2,14 @@ package com.wyj.treasure;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.multidex.MultiDex;
 
-import com.mob.MobSDK;
 import com.tencent.tinker.loader.app.ApplicationLike;
 import com.tinkerpatch.sdk.TinkerPatch;
 import com.tinkerpatch.sdk.loader.TinkerPatchApplicationLike;
+import com.wyj.dagger.ApiModule;
+import com.wyj.dagger.AppComponent;
+import com.wyj.dagger.DaggerAppComponent;
 import com.wyj.treasure.utils.LogUtil;
 
 import java.io.BufferedReader;
@@ -23,6 +26,9 @@ import java.io.FileReader;
 public class MyApplication extends Application {
     private static Context context;
     private ApplicationLike tinkerApplicationLike;
+    private static final String TAG = "MyApplication";
+
+    private AppComponent appComponent;
 
     /**
      * 获取全局的 Context
@@ -34,19 +40,27 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        inject();
         initTinkerPatch();
         context = getApplicationContext();
         initCrash();
 //        initError();
-        MobSDK.init(context, "1a29c1dc37d04", "12f463dd9226ddfa631d9199cd230b15");
         String processName = getProcessName();
         if (getPackageName().equals(processName)) {
             LogUtil.d("AndroidApplication onCreate=" + processName);
         }
 
         LogUtil.d("MyApplication---onCreate");
+    }
 
+    private void inject() {
+        appComponent = DaggerAppComponent.builder()
+                .apiModule(new ApiModule())
+                .build();
+    }
 
+    public AppComponent getAppComponent() {
+        return appComponent;
     }
 
     /**
@@ -72,7 +86,7 @@ public class MyApplication extends Application {
      * 错误统计
      */
     private void initCrash() {
-        CrashHandler.getInstance().init(this);
+//        CrashHandler.getInstance().init(this);
 //        CrashReport.initCrashReport(getApplicationContext(), "42788188ed", BuildConfig.DEBUG);
 //        CrashReport.setUserSceneTag(context, 20170811); // 上报后的Crash会显示该标签
     }
@@ -106,5 +120,11 @@ public class MyApplication extends Application {
             e.printStackTrace();
             return null;
         }
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 }

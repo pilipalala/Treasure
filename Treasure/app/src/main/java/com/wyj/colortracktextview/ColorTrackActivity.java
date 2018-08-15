@@ -4,58 +4,49 @@ import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import com.wyj.treasure.R;
-import com.wyj.treasure.activity.BaseActivity;
 import com.wyj.colortracktextview.trackindicator.IndicatorAdapter;
 import com.wyj.colortracktextview.trackindicator.TrackIndicatorView;
+import com.wyj.treasure.R;
+import com.wyj.treasure.activity.BaseActivity;
+import com.wyj.treasure.mode.ItemInfo;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class ColorTrackActivity extends BaseActivity {
 
-
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
     @BindView(R.id.indicator_view)
     TrackIndicatorView indicatorView;
     @BindView(R.id.view_pager)
     ViewPager viewPager;
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
     private String[] items = {"直播", "Jpg'h", "视频", "图片", "段子", "精华", "同城", "游戏"};
     private List<ColorTrackTextView> mIndicators;
     /**
      * 是否滑动
-     * */
+     */
     private boolean isSettling = false;
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_color_track);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return R.layout.activity_color_track;
 
+    }
+
+    @Override
+    protected List<ItemInfo> getListData() {
+        return null;
     }
 
     @Override
     protected void initData() {
         mIndicators = new ArrayList<>();
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 //        initIndicator();
         initViewPager();
         indicatorView.setAdapter(new IndicatorAdapter<ColorTrackTextView>() {
@@ -96,7 +87,7 @@ public class ColorTrackActivity extends BaseActivity {
                 mIndicators.add(trackTextView);
                 return trackTextView;
             }
-        }, viewPager,false);
+        }, viewPager, false);
 
     }
 

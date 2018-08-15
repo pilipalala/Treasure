@@ -9,15 +9,10 @@ import com.wyj.treasure.R;
 import com.wyj.treasure.activity.BaseActivity;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ObjectanimatorActivity extends BaseActivity {
 
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
     @BindView(R.id.tv)
     TextView tv;
     @BindView(R.id.mypointview)
@@ -26,16 +21,14 @@ public class ObjectanimatorActivity extends BaseActivity {
 
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_object_animator);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return R.layout.activity_object_animator;
 
     }
 
     @Override
     protected void initData() {
-        toolbar.setNavigationOnClickListener(v -> finish());
-        tvTitle.setText("ObjectAnimator的使用");
+        setTitle("ObjectAnimator的使用");
     }
 
     @OnClick({R.id.bt_start, R.id.bt_start_argb,R.id.bt_start_rotation, R.id.bt_start_point})

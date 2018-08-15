@@ -1,14 +1,15 @@
 package com.wyj.countdown;
 
-import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.widget.Button;
 
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.BaseActivity;
+import com.wyj.treasure.mode.ItemInfo;
+
+import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
@@ -18,22 +19,16 @@ public class CountDownTimerActivity extends BaseActivity {
     Button timeBtn;
     private CountDownTime mTime;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_count_down_timer);
-        ButterKnife.bind(this);
-        mTime = new CountDownTime(10000, 1000);//初始化对象
-    }
 
     @Override
-    protected void initView() {
-
+    protected int initView() {
+        return R.layout.activity_count_down_timer;
     }
+
 
     @Override
     protected void initData() {
-
+        mTime = new CountDownTime(10000, 1000);//初始化对象
     }
 
     @OnClick(R.id.timeBtn)

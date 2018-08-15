@@ -11,21 +11,20 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.Button;
 
 import com.wyj.treasure.R;
+import com.wyj.treasure.activity.BaseActivity;
 import com.wyj.treasure.utils.LogUtil;
 
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ProcessActivity extends AppCompatActivity {
+public class ProcessActivity extends BaseActivity {
     public static final int MSG_FROM_SERVICE = 0x1000;
     private static final int MESSAGE_NEW_BOOK_ARRIVED = 0x1001;
     private static final String TAG = "ProcessActivity";
@@ -59,15 +58,23 @@ public class ProcessActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_process);
-        ButterKnife.bind(this);
+
+
+    }
+
+    @Override
+    protected int initView() {
+        return R.layout.activity_process;
+    }
+
+    @Override
+    protected void initData() {
         handler = new MessengerHandler();
 //        initBundle();
 //        initMessenger();
         initAIDL();
 //        initBinder();
 //        initIBinder();
-
     }
 
     @Override

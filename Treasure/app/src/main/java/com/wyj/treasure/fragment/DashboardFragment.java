@@ -1,12 +1,13 @@
 package com.wyj.treasure.fragment;
 
+import com.wyj.SkateMenu.SwipeDeleteActivity;
 import com.wyj.bannerviewpager.BannerViewPagerActivity;
 import com.wyj.colortracktextview.ColorTrackActivity;
 import com.wyj.countdown.CountDownActivity;
+import com.wyj.dagger.DaggerActivity;
 import com.wyj.handler.AsyncTaskActivity;
 import com.wyj.index.QuickIndexActivity;
 import com.wyj.materialdesign.MaterialDesignActivity;
-import com.wyj.skatemenu.SwipeDeleteActivity;
 import com.wyj.touch.TouchDemoActivity;
 import com.wyj.treasure.NavigationBarActivity;
 import com.wyj.treasure.PxDpActivity;
@@ -34,7 +35,7 @@ public class DashboardFragment extends BaseCardViewFragment {
     @Override
     protected void processData() {
         mData.add(new ItemInfo("Java 反射机制", ReflectActivity.class, R.mipmap.ic_launcher));
-        mData.add(new ItemInfo("Recycleview 滑动删除", SwipeDeleteActivity.class, R.mipmap.ic_launcher));
+        mData.add(new ItemInfo("RecyclerView 滑动删除", SwipeDeleteActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("GridView多选", GridViewChoiceActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("RecyclerView悬浮条", SuspensionBarActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("正则表达式", RegularExpressionActivity.class, R.mipmap.ic_launcher));
@@ -49,7 +50,7 @@ public class DashboardFragment extends BaseCardViewFragment {
         mData.add(new ItemInfo("字体变色", ColorTrackActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("自定义控件三部曲", CustomControlActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("NavigationBar", NavigationBarActivity.class, R.mipmap.ic_launcher));
-        mData.add(new ItemInfo("LinearlayoutActivity", MyLinearlayoutActivity.class, R.mipmap.ic_launcher));
+        mData.add(new ItemInfo("LinearLayoutActivity", MyLinearlayoutActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("PopupWindow", PopupWindowActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("平行空间效果", WelcomeActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("AsyncTask", AsyncTaskActivity.class, R.mipmap.ic_launcher));
@@ -57,8 +58,9 @@ public class DashboardFragment extends BaseCardViewFragment {
         mData.add(new ItemInfo("CountDownActivity", CountDownActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("快速索引", QuickIndexActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("PX和DIP", PxDpActivity.class, R.mipmap.ic_launcher));
-        mData.add(new ItemInfo("Materialdesign", MaterialDesignActivity.class, R.mipmap.ic_launcher));
+        mData.add(new ItemInfo("MaterialDesign", MaterialDesignActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("VoiceWaveView", VoiceWaveActivity.class, R.mipmap.ic_launcher));
+        mData.add(new ItemInfo("Dagger", DaggerActivity.class, R.mipmap.ic_launcher));
         notifyDataChanged();
     }
 }

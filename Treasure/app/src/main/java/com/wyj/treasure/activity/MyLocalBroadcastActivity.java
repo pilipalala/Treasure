@@ -14,17 +14,12 @@ import com.wyj.treasure.R;
 import com.wyj.treasure.utils.ToastUtil;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MyLocalBroadcastActivity extends BaseActivity {
 
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
     @BindView(R.id.tv_prompt)
     TextView tvPrompt;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
     @BindView(R.id.btn_dong)
     Button btnDong;
     @BindView(R.id.btn_jing)
@@ -35,21 +30,14 @@ public class MyLocalBroadcastActivity extends BaseActivity {
 
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_my_local_broadcast);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return R.layout.activity_my_local_broadcast;
     }
 
 
     @Override
     protected void initData() {
-        tvTitle.setText("发送本地广播");
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        setTitle("发送本地广播");
         broadcastManager = LocalBroadcastManager.getInstance(this);
 
 

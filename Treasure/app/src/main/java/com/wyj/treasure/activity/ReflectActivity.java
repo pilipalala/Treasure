@@ -1,8 +1,6 @@
 package com.wyj.treasure.activity;
 
-import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.wyj.treasure.R;
@@ -14,19 +12,11 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ReflectActivity extends BaseActivity {
-
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
     @BindView(R.id.tv_class)
     TextView tvClass;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-    @BindView(R.id.ll_sub_title)
-    LinearLayout llSubTitle;
 
     private void getClassObj() {
 
@@ -58,7 +48,7 @@ public class ReflectActivity extends BaseActivity {
         sb.append("cls3: ").append(cls3).append("\n\n");
         sb.append("cls4: ").append(cls4);
         tvClass.setText(sb.toString());
-        toolbar.setSubtitle("三种方式获得类对象");
+        mToolbar.setSubtitle("三种方式获得类对象");
     }
 
     /**
@@ -107,7 +97,7 @@ public class ReflectActivity extends BaseActivity {
             }
             sb.append(")\n\n");
             tvClass.setText(sb.toString());
-            toolbar.setSubtitle("获得类的所有方法信息");
+            mToolbar.setSubtitle("获得类的所有方法信息");
         }
 
 
@@ -182,7 +172,7 @@ public class ReflectActivity extends BaseActivity {
             sb.append("属性mSonAge修改后的值：mSonAge = ");
             sb.append(mSonAgeField.getInt(obj)).append("\n\n");
             tvClass.setText(sb.toString());
-            toolbar.setSubtitle("获得所有属性信息&修改属性值");
+            mToolbar.setSubtitle("获得所有属性信息&修改属性值");
         } catch (Exception e) {
             LogUtil.e(e.fillInStackTrace() + "-----" + e.getMessage());
             e.printStackTrace();
@@ -192,16 +182,14 @@ public class ReflectActivity extends BaseActivity {
     }
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_reflect);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return R.layout.activity_reflect;
     }
+
 
     @Override
     protected void initData() {
-        llSubTitle.setVisibility(View.GONE);
-        toolbar.setTitle("反射");
-        toolbar.setNavigationOnClickListener(v -> finish());
+        setTitle("反射");
     }
 
     @OnClick({R.id.btn_getFields, R.id.btn_getMethods, R.id.btn_getClass})

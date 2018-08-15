@@ -29,9 +29,8 @@ public class GirlListActivity extends BaseActivity implements IGirlView {
 
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_girl_list);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return R.layout.activity_girl_list;
     }
 
     @Override

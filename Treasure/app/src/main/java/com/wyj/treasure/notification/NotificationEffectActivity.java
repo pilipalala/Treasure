@@ -20,25 +20,18 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class NotificationEffectActivity extends BaseActivity {
-
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
     private Bitmap mLargeIcon;
     private NotificationManager manager;
 
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_notification_effect);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return R.layout.activity_notification_effect;
     }
 
     @Override
     protected void initData() {
-        toolbar.setNavigationOnClickListener(v -> finish());
-        tvTitle.setText("Notification 提示形式");
+        setTitle("Notification 提示形式");
         manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         mLargeIcon = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_round);

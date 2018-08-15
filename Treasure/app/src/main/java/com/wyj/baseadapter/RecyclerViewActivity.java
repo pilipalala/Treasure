@@ -3,27 +3,22 @@ package com.wyj.baseadapter;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.BaseActivity;
+import com.wyj.treasure.mode.ItemInfo;
 import com.wyj.treasure.utils.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class RecyclerViewActivity extends BaseActivity {
 
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
     @BindView(R.id.tv_right_title)
@@ -32,9 +27,18 @@ public class RecyclerViewActivity extends BaseActivity {
     private RecyclerView.ItemDecoration decoration;
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_recycle_view);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return 0;
+    }
+
+    @Override
+    protected int contentView() {
+        return R.layout.activity_recycle_view;
+    }
+
+    @Override
+    public boolean isStartAnimation() {
+        return false;
     }
 
     @Override

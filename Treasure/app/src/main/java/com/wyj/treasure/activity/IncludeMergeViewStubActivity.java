@@ -16,10 +16,6 @@ import butterknife.OnClick;
 
 public class IncludeMergeViewStubActivity extends BaseActivity {
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-    @BindView(R.id.title)
-    LinearLayout llTitle;
     @BindView(R.id.viewStub)
     ViewStub viewStub;
     @BindView(R.id.btn_vs_showView)
@@ -33,17 +29,12 @@ public class IncludeMergeViewStubActivity extends BaseActivity {
 
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_include_merge_view_stub);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return R.layout.activity_include_merge_view_stub;
     }
 
     @Override
     protected void initData() {
-        toolbar.setNavigationOnClickListener(v -> finish());
-        Log.e(TAG, "viewstub: " + findViewById(R.id.viewStub));
-        Log.e(TAG, "layout: " + findViewById(R.id.viewStub_new));
-
 
     }
 

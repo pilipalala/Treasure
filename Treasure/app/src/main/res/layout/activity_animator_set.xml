@@ -4,9 +4,6 @@
     android:layout_height="fill_parent"
     android:orientation="vertical">
 
-    <include
-        android:id="@+id/title"
-        layout="@layout/title" />
 
     <Button
         android:id="@+id/btn_playSequentially"

@@ -5,8 +5,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/title" />
-
     <GridView
         android:id="@+id/mgv_multiple_Choice"
         android:layout_width="match_parent"
@@ -15,6 +13,5 @@
         android:numColumns="4"
         android:scrollbars="none"
         android:verticalSpacing="@dimen/dp_1" />
-
 
 </LinearLayout>

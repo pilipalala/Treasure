@@ -21,8 +21,8 @@ public class UserLoginActivity extends BaseActivity implements IUserLoginView {
 
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_user_login);
+    protected int initView() {
+        return R.layout.activity_user_login;
 
     }
 

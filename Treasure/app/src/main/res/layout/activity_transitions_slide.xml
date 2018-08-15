@@ -8,8 +8,6 @@
     android:orientation="vertical"
     tools:context="com.wyj.treasure.activity.transition.TransitionsSlideActivity">
 
-    <include layout="@layout/title" />
-
 
     <RelativeLayout
         android:gravity="center"

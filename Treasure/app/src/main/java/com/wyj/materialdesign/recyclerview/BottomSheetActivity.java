@@ -17,7 +17,6 @@ import com.wyj.treasure.R;
 import com.wyj.treasure.activity.BaseActivity;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class BottomSheetActivity extends BaseActivity {
@@ -39,21 +38,20 @@ public class BottomSheetActivity extends BaseActivity {
 
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_bottom_sheet);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return 0;
+    }
 
+    @Override
+    protected int contentView() {
+        return R.layout.activity_bottom_sheet;
     }
 
     @Override
     protected void initData() {
         setSupportActionBar(toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        toolbar.setNavigationIcon(R.mipmap.icon_top_back);
+        toolbar.setNavigationOnClickListener(view -> finish());
         behavior = BottomSheetBehavior.from(bottomSheet);
         behavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             /**
@@ -104,12 +102,9 @@ public class BottomSheetActivity extends BaseActivity {
                 TextView textView = inflate.findViewById(R.id.bsd_text);
 
                 textView.setText("BottomSheetDialog");
-                bsdButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        startActivity(new Intent(BottomSheetActivity.this, RecyclerViewDetailActivity.class));
-                        dialog.dismiss();
-                    }
+                bsdButton.setOnClickListener(view1 -> {
+                    startActivity(new Intent(BottomSheetActivity.this, RecyclerViewDetailActivity.class));
+                    dialog.dismiss();
                 });
                 dialog.show();
                 dialog.setCanceledOnTouchOutside(false);
@@ -118,49 +113,5 @@ public class BottomSheetActivity extends BaseActivity {
                 new FullSheetDialogFragment().show(getSupportFragmentManager(), "dialog");
                 break;
         }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        float X_UP = 0, Y_UP = 0, X_DOWN = 0, Y_DOWN = 0;
-        int touchEvent = event.getAction();
-        switch (touchEvent) {
-            case MotionEvent.ACTION_DOWN:
-                X_DOWN = event.getX();
-                Log.e(TAG, "X_DOWN: " + X_DOWN);
-                Log.e(TAG, "Y_DOWN: " + Y_DOWN);
-                Y_DOWN = event.getY();
-                break;
-            case MotionEvent.ACTION_UP:
-                Log.e(TAG, "X_UP: " + X_UP);
-                Log.e(TAG, "Y_UP: " + Y_UP);
-                X_UP = event.getX();
-                Y_UP = event.getY();
-                break;
-            case MotionEvent.ACTION_MOVE:
-//                display("动作滑动");
-                break;
-            default:
-                break;
-        }
-        if (X_DOWN > X_UP) {
-//            display("向左滑动");
-        }
-        if (X_DOWN < X_UP) {
-//            display("向左滑动");
-        }
-        if (Y_DOWN > Y_UP) {
-//            display("向下滑动");
-        }
-        if (Y_DOWN < Y_UP) {
-//            display("向上滑动");
-        }
-        return super.onTouchEvent(event);
-    }
-
-    public void display(String str) {
-        Toast toast = Toast.makeText(this, str, Toast.LENGTH_LONG);
-        toast.setGravity(Gravity.TOP, 0, 450);
-        toast.show();
     }
 }

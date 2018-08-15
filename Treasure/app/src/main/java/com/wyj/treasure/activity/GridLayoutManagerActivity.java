@@ -2,8 +2,6 @@ package com.wyj.treasure.activity;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.widget.TextView;
 
 import com.wyj.treasure.R;
 import com.wyj.treasure.adapter.TagAdapter;
@@ -12,14 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class GridLayoutManagerActivity extends BaseActivity {
 
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
     @BindView(R.id.recycle)
     RecyclerView recycle;
     private static final int MAX = 9;
@@ -27,15 +20,13 @@ public class GridLayoutManagerActivity extends BaseActivity {
     private TagAdapter tagAdapter;
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_grid_layout_manager);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return R.layout.activity_grid_layout_manager;
     }
 
     @Override
     protected void initData() {
-        tvTitle.setText("RecyclerView通过GridLayoutManager实现多样式布局");
-        toolbar.setNavigationOnClickListener(v -> finish());
+        setTitle("RecyclerView通过GridLayoutManager实现多样式布局");
         setData();
         GridLayoutManager layoutManage = new GridLayoutManager(this, 2);
         layoutManage.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {

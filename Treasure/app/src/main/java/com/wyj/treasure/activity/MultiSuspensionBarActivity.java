@@ -11,7 +11,6 @@ import com.wyj.treasure.R;
 import com.wyj.treasure.adapter.MultiFeedAdapter;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class MultiSuspensionBarActivity extends BaseActivity {
 
@@ -29,9 +28,8 @@ public class MultiSuspensionBarActivity extends BaseActivity {
     private int mCurrentPosition = 0;
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_multi_suspension_bar);
-        ButterKnife.bind(this);
+    protected int initView() {
+       return R.layout.activity_multi_suspension_bar;
     }
 
     @Override

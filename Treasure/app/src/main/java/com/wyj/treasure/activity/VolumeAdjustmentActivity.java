@@ -14,10 +14,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class VolumeAdjustmentActivity extends AppCompatActivity {
+public class VolumeAdjustmentActivity extends BaseActivity {
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
     @BindView(R.id.seekBar)
     SeekBar seekBar;
     private AudioManager manager;
@@ -25,13 +23,13 @@ public class VolumeAdjustmentActivity extends AppCompatActivity {
     private int barMax;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_volume_adjustment);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return R.layout.activity_volume_adjustment;
+    }
+
+    @Override
+    protected void initData() {
         manager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-
-
         /**
          * 2、直接设置音量值的方法:
          * public void setStreamVolume(intstreamType, intindex, intflags)

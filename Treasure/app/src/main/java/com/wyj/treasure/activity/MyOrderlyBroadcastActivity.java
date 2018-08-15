@@ -9,35 +9,23 @@ import android.widget.TextView;
 import com.wyj.treasure.R;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MyOrderlyBroadcastActivity extends BaseActivity {
 
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
     @BindView(R.id.btn)
     Button btn;
 
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_my_receiver);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return R.layout.activity_my_receiver;
 
     }
 
     @Override
     protected void initData() {
-        tvTitle.setText("发送自定义广播(有序)");
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        setTitle("发送自定义广播(有序)");
     }
 
     /**

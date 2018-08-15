@@ -22,7 +22,6 @@ import com.wyj.treasure.utils.ArgbAnimator;
 import com.wyj.treasure.widget.ScrollLayout;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
@@ -54,34 +53,23 @@ public class PullUpToLoadMoreActivity extends BaseActivity {
     private View tv_title;
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_pull_up_to_load_more);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return 0;
+    }
+
+    @Override
+    protected int contentView() {
+        return R.layout.activity_pull_up_to_load_more;
     }
 
     @Override
     protected void initData() {
         //设置导航图标一定要设置在setsupportactionbar后面才有用不然他会显示小箭头
         initActionBar();
-
-
         initViewPager();
         argb = new ArgbAnimator(getResources().getColor(R.color.transparent), getResources().getColor(R.color.colorPrimary));
-
-        svFirst.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
-            @Override
-            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                setToolbarBg(scrollY);
-            }
-        });
-        slRoot.setOnScrollChangeListener(new ScrollLayout.OnScrollChangeListener() {
-            @Override
-            public void onScrollChange(ScrollLayout v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                ivFloat.setVisibility(scrollY >= v.getScrollHeight() / 2 ? View.VISIBLE : View.GONE);
-            }
-        });
-
-
+        svFirst.setOnScrollChangeListener((NestedScrollView.OnScrollChangeListener) (v, scrollX, scrollY, oldScrollX, oldScrollY) -> setToolbarBg(scrollY));
+        slRoot.setOnScrollChangeListener((ScrollLayout.OnScrollChangeListener) (v, scrollX, scrollY, oldScrollX, oldScrollY) -> ivFloat.setVisibility(scrollY >= v.getScrollHeight() / 2 ? View.VISIBLE : View.GONE));
     }
 
     private void initViewPager() {

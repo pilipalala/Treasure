@@ -2,7 +2,6 @@ package com.wyj.treasure.activity;
 
 import android.content.Context;
 import android.os.Build;
-import android.os.Bundle;
 import android.os.Environment;
 import android.os.storage.StorageManager;
 
@@ -26,15 +25,8 @@ import java.lang.reflect.Method;
 public class ExternalStorageActivity extends BaseActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_external_storage);
-
-    }
-
-    @Override
-    protected void initView() {
-
+    protected int initView() {
+        return R.layout.activity_external_storage;
     }
 
     @Override

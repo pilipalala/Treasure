@@ -6,9 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.wyj.treasure.activity.TinkerActivity">
-
-    <include layout="@layout/title" />
-
     <Button
         android:id="@+id/btn_permission"
         style="@style/default_button_style" />

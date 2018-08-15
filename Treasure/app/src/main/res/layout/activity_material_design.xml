@@ -1,48 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.wyj.materialdesign.MaterialDesignActivity">
 
-    <include layout="@layout/title" />
-
-    <Button
-        android:id="@+id/btn_drawerlayout"
-        style="@style/default_button_style"
-        android:text="抽屉DrawerLayout" />
-
-    <Button
-        android:id="@+id/btn_bottomsheet"
-        style="@style/default_button_style"
-        android:text="BottomSheet" />
-
-    <Button
-        android:id="@+id/btn_palette"
-        style="@style/default_button_style"
-        android:text="Palette" />
-
-    <Button
-        android:id="@+id/btn_xitu"
-        style="@style/default_button_style"
-        android:text="仿XiTu个人中心" />
-
-    <Button
-        android:id="@+id/btn_style"
-        style="@style/default_button_style"
-        android:text="5.0新样式" />
-
-    <Button
-        android:id="@+id/btn_refresh"
-        style="@style/default_button_style"
-        android:text="RecyclerView刷新" />
-
-    <Button
-        android:id="@+id/btn_tablayout"
-        style="@style/default_button_style"
-        android:text="TabLayout" />
 
 
 </LinearLayout>

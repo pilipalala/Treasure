@@ -1,54 +1,27 @@
 package com.wyj.materialdesign.drawerlayout;
 
-import android.content.Intent;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.TextView;
-
-import com.wyj.treasure.R;
 import com.wyj.treasure.activity.BaseActivity;
+import com.wyj.treasure.mode.ItemInfo;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
+import java.util.List;
 
 public class DrawerLayoutMainActivity extends BaseActivity {
 
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-
-
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_drawer_layout_main);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return DEFATE_VIEW;
     }
 
     @Override
     protected void initData() {
-        toolbar.setNavigationOnClickListener(v -> finish());
+        setTitle("抽屉DrawerLayout");
     }
 
-
-    @OnClick({R.id.drawer_layout_simple, R.id.drawer_layout_below, R.id.drawer_layout_layout})
-    public void onViewClicked(View view) {
-        Intent intent;
-        switch (view.getId()) {
-            case R.id.drawer_layout_simple:
-                intent = new Intent(this, DrawerLayoutDemoActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.drawer_layout_below:
-                intent = new Intent(this, DrawerLayout_BelowToolbarActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.drawer_layout_layout:
-                intent = new Intent(this, DrawerLayout_OtherActivity.class);
-                startActivity(intent);
-                break;
-        }
+    @Override
+    protected List<ItemInfo> getListData() {
+        mData.add(new ItemInfo("基本DrawerLayout+NavigationView", DrawerLayoutDemoActivity.class, 0));
+        mData.add(new ItemInfo("NavigationView在Toolbar下方", DrawerLayout_BelowToolbarActivity.class, 0));
+        mData.add(new ItemInfo("DrawerLayout+其他布局", DrawerLayout_OtherActivity.class, 0));
+        return super.getListData();
     }
 }

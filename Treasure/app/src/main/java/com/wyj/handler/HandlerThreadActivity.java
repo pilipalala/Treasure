@@ -14,7 +14,6 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.FutureTask;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class HandlerThreadActivity extends BaseActivity {
@@ -27,9 +26,8 @@ public class HandlerThreadActivity extends BaseActivity {
 
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_handler_thread);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return R.layout.activity_handler_thread;
     }
 
     @Override
@@ -131,7 +129,7 @@ public class HandlerThreadActivity extends BaseActivity {
                 // 步骤4：使用工作线程Handler向工作线程的消息队列发送消息
                 // 在工作线程中，当消息循环时取出对应消息 & 在工作线程执行相关操作
                 // a. 定义要发送的消息
-                Message msga = workHandler.obtainMessage(2,"A");
+                Message msga = workHandler.obtainMessage(2, "A");
                 // b. 通过Handler发送消息到其绑定的消息队列
                 workHandler.sendMessage(msga);
                 break;

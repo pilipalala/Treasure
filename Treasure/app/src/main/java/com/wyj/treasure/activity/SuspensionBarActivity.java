@@ -18,7 +18,6 @@ import com.wyj.treasure.utils.LogUtil;
 import com.wyj.treasure.widget.CircleImageView;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class SuspensionBarActivity extends BaseActivity {
 
@@ -43,9 +42,13 @@ public class SuspensionBarActivity extends BaseActivity {
 
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_suspension_bar);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return 0;
+    }
+
+    @Override
+    protected int contentView() {
+        return R.layout.activity_suspension_bar;
     }
 
     @Override
@@ -86,7 +89,7 @@ public class SuspensionBarActivity extends BaseActivity {
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 /*获取第mCurrentPosition+1个item*/
-                View view = linearLayoutManager.findViewByPosition(mCurrentPosition+1);
+                View view = linearLayoutManager.findViewByPosition(mCurrentPosition + 1);
                 if (view != null) {
                     /*view 距离顶部的距离小于 悬浮条的高度*/
                     if (view.getTop() <= mSuspensionHeight) {

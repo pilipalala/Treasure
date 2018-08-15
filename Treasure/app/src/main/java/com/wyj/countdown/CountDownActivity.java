@@ -1,16 +1,17 @@
 package com.wyj.countdown;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.BaseActivity;
+import com.wyj.treasure.mode.ItemInfo;
+
+import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class CountDownActivity extends BaseActivity {
@@ -23,15 +24,13 @@ public class CountDownActivity extends BaseActivity {
     Button btnCountDownTimer;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_count_down);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return R.layout.activity_count_down;
     }
 
     @Override
-    protected void initView() {
-
+    protected List<ItemInfo> getListData() {
+        return null;
     }
 
     @Override

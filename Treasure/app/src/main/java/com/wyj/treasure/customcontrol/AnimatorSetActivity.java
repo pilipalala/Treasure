@@ -12,15 +12,10 @@ import com.wyj.treasure.activity.BaseActivity;
 import com.wyj.treasure.utils.ToastUtil;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class AnimatorSetActivity extends BaseActivity {
 
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
     @BindView(R.id.tv_text)
     TextView tvText;
     @BindView(R.id.tv_animatorset)
@@ -41,15 +36,13 @@ public class AnimatorSetActivity extends BaseActivity {
     private boolean mIsMenuOpen = false;
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_animator_set);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return R.layout.activity_animator_set;
     }
 
     @Override
     protected void initData() {
-        tvTitle.setText("AnimatorSet的用法");
-        toolbar.setNavigationOnClickListener(v -> finish());
+        setTitle("AnimatorSet的用法");
 
     }
 

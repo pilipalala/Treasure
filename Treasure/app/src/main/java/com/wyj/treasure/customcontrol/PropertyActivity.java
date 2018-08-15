@@ -18,10 +18,6 @@ import butterknife.OnClick;
 
 public class PropertyActivity extends BaseActivity {
 
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
     @BindView(R.id.tv)
     TextView tv;
     @BindView(R.id.mypointview)
@@ -29,14 +25,13 @@ public class PropertyActivity extends BaseActivity {
 
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_property);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return R.layout.activity_property;
     }
 
     @Override
     protected void initData() {
-        tvTitle.setText("PropertyValuesHolder与Keyframe");
+       setTitle("PropertyValuesHolder与Keyframe");
 
     }
 

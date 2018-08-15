@@ -1,4 +1,4 @@
-package com.wyj.skatemenu;
+package com.wyj.SkateMenu;
 
 import android.content.Intent;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
+import com.tencent.bugly.proguard.v;
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.BaseActivity;
 import com.wyj.treasure.adapter.SwipeAdapter;
@@ -30,13 +31,18 @@ public class SwipeDeleteActivity extends BaseActivity implements SwipeAdapter.Io
 
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_swipe_delete);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return 0;
+    }
+
+    @Override
+    protected int contentView() {
+        return R.layout.activity_swipe_delete;
     }
 
     @Override
     protected void initData() {
+        toolbar.setNavigationOnClickListener(v -> finish());
         tvRightTitle.setVisibility(View.VISIBLE);
         tvRightTitle.setText("另一种方法");
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -57,7 +63,6 @@ public class SwipeDeleteActivity extends BaseActivity implements SwipeAdapter.Io
 
     @OnClick(R.id.tv_right_title)
     public void onViewClicked() {
-        startActivity(new Intent(this, SkateMenuActivity.class ));
-
+        startActivity(new Intent(this, SkateMenuActivity.class));
     }
 }

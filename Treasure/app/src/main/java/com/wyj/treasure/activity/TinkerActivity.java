@@ -6,30 +6,22 @@ import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
-import android.support.v7.widget.Toolbar;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.wyj.treasure.R;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class TinkerActivity extends BaseActivity {
 
     private static final int REQUEST_CODE_ASK_PERMISSIONS = 0x11;
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
     @BindView(R.id.btn_permission)
     Button btnPermission;
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_tinker);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return R.layout.activity_tinker;
     }
 
     @Override
@@ -62,7 +54,6 @@ public class TinkerActivity extends BaseActivity {
             requestPermissions(new String[]{Manifest.permission.WRITE_CONTACTS},
                     REQUEST_CODE_ASK_PERMISSIONS);
             return;
-//TODO
         }
     }
 

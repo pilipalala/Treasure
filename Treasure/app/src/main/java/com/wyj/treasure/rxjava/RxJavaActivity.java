@@ -42,8 +42,8 @@ import io.reactivex.schedulers.Schedulers;
 public class RxJavaActivity extends BaseActivity {
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_rx_java);
+    protected int initView() {
+        return R.layout.activity_rx_java;
     }
 
     @Override

@@ -10,16 +10,11 @@ import com.wyj.treasure.R;
 import com.wyj.treasure.activity.BaseActivity;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
 public class AnimationActivity extends BaseActivity {
 
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
     @BindView(R.id.tv_item)
     TextView tvItem;
     private Animation animation;
@@ -37,15 +32,13 @@ public class AnimationActivity extends BaseActivity {
      */
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_animation);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return R.layout.activity_animation;
     }
 
     @Override
     protected void initData() {
-        toolbar.setNavigationOnClickListener(v -> finish());
-        tvTitle.setText("alpha、scale、translate、rotate、set的xml属性及用法");
+        setTitle("alpha、scale、translate、rotate、set的xml属性及用法");
         mContext = AnimationActivity.this;
 
     }

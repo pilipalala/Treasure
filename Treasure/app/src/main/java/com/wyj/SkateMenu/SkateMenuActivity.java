@@ -1,6 +1,5 @@
-package com.wyj.skatemenu;
+package com.wyj.SkateMenu;
 
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,11 +24,14 @@ public class SkateMenuActivity extends BaseActivity {
     private SkateAdapter skateAdapter;
     SlideLayout mLayout;
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_skate_menu);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return R.layout.activity_skate_menu;
+    }
+
+    @Override
+    protected void initData() {
         myBeans = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
             MyBean bean = new MyBean("Content" + i);
@@ -37,16 +39,6 @@ public class SkateMenuActivity extends BaseActivity {
         }
         skateAdapter = new SkateAdapter();
         listView.setAdapter(skateAdapter);
-    }
-
-    @Override
-    protected void initView() {
-
-    }
-
-    @Override
-    protected void initData() {
-
     }
 
     private class SkateAdapter extends BaseAdapter {
@@ -88,15 +80,12 @@ public class SkateMenuActivity extends BaseActivity {
                     ToastUtil.show(myBeans.get(position).title);
                 }
             });
-            holder.item_menu.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    SlideLayout slideLayout = (SlideLayout) v.getParent();
-                    slideLayout.closeMenu();
-                    myBeans.remove(position);
-                    notifyDataSetChanged();
-                    ToastUtil.show("删除第"+position+"行");
-                }
+            holder.item_menu.setOnClickListener(v -> {
+                SlideLayout slideLayout = (SlideLayout) v.getParent();
+                slideLayout.closeMenu();
+                myBeans.remove(position);
+                notifyDataSetChanged();
+                ToastUtil.show("删除第" + position + "行");
             });
 
             final SlideLayout slideLayout = (SlideLayout) convertView;
@@ -126,7 +115,7 @@ public class SkateMenuActivity extends BaseActivity {
             return convertView;
         }
 
-        public  class MyViewHolder {
+        public class MyViewHolder {
             private TextView item_content;
             private TextView item_menu;
 

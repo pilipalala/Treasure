@@ -6,15 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".activity.VolumeAdjustmentActivity">
 
-    <include
-        android:id="@+id/title"
-        layout="@layout/title" />
-
     <SeekBar
         android:id="@+id/seekBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/btn_add"

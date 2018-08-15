@@ -7,7 +7,6 @@
     android:orientation="vertical"
     tools:context="com.wyj.treasure.activity.MyReceiverActivity">
 
-    <include layout="@layout/title" />
 
     <Button
         android:id="@+id/btn"

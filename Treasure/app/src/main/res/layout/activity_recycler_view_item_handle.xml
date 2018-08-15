@@ -6,7 +6,6 @@
     android:orientation="vertical"
     tools:context="com.wyj.treasure.activity.itemtouch.RecyclerViewItemTouchActivity">
 
-    <include layout="@layout/title" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"

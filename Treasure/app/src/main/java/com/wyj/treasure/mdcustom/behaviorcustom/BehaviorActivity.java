@@ -11,8 +11,8 @@ public class BehaviorActivity extends BaseActivity {
      * 可以监听所有子控件或者子容器的事件
      */
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_behavior);
+    protected int initView() {
+        return R.layout.activity_behavior;
     }
 
     @Override

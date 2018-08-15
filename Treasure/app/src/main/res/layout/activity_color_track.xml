@@ -7,8 +7,6 @@
     android:orientation="vertical"
     tools:context="com.wyj.colortracktextview.ColorTrackActivity">
 
-    <include layout="@layout/title" />
-
     <com.wyj.colortracktextview.trackindicator.TrackIndicatorView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/indicator_view"
         android:layout_width="match_parent"

@@ -15,7 +15,6 @@ import com.wyj.treasure.utils.LogUtil;
 import com.wyj.treasure.utils.ToastUtil;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ValueAnimatorActivity extends BaseActivity {
@@ -24,23 +23,17 @@ public class ValueAnimatorActivity extends BaseActivity {
     TextView tv;
     @BindView(R.id.mypointview)
     MyPointView mypointview;
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
     private ValueAnimator animator;
 
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_animator_anim);
-        ButterKnife.bind(this);
+    protected int initView() {
+        return R.layout.activity_animator_anim;
     }
 
     @Override
     protected void initData() {
-        toolbar.setNavigationOnClickListener(v -> finish());
-        tvTitle.setText("ValueAnimator的使用");
+        setTitle("ValueAnimator的使用");
     }
 
     @OnClick({R.id.bt_start, R.id.bt_start_point, R.id.tv, R.id.bt_start_object, R.id.bt_start_argb})
@@ -100,7 +93,6 @@ public class ValueAnimatorActivity extends BaseActivity {
         }
 
     }
-
 
 
     /**

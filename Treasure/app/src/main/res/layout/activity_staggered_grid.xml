@@ -7,13 +7,11 @@
     android:orientation="vertical"
     tools:context="com.wyj.treasure.activity.StaggeredGridActivity">
 
-    <include layout="@layout/title" />
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycle"
         android:layout_width="match_parent"
-        android:padding="@dimen/dp_2"
         android:layout_height="wrap_content"
-        android:layout_weight="1"></android.support.v7.widget.RecyclerView>
+        android:layout_weight="1"
+        android:padding="@dimen/dp_2"></android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

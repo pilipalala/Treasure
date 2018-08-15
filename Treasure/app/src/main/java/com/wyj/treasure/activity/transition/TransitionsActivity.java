@@ -1,52 +1,33 @@
 package com.wyj.treasure.activity.transition;
 
 import android.content.Intent;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.TextView;
 
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.BaseActivity;
+import com.wyj.treasure.mode.ItemInfo;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import java.util.List;
+
 import butterknife.OnClick;
 
 public class TransitionsActivity extends BaseActivity {
 
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-
+    @Override
+    protected int initView() {
+        return R.layout.activity_transitions;
+    }
 
     @Override
-    protected void initView() {
-        setContentView(R.layout.activity_transitions);
-        ButterKnife.bind(this);
+    protected List<ItemInfo> getListData() {
+        mData.add(new ItemInfo("跳转", TransitionsSlideActivity.class, 0));
+        mData.add(new ItemInfo("RecycleView过渡动画跳转", TransitionsListActivity.class, 0));
+        return super.getListData();
     }
 
     @Override
     protected void initData() {
-        tvTitle.setText("属性动画");
-        toolbar.setNavigationIcon(R.mipmap.icon_top_back);
-        toolbar.setNavigationOnClickListener(v -> finish());
+        setTitle("属性动画");
     }
 
-
-    @OnClick({R.id.btn, R.id.btn_list})
-    public void onViewClicked(View view) {
-        Intent intent = new Intent();
-        switch (view.getId()) {
-            case R.id.btn:
-                intent.setClass(this, TransitionsSlideActivity.class);
-                startActivity(intent);
-
-                break;
-            case R.id.btn_list:
-                intent.setClass(this, TransitionsListActivity.class);
-                startActivity(intent);
-                break;
-        }
-    }
 }

@@ -18,7 +18,6 @@ import com.wyj.treasure.utils.StatusBarUtil;
 import com.wyj.treasure.widget.ObservaleScrollView;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 
 public class HeadimageScaleActivity extends BaseActivity {
@@ -48,10 +47,9 @@ public class HeadimageScaleActivity extends BaseActivity {
     }
 
     @Override
-    protected void initView() {
+    protected int initView() {
         StatusBarUtil.setImgTransparent(this);
-        setContentView(R.layout.activity_headimage_scale);
-        ButterKnife.bind(this);
+        return R.layout.activity_headimage_scale;
     }
 
     @Override

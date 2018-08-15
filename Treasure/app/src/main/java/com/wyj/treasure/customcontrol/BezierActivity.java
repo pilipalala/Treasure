@@ -10,31 +10,30 @@ import android.widget.TextView;
 
 import com.wyj.dialog.BaseAlertDialog;
 import com.wyj.treasure.R;
+import com.wyj.treasure.activity.BaseActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class BezierActivity extends AppCompatActivity {
+public class BezierActivity extends BaseActivity {
 
     @BindView(R.id.myview)
     BezierView myview;
     @BindView(R.id.tv_right_title)
     TextView tvRightTitle;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bezier);
-        ButterKnife.bind(this);
-        tvRightTitle.setVisibility(View.VISIBLE);
-        tvRightTitle.setText("效果");
-
+    protected int initView() {
+        return R.layout.activity_bezier;
     }
 
-    @OnClick(R.id.tv_right_title)
+    @Override
+    protected void initData() {
+        setRightTitle("效果", v -> onViewClicked());
+    }
+
     public void onViewClicked() {
         myview.startAnim();
         BaseAlertDialog dialog = new BaseAlertDialog.Builder(this)
@@ -48,17 +47,11 @@ public class BezierActivity extends AppCompatActivity {
 
         EditText etNum = dialog.getView(R.id.et_num);
         final int[] i = {1};
-        dialog.setOnClick(R.id.bt_add, new View.OnClickListener() {
+        dialog.setOnClick(R.id.bt_add, v -> runOnUiThread(new Runnable() {
             @Override
-            public void onClick(View v) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        etNum.setText((i[0]++) + "");
-
-                    }
-                });
+            public void run() {
+                etNum.setText((i[0]++) + "");
             }
-        });
+        }));
     }
 }

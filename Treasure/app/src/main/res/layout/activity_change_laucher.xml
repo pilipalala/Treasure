@@ -6,16 +6,13 @@
     android:layout_height="match_parent"
     tools:context="com.wyj.treasure.activity.ChangeLaucherActivity">
 
-    <include
-        android:id="@+id/title"
-        layout="@layout/title" />
-
 
     <Button
         android:id="@+id/btn_change"
         style="@style/default_button_style"
-        android:text="更换图标"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintTop_toBottomOf="parent"
+        android:layout_marginTop="@dimen/dp_10"
+        android:text="更换图标"/>
 
     <blink
         android:layout_width="wrap_content"

@@ -1,7 +1,5 @@
 package com.wyj.treasure.customcontrol;
 
-import android.os.Bundle;
-
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.BaseActivity;
 
@@ -25,14 +23,8 @@ import com.wyj.treasure.activity.BaseActivity;
 public class Interpolator extends BaseActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_interpolator);
-    }
-
-    @Override
-    protected void initView() {
-
+    protected int initView() {
+        return R.layout.activity_interpolator;
     }
 
     @Override

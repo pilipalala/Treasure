@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class WelcomeActivity extends BaseActivity {
@@ -39,14 +38,13 @@ public class WelcomeActivity extends BaseActivity {
     private List<Fragment> fragments;
 
     @Override
-    protected void initView() {
+    protected int initView() {
         //无title
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         //全屏
         getWindow().setFlags(WindowManager.LayoutParams. FLAG_FULLSCREEN , WindowManager.LayoutParams. FLAG_FULLSCREEN);
         //此两段代码必须设置在setContentView()方法之前
-        setContentView(R.layout.activity_welcome);
-        ButterKnife.bind(this);
+        return R.layout.activity_welcome;
     }
 
     @Override
