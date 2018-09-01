@@ -11,6 +11,7 @@ import com.wyj.treasure.fragment.BaseFragment;
 import com.wyj.treasure.fragment.DashboardFragment;
 import com.wyj.treasure.fragment.HomeFragment;
 import com.wyj.treasure.fragment.NotificationsFragment;
+import com.wyj.floatingdialog.BaymanView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return false;
     };
+    private BaymanView baymanView;
 
 
     private void check(int position) {
@@ -96,10 +98,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         initData();
-
-
+        baymanView = new BaymanView(this);
+//        baymanView.show();
     }
-
 
 
     private void initData() {
@@ -117,5 +118,13 @@ public class MainActivity extends AppCompatActivity {
         mBaseFragment.add(homeFragment);
         mBaseFragment.add(dashboardFragment);
         mBaseFragment.add(notificationsFragment);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (baymanView != null) {
+            baymanView.destroy();
+        }
     }
 }

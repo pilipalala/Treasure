@@ -1,4 +1,4 @@
-package com.wyj.SkateMenu;
+package com.wyj.swipedelete;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

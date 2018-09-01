@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.wyj.treasure.R;
+import com.wyj.floatingdialog.BaymanView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,6 +28,7 @@ public class DrawerLayout_BelowToolbarActivity extends AppCompatActivity impleme
     DrawerLayout drawerLayout;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+    private BaymanView baymanView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,8 @@ public class DrawerLayout_BelowToolbarActivity extends AppCompatActivity impleme
         setContentView(R.layout.activity_drawer_layout_below_toolbar);
         ButterKnife.bind(this);
         initView();
+        baymanView = new BaymanView(this);
+        baymanView.show();
     }
 
     private void initView() {

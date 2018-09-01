@@ -43,7 +43,6 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void startSpashDataLoad() {
-
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {

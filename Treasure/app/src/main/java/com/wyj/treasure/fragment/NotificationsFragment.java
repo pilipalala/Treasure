@@ -2,6 +2,7 @@ package com.wyj.treasure.fragment;
 
 
 import com.wyj.bluetooth.BluetoothActivity;
+import com.wyj.gifview.GifPlayActivity;
 import com.wyj.handler.CustomHandlerActivity;
 import com.wyj.handler.HandlerThreadActivity;
 import com.wyj.handler.NewHandlerThreadActivity;
@@ -25,6 +26,7 @@ public class NotificationsFragment extends BaseCardViewFragment {
         mData.add(new ItemInfo("NewHandlerThreadActivity", NewHandlerThreadActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("蓝牙", BluetoothActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("调节音量", VolumeAdjustmentActivity.class, R.mipmap.ic_launcher));
+        mData.add(new ItemInfo("播放gif图片", GifPlayActivity.class, R.mipmap.ic_launcher));
 
         notifyDataChanged();
     }

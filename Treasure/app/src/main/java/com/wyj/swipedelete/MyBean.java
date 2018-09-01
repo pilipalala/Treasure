@@ -1,4 +1,4 @@
-package com.wyj.SkateMenu;
+package com.wyj.swipedelete;
 
 /**
  * Created by wangyujie

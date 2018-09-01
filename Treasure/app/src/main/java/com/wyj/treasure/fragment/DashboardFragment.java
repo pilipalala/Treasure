@@ -1,6 +1,7 @@
 package com.wyj.treasure.fragment;
 
-import com.wyj.SkateMenu.SwipeDeleteActivity;
+import com.wyj.keyboard.KeyboardActivity;
+import com.wyj.swipedelete.SwipeDeleteActivity;
 import com.wyj.bannerviewpager.BannerViewPagerActivity;
 import com.wyj.colortracktextview.ColorTrackActivity;
 import com.wyj.countdown.CountDownActivity;
@@ -61,6 +62,7 @@ public class DashboardFragment extends BaseCardViewFragment {
         mData.add(new ItemInfo("MaterialDesign", MaterialDesignActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("VoiceWaveView", VoiceWaveActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("Dagger", DaggerActivity.class, R.mipmap.ic_launcher));
+        mData.add(new ItemInfo("自定义输入框&键盘", KeyboardActivity.class, R.mipmap.ic_launcher));
         notifyDataChanged();
     }
 }

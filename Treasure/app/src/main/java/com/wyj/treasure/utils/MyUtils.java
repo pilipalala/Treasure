@@ -1,17 +1,23 @@
 package com.wyj.treasure.utils;
 
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.AppOpsManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.WindowManager;
+
+import com.wyj.treasure.MyApplication;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -26,6 +32,7 @@ import java.util.List;
 public class MyUtils {
     /**
      * 获取屏幕宽度
+     *
      * @param context
      * @return
      */
@@ -36,6 +43,7 @@ public class MyUtils {
         wm.getDefaultDisplay().getMetrics(outMetrics);
         return outMetrics.widthPixels;
     }
+
     /**
      * 判断某个服务是否正在运行
      *
@@ -59,6 +67,7 @@ public class MyUtils {
         }
         return isWork;
     }
+
     /**
      * 网络是否可用
      *
@@ -77,6 +86,7 @@ public class MyUtils {
         }
         return false;
     }
+
     /**
      * 判断是否获取通知栏权限
      *
@@ -107,6 +117,7 @@ public class MyUtils {
         }
         return false;
     }
+
     /**
      * 跳到通知栏设置界面
      *
@@ -134,5 +145,47 @@ public class MyUtils {
             }
         }
         context.startActivity(localIntent);
+    }
+
+    public static Bitmap setBitmapSize(Bitmap bitMap) {
+        int width = bitMap.getWidth();
+        int height = bitMap.getHeight();
+        // 设置想要的大小
+        int newWidth = 200;
+        int newHeight = 200;
+        // 计算缩放比例
+        float scaleWidth = ((float) newWidth) / width;
+        float scaleHeight = ((float) newHeight) / height;
+        // 取得想要缩放的matrix参数
+        Matrix matrix = new Matrix();
+        matrix.postScale(scaleWidth, scaleHeight);
+        // 得到新的图片
+        return Bitmap.createBitmap(bitMap, 0, 0, width, height, matrix, true);
+    }
+
+    /**
+     * 直接读取系统里状态栏高度的值，但是无法判断状态栏是否显示
+     */
+    public static int getStatusBarHeight() {
+        int height = 0;
+        //获取status_bar_height资源的ID
+        int resourceId = MyApplication.getContext().getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            //根据资源ID获取响应的尺寸值
+            height = MyApplication.getContext().getResources().getDimensionPixelSize(resourceId);
+        }
+        LogUtil.d(height + "");
+        return height;
+    }
+
+    /**
+     * 判断当前window的flag是否是full_screen，缺点是无法获得状态栏的高度和只能在activity中使用
+     */
+    private void isStatusBarVisible(Activity activity) {
+        if ((activity.getWindow().getAttributes().flags & WindowManager.LayoutParams.FLAG_FULLSCREEN) == 0) {
+            LogUtil.d("status bar is visible");
+        } else {
+            LogUtil.d("status bar is not visible");
+        }
     }
 }

@@ -8,15 +8,11 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.TextView;
 
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.BaseActivity;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class NotificationEffectActivity extends BaseActivity {
@@ -178,9 +174,9 @@ public class NotificationEffectActivity extends BaseActivity {
                 .setContentTitle("我是伴有铃声效果的通知")
                 .setContentText("美妙么?安静听~")
                 //调用系统默认响铃,设置此属性后setSound()会无效
-                //.setDefaults(Notification.DEFAULT_SOUND)
+//                .setDefaults(Notification.DEFAULT_SOUND);
                 //调用系统多媒体裤内的铃声
-                //.setSound(Uri.withAppendedPath(MediaStore.Audio.Media.INTERNAL_CONTENT_URI,"2"));
+//                .setSound(Uri.withAppendedPath(MediaStore.Audio.Media.INTERNAL_CONTENT_URI,"2"));
                 //调用自己提供的铃声
                 .setSound(Uri.parse("android.resource://com.wyj.treasure/" + R.raw.sound));
         /*另一种设置铃声的方法*//*
@@ -202,11 +198,14 @@ public class NotificationEffectActivity extends BaseActivity {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setLargeIcon(mLargeIcon)
-                .setStyle(new NotificationCompat.BigTextStyle().bigText("我没有铃声、震动、呼吸灯,但我就是一个通知"))
+                .setFullScreenIntent(null, true)
+                .setStyle(new NotificationCompat.BigTextStyle().bigText("我没有铃声、震动、呼吸灯,但我就是一个通知")
+                        .setBigContentTitle("我是只有文字效果的通知"))
                 .setContentTitle("我是只有文字效果的通知");
         manager.notify(1, builder.build());
 
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

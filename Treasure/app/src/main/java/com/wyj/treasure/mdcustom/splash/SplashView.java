@@ -252,7 +252,7 @@ public class SplashView extends View {
                     mState = new ExpandState();
                 }
             });
-            mAnimator.setDuration(mSplashDuration*2);
+            mAnimator.setDuration(mSplashDuration * 2);
             mAnimator.reverse();//翻转执行
         }
 

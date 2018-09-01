@@ -27,6 +27,7 @@
     <uses-feature android:name="android.hardware.location.gps" />
     <!-- 在 Android 6.0 及以上，还需要打开位置权限。如果应用没有位置权限，蓝牙扫描功能不能使用（其它蓝牙操作例如连接蓝牙设备和写入数据不受影响）。 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <permission
         android:name="com.wyj.process.permission.ACCESS_BOOK_SERVICE"
@@ -257,7 +258,9 @@
         <activity android:name="com.wyj.materialdesign.MaterialDesignActivity" />
         <activity android:name=".activity.VolumeAdjustmentActivity" />
         <activity android:name="com.wyj.waveview.VoiceWaveActivity" />
-        <activity android:name="com.wyj.notification.NotificationActivity"></activity>
+        <activity android:name="com.wyj.notification.NotificationActivity" />
+        <activity android:name="com.wyj.keyboard.KeyboardActivity" />
+        <activity android:name="com.wyj.gifview.GifPlayActivity"></activity>
     </application>
 
 </manifest>

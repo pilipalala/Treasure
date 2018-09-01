@@ -1,4 +1,4 @@
-package com.wyj.SkateMenu;
+package com.wyj.swipedelete;
 
 import android.content.Intent;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -8,13 +8,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
-import com.tencent.bugly.proguard.v;
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.BaseActivity;
 import com.wyj.treasure.adapter.SwipeAdapter;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class SwipeDeleteActivity extends BaseActivity implements SwipeAdapter.IonSlidingViewClickListener {

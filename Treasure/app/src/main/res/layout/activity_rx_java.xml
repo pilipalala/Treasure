@@ -1,9 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_create"
+            style="@style/default_button_style"
+            android:text="Create RxJava" />
+
+        <Button
+            android:id="@+id/btn_for_thread"
+            style="@style/default_button_style"
+            android:text="RxJavaForThread" />
+
+        <Button
+            android:id="@+id/btn_for_from"
+            style="@style/default_button_style"
+            android:text="RxJavaForFrom" />
+        <Button
+            android:id="@+id/btn_for_interval"
+            style="@style/default_button_style"
+            android:text="RxJavaForInterval" />
+
+        <Button
+            android:id="@+id/btn_for_just"
+            style="@style/default_button_style"
+            android:text="RxJavaForJust" />
+
+        <Button
+            android:id="@+id/btn_for_range"
+            style="@style/default_button_style"
+            android:text="RxJavaForRange" />
+
+        <Button
+            android:id="@+id/btn_for_filter"
+            style="@style/default_button_style"
+            android:text="RxJavaForFilter" />
+
+        <Button
+            android:id="@+id/btn_for_map"
+            style="@style/default_button_style"
+            android:text="RxJavaForMap" />
+
+        <Button
+            android:id="@+id/btn_for_flatMap"
+            style="@style/default_button_style"
+            android:text="RxJavaFlatMap" />
+
+        <Button
+            android:id="@+id/btn_for_ConcatMap"
+            style="@style/default_button_style"
+            android:text="RxJavaConcatMap" />
+
+        <Button
+            android:id="@+id/btn_for_zip"
+            style="@style/default_button_style"
+            android:text="RxJavaForZip" />
+
+    </LinearLayout>
+
+</ScrollView>

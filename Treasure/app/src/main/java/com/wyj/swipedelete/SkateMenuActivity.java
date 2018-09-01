@@ -1,4 +1,4 @@
-package com.wyj.SkateMenu;
+package com.wyj.swipedelete;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +14,6 @@ import com.wyj.treasure.utils.ToastUtil;
 import java.util.ArrayList;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class SkateMenuActivity extends BaseActivity {
 
