@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.wyj.treasure.R;
-import com.wyj.treasure.utils.MyUtils;
+import com.wyj.treasure.utils.CommonUtils;
 import com.wyj.treasure.widget.SlidingButtonView;
 
 import java.util.ArrayList;
@@ -63,7 +63,7 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(SwipeAdapter.MyViewHolder holder, int position) {
         holder.textView.setText(mDatas.get(position));
-        holder.layout_content.getLayoutParams().width = MyUtils.getScreenWidth(mContext);
+        holder.layout_content.getLayoutParams().width = CommonUtils.getScreenWidth(mContext);
         holder.textView.setOnClickListener(v -> {
             //判断是否有删除菜单打开
             if (menuIsOpen()) {

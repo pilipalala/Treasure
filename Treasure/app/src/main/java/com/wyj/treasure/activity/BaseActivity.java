@@ -3,13 +3,18 @@ package com.wyj.treasure.activity;
 import android.Manifest;
 import android.app.Activity;
 import android.app.ActivityOptions;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +22,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -60,6 +66,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected List<ItemInfo> mData;
     protected Context mContext;
     private boolean startAnimation = true;
+    private PermissionListener mListener;
+    private Activity topActivity;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -139,6 +147,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     private TextView mRightTitle;
 
     private View contentView(@LayoutRes int layoutResID) {
+        /*Toolbar布局中不能有LinearLayout等布局*/
         View baseView = LayoutInflater.from(mContext).inflate(R.layout.activity_base, null);
         mFlContent = (FrameLayout) baseView.findViewById(R.id.fl_content);
         mBaseRv = (RecyclerView) baseView.findViewById(R.id.rv_base);
@@ -215,7 +224,80 @@ public abstract class BaseActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         PermissionHelper.requestPermissionsResult(this, requestCode, permissions);
+        switch (requestCode) {
+            case 1:
+                if (grantResults.length > 0) {
+                    List<String> deniedPermissions = new ArrayList<>();
+                    List<String> unRationaleList = new ArrayList<String>();
+                    for (int i = 0; i < grantResults.length; i++) {
+                        int grantResult = grantResults[i];
+                        String permission = permissions[i];
+                        if (grantResult != PackageManager.PERMISSION_GRANTED) {
+                            deniedPermissions.add(permission);
+
+                            //返回的是true,代表的是提示，表示我们可以动态去申请权限。
+                            //返回的是false代表的是禁止，我们就不可以去动态申请权限，此时则只能去通过用户，去手动更改权限
+                            //如果设置中权限是禁止的则返回false;如果是提示咋返回的是true
+                            boolean isRationale = ActivityCompat.shouldShowRequestPermissionRationale(topActivity,
+                                    permission);
+                            LogUtil.d("BaseActivity_275-->requestRuntimePermission: " + isRationale);
+                            if (!isRationale) {//被禁止不再提示的权限
+                                unRationaleList.add(permission);
+                            }
+                        }
+                    }
+                    if (deniedPermissions.isEmpty()) {
+                        mListener.onGranted();
+                    } else {
+                        mListener.onDenied(deniedPermissions, unRationaleList);
+                    }
+                }
+                break;
+        }
     }
+
+    public interface PermissionListener {
+        void onGranted();
+
+        void onDenied(List<String> deniedPermissions, List<String> unRationalePermissions);
+    }
+
+    /**
+     * 请求6.0权限
+     *
+     * @param permissions
+     * @param listener
+     */
+    public void requestRuntimePermission(String[] permissions, PermissionListener listener) {
+        topActivity = ActivityCollector.getTopActivity();
+        if (topActivity == null) {
+            return;
+        }
+
+        mListener = listener;
+        //拒绝权限的集合
+        ArrayList<String> permissionList = new ArrayList<String>();
+
+        for (String permission : permissions) {
+            //权限有三种状态（1、允许  2、提示  3、禁止）
+            //有些手机<金立> 设置中明明是提示或者禁止 但是用 checkSelfPermission检测的 却是 PERMISSION_GRANTED
+            //checkSelfPermission 检查是否拥有这个权限
+            if (ContextCompat.checkSelfPermission(topActivity, permission) != PackageManager.PERMISSION_GRANTED) {
+                // 2、提示  3、禁止
+                permissionList.add(permission);
+                LogUtil.d("BaseActivity_275-->requestRuntimePermission: 没有权限");
+            }
+
+        }
+        if (!permissionList.isEmpty()) {
+            //requestPermissions 请求权限，一般会弹出一个系统对话框，询问用户是否开启这个权限。
+            ActivityCompat.requestPermissions(topActivity,
+                    permissionList.toArray(new String[permissionList.size()]), 1);
+        } else {
+            mListener.onGranted();
+        }
+    }
+
 
     @Override
     protected void onDestroy() {

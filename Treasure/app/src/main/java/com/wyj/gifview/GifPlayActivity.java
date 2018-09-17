@@ -3,11 +3,10 @@ package com.wyj.gifview;
 
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.BaseActivity;
-import com.wyj.treasure.utils.MyUtils;
+import com.wyj.treasure.utils.CommonUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -28,7 +27,7 @@ public class GifPlayActivity extends BaseActivity {
     protected void initData() {
         gifView.setGifResource(R.mipmap.gif);
         ViewGroup.LayoutParams layoutParams = gifView.getLayoutParams();
-        layoutParams.width = MyUtils.getScreenWidth(this);
+        layoutParams.width = CommonUtils.getScreenWidth(this);
         gifView.setLayoutParams(layoutParams);
         gifView.play();
 

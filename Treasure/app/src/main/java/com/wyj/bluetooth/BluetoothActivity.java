@@ -3,7 +3,12 @@ package com.wyj.bluetooth;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothGatt;
+import android.bluetooth.BluetoothGattCallback;
+import android.bluetooth.BluetoothGattCharacteristic;
+import android.bluetooth.BluetoothGattDescriptor;
 import android.bluetooth.BluetoothManager;
+import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothSocket;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -18,6 +23,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -78,7 +84,7 @@ public class BluetoothActivity extends BaseActivity {
                     }
                     // 显示发现的蓝牙设备列表
                     // 加载设备
-                    adapter.setData(mBoundDevicesList);
+                    adapter.setDeviceData(mBoundDevicesList);
                     btnSearch.setText("搜索中...");
                     break;
                 case BluetoothAdapter.ACTION_DISCOVERY_FINISHED:
@@ -93,116 +99,85 @@ public class BluetoothActivity extends BaseActivity {
     private BluetoothStateReceiver mBluetoothStateReceiver;
     private int mSelectedPosition;
 
-    public BluetoothSocket connectDevice(BluetoothDevice device) {
-        BluetoothSocket socket = null;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-//            device.connectGatt(BluetoothActivity.this, true, mBluetoothGattCallback );
-        }
-        try {
-            socket = device.createRfcommSocketToServiceRecord(
-                    UUID.fromString("00001101-0000-1000-8000-00805F9B34FB"));
-            if (!socket.isConnected()) {
-                socket.connect();
-            }
-        } catch (IOException e) {
-            try {
-                socket.close();
-            } catch (IOException closeException) {
-                return null;
-            }
-            return null;
-        }
 
-
-        return socket;
-
-    }
 
     private String TAG = "BluetoothGattCallback";
     //    状态改变
-//    BluetoothGattCallback mBluetoothGattCallback = new BluetoothGattCallback() {
-//        @Override
-//        public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
-//            super.onConnectionStateChange(gatt, status, newState);
-//
-//            Log.e(TAG, "onConnectionStateChange: thread "
-//                    + Thread.currentThread() + " status " + newState);
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-//                if (status != BluetoothGatt.GATT_SUCCESS) {
-//                    String err = "Cannot connect device with error status: " + status;
-//                    // 当尝试连接失败的时候调用 disconnect 方法是不会引起这个方法回调的，所以这里
-//                    //   直接回调就可以了。
-//                    gatt.close();
-//                    Log.e(TAG, err);
-//                    return;
-//                }
-//
-//                if (newState == BluetoothProfile.STATE_CONNECTED) {
-//                    Log.e(TAG, "Attempting to start service discovery:" +
-//                            mBluetoothGatt.discoverServices());
-//                    Log.e(TAG, "connect--->success" + newState + "," + gatt.getServices().size());
-//                    setState(ConnectionState.STATE_CONNECTING);
-//
-//                } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
-//                    Log.e(TAG, "Disconnected from GATT server.");
-//
-//                    Log.e(TAG, "connect--->failed" + newState);
-//                    setState(ConnectionState.STATE_NONE);
-//                }
-//            }
-//        }
-//
-//        @Override
-//        public void onServicesDiscovered(BluetoothGatt gatt, int status) {
-//            if (status == BluetoothGatt.GATT_SUCCESS) {
-//                Log.e(TAG, "onServicesDiscovered received:  SUCCESS");
-//                setState(ConnectionState.STATE_CONNECTED);
-//                initCharacteristic();
-//                try {
-//                    Thread.sleep(200);//延迟发送，否则第一次消息会不成功
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//            } else {
-//                Log.e(TAG, "onServicesDiscovered error falure " + status);
-//                setState(ConnectionState.STATE_NONE);
-//            }
-//
-//        }
-//
-//        @Override
-//        public void onCharacteristicWrite(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status) {
-//            super.onCharacteristicWrite(gatt, characteristic, status);
-//            Log.e(TAG, "onCharacteristicWrite status: " + status);
-//        }
-//
-//        @Override
-//        public void onDescriptorWrite(BluetoothGatt gatt, BluetoothGattDescriptor descriptor, int status) {
-//            super.onDescriptorWrite(gatt, descriptor, status);
-//            Log.e(TAG, "onDescriptorWrite status: " + status);
-//        }
-//
-//        @Override
-//        public void onDescriptorRead(BluetoothGatt gatt, BluetoothGattDescriptor descriptor, int status) {
-//            super.onDescriptorRead(gatt, descriptor, status);
-//            Log.e(TAG, "onDescriptorRead status: " + status);
-//        }
-//
-//        @Override
-//        public void onCharacteristicRead(BluetoothGatt gatt,
-//                                         BluetoothGattCharacteristic characteristic,
-//                                         int status) {
-//            Log.e(TAG, "onCharacteristicRead status: " + status);
-//        }
-//
-//        @Override
-//        public void onCharacteristicChanged(BluetoothGatt gatt,
-//                                            BluetoothGattCharacteristic characteristic) {
-//            Log.e(TAG, "onCharacteristicChanged characteristic: " + characteristic);
-//            readCharacteristic(characteristic);
-//        }
-//
-//    };
+    BluetoothGattCallback mBluetoothGattCallback = new BluetoothGattCallback() {
+        @Override
+        public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
+            super.onConnectionStateChange(gatt, status, newState);
+
+            Log.e(TAG, "onConnectionStateChange: thread "
+                    + Thread.currentThread() + " status " + newState);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+                if (status != BluetoothGatt.GATT_SUCCESS) {
+                    String err = "Cannot connect device with error status: " + status;
+                    // 当尝试连接失败的时候调用 disconnect 方法是不会引起这个方法回调的，所以这里
+                    //   直接回调就可以了。
+                    gatt.close();
+                    Log.e(TAG, err);
+                    return;
+                }
+
+                if (newState == BluetoothProfile.STATE_CONNECTED) {
+                    Log.e(TAG, "connect--->success" + newState + "," + gatt.getServices().size());
+
+                } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
+                    Log.e(TAG, "Disconnected from GATT server.");
+
+                    Log.e(TAG, "connect--->failed" + newState);
+                }
+            }
+        }
+
+        @Override
+        public void onServicesDiscovered(BluetoothGatt gatt, int status) {
+            if (status == BluetoothGatt.GATT_SUCCESS) {
+                Log.e(TAG, "onServicesDiscovered received:  SUCCESS");
+                try {
+                    Thread.sleep(200);//延迟发送，否则第一次消息会不成功
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                Log.e(TAG, "onServicesDiscovered error falure " + status);
+            }
+
+        }
+
+        @Override
+        public void onCharacteristicWrite(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status) {
+            super.onCharacteristicWrite(gatt, characteristic, status);
+            Log.e(TAG, "onCharacteristicWrite status: " + status);
+        }
+
+        @Override
+        public void onDescriptorWrite(BluetoothGatt gatt, BluetoothGattDescriptor descriptor, int status) {
+            super.onDescriptorWrite(gatt, descriptor, status);
+            Log.e(TAG, "onDescriptorWrite status: " + status);
+        }
+
+        @Override
+        public void onDescriptorRead(BluetoothGatt gatt, BluetoothGattDescriptor descriptor, int status) {
+            super.onDescriptorRead(gatt, descriptor, status);
+            Log.e(TAG, "onDescriptorRead status: " + status);
+        }
+
+        @Override
+        public void onCharacteristicRead(BluetoothGatt gatt,
+                                         BluetoothGattCharacteristic characteristic,
+                                         int status) {
+            Log.e(TAG, "onCharacteristicRead status: " + status);
+        }
+
+        @Override
+        public void onCharacteristicChanged(BluetoothGatt gatt,
+                                            BluetoothGattCharacteristic characteristic) {
+            Log.e(TAG, "onCharacteristicChanged characteristic: " + characteristic);
+        }
+
+    };
     /**
      * 判断此设备是否存在
      */
@@ -232,8 +207,9 @@ public class BluetoothActivity extends BaseActivity {
     @Override
     protected void initData() {
         setTitle("蓝牙");
-        //1、获取 BluetoothAdapter
+        //1、首先获取 BluetoothManager
         BluetoothManager bluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
+        //2、获取 BluetoothAdapter
         mBluetoothAdapter = bluetoothManager.getAdapter();
         adapter = new MyBluetoothAdapter();
         rvBluetooth.setLayoutManager(new LinearLayoutManager(this));
@@ -323,7 +299,6 @@ public class BluetoothActivity extends BaseActivity {
                 break;
             case R.id.btn_print:
                 BluetoothDevice device = adapter.getItem(mSelectedPosition);
-                connectDevice(device, TASK_TYPE_PRINT);
                 break;
         }
     }
@@ -342,29 +317,7 @@ public class BluetoothActivity extends BaseActivity {
 
     }
 
-    private void initLeScan() {
-        BluetoothAdapter.LeScanCallback callback = new BluetoothAdapter.LeScanCallback() {
-            /**
-             * @param device 蓝牙设备
-             * @param rssi 蓝牙的信号强弱指标
-             * @param scanRecord 蓝牙广播出来的广告数据
-             */
-            @Override
-            public void onLeScan(BluetoothDevice device, int rssi, byte[] scanRecord) {
-                if (!TextUtils.isEmpty(device.getName())) {
-                    LogUtil.d("蓝牙设备:" + device.getName() + "\n getAddress" + device.getAddress() + "\n信号强度" + rssi + "");
-                }
 
-            }
-        };
-        //第一个方法可以指定只扫描含有特定 UUID Service 的蓝牙设备
-//                mBluetoothAdapter.startLeScan(serviceUuids, callback);
-        //第二个方法则是扫描全部蓝牙设备
-        mBluetoothAdapter.startLeScan(callback);
-
-        //停止蓝牙扫描
-//                mBluetoothAdapter.stopLeScan(callback);
-    }
 
     protected void showProgressDialog(String message) {
         if (mProgressDialog == null) {
@@ -375,21 +328,6 @@ public class BluetoothActivity extends BaseActivity {
         mProgressDialog.setMessage(message);
         if (!mProgressDialog.isShowing()) {
             mProgressDialog.show();
-        }
-    }
-
-    public void onConnected(BluetoothSocket socket, int taskType) {
-        switch (taskType) {
-            case TASK_TYPE_PRINT:
-                Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_checked);
-                PrintUtil.printTest(socket, bitmap);
-                break;
-        }
-    }
-
-    public void connectDevice(BluetoothDevice device, int taskType) {
-        if (device != null) {
-            mConnectTask = new ConnectBluetoothTask(taskType).execute(device);
         }
     }
 
@@ -411,47 +349,6 @@ public class BluetoothActivity extends BaseActivity {
                     break;
             }
             onBluetoothStateChanged(intent);
-        }
-    }
-
-    class ConnectBluetoothTask extends AsyncTask<BluetoothDevice, Integer, BluetoothSocket> {
-
-        int mTaskType;
-
-        public ConnectBluetoothTask(int taskType) {
-            this.mTaskType = taskType;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            showProgressDialog("请稍候...");
-            super.onPreExecute();
-        }
-
-        @Override
-        protected BluetoothSocket doInBackground(BluetoothDevice... params) {
-            if (mSocket != null) {
-                try {
-                    mSocket.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            mSocket = connectDevice(params[0]);
-            onConnected(mSocket, mTaskType);
-            return mSocket;
-        }
-
-        @Override
-        protected void onPostExecute(BluetoothSocket socket) {
-            mProgressDialog.dismiss();
-            if (socket == null || !socket.isConnected()) {
-                ToastUtil.show("连接打印机失败");
-            } else {
-                ToastUtil.show("成功！");
-            }
-
-            super.onPostExecute(socket);
         }
     }
 

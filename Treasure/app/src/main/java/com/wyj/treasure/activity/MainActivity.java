@@ -1,25 +1,19 @@
 package com.wyj.treasure.activity;
 
-import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-
 import com.wyj.treasure.R;
 import com.wyj.treasure.fragment.BaseFragment;
 import com.wyj.treasure.fragment.DashboardFragment;
 import com.wyj.treasure.fragment.HomeFragment;
 import com.wyj.treasure.fragment.NotificationsFragment;
-import com.wyj.floatingdialog.BaymanView;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     @BindView(R.id.navigation)
     BottomNavigationView navigation;
     private Fragment mFragment;
@@ -42,8 +36,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return false;
     };
-    private BaymanView baymanView;
-
 
     private void check(int position) {
         BaseFragment to = getFragment(position);
@@ -93,22 +85,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
-        initData();
-        baymanView = new BaymanView(this);
-//        baymanView.show();
+    protected int initView() {
+        return EMPTY_VIEW;
+    }
+
+    @Override
+    protected int contentView() {
+        return R.layout.activity_main;
     }
 
 
-    private void initData() {
+    @Override
+    protected void initData() {
         initFragment();
         check(0);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
-
 
     private void initFragment() {
         mBaseFragment = new ArrayList<>();
@@ -118,13 +110,5 @@ public class MainActivity extends AppCompatActivity {
         mBaseFragment.add(homeFragment);
         mBaseFragment.add(dashboardFragment);
         mBaseFragment.add(notificationsFragment);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (baymanView != null) {
-            baymanView.destroy();
-        }
     }
 }

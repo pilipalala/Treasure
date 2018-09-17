@@ -1,5 +1,6 @@
 package com.wyj.treasure.rxjava;
 
+
 import android.util.Log;
 
 import com.wyj.treasure.rxjava.entity.UserBaseInfoRequest;
@@ -33,7 +34,6 @@ import io.reactivex.functions.Function;
 import io.reactivex.functions.Predicate;
 import io.reactivex.schedulers.Schedulers;
 
-import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
 
 /**
  * @author wangyujie
@@ -41,6 +41,12 @@ import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
  * @describe RxJava 操作符
  */
 public class RxUtils {
+    /**
+     * 其他操作符
+     * sample操作符, 简单做个介绍, 这个操作符每隔指定的时间就从上游中取出一个事件发送给下游.
+     * */
+
+
     /**
      * create 第一种方式
      */
@@ -174,7 +180,9 @@ public class RxUtils {
     }
 
     /**
+     * 间隔
      * 指定某一时刻进行数据发送
+     * 从0开始, 每隔指定的时间就把数字加1并发送出来
      */
     public static void interval() {
         Observable.interval(0, 1, TimeUnit.SECONDS)//每隔一秒 发送一次数据
@@ -289,6 +297,7 @@ public class RxUtils {
 
     /**
      * 通过Map, 可以将上游发来的事件转换为任意的类型, 可以是一个Object, 也可以是一个集合
+     * 它的作用就是对上游发送的每一个事件应用一个函数, 使得每一个事件都 按照指定 的函数去变化
      */
     public static void RxJavaForMap() {
         Observable.create(new ObservableOnSubscribe<Integer>() {
@@ -370,7 +379,21 @@ public class RxUtils {
         });
     }
 
+    /**
+     * 组合的过程是分别从 两根水管里各取出一个事件 来进行组合, 并且一个事件只能被使用一次, 组合的顺序是严格
+     * 按照事件发送的顺利 来进行的, 也就是说不会出现圆形1 事件和三角形B 事件进行合并,
+     * 也不可能出现圆形2 和三角形A 进行合并的情况.
+     * 最终下游收到的事件数量 是和上游中发送事件最少的那一根水管的事件数量 相同. 这个也很好理解,
+     * 因为是从每一根水管 里取一个事件来进行合并, 最少的 那个肯定就最先取完 , 这个时候其他的水管尽管还有事件 ,
+     * 但是已经没有足够的事件来组合了, 因此下游就不会收到剩余的事件了.
+     * <p>
+     * 两根水管要是运行在同一个线程里， 执行代码会有先后顺序
+     */
     public static void RxJavaForZip() {
+        /**
+         * 比如一个界面需要展示用户的一些信息, 而这些信息分别要从两个服务器接口中获取,
+         * 而只有当两个都获取到了之后才能进行展示, 这个时候就可以用Zip了:
+         * */
         Observable<Integer> observable = Observable.create(new ObservableOnSubscribe<Integer>() {
             @Override
             public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
@@ -433,6 +456,9 @@ public class RxUtils {
         });
     }
 
+    /**
+     * Flowable中 buffersize 大小 为 128
+     */
     public static void RxJavaForFlowable() {
         Flowable<Integer> upstream = Flowable.create(new FlowableOnSubscribe<Integer>() {
             @Override
@@ -455,6 +481,10 @@ public class RxUtils {
             @Override
             public void onSubscribe(Subscription s) {
                 LogUtil.i("Subscription");
+                /**
+                 * request当做是一种能力, 当成下游处理事件的能力, 下游能处理几个就告诉上游我要几个
+                 * 只有当下游调用request时, 才从水缸里取出事件发给下游
+                 * */
                 s.request(Long.MAX_VALUE);
             }
 
@@ -475,6 +505,70 @@ public class RxUtils {
             }
         };
         upstream.subscribe(downstream);
+    }
+
+    /**
+     * 上游每发送一个next事件之后，requested就减一
+     * 注意是next事件，complete和error事件不会消耗requested，当减到0时，则代表下游没有处理能力了，
+     * 这个时候你如果继续发送事件，会发生什么后果呢？当然是MissingBackpressureException啦
+     * <p>
+     * 当上下游在同一个线程中的时候，在下游调用request(n)就会直接改变上游中的requested的值，
+     * 多次调用便会叠加这个值，而上游每发送一个事件之后便会去减少这个值，
+     * 当这个值减少至0的时候，继续发送事件便会抛异常了。
+     */
+    private static Subscription mSubscription;
+
+    public static void RxJavaForRequested() {
+        Flowable.create(new FlowableOnSubscribe<Integer>() {
+            @Override
+            public void subscribe(FlowableEmitter<Integer> emitter) throws Exception {
+                LogUtil.d("before emit, requested = " + emitter.requested());
+
+                LogUtil.d("emit 1");
+                emitter.onNext(1);
+                LogUtil.d("after emit 1, requested = " + emitter.requested());
+
+                LogUtil.d("emit 2");
+                emitter.onNext(2);
+                LogUtil.d("after emit 2, requested = " + emitter.requested());
+
+                LogUtil.d("emit 3");
+                emitter.onNext(3);
+                LogUtil.d("after emit 3, requested = " + emitter.requested());
+
+                LogUtil.d("emit complete");
+                emitter.onComplete();
+
+                LogUtil.d("after emit complete, requested = " + emitter.requested());
+
+            }
+        }, BackpressureStrategy.ERROR)
+                .subscribe(new Subscriber<Integer>() {
+
+
+                    @Override
+                    public void onSubscribe(Subscription s) {
+                        LogUtil.d("onSubscribe");
+                        mSubscription = s;
+                        s.request(10);
+//                        s.request(100); //再给我一百个！ 这时候emitter.requested() = 110
+                    }
+
+                    @Override
+                    public void onNext(Integer integer) {
+                        LogUtil.d("onNext: " + integer);
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+                        LogUtil.d("onError: " + t.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        LogUtil.d("onComplete");
+                    }
+                });
     }
 
     public static void practice1() {

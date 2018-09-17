@@ -18,7 +18,7 @@ import android.view.ViewGroup;
 
 
 import com.wyj.treasure.R;
-import com.wyj.treasure.utils.MyUtils;
+import com.wyj.treasure.utils.CommonUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +59,7 @@ public class PasswordInputView extends AppCompatEditText {
         super(context, attrs);
         mContext = context;
         borderColor = Color.parseColor("#30333A");
-        borderWidth = (int) (MyUtils.getScreenWidth(context) * 0.011);
+        borderWidth = (int) (CommonUtils.getScreenWidth(context) * 0.011);
 
         //密码框背景
         passwdBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.icon_passwd);
@@ -108,7 +108,7 @@ public class PasswordInputView extends AppCompatEditText {
         int rightMargin = MarginLayoutParam.rightMargin;
 
         Log.e("leftMargin", "PasswordInputView_105-->onMeasure: " + leftMargin + "  " + rightMargin);
-        passwordWidth = (MyUtils.getScreenWidth(mContext) - (leftMargin + rightMargin) - (borderWidth * passwordLength)) / passwordLength;
+        passwordWidth = (CommonUtils.getScreenWidth(mContext) - (leftMargin + rightMargin) - (borderWidth * passwordLength)) / passwordLength;
 
         int width = (int) ((passwordWidth + borderWidth) * passwordLength);
         int height = (int) (passwordWidth + borderWidth);

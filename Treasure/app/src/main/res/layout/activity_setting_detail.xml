@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.wyj.setdetail.SettingDetailActivity">
+
+    <Button
+        android:id="@+id/btn_open_gps"
+        style="@style/default_button_style"
+        android:text="打开GPS" />
+
+    <Button
+        android:id="@+id/btn_open_permission"
+        style="@style/default_button_style"
+        android:text="6.0 权设置跳转" />
+
+    <Button
+        android:id="@+id/btn_open_float"
+        style="@style/default_button_style"
+        android:text="悬浮窗权设置跳转" />
+
+    <Button
+        android:id="@+id/btn_open_Write"
+        style="@style/default_button_style"
+        android:text="系统设置修改权限" />
+
+    <Button
+        android:id="@+id/btn_open_build"
+        style="@style/default_button_style"
+        android:text="打开/system/build.prop文件" />
+    <TextView
+        android:id="@+id/tv_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

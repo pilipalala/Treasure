@@ -11,8 +11,10 @@ import android.graphics.Matrix;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Binder;
 import android.os.Build;
 import android.provider.Settings;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.WindowManager;
@@ -29,7 +31,7 @@ import java.util.List;
  * TODO
  */
 
-public class MyUtils {
+public class CommonUtils {
     /**
      * 获取屏幕宽度
      *
@@ -188,4 +190,68 @@ public class MyUtils {
             LogUtil.d("status bar is not visible");
         }
     }
+
+    public static byte[] reverseBytes(byte[] a) {
+        int len = a.length;
+        byte[] b = new byte[len];
+        for (int k = 0; k < len; k++) {
+            b[k] = a[a.length - 1 - k];
+        }
+        return b;
+    }
+
+    // byte转十六进制字符串
+    public static String bytes2HexString(byte[] bytes) {
+        String ret = "";
+        for (int i = 0; i < bytes.length; i++) {
+            String hex = Integer.toHexString(bytes[i] & 0xFF);
+            if (hex.length() == 1) {
+                hex = '0' + hex;
+            }
+            ret += hex.toUpperCase();
+        }
+        return ret;
+    }
+
+
+    /**
+     * 程序是否在前台运行
+     *
+     * @return true 前台
+     */
+    public static boolean isAppOnForeground(Context context) {
+        // Returns a list of application processes that are running on the
+        ActivityManager activityManager = (ActivityManager) context
+                .getApplicationContext()
+                .getSystemService(Context.ACTIVITY_SERVICE);
+        String packageName = context.getApplicationContext().getPackageName();
+        List<ActivityManager.RunningAppProcessInfo> appProcesses = activityManager
+                .getRunningAppProcesses();
+        if (appProcesses == null)
+            return false;
+        for (ActivityManager.RunningAppProcessInfo appProcess : appProcesses) {
+            // The name of the process that this object is associated with.
+            if (appProcess.processName.equals(packageName)
+                    && appProcess.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
+                //在前台
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 检查当前页面是否在过滤列表：
+     * https://blog.csdn.net/y1962475006/article/details/72890760
+     */
+    public static boolean isTargetRunningForeground(Context context, List<String> targetActivityNames) {
+        String topActivityName = ((Activity) context).getClass().getSimpleName();
+        if (!TextUtils.isEmpty(topActivityName) && targetActivityNames.contains(topActivityName)) {
+            return true;
+        }
+
+        return false;
+    }
+
+
 }

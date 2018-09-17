@@ -19,8 +19,8 @@
         <attr name="textPaddingBottom" format="dimension" />
     </declare-styleable>
     <declare-styleable name="SlidingCardLayout">
-        <attr name="android:colorBackground" />
-        <attr name="android:text" />
+        <attr name="android:colorBackground" format="color"/>
+        <attr name="android:text" format="string"/>
     </declare-styleable>
     <declare-styleable name="SlidingCardView">
         <attr name="card_color" format="color" />
@@ -92,6 +92,7 @@
         <attr name="pivImplicitPassword" format="boolean" />
     </declare-styleable>
 
+    <!--播放 Gif 图片-->
     <declare-styleable name="GIFView">
         <attr name="view_gif_loop" format="boolean" />
         <attr name="view_gif_source" format="reference" />
@@ -105,6 +106,7 @@
         <attr name="gifViewStyle" format="reference" />
     </declare-styleable>
 
+    <!--特殊字体的 TextView-->
     <declare-styleable name="SpecialFontTextView">
         <attr name="special_font" format="enum">
             <enum name="HanYiLingHeartJane" value="0"></enum>
@@ -113,4 +115,12 @@
         <attr name="isAutoScroll" format="boolean" />
     </declare-styleable>
 
+    <!--带下划线的 TextView-->
+    <declare-styleable name="PrivatePolicyTextView">
+        <attr name="str1" format="string" />
+        <attr name="str2" format="string" />
+        <attr name="color1" format="color" />
+        <attr name="color2" format="color" />
+        <attr name="fontSize" format="dimension" />
+    </declare-styleable>
 </resources>

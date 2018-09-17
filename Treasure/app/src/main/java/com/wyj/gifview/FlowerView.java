@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.animation.LinearInterpolator;
 
 import com.wyj.treasure.R;
-import com.wyj.treasure.utils.MyUtils;
+import com.wyj.treasure.utils.CommonUtils;
 
 /**
  * @author wangyujie
@@ -61,7 +61,7 @@ public class FlowerView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         float rotationAngle = (float) (2 * Math.PI / 3);
-        Bitmap bitmap = MyUtils.setBitmapSize(BitmapFactory.decodeResource(getResources(), R.mipmap.flower));
+        Bitmap bitmap = CommonUtils.setBitmapSize(BitmapFactory.decodeResource(getResources(), R.mipmap.flower));
 
         for (int i = 0; i < 3; i++) {
             double angle = i * rotationAngle;

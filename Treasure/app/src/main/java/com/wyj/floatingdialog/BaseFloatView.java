@@ -2,6 +2,7 @@ package com.wyj.floatingdialog;
 
 import android.content.Context;
 import android.graphics.PixelFormat;
+import android.os.Build;
 import android.support.annotation.LayoutRes;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
@@ -14,7 +15,7 @@ import android.widget.RelativeLayout;
 
 import com.wyj.treasure.MyApplication;
 import com.wyj.treasure.utils.LogUtil;
-import com.wyj.treasure.utils.MyUtils;
+import com.wyj.treasure.utils.CommonUtils;
 
 
 /**
@@ -74,7 +75,11 @@ public abstract class BaseFloatView extends RelativeLayout {
         wmParams.width = dpi;
         wmParams.height = dpi;
         // 设置window type
-        wmParams.type = WindowManager.LayoutParams.TYPE_TOAST;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            wmParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+        } else {
+            wmParams.type = WindowManager.LayoutParams.TYPE_PHONE;
+        }
         wmParams.format = PixelFormat.RGBA_8888; // 设置图片格式，效果为背景透明
         wmParams.gravity = Gravity.LEFT | Gravity.TOP;
         // 设置Window flag
@@ -220,8 +225,8 @@ public abstract class BaseFloatView extends RelativeLayout {
         //是否存在状态栏（提升滑动效果）
         // 不设置为全屏（状态栏存在） 标题栏是屏幕的1/25
 //        LogUtil.i(screenHeight / 25 + " screenHeight");
-//        LogUtil.i(MyUtils.getStatusBarHeight() + "  MyUtils.getStatusBarHeight()");
-        wmParams.y = (int) (y - mTouchStartY - MyUtils.getStatusBarHeight());
+//        LogUtil.i(CommonUtils.getStatusBarHeight() + "  CommonUtils.getStatusBarHeight()");
+        wmParams.y = (int) (y - mTouchStartY - CommonUtils.getStatusBarHeight());
         LogUtil.i((x - mTouchStartX) + " --->mTouchStartX");
         LogUtil.i((y - mTouchStartY) + " --->mTouchStartY");
         wm.updateViewLayout(this, wmParams);

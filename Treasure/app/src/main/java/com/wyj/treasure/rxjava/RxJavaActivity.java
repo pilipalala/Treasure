@@ -1,6 +1,5 @@
 package com.wyj.treasure.rxjava;
 
-import android.os.Bundle;
 import android.view.View;
 
 import com.wyj.treasure.R;
@@ -11,7 +10,6 @@ import com.wyj.treasure.rxjava.entity.RegisterRequest;
 import com.wyj.treasure.rxjava.entity.RegisterResponse;
 import com.wyj.treasure.utils.ToastUtil;
 
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.ObservableSource;
 import io.reactivex.Observer;

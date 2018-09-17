@@ -2,10 +2,12 @@ package com.wyj.floatingdialog;
 
 import android.app.Activity;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.wyj.treasure.R;
+import com.wyj.treasure.utils.CommonUtils;
 import com.wyj.treasure.utils.ToastUtil;
 
 /**
@@ -27,6 +29,8 @@ public class BaymanView extends BaseFloatView {
     @Override
     public void bindView(View v, AttributeSet attrs) {
         TextView textView = v.findViewById(R.id.tv_float);
-        textView.setOnClickListener(v1 -> ToastUtil.show("哈哈哈"));
+        textView.setOnClickListener(v1 -> {
+            ToastUtil.show("哈哈哈");
+        });
     }
 }

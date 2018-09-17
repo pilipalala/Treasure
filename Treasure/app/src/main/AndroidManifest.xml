@@ -1,37 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.wyj.treasure">
 
     <!-- To access Google+ APIs: -->
+    <!--允许应用程序打开网络套接字。Protection level: normal-->
     <uses-permission android:name="android.permission.INTERNET" />
+    <!--允许应用程序访问有关网络的信息。Protection level: normal-->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!--接收 系统在开机加载完毕后发送的 Intent.ACTION_BOOT_COMPLETED 广播 Protection level: normal-->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!--允许只读访问电话状态，包括设备的电话号码，当前的蜂窝网络信息，
+    任何正在进行的呼叫的状态以及设备上注册的任何PhoneAccounts列表。Protection level: dangerous -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!--允许应用程序访问有关Wi-Fi网络的信息。 Protection level: normal-->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.READ_LOGS" />
-    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <!--需要能够访问相机设备 Protection level: dangerous-->
     <uses-permission android:name="android.permission.CAMERA" />
+    <!--允许应用程序写入外部存储 Protection level: dangerous-->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--允许应用程序从外部存储读取。Protection level: dangerous-->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <!--允许应用程序写入用户的联系人数据 Protection level: dangerous
+    从API级别19开始，读取/写入Context.getExternalFilesDir（String）和Context.getExternalCacheDir（）
+    返回的特定于应用程序的目录中的文件不需要此权限。-->
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <!--允许应用程序读取或写入系统设置。 Protection level: signature
+    应用程序通过发送具有操作Settings.ACTION_MANAGE_WRITE_SETTINGS的意图来请求用户的批准。
+    应用程序可以通过调用Settings.System.canWrite()来检查它是否具有此授权。-->
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+    <!--允许应用程序读取用户的联系人数据。Protection level: dangerous-->
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <!--允许应用程序接收SMS消息 Protection level: dangerous-->
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <!--允许应用程序读取SMS消息 Protection level: dangerous-->
     <uses-permission android:name="android.permission.READ_SMS" />
-    <uses-permission android:name="android.permission.GET_TASKS" />
+    <!--允许应用程序更改Wi-Fi连接状态。 Protection level: normal-->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <!--允许应用访问精确位置 Protection level: dangerous-->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!-- 在 Android 6.0 及以上，还需要打开位置权限。如果应用没有位置权限，蓝牙扫描功能不能使用（其它蓝牙操作例如连接蓝牙设备和写入数据不受影响）。 -->
+    <!--允许应用访问大致位置。 Protection level: dangerous-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!--Allows an application to call ActivityManager.killBackgroundProcesses(String). Protection level: normal-->
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
-    <uses-permission android:name="android.permission.BLUETOOTH" /> <!-- 使用蓝牙所需要的权限 -->
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" /> <!-- 使用扫描和设置蓝牙的权限（申明这一个权限必须申明上面一个权限） -->
+
+    <!-- 使用蓝牙所需要的权限 -->
+    <!--允许应用程序连接到配对的蓝牙设备  Protection level: normal-->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <!--允许应用程序发现并配对蓝牙设备 Protection level: normal-->
+    <!-- 使用扫描和设置蓝牙的权限（申明这一个权限必须申明上面一个权限） -->
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
     <!-- Needed only if your app targets Android 5.0 (API level 21) or higher. -->
     <!-- 在Android5.0之前，是默认申请GPS硬件功能的。而在Android 5.0 之后，需要在manifest 中申明GPS硬件模块功能的使用。 -->
     <uses-feature android:name="android.hardware.location.gps" />
-    <!-- 在 Android 6.0 及以上，还需要打开位置权限。如果应用没有位置权限，蓝牙扫描功能不能使用（其它蓝牙操作例如连接蓝牙设备和写入数据不受影响）。 -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!-- 显示系统窗口权限
+     允许应用使用类型WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY创建窗口，
+     显示在所有其他应用之上。 Protection level: signature-->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
 
     <permission
         android:name="com.wyj.process.permission.ACCESS_BOOK_SERVICE"
         android:protectionLevel="normal" />
+
 
     <application
         android:name=".MyApplication"
@@ -218,7 +254,7 @@
         <activity android:name="com.wyj.touch.TouchDemoActivity" />
         <activity android:name=".mvp.MVPActivity" />
         <activity android:name="com.wyj.welcome.WelcomeActivity" />
-        <activity android:name="com.wyj.retrofit.RetroFitActivity" />
+        <activity android:name="com.wyj.retrofit.RetrofitRxJavaActivity" />
         <activity android:name="com.wyj.handler.HandlerThreadActivity" />
         <activity android:name="com.wyj.handler.NewHandlerThreadActivity" />
         <activity android:name="com.wyj.handler.AsyncTaskActivity" />
@@ -260,7 +296,13 @@
         <activity android:name="com.wyj.waveview.VoiceWaveActivity" />
         <activity android:name="com.wyj.notification.NotificationActivity" />
         <activity android:name="com.wyj.keyboard.KeyboardActivity" />
-        <activity android:name="com.wyj.gifview.GifPlayActivity"></activity>
+        <activity android:name="com.wyj.gifview.GifPlayActivity" />
+        <activity android:name="com.wyj.bluetooth.BluetoothBleActivity" />
+        <activity android:name="com.wyj.setdetail.SettingDetailActivity" />
+        <activity
+            android:name="com.wyj.retrofit.RetrofitActivity"
+            android:label="@string/title_activity_retrofit"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
