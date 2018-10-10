@@ -4,17 +4,16 @@ import android.app.Application;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 
+import com.orhanobut.hawk.Hawk;
 import com.tencent.tinker.loader.app.ApplicationLike;
 import com.tinkerpatch.sdk.TinkerPatch;
 import com.tinkerpatch.sdk.loader.TinkerPatchApplicationLike;
 import com.wyj.dagger.ApiModule;
 import com.wyj.dagger.AppComponent;
 import com.wyj.dagger.DaggerAppComponent;
+import com.wyj.greendao.GreenDAOHelp;
+import com.wyj.treasure.utils.CommonUtils;
 import com.wyj.treasure.utils.LogUtil;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 
 /**
  * Created by wangyujie
@@ -45,12 +44,29 @@ public class MyApplication extends Application {
         context = getApplicationContext();
         initCrash();
 //        initError();
-        String processName = getProcessName();
+        String processName = CommonUtils.getProcessName();
         if (getPackageName().equals(processName)) {
             LogUtil.d("AndroidApplication onCreate=" + processName);
         }
 
         LogUtil.d("MyApplication---onCreate");
+
+        Hawk.init(this).build();
+        //创建GreenDAO 数据库
+        GreenDAOHelp.create(this);
+
+        initStetho();
+    }
+
+    /**
+     * Android调试工具Stetho
+     */
+    private void initStetho() {
+//        Stetho.initialize(
+//                Stetho.newInitializerBuilder(this)
+//                        .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
+//                        .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
+//                        .build());
     }
 
     private void inject() {
@@ -104,23 +120,11 @@ public class MyApplication extends Application {
 //                .minTimeBetweenCrashesMs(2000) //default: 3000
 //                .errorDrawable(R.drawable.ic_dashboard_black_24dp) //default: bug image
 ////                .restartActivity(YourCustomActivity.class) //default: null (your app's launch activity)
-////                .errorActivity(YourCustomErrorActivity.class) //default: null (default error activity)
+////                .errorActivity(YourCustomErrorActivity.class) //default: null (default onError activity)
 ////                .eventListener(new YourCustomEventListener()) //default: null
 //                .apply();
     }
 
-    public String getProcessName() {
-        try {
-            File file = new File("/proc/" + android.os.Process.myPid() + "/" + "cmdline");
-            BufferedReader mBufferedReader = new BufferedReader(new FileReader(file));
-            String processName = mBufferedReader.readLine().trim();
-            mBufferedReader.close();
-            return processName;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
 
     @Override
     protected void attachBaseContext(Context base) {

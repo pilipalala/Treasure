@@ -76,7 +76,7 @@ public class RxUtils {
 
             @Override
             public void onError(Throwable e) {
-                LogUtil.i("error" + e);
+                LogUtil.i("onError" + e);
             }
 
             @Override
@@ -99,7 +99,7 @@ public class RxUtils {
              * @param emitter 1、发射器的意思这个就是用来发出事件的，
              *                它可以发出三种类型的事件，
              *                通过调用emitter的onNext(T value)、onComplete()
-             *                和onError(Throwable error)就可以分别发出next事件、
+             *                和onError(Throwable onError)就可以分别发出next事件、
              *                complete事件和error事件。
              *                2、当上游发送了一个onComplete后,
              *                上游onComplete之后的事件将会继续发送,
@@ -155,7 +155,7 @@ public class RxUtils {
 
             @Override
             public void onError(Throwable e) {
-                LogUtil.i("error" + e);
+                LogUtil.i("onError" + e);
             }
 
             @Override
@@ -321,7 +321,7 @@ public class RxUtils {
     }
 
     /**
-     * FlatMap将一个发送事件的上游Observable变换为多个发送事件的Observables，
+     * FlatMap 将一个发送事件的上游Observable变换为多个发送事件的Observables，
      * 然后将它们发射的事件合并后放进一个单独的Observable里.
      */
     public static void RxJavaFlatMap() {
@@ -544,8 +544,6 @@ public class RxUtils {
             }
         }, BackpressureStrategy.ERROR)
                 .subscribe(new Subscriber<Integer>() {
-
-
                     @Override
                     public void onSubscribe(Subscription s) {
                         LogUtil.d("onSubscribe");

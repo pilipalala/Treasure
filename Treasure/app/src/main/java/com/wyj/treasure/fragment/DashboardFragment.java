@@ -1,6 +1,8 @@
 package com.wyj.treasure.fragment;
 
 import com.wyj.keyboard.KeyboardActivity;
+import com.wyj.mvp.ui.activity.DouBanActivity;
+import com.wyj.mvp.ui.activity.UserLoginActivity;
 import com.wyj.swipedelete.SwipeDeleteActivity;
 import com.wyj.bannerviewpager.BannerViewPagerActivity;
 import com.wyj.colortracktextview.ColorTrackActivity;
@@ -25,7 +27,6 @@ import com.wyj.treasure.customcontrol.CustomControlActivity;
 import com.wyj.treasure.mdcustom.behaviorcustom.BehaviorActivity;
 import com.wyj.treasure.mdcustom.splash.SplashActivity;
 import com.wyj.treasure.mode.ItemInfo;
-import com.wyj.treasure.mvp.UserLoginActivity;
 import com.wyj.treasure.popup.PopupWindowActivity;
 import com.wyj.treasure.rxjava.RxJavaActivity;
 import com.wyj.waveview.VoiceWaveActivity;
@@ -63,6 +64,7 @@ public class DashboardFragment extends BaseCardViewFragment {
         mData.add(new ItemInfo("VoiceWaveView", VoiceWaveActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("Dagger", DaggerActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("自定义输入框&键盘", KeyboardActivity.class, R.mipmap.ic_launcher));
+        mData.add(new ItemInfo("豆瓣", DouBanActivity.class, R.mipmap.ic_launcher));
         notifyDataChanged();
     }
 }

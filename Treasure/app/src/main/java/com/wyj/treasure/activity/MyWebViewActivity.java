@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MyWebViewActivity extends BaseActivity implements MyWebChomeClient.OpenFileChooserCallBack {
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "BusActivity";
     private WebView mWebView;
     private String url = "file:///android_asset/uploadImgForH5.html";
     private static final int REQUEST_CODE_PICK_IMAGE = 0;

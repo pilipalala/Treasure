@@ -112,7 +112,7 @@ public class BluetoothActivity extends BaseActivity {
                     + Thread.currentThread() + " status " + newState);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
                 if (status != BluetoothGatt.GATT_SUCCESS) {
-                    String err = "Cannot connect device with error status: " + status;
+                    String err = "Cannot connect device with onError status: " + status;
                     // 当尝试连接失败的时候调用 disconnect 方法是不会引起这个方法回调的，所以这里
                     //   直接回调就可以了。
                     gatt.close();
@@ -121,7 +121,7 @@ public class BluetoothActivity extends BaseActivity {
                 }
 
                 if (newState == BluetoothProfile.STATE_CONNECTED) {
-                    Log.e(TAG, "connect--->success" + newState + "," + gatt.getServices().size());
+                    Log.e(TAG, "connect--->onDetailSuccess" + newState + "," + gatt.getServices().size());
 
                 } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
                     Log.e(TAG, "Disconnected from GATT server.");
@@ -141,7 +141,7 @@ public class BluetoothActivity extends BaseActivity {
                     e.printStackTrace();
                 }
             } else {
-                Log.e(TAG, "onServicesDiscovered error falure " + status);
+                Log.e(TAG, "onServicesDiscovered onError falure " + status);
             }
 
         }

@@ -92,7 +92,7 @@ public class SimpleNotificationActivity extends BaseActivity {
 
     /**
      * 使用notify(String tag, int id, Notification notification)方法发送通知
-     * 移除对应通知需使用 cancel(String tag, int id)
+     * 移除对应通知需使用 requestCancel(String tag, int id)
      */
     private void sendNotificationWithTag() {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
@@ -117,7 +117,7 @@ public class SimpleNotificationActivity extends BaseActivity {
 
     /**
      * 设置FLAG_NO_CLEAR
-     * 该 flag 表示该通知不能被状态栏的清除按钮给清除掉,也不能被手动清除,但能通过 cancel() 方法清除
+     * 该 flag 表示该通知不能被状态栏的清除按钮给清除掉,也不能被手动清除,但能通过 requestCancel() 方法清除
      * Notification.flags属性可以通过 |= 运算叠加效果
      */
     private void sendFlagNoClearNotification() {
@@ -127,7 +127,7 @@ public class SimpleNotificationActivity extends BaseActivity {
                 .setContentText("Hi,My id is 1,i can't be clear.");
         Notification notification = builder.build();
         //设置 Notification 的 flags = FLAG_NO_CLEAR
-        //FLAG_NO_CLEAR 表示该通知不能被状态栏的清除按钮给清除掉,也不能被手动清除,但能通过 cancel() 方法清除
+        //FLAG_NO_CLEAR 表示该通知不能被状态栏的清除按钮给清除掉,也不能被手动清除,但能通过 requestCancel() 方法清除
         //flags 可以通过 |= 运算叠加效果
 
         notification.flags |= Notification.FLAG_NO_CLEAR;
@@ -167,7 +167,7 @@ public class SimpleNotificationActivity extends BaseActivity {
                 .setContentText("Hi,My id is 1,i can't be clear.");
         Notification notification = builder.build();
         //设置 Notification 的 flags = FLAG_NO_CLEAR
-        //FLAG_ONGOING_EVENT 表示该通知通知放置在正在运行,不能被手动清除,但能通过 cancel() 方法清除
+        //FLAG_ONGOING_EVENT 表示该通知通知放置在正在运行,不能被手动清除,但能通过 requestCancel() 方法清除
         //等价于 builder.setOngoing(true);
         notification.flags |= Notification.FLAG_ONGOING_EVENT;
         notifyManager.notify(DEFAULT_NOTIFICATION_ID, notification);
@@ -221,7 +221,7 @@ public class SimpleNotificationActivity extends BaseActivity {
                 break;
             case R.id.btn_remove_notification_with_tag:
                 //移除一个 ID = 1 并且 TAG = littlejie 的 Notification
-                //注意:此处移除的通知与 NotificationManager.cancel(int id) 移除通知并不冲突
+                //注意:此处移除的通知与 NotificationManager.requestCancel(int id) 移除通知并不冲突
                 //因为此处的 Notification 带有 TAG
                 notifyManager.cancel(NOTIFICATION_TAG, DEFAULT_NOTIFICATION_ID);
                 break;

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.wyj.greendao.GreenDAOActivity">
+
+
+        <Button
+            android:id="@+id/bt_gd_add"
+            style="@style/default_button_style"
+            android:text="往数据库添加一条数据" />
+
+        <Button
+            android:id="@+id/btn_add_lsit"
+            style="@style/default_button_style"
+            android:text="新增List集合数据" />
+
+        <Button
+            android:id="@+id/btn_inquiry_all"
+            style="@style/default_button_style"
+            android:text="查询所有" />
+
+        <Button
+            android:id="@+id/btn_inquiry_only"
+            style="@style/default_button_style"
+            android:text="查询指定数据" />
+
+        <Button
+            android:id="@+id/btn_inquiry_sort"
+            style="@style/default_button_style"
+            android:text="查询-排序-升序" />
+
+        <Button
+            android:id="@+id/btn_combined_query"
+            style="@style/default_button_style"
+            android:text="组合查询数据" />
+
+        <Button
+            android:id="@+id/btn_inquiry_one"
+            style="@style/default_button_style"
+            android:text="查询所有返回数据 但只返回前三条数据" />
+
+        <Button
+            android:id="@+id/btn_inquiry_two"
+            style="@style/default_button_style"
+            android:text="查询所有返回数据 但只返回前三条数据 并且跳过第一条数据" />
+
+
+        <Button
+            android:id="@+id/btn_delete_designation"
+            style="@style/default_button_style"
+            android:text="删除指定信息" />
+
+        <Button
+            android:id="@+id/btn_update_designation"
+            style="@style/default_button_style"
+            android:text="更新指定信息" />
+
+    </LinearLayout>
+
+</ScrollView>

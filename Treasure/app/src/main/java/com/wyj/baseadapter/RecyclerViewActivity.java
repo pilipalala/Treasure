@@ -55,16 +55,11 @@ public class RecyclerViewActivity extends BaseActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         adapter.setOnItemClick(new ItemClickListener() {
             @Override
-            public void onItemClick(int position) {
+            public void onItemClick(View view, int position) {
                 ToastUtil.show(data.get(position));
             }
         });
-        adapter.setOnItemLongClick(new ItemLongClickListener() {
-            @Override
-            public void onItemLongClick(int position) {
-                ToastUtil.show(data.get(position) + "Long");
-            }
-        });
+        adapter.setOnItemLongClick(position -> ToastUtil.show(data.get(position) + "Long"));
     }
 
     public void getData() {
@@ -83,7 +78,7 @@ public class RecyclerViewActivity extends BaseActivity {
         if (isChange) {
             isChange = false;
             recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-            decoration = new DividerListViewItemDecoration(this, LinearLayoutManager.VERTICAL,R.color.grey);
+            decoration = new DividerListViewItemDecoration(this, LinearLayoutManager.VERTICAL, R.color.grey);
             recyclerView.addItemDecoration(decoration);
 
         } else {

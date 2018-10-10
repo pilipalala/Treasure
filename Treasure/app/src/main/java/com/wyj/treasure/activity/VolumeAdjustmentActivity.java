@@ -5,6 +5,7 @@ import android.media.AudioManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.SeekBar;
 
@@ -104,4 +105,46 @@ public class VolumeAdjustmentActivity extends BaseActivity {
         }
 
     }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_VOLUME_UP://增大系统媒体音量
+                raiseMusicVolume();
+                return true;
+            case KeyEvent.KEYCODE_VOLUME_DOWN://减小系统媒体音量
+                lowerMusicVolume();
+                return true;
+            default:
+                break;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    /**
+     * 显示系统音量面板并增加媒体音量
+     */
+    public void raiseMusicVolume() {
+        if (manager != null) {
+            //强制增大多媒体音量
+            manager.adjustStreamVolume(
+                    AudioManager.STREAM_MUSIC,
+                    AudioManager.ADJUST_RAISE,
+                    AudioManager.FLAG_SHOW_UI);
+        }
+    }
+
+    /**
+     * 显示系统音量面板并降低媒体音量
+     */
+    public void lowerMusicVolume() {
+        if (manager != null) {
+            //强制降低多媒体音量
+            manager.adjustStreamVolume(
+                    AudioManager.STREAM_MUSIC,
+                    AudioManager.ADJUST_LOWER,
+                    AudioManager.FLAG_SHOW_UI);
+        }
+    }
+
 }

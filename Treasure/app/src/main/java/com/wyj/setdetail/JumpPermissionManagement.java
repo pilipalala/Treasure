@@ -64,7 +64,7 @@ public class JumpPermissionManagement {
             Intent intent = new Intent();
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtra("packageName", BuildConfig.APPLICATION_ID);
-            ComponentName comp = new ComponentName("com.huawei.systemmanager", "com.huawei.permissionmanager.ui.MainActivity");
+            ComponentName comp = new ComponentName("com.huawei.systemmanager", "com.huawei.permissionmanager.ui.BusActivity");
             intent.setComponent(comp);
             activity.startActivity(intent);
         } catch (Exception e) {

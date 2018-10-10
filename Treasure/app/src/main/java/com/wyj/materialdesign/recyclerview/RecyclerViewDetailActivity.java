@@ -53,8 +53,8 @@ public class RecyclerViewDetailActivity extends BaseActivity {
     }
 
     private void initToolbarLayout() {
-        collapsingToolbar.setTitle("噼里啪啦");
-        collapsingToolbar.setTitle("CollapsingToolbarLayout");
+//        collapsingToolbar.setTitle("噼里啪啦");
+//        collapsingToolbar.setTitle("CollapsingToolbarLayout");
         //通过CollapsingToolbarLayout修改字体颜色
         collapsingToolbar.setExpandedTitleColor(Color.WHITE);//设置还没收缩时状态下字体颜色
         collapsingToolbar.setCollapsedTitleTextColor(Color.GREEN);//设置收缩后Toolbar上字体的颜色

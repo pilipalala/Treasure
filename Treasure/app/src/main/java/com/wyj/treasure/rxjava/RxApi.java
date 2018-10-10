@@ -35,7 +35,5 @@ public interface RxApi {
     @GET
     Observable<UserExtraInfoResponse> getUserExtraInfo(@Body UserExtraInfoRequest request);
 
-    @GET("v2/movie/top250")
-    Observable<Response<ResponseBody>> getTop250(@Query("start") int start, @Query("count") int count);
 }
 

@@ -186,7 +186,7 @@ public class ScrollLayout extends ViewGroup {
                 break;
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
-                //Log.i("you", "onInterceptTouchEvent  up or cancel...");
+                //Log.i("you", "onInterceptTouchEvent  up or requestCancel...");
                 mPointerId = INVALID_POINTER;
                 releaseVelocityTracker();
                 scrollToEdage(getScrollY());

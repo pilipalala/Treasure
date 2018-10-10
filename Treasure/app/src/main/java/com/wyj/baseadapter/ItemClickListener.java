@@ -1,5 +1,7 @@
 package com.wyj.baseadapter;
 
+import android.view.View;
+
 /**
  * Created by wangyujie
  * Date 2018/2/28
@@ -8,5 +10,5 @@ package com.wyj.baseadapter;
  */
 
 public interface ItemClickListener {
-    void onItemClick(int position);
+    void onItemClick(View view,int position);
 }

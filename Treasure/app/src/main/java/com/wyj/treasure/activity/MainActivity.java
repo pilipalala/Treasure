@@ -1,13 +1,19 @@
 package com.wyj.treasure.activity;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+
 import com.wyj.treasure.R;
 import com.wyj.treasure.fragment.BaseFragment;
 import com.wyj.treasure.fragment.DashboardFragment;
 import com.wyj.treasure.fragment.HomeFragment;
 import com.wyj.treasure.fragment.NotificationsFragment;
+
 import java.util.ArrayList;
 import java.util.List;
 

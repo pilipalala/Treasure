@@ -3,11 +3,14 @@ package com.wyj.treasure.fragment;
 
 import com.wyj.bluetooth.BluetoothBleActivity;
 import com.wyj.gifview.GifPlayActivity;
+import com.wyj.greendao.GreenDAOActivity;
 import com.wyj.handler.CustomHandlerActivity;
 import com.wyj.handler.HandlerThreadActivity;
 import com.wyj.handler.NewHandlerThreadActivity;
+import com.wyj.mvp.ui.activity.RetrofitActivity;
+import com.wyj.mvp.ui.activity.BusActivity;
+import com.wyj.mvp.ui.activity.ZhiHuDailyActivity;
 import com.wyj.notification.NotificationActivity;
-import com.wyj.retrofit.RetrofitActivity;
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.RemoteViewWidgetActivity;
 import com.wyj.setdetail.SettingDetailActivity;
@@ -30,7 +33,10 @@ public class NotificationsFragment extends BaseCardViewFragment {
         mData.add(new ItemInfo("调节音量", VolumeAdjustmentActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("播放gif图片", GifPlayActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("打开系统设置界面大全", SettingDetailActivity.class, R.mipmap.ic_launcher));
+        mData.add(new ItemInfo("知乎日报", ZhiHuDailyActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("Retrofit", RetrofitActivity.class, R.mipmap.ic_launcher));
+        mData.add(new ItemInfo("greenDAO", GreenDAOActivity.class, R.mipmap.ic_launcher));
+        mData.add(new ItemInfo("BUS", BusActivity.class, R.mipmap.ic_launcher));
 
         notifyDataChanged();
     }

@@ -47,7 +47,7 @@ public class DaggerActivity extends AppCompatActivity {
         presenter.showUserName();
 
         LogUtil.i("client = " + (client == null ? "null" : client));
-        LogUtil.i("retrofit = " + (retrofit == null ? "null" : retrofit));
+        LogUtil.i("getApi = " + (retrofit == null ? "null" : retrofit));
     }
 
     private void inject() {

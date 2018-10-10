@@ -9,6 +9,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.wyj.treasure.R;
 
 import java.io.File;
 
@@ -85,9 +86,10 @@ public class GlideUtils {
     public static void loadImageUrl(Context context, String url, ImageView imageView) {
         Glide.with(context)
                 .load(url)
-//                .placeholder(R.drawable.loading)
-//                .error(R.drawable.error)
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
+//                .placeholder(R.mipmap.ai_3)
+                .error(R.mipmap.ai_10)
+                .crossFade()
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(imageView);
     }
 
@@ -100,7 +102,7 @@ public class GlideUtils {
         Glide.with(context)
                 .load(file)
 //                .placeholder(R.drawable.loading)
-//                .error(R.drawable.error)
+//                .onError(R.drawable.onError)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(imageView);
     }
@@ -115,7 +117,7 @@ public class GlideUtils {
         Glide.with(context)
                 .load(resource)
 //                .placeholder(R.drawable.loading)
-//                .error(R.drawable.error)
+//                .onError(R.drawable.onError)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(imageView);
     }

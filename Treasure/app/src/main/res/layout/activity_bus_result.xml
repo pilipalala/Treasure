@@ -1,0 +1,156 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ededf0"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/lineinfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#00aaff"
+        android:orientation="horizontal"
+        android:visibility="invisible">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_qidian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="起点"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_15" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_qidian"
+                android:layout_centerHorizontal="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#43bd49"
+                    android:text=" 首 "
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_15" />
+
+                <TextView
+                    android:id="@+id/tv_starTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="5dp"
+                    android:text="首发时间"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_15" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/iv_switch_icon"
+            android:layout_width="26dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:onClick="switchDirectionClick"
+            android:src="@drawable/switch_icon" />
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_zhongdian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:text="终点"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_15" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_zhongdian"
+                android:layout_centerHorizontal="true"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#d34545"
+                    android:text=" 末 "
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_15" />
+
+                <TextView
+                    android:id="@+id/tv_stopTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5dp"
+                    android:text="末班时间"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_15" />
+            </LinearLayout>
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_tip"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#fcf7e6"
+        android:paddingLeft="10dp"
+        android:visibility="invisible">
+
+        <ImageView
+            android:layout_width="12dp"
+            android:layout_height="22dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/tishi" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="28dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="@string/station_tip"
+            android:textColor="#000000"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_bus_result"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_30"
+        android:background="@color/pink"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/dp_30"
+        android:textColor="@color/black"
+        android:visibility="gone" />
+
+    <ListView
+        android:id="@+id/list_cards"
+        style="@drawable/content_bg"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp" />
+
+</LinearLayout>

@@ -48,7 +48,7 @@ public class MyService extends Service {
     public void onCreate() {
         super.onCreate();
         LogUtil.d("onCreate");
-       /* Intent intent = new Intent(this, MainActivity.class);
+       /* Intent intent = new Intent(this, BusActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
         Notification notification = new NotificationCompat.Builder(this)
                 .setContentTitle("点击可以跳转到Activity")

@@ -268,7 +268,7 @@ public class SettingsCompat {
         if (startSafely(context, intent)) {
             return true;
         }
-        intent.setClassName(HUAWEI_PACKAGE, "com.huawei.permissionmanager.ui.MainActivity");
+        intent.setClassName(HUAWEI_PACKAGE, "com.huawei.permissionmanager.ui.BusActivity");
         if (startSafely(context, intent)) {
             return true;
         }
@@ -279,7 +279,7 @@ public class SettingsCompat {
     private static boolean manageDrawOverlaysForVivo(Activity context) {
         // 不支持直接到达悬浮窗设置页，只能到 i管家 首页
         Intent intent = new Intent("com.iqoo.secure");
-        intent.setClassName("com.iqoo.secure", "com.iqoo.secure.MainActivity");
+        intent.setClassName("com.iqoo.secure", "com.iqoo.secure.BusActivity");
         // com.iqoo.secure.ui.phoneoptimize.SoftwareManagerActivity
         // com.iqoo.secure.ui.phoneoptimize.FloatWindowManager
         return startSafely(context, intent);
@@ -349,7 +349,7 @@ public class SettingsCompat {
             intent.putExtra("permission", new String[]{Manifest.permission.SYSTEM_ALERT_WINDOW});
 
             //        Intent intent = new Intent("com.smartisanos.security.action.MAIN");
-            //        intent.setClassName("com.smartisanos.security", "com.smartisanos.security.MainActivity");
+            //        intent.setClassName("com.smartisanos.security", "com.smartisanos.security.BusActivity");
             return startSafely(context, intent);
         }
     }
