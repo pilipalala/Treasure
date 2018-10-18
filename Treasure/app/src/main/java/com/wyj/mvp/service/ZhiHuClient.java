@@ -2,6 +2,7 @@ package com.wyj.mvp.service;
 
 import android.support.annotation.NonNull;
 
+import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.wyj.treasure.utils.LogUtil;
 
 import java.util.concurrent.TimeUnit;
@@ -44,7 +45,8 @@ public class ZhiHuClient {
     private static OkHttpClient getOkHttpClient() {
 
         //手动创建一个OkHttpClient并设置超时时间
-        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        OkHttpClient.Builder builder = new OkHttpClient.Builder()
+                .addNetworkInterceptor(new StethoInterceptor());
         builder.readTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
 
         builder.addInterceptor(getLogInterceptor());

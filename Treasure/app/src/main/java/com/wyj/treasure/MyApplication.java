@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 
+import com.facebook.stetho.Stetho;
 import com.orhanobut.hawk.Hawk;
 import com.tencent.tinker.loader.app.ApplicationLike;
 import com.tinkerpatch.sdk.TinkerPatch;
@@ -62,6 +63,7 @@ public class MyApplication extends Application {
      * Android调试工具Stetho
      */
     private void initStetho() {
+        Stetho.initializeWithDefaults(this);
 //        Stetho.initialize(
 //                Stetho.newInitializerBuilder(this)
 //                        .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))

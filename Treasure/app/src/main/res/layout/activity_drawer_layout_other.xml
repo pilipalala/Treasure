@@ -17,8 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:theme="@style/ToolBarTheme"
-            app:popupTheme="@style/ToolBarTheme" />
+            app:popupTheme="@style/ToolBarTheme"
+            app:theme="@style/ToolBarTheme" />
 
         <TextView
             android:layout_width="match_parent"

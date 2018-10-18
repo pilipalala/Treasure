@@ -6,7 +6,10 @@ import com.wyj.mvp.entity.MoveBean;
 import com.wyj.mvp.service.Api;
 import com.wyj.mvp.service.retrofit.ApiException;
 import com.wyj.mvp.service.retrofit.BaseObserver;
+import com.wyj.mvp.service.retrofit.BaseSubscriber;
 import com.wyj.mvp.service.retrofit.HttpMoveResult;
+
+import org.reactivestreams.Subscription;
 
 import java.util.List;
 
@@ -19,19 +22,19 @@ import io.reactivex.schedulers.Schedulers;
 /**
  * @author wangyujie
  * @date 2018/9/19.16:02
- * @describe 添加描述
+ * @describe https://gank.io/post/56e80c2c677659311bed9841
  */
 public class HttpUtils {
     @SuppressLint("CheckResult")
-    public static void getTopMovie(String url, int start, int count, BaseObserver<List<MoveBean.SubjectsBean>> observer) {
+    public static void getTopMovie(String url, int start, int count, BaseSubscriber<List<MoveBean.SubjectsBean>> observer) {
         Api.getDefault(url)
                 .getTopMove(start, count)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map(new HttpResultFunc<List<MoveBean.SubjectsBean>>())
-                .doOnSubscribe(new Consumer<Disposable>() {
+                .doOnSubscribe(new Consumer<Subscription>() {
                     @Override
-                    public void accept(Disposable disposable) throws Exception {
+                    public void accept(Subscription subscription) throws Exception {
                         observer.showProgressDialog();
                     }
                 })

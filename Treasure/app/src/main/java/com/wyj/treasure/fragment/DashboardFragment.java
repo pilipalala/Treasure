@@ -3,6 +3,7 @@ package com.wyj.treasure.fragment;
 import com.wyj.keyboard.KeyboardActivity;
 import com.wyj.mvp.ui.activity.DouBanActivity;
 import com.wyj.mvp.ui.activity.UserLoginActivity;
+import com.wyj.spannable.SpannableStringActivity;
 import com.wyj.swipedelete.SwipeDeleteActivity;
 import com.wyj.bannerviewpager.BannerViewPagerActivity;
 import com.wyj.colortracktextview.ColorTrackActivity;
@@ -64,7 +65,8 @@ public class DashboardFragment extends BaseCardViewFragment {
         mData.add(new ItemInfo("VoiceWaveView", VoiceWaveActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("Dagger", DaggerActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("自定义输入框&键盘", KeyboardActivity.class, R.mipmap.ic_launcher));
-        mData.add(new ItemInfo("豆瓣", DouBanActivity.class, R.mipmap.ic_launcher));
+//        mData.add(new ItemInfo("豆瓣", DouBanActivity.class, R.mipmap.ic_launcher));
+        mData.add(new ItemInfo("SpannableString", SpannableStringActivity.class, R.mipmap.ic_launcher));
         notifyDataChanged();
     }
 }

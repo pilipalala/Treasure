@@ -9,6 +9,7 @@ import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.style.StrikethroughSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,8 +29,10 @@ import com.wyj.treasure.R;
 import com.wyj.treasure.mode.GoodsInfo;
 import com.wyj.treasure.mode.StoreInfo;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.prefs.NodeChangeListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,7 +47,6 @@ public class ShopcartAdapter extends BaseExpandableListAdapter {
     private Context context;
     private CheckInterface checkInterface;
     private ModifyCountInterface modifyCountInterface;
-    public int flag = 0;
     private GroupEdtorListener mListener;
 
     public GroupEdtorListener getmListener() {
@@ -54,7 +56,9 @@ public class ShopcartAdapter extends BaseExpandableListAdapter {
     public void setmListener(GroupEdtorListener mListener) {
         this.mListener = mListener;
     }
-    int count=0;
+
+    int count = 0;
+
     /**
      * 构造函数
      *
@@ -129,9 +133,7 @@ public class ShopcartAdapter extends BaseExpandableListAdapter {
         gholder.tvSourceName.setText(group.getName());
         gholder.determineChekbox.setOnClickListener(new OnClickListener() {
             @Override
-            public void onClick(View v)
-
-            {
+            public void onClick(View v) {
                 group.setChoosed(((CheckBox) v).isChecked());
                 checkInterface.checkGroup(groupPosition, ((CheckBox) v).isChecked());// 暴露组选接口
             }
@@ -176,18 +178,64 @@ public class ShopcartAdapter extends BaseExpandableListAdapter {
             cholder.llEdtor.setVisibility(View.GONE);
             cholder.rlNoEdtor.setVisibility(View.VISIBLE);
         }
-        final GoodsInfo goodsInfo = (GoodsInfo) getChild(groupPosition, childPosition);
+
+        /**
+         * 心得  listview Recyclerview 复用的时候 要记得绑定 tag 标记setTag()
+         *
+         * 还有一个执行顺序  把 addTextChangedListener 这个监听 放到 最后 会出现数据错乱
+         * */
+        GoodsInfo goodsInfo = (GoodsInfo) getChild(groupPosition, childPosition);
+
+//        HashMap map = new HashMap();
+//        /*int groupPosition, int childPosition*/
+//        map.put("groupPosition", groupPosition);
+//        map.put("childPosition", childPosition);
+//        cholder.etNum.setTag(map);
+        cholder.etNum.setTag(goodsInfo);
+        cholder.etNum.clearFocus();
+        //监听文本输入框的文字变化，并且刷新数据
+        cholder.etNum.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                    GoodsInfo goodsInfo = (GoodsInfo) cholder.etNum.getTag();
+//                    goodsInfo.setCount(Integer.valueOf(s.toString().trim()));
+//                    modifyCountInterface.onChangeValue(Integer.valueOf(s.toString().trim()), goodsInfo);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                GoodsInfo goodsInfo = (GoodsInfo) cholder.etNum.getTag();
+//                Map map1 = (Map) cholder.etNum.getTag();
+//                int groupPosition1 = (int) map1.get("groupPosition");
+//                int childPosition1 = (int) map1.get("childPosition");
+//                if (groupPosition1 == groupPosition && childPosition1 == childPosition) {
+//                    List<GoodsInfo> childs = children.get(groups.get(groupPosition).getId());
+//                    GoodsInfo child = childs.get(childPosition);
+//                    child.setCount(Integer.valueOf(s.toString().trim()));
+//                    childs.set(childPosition, child);
+//                    children.put(groups.get(groupPosition).getId(), childs);
+                goodsInfo.setCount(Integer.valueOf(s.toString().trim()));
+
+                modifyCountInterface.onChangeValue(Integer.valueOf(s.toString().trim()), cholder.etNum, goodsInfo);
+//                }
+            }
+        });
 
 
-        if(isLastChild&&getChild(groupPosition,childPosition)!=null){
+//        final GoodsInfo goodsInfo = (GoodsInfo) getChild(groupPosition, childPosition);
+
+        if (isLastChild && getChild(groupPosition, childPosition) != null) {
             cholder.stub.setVisibility(View.VISIBLE);
             //  TextView tv= (TextView) cholder.stub.findViewById(R.id.txtFooter);//这里用来动态显示店铺满99元包邮文字内容
-        }else{
+        } else {
             cholder.stub.setVisibility(View.GONE);
         }
         if (goodsInfo != null) {
-
-
             cholder.tvIntro.setText(goodsInfo.getDesc());
             cholder.tvPrice.setText("￥" + goodsInfo.getPrice() + "");
             cholder.etNum.setText(goodsInfo.getCount() + "");
@@ -225,10 +273,11 @@ public class ShopcartAdapter extends BaseExpandableListAdapter {
             });
             /********************方案一：弹出软键盘修改数量，应为又不知名的bug会使然键盘强行关闭***********************/
             /****在清单文件的activity下设置键盘：
-            android:windowSoftInputMode="adjustUnspecified|stateHidden|adjustPan"
-            android:configChanges="orientation|keyboardHidden"****/
-            cholder.etNum.addTextChangedListener(new GoodsNumWatcher(goodsInfo));//监听文本输入框的文字变化，并且刷新数据
-            notifyDataSetChanged();
+             android:windowSoftInputMode="adjustUnspecified|stateHidden|adjustPan"
+             android:configChanges="orientation|keyboardHidden"****/
+
+
+//            notifyDataSetChanged();
             /********************方案一***************************************************************************/
             /********************方案二：让软键盘不能弹出，文本框不可编辑弹出dialog修改***********************/
 //            cholder.etNum.setOnFocusChangeListener(new android.view.View.
@@ -241,9 +290,9 @@ public class ShopcartAdapter extends BaseExpandableListAdapter {
 //                        imm.hideSoftInputFromWindow(v.getWindowToken(), 0); //强制隐藏键盘
 //                        // 2.显示弹出dialog进行修改
 //                        showDialog(goodsInfo,cholder.etNum);
-                          //3.清除焦点防止不断弹出dialog和软键盘
+            //3.清除焦点防止不断弹出dialog和软键盘
 //                        cholder.etNum.clearFocus();
-                          // 4. 数据刷型
+            // 4. 数据刷型
 //                        ShopcartAdapter.this.notifyDataSetChanged();
 //                    }
 //                }
@@ -287,9 +336,6 @@ public class ShopcartAdapter extends BaseExpandableListAdapter {
         return false;
 
     }
-
-
-
 
 
     /**
@@ -345,6 +391,9 @@ public class ShopcartAdapter extends BaseExpandableListAdapter {
          * @param childPosition
          */
         void childDelete(int groupPosition, int childPosition);
+
+        void onChangeValue(int value, View showCountView, GoodsInfo goodsInfo);
+
     }
 
     /**
@@ -437,53 +486,28 @@ public class ShopcartAdapter extends BaseExpandableListAdapter {
         LinearLayout llEdtor;
         @BindView(R.id.stub)
         ViewStub stub;
+
         ChildViewHolder(View view) {
             ButterKnife.bind(this, view);
         }
 
     }
 
-    /**
-     * 购物车的数量修改编辑框的内容监听
-     */
-    class GoodsNumWatcher implements TextWatcher {
-        GoodsInfo   goodsInfo;
-        public GoodsNumWatcher(GoodsInfo goodsInfo) {
-            this.goodsInfo = goodsInfo;
-        }
-
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-            if(!TextUtils.isEmpty(s.toString())){//当输入的数字不为空时，更新数字
-                goodsInfo.setCount(Integer.valueOf(s.toString().trim()));
-            }
-       }
-
-    }
 
     /**
      * 显示修改购物车商品数量的dialog
-     * @param goodinfo  item的商品信息实体
-     * @param edittext   购物车item的数量文本框
+     *
+     * @param goodinfo item的商品信息实体
+     * @param edittext 购物车item的数量文本框
      */
-    private void showDialog(final GoodsInfo goodinfo,final EditText edittext){
+    private void showDialog(final GoodsInfo goodinfo, final EditText edittext) {
         final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-        View alertDialogView = LayoutInflater.from(context).inflate(R.layout.dialog_change_num, null,false);
+        View alertDialogView = LayoutInflater.from(context).inflate(R.layout.dialog_change_num, null, false);
         final AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.setView(alertDialogView);
         count = goodinfo.getCount();
-       final EditText editText = alertDialogView.findViewById(R.id.et_num);
-        editText.setText(""+goodinfo.getCount());//设置dialog的数量初始值
+        final EditText editText = alertDialogView.findViewById(R.id.et_num);
+        editText.setText("" + goodinfo.getCount());//设置dialog的数量初始值
         //自动弹出软键盘
         alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
             public void onShow(DialogInterface dialog) {
@@ -492,10 +516,10 @@ public class ShopcartAdapter extends BaseExpandableListAdapter {
                 imm.toggleSoftInput(0, InputMethodManager.HIDE_IMPLICIT_ONLY);
             }
         });
-        final Button btadd= alertDialogView.findViewById(R.id.bt_add);
-        final Button btreduce= alertDialogView.findViewById(R.id.bt_reduce);
-        final TextView cancle= alertDialogView.findViewById(R.id.tv_cancle);
-        final TextView sure= alertDialogView.findViewById(R.id.tv_sure);
+        final Button btadd = alertDialogView.findViewById(R.id.bt_add);
+        final Button btreduce = alertDialogView.findViewById(R.id.bt_reduce);
+        final TextView cancle = alertDialogView.findViewById(R.id.tv_cancle);
+        final TextView sure = alertDialogView.findViewById(R.id.tv_sure);
         cancle.setOnClickListener(new OnClickListener() { //取消按钮
             @Override
             public void onClick(View v) {
@@ -506,22 +530,22 @@ public class ShopcartAdapter extends BaseExpandableListAdapter {
             @Override
             public void onClick(View v) {
                 goodinfo.setCount(count);//重新设置数量
-                edittext.setText(count+"");//购物车界面的文本框显示同步
+                edittext.setText(count + "");//购物车界面的文本框显示同步
                 alertDialog.dismiss();
             }
         });
         btadd.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-               count ++;   //点一下量加1
-               editText.setText(""+count);//动态显示dialog的文本框的数据
+                count++;   //点一下量加1
+                editText.setText("" + count);//动态显示dialog的文本框的数据
 
             }
         });
         btreduce.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(count>1) {//数量大雨1时操作
+                if (count > 1) {//数量大雨1时操作
                     count--; //点一下减1
                     editText.setText("" + count);
                 }

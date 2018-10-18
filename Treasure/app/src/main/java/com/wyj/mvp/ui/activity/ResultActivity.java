@@ -14,6 +14,7 @@ import com.wyj.mvp.entity.bus.CarsInfo;
 import com.wyj.mvp.entity.bus.LineInfo;
 import com.wyj.mvp.entity.bus.LineStationInfo;
 import com.wyj.mvp.service.retrofit.BaseObserver;
+import com.wyj.mvp.service.retrofit.BaseSubscriber;
 import com.wyj.mvp.ui.adapter.FlexListAdapter;
 import com.wyj.mvp.manager.BusClientUtils;
 import com.wyj.treasure.R;
@@ -87,7 +88,11 @@ public class ResultActivity extends BaseActivity implements OnItemClickListener 
                 //线路信息
                 mLineInfo = lineInfo;
                 showLineInfo();
-                lineService.getLineStation(mLineInfo.getLine_name(), mLineInfo.getLine_id(), new BaseObserver<LineStationInfo>() {
+            }
+
+            @Override
+            protected void _onComplete() {
+                lineService.getLineStation(nowLineName, mLineInfo.getLine_id(), new BaseObserver<LineStationInfo>() {
                     @Override
                     protected void _onNext(LineStationInfo lineStationInfo) {
                         LogUtil.d("lineStationInfo----->" + lineStationInfo.toString());
@@ -104,20 +109,15 @@ public class ResultActivity extends BaseActivity implements OnItemClickListener 
                     @Override
                     protected void _onError(String message) {
                         LogUtil.e("lineStationInfo----->" + message);
-                        ToastUtil.show(R.string.no_line);
+                        searchLine(lineName);
                     }
                 });
             }
 
             @Override
-            protected void _onComplete() {
-
-            }
-
-            @Override
             protected void _onError(String message) {
                 LogUtil.e(message);
-                ToastUtil.show(R.string.no_line);
+                searchLine(lineName);
             }
         });
     }
@@ -129,12 +129,17 @@ public class ResultActivity extends BaseActivity implements OnItemClickListener 
         lineService.getStationCars(lineName, mLineInfo.getLine_id(), stopId, direction, new BaseObserver<CarsInfo>() {
             @Override
             protected void _onNext(CarsInfo carInfo) {
-                LogUtil.d(carInfo.toString());
-                dealWithCar(carInfo);
-                // 车辆信息
-                adapter.setCars(carInfo.getCars());
-                // 即时刷新
-                adapter.notifyDataSetChanged();
+                if (carInfo != null) {
+                    LogUtil.d(carInfo.toString());
+                    dealWithCar(carInfo);
+                    // 车辆信息
+                    adapter.setCars(carInfo.getCars());
+                    // 即时刷新
+                    adapter.notifyDataSetChanged();
+                } else {
+                    mTvBusResult.setVisibility(View.VISIBLE);
+                    mTvBusResult.setText(R.string.no_cars);
+                }
             }
 
             @Override

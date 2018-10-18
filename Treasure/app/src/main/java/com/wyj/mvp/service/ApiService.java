@@ -12,6 +12,7 @@ import com.wyj.mvp.service.retrofit.HttpMoveResult;
 
 import java.util.List;
 
+import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -56,7 +57,7 @@ public interface ApiService {
     //http://api.douban.com/v2/movie/top250?start=0&count=10
     //RxJava 写法
     @GET("top250")
-    Observable<HttpMoveResult<List<MoveBean.SubjectsBean>>> getTopMove(@Query("start") int start, @Query("count") int count);
+    Flowable<HttpMoveResult<List<MoveBean.SubjectsBean>>> getTopMove(@Query("start") int start, @Query("count") int count);
 
     //TODO===============api.laifudao.com===start==============//
     //http://api.laifudao.com/open/xiaohua.json
@@ -74,14 +75,17 @@ public interface ApiService {
     @GET("HandlerBus.ashx")
     Observable<LineInfo> getLineInfo(@Query("action") String action, @Query("name") String lineName);
 
-    //http://apps.eshimin.com/traffic/gjc/getBusStop?name=189区间&lineid=018906
     //http://xxbs.sh.gov.cn:8080/weixinpage/HandlerBus.ashx?action=Two&name=189路&lineid=018900
     @GET("HandlerBus.ashx")
     Observable<LineStationInfo> getLineStationInfo(@Query("action") String action,
                                                    @Query("name") String lineName,
                                                    @Query("lineid") String lineId);
 
-    //http://apps.eshimin.com/traffic/gjc/getArriveBase?name=189%E5%8C%BA%E9%97%B4&lineid=018906&stopid=1&direction=0
+    //http://apps.eshimin.com/traffic/gjc/getBusStop?name=189区间&lineid=018906
+    @GET("getBusStop")
+    Observable<LineStationInfo> getAppLineStationInfo(@Query("name") String lineName,
+                                                      @Query("lineid") String lineId);
+
     //http://xxbs.sh.gov.cn:8080/weixinpage/HandlerBus.ashx?action=Three&name=189路&lineid=018900&stopid=2&direction=0
     @GET("HandlerBus.ashx")
     Observable<CarsInfo> getCarInfo(@Query("action") String action,
@@ -89,6 +93,17 @@ public interface ApiService {
                                     @Query("lineid") String lineId,
                                     @Query("stopid") String stopId,
                                     @Query("direction") int direction);
+
+
+    //http://apps.eshimin.com/traffic/gjc/getArriveBase?name=189区间&lineid=018906&stopid=1&direction=0
+    @GET("getArriveBase")
+    Observable<CarsInfo> getAppCarInfo( @Query("name") String lineName,
+                                    @Query("lineid") String lineId,
+                                    @Query("stopid") String stopId,
+                                    @Query("direction") int direction);
+
+
+
     //===============公交api===end==============//
 
 

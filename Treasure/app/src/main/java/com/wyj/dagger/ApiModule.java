@@ -1,5 +1,8 @@
 package com.wyj.dagger;
 
+
+import com.facebook.stetho.okhttp3.StethoInterceptor;
+
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
@@ -22,6 +25,7 @@ public class ApiModule {
     @Singleton
     OkHttpClient provideOkHttpClient() {
         OkHttpClient httpClient = new OkHttpClient.Builder()
+                .addNetworkInterceptor(new StethoInterceptor())
                 .connectTimeout(60 * 1000, TimeUnit.SECONDS)
                 .readTimeout(60 * 1000, TimeUnit.SECONDS)
                 .build();

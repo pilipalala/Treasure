@@ -2,6 +2,7 @@ package com.wyj.treasure.activity;
 
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ExpandableListView;
@@ -134,12 +135,17 @@ public class MultipleChoiceActivity extends BaseActivity implements ShopcartAdap
      * 其键是组元素的Id(通常是一个唯一指定组元素身份的值)
      */
     private void initDatas() {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 5; i++) {
             groups.add(new StoreInfo(i + "", "天猫店铺" + (i + 1) + "号店"));
             List<GoodsInfo> products = new ArrayList<GoodsInfo>();
             for (int j = 0; j <= i; j++) {
                 int[] img = {R.mipmap.auto_header, R.mipmap.avatar1, R.mipmap.avatar2, R.mipmap.avatar3, R.mipmap.avatar4, R.mipmap.avatar3, R.mipmap.avatar1,};
-                products.add(new GoodsInfo(j + "", "商品", groups.get(i).getName() + "的第" + (j + 1) + "个商品", 12.00 + new Random().nextInt(23), new Random().nextInt(5) + 1, "豪华", "1", img[i * j], 6.00 + new Random().nextInt(13)));
+                products.add(new GoodsInfo(j + "", "商品",
+                        groups.get(i).getName() + "的第" + (j + 1) + "个商品",
+                        12.00 + new Random().nextInt(23),
+                        6,
+                        "豪华", "1", img[new Random().nextInt(img.length - 1)],
+                        6.00 + new Random().nextInt(13)));
             }
             children.put(groups.get(i).getId(), products);// 将组元素的一个唯一值，这里取Id，作为子元素List的Key
         }
@@ -172,6 +178,12 @@ public class MultipleChoiceActivity extends BaseActivity implements ShopcartAdap
         setCartNum();
         selva.notifyDataSetChanged();
 
+    }
+
+    @Override
+    public void onChangeValue(int value, View showCountView, GoodsInfo product) {
+        selva.notifyDataSetChanged();
+        calculate();
     }
 
     @Override
@@ -303,6 +315,7 @@ public class MultipleChoiceActivity extends BaseActivity implements ShopcartAdap
             for (int j = 0; j < childs.size(); j++) {
                 GoodsInfo product = childs.get(j);
                 if (product.isChoosed()) {
+                    Log.e("calculate", "MultipleChoiceActivity_311-->calculate: " + product.getCount());
                     totalCount++;
                     totalPrice += product.getPrice() * product.getCount();
                 }

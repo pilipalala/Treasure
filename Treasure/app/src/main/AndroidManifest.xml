@@ -311,7 +311,8 @@
         <activity android:name="com.wyj.greendao.GreenDAOActivity" />
         <activity android:name="com.wyj.mvp.ui.activity.BusActivity" />
         <activity android:name="com.wyj.mvp.ui.activity.ResultActivity" />
-        <activity android:name="com.wyj.mvp.ui.activity.DouBanActivity"></activity>
+        <activity android:name="com.wyj.mvp.ui.activity.DouBanActivity" />
+        <activity android:name="com.wyj.spannable.SpannableStringActivity"></activity>
     </application>
 
 </manifest>

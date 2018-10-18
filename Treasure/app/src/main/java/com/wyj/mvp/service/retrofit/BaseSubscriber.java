@@ -1,4 +1,5 @@
 package com.wyj.mvp.service.retrofit;
+
 import com.wyj.mvp.SimpleLoadDialog;
 import com.wyj.treasure.utils.ActivityCollector;
 
@@ -36,7 +37,7 @@ public abstract class BaseSubscriber<T> implements ProgressCancelListener, Subsc
         } else if (e instanceof ApiException) {
             _onError(e.getMessage());
         } else {
-            _onError("请求失败，请稍后再试..."+e.getMessage());
+            _onError("请求失败，请稍后再试..." + e.getMessage());
         }
         dismissProgressDialog();
     }
@@ -44,6 +45,7 @@ public abstract class BaseSubscriber<T> implements ProgressCancelListener, Subsc
     @Override
     public void onComplete() {
         dismissProgressDialog();
+        _onComplete();
     }
 
     /**
@@ -76,6 +78,8 @@ public abstract class BaseSubscriber<T> implements ProgressCancelListener, Subsc
     }
 
     protected abstract void _onNext(T t);
+
+    protected abstract void _onComplete();
 
     protected abstract void _onError(String message);
 }

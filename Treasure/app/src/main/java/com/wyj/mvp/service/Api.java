@@ -2,6 +2,7 @@ package com.wyj.mvp.service;
 
 import android.support.annotation.NonNull;
 
+import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -48,7 +49,8 @@ public class Api {
 
 
         //手动创建一个OkHttpClient并设置超时时间
-        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        OkHttpClient.Builder builder = new OkHttpClient.Builder()
+                .addNetworkInterceptor(new StethoInterceptor());
         builder.readTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
         /**
          * 对所有请求添加请求头

@@ -1,14 +1,21 @@
 package com.wyj.treasure.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkRequest;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.wyj.treasure.R;
 import com.wyj.treasure.mode.ItemInfo;
 import com.wyj.treasure.receiver.NetworkChangeReceiver;
+import com.wyj.treasure.utils.ToastUtil;
 
 import java.util.List;
 
@@ -41,17 +48,37 @@ public class NetworkChangeActivity extends BaseActivity {
     @Override
     protected void initData() {
         setTitle("广播接收器");
-        intentFilter = new IntentFilter();
-        /*动态注册*/
-        intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
-        receiver = new NetworkChangeReceiver();
-        registerReceiver(receiver, intentFilter);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+            connectivityManager.requestNetwork(new NetworkRequest.Builder().build(),
+                    new ConnectivityManager.NetworkCallback() {
+                        @Override
+                        public void onLost(Network network) {
+                            super.onLost(network);
+                            ToastUtil.show("网络不可用");
+                        }
+
+                        @Override
+                        public void onAvailable(Network network) {
+                            super.onAvailable(network);
+                            ToastUtil.show("网络可用");
+                        }
+                    });
+        } else {
+            intentFilter = new IntentFilter();
+            /*动态注册*/
+            intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+            receiver = new NetworkChangeReceiver();
+            registerReceiver(receiver, intentFilter);
+        }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unregisterReceiver(receiver);
+        if (receiver != null) {
+            unregisterReceiver(receiver);
+        }
     }
 
 }

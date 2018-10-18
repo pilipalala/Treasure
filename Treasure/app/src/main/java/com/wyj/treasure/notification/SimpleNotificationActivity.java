@@ -1,12 +1,15 @@
 package com.wyj.treasure.notification;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -32,6 +35,7 @@ public class SimpleNotificationActivity extends BaseActivity {
     public static final int DEFAULT_NOTIFICATION_ID = 1;
     public static final String NOTIFICATION_TAG = "littlejie";
     private Bitmap mLargeIcon;
+    private NotificationUtils notificationUtils;
 
     @Override
     protected int initView() {
@@ -51,23 +55,14 @@ public class SimpleNotificationActivity extends BaseActivity {
         notifyManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mLargeIcon = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_round);
 
+        notificationUtils = new NotificationUtils(this);
+
+
     }
 
     private void sendNotification() {
-        //获取NotificationManager实例
-        NotificationManager notifyManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        //实例化NotificationCompat.Builde并设置相关属性
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
-                //设置小图标
-                .setSmallIcon(R.mipmap.ic_launcher)
-                //设置通知标题
-                .setContentTitle("最简单的Notification")
-                //设置通知内容
-                .setContentText("只有小图标、标题、内容");
-        //设置通知时间，默认为系统发出通知的时间，通常不用设置
-        //.setWhen(System.currentTimeMillis());
-        //通过builder.build()方法生成Notification对象,并发送通知,id=1
-        notifyManager.notify(DEFAULT_NOTIFICATION_ID, builder.build());
+        notificationUtils.sendNotification(DEFAULT_NOTIFICATION_ID,
+                "最简单的Notification", "只有小图标、标题、内容");
     }
 
 
@@ -77,17 +72,11 @@ public class SimpleNotificationActivity extends BaseActivity {
     private void sendSimplestNotificationWithAction() {
         //获取PendingIntent
         Intent mainIntent = new Intent(this, MainActivity.class);
-        PendingIntent mainPendingIntent = PendingIntent.getActivity(this, 0, mainIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        //创建 Notification.Builder 对象
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.mipmap.ic_launcher)
-                //点击通知后自动清除
-                .setAutoCancel(true)
-                .setContentTitle("我是带Action的Notification")
-                .setContentText("点我会打开MainActivity")
-                .setContentIntent(mainPendingIntent);
-        //发送通知
-        notifyManager.notify(3, builder.build());
+        PendingIntent mainPendingIntent = PendingIntent.getActivity(this,
+                0, mainIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        notificationUtils.sendNotificationWithAction(2,
+                "我是带Action的Notification", "点我会打开MainActivity", mainPendingIntent);
     }
 
     /**
@@ -107,31 +96,18 @@ public class SimpleNotificationActivity extends BaseActivity {
      */
     private void sendTenNotifications() {
         for (int i = 0; i < 10; i++) {
-            NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
-                    .setSmallIcon(R.mipmap.ic_launcher)
-                    .setContentTitle("Send Notification Batch")
-                    .setContentText("Hi,My id is " + i);
-            notifyManager.notify(i, builder.build());
+            notificationUtils.sendNotification(i,
+                    "Send Notification Batch", "Hi,My id is \" + i");
         }
     }
 
-    /**
-     * 设置FLAG_NO_CLEAR
-     * 该 flag 表示该通知不能被状态栏的清除按钮给清除掉,也不能被手动清除,但能通过 requestCancel() 方法清除
-     * Notification.flags属性可以通过 |= 运算叠加效果
-     */
-    private void sendFlagNoClearNotification() {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle("Send Notification Use FLAG_NO_CLEAR")
-                .setContentText("Hi,My id is 1,i can't be clear.");
-        Notification notification = builder.build();
-        //设置 Notification 的 flags = FLAG_NO_CLEAR
-        //FLAG_NO_CLEAR 表示该通知不能被状态栏的清除按钮给清除掉,也不能被手动清除,但能通过 requestCancel() 方法清除
-        //flags 可以通过 |= 运算叠加效果
 
-        notification.flags |= Notification.FLAG_NO_CLEAR;
-        notifyManager.notify(DEFAULT_NOTIFICATION_ID, notification);
+    private void sendFlagNoClearNotification() {
+
+        notificationUtils.sendFlagNoClearNotification(3,
+                "Send Notification Use FLAG_NO_CLEAR", "Hi,My id is 1,i can't be clear.");
+
+
     }
 
     /**
@@ -177,11 +153,7 @@ public class SimpleNotificationActivity extends BaseActivity {
      * 发送一个简单的通知,只带有小图标、标题、内容
      */
     private void sendSimplestNotification() {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle("最简单的Notification")
-                .setContentText("只有小图标、标题、内容");
-        notifyManager.notify(1, builder.build());
+        notificationUtils.sendNotification(1, "最简单的Notification", "只有小图标、标题、内容");
     }
 
     /**
@@ -190,12 +162,7 @@ public class SimpleNotificationActivity extends BaseActivity {
      * 当只设置setSmallIcon时,smallIcon显示在左侧
      */
     private void sendSimplestNotificationWithLargeIcon() {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle("带大图标的Notification")
-                .setContentText("有小图标、大图标、标题、内容")
-                .setLargeIcon(mLargeIcon);
-        notifyManager.notify(2, builder.build());
+        notificationUtils.sendNotification(5, "带大图标的Notification", "有小图标、大图标、标题、内容");
     }
 
     @OnClick({R.id.btn_send_simplest_notification, R.id.btn_send_simplest_notification_with_large_icon, R.id.btn_send_simplest_notification_with_action, R.id.btn_remove_all_notification, R.id.btn_send_notification, R.id.btn_remove_notification, R.id.btn_send_notification_with_tag, R.id.btn_remove_notification_with_tag, R.id.btn_send_ten_notification, R.id.btn_send_flag_no_clear_notification, R.id.btn_send_flag_ongoing_event_notification, R.id.btn_send_flag_auto_cancecl_notification})

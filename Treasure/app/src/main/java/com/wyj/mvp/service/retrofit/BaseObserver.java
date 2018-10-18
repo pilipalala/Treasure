@@ -65,7 +65,6 @@ public abstract class BaseObserver<T> implements ProgressCancelListener, Observe
         if (dialogHandler != null) {
 //            dialogHandler.obtainMessage(SimpleLoadDialog.DISMISS_PROGRESS_DIALOG).sendToTarget();
             dialogHandler.dismiss();
-            ;
             dialogHandler = null;
         }
     }

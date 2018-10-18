@@ -3,47 +3,46 @@ package com.wyj.treasure.mode;
 /**
  * 店铺信息
  */
-public class StoreInfo
-{
-	protected String Id;
-	protected String name;
-	protected boolean isChoosed;
+public class StoreInfo {
+    protected String Id;
+    protected String name;
+    protected boolean isChoosed;
     private boolean isEdtor;
 
-	public boolean isEdtor() {
-		return isEdtor;
-	}
+    public boolean isEdtor() {
+        return isEdtor;
+    }
 
-	public void setIsEdtor(boolean isEdtor) {
-		this.isEdtor = isEdtor;
-	}
+    public void setIsEdtor(boolean isEdtor) {
+        this.isEdtor = isEdtor;
+    }
 
-	public StoreInfo(String id, String name) {
-		Id = id;
-		this.name = name;
-	}
+    public StoreInfo(String id, String name) {
+        Id = id;
+        this.name = name;
+    }
 
-	public String getId() {
-		return Id;
-	}
+    public String getId() {
+        return Id;
+    }
 
-	public void setId(String id) {
-		Id = id;
-	}
+    public void setId(String id) {
+        Id = id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public boolean isChoosed() {
-		return isChoosed;
-	}
+    public boolean isChoosed() {
+        return isChoosed;
+    }
 
-	public void setChoosed(boolean isChoosed) {
-		this.isChoosed = isChoosed;
-	}
+    public void setChoosed(boolean isChoosed) {
+        this.isChoosed = isChoosed;
+    }
 }

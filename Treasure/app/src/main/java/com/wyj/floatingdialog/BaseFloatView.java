@@ -43,6 +43,8 @@ public abstract class BaseFloatView extends RelativeLayout {
     private float mInterceptStartY;
     private boolean isScroll;
     public Context mContext;
+    private float tempY;
+    private float tempX;
 
     public BaseFloatView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -110,6 +112,8 @@ public abstract class BaseFloatView extends RelativeLayout {
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         switch (ev.getAction()) {
             case MotionEvent.ACTION_MOVE:
+                tempY = ev.getY();
+                tempX = ev.getX();
                 if (Math.abs(ev.getRawX() - mInterceptStartX) <= 2
                         && Math.abs(ev.getRawY() - mInterceptStartY) <= 2) {
                     return false;
@@ -177,6 +181,7 @@ public abstract class BaseFloatView extends RelativeLayout {
                 }
                 isScroll = false;
                 mTouchStartX = mTouchStartY = 0;
+                tempY = tempX = 0;
                 break;
         }
         return true;
@@ -221,14 +226,12 @@ public abstract class BaseFloatView extends RelativeLayout {
 
     // 更新浮动窗口位置参数
     private void updateViewPosition() {
-        wmParams.x = (int) (x - mTouchStartX);
+        wmParams.x = (int) (x - mTouchStartX - tempX);
         //是否存在状态栏（提升滑动效果）
         // 不设置为全屏（状态栏存在） 标题栏是屏幕的1/25
 //        LogUtil.i(screenHeight / 25 + " screenHeight");
 //        LogUtil.i(CommonUtils.getStatusBarHeight() + "  CommonUtils.getStatusBarHeight()");
-        wmParams.y = (int) (y - mTouchStartY - CommonUtils.getStatusBarHeight());
-        LogUtil.i((x - mTouchStartX) + " --->mTouchStartX");
-        LogUtil.i((y - mTouchStartY) + " --->mTouchStartY");
+        wmParams.y = (int) (y - mTouchStartY - CommonUtils.getStatusBarHeight() - tempY);
         wm.updateViewLayout(this, wmParams);
     }
 

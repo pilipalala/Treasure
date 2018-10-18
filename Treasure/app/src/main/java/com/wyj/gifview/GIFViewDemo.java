@@ -118,7 +118,7 @@ public class GIFViewDemo extends View {
             }
         }
         mMovie.setTime(currentTime);
-        canvas.save(Canvas.MATRIX_SAVE_FLAG);
+        canvas.save();
         canvas.scale(mScaleX, mScaleY);
         mMovie.draw(canvas, mLeft / mScaleX, mTop / mScaleY);
         canvas.restore();

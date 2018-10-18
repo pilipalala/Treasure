@@ -1,5 +1,8 @@
 package com.wyj.mvp.ui.activity;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+
 import com.wyj.mvp.presenter.BasePresenter;
 import com.wyj.mvp.view.IView;
 import com.wyj.treasure.activity.BaseActivity;
@@ -16,15 +19,15 @@ public abstract class MVPBaseActivity<P extends BasePresenter> extends BaseActiv
 
     protected P mPresenter;
 
+
     @Override
-    protected void onStart() {
-        super.onStart();
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         if (mPresenter == null) {
             mPresenter = createPresenter();
             attachView();
         }
+        super.onCreate(savedInstanceState);
     }
-
 
     /**
      * 第一步 创建Presenter

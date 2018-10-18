@@ -6,6 +6,7 @@ import android.util.Log;
 import com.wyj.mvp.entity.MoveBean;
 import com.wyj.mvp.manager.HttpUtils;
 import com.wyj.mvp.service.retrofit.BaseObserver;
+import com.wyj.mvp.service.retrofit.BaseSubscriber;
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.BaseActivity;
 
@@ -25,7 +26,7 @@ public class RetrofitActivity extends BaseActivity {
 
         String url = "http://api.douban.com/v2/movie/";
 //        String url = "http://www.weather.com.cn/";
-        HttpUtils.getTopMovie(url, 0, 20, new BaseObserver<List<MoveBean.SubjectsBean>>() {
+        HttpUtils.getTopMovie(url, 0, 20, new BaseSubscriber<List<MoveBean.SubjectsBean>>() {
             @Override
             protected void _onNext(List<MoveBean.SubjectsBean> subjectsBeans) {
                 Log.d(TAG, "RetrofitActivity_27-->_onNext: " + subjectsBeans.size());
@@ -35,6 +36,7 @@ public class RetrofitActivity extends BaseActivity {
             protected void _onComplete() {
 
             }
+
 
             @Override
             protected void _onError(String message) {
