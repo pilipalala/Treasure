@@ -4,15 +4,25 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:background="#ededf0"
-    android:orientation="vertical">
+    android:orientation="horizontal">
 
     <TextView
         android:id="@+id/tv_station_name"
-        android:layout_width="fill_parent"
+        android:layout_width="0dp"
         android:layout_height="45dp"
+        android:layout_weight="1"
         android:background="#FFFFFF"
         android:gravity="center_vertical"
         android:padding="10dp"
+        android:text="到站"
         android:textColor="#000000"
         android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/iv_collect"
+        android:layout_width="@dimen/dp_45"
+        android:layout_height="@dimen/dp_45"
+        android:background="@color/white"
+        android:padding="@dimen/dp_5"
+        android:src="@drawable/select_collect" />
 </LinearLayout>

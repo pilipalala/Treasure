@@ -48,8 +48,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:paddingBottom="5dp"
                     android:paddingLeft="5dp"
+                    android:paddingBottom="5dp"
                     android:text="首发时间"
                     android:textColor="@color/white"
                     android:textSize="@dimen/sp_15" />
@@ -150,7 +150,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="15dp" />
+        tools:listitem="@layout/act_stations_list" />
 
 </LinearLayout>

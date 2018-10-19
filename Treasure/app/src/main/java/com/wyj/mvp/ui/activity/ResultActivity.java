@@ -10,24 +10,26 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.wyj.greendao.GreenDAOHelp;
 import com.wyj.mvp.entity.bus.CarsInfo;
+import com.wyj.mvp.entity.bus.CollectStation;
+import com.wyj.mvp.entity.bus.CollectStationDao;
 import com.wyj.mvp.entity.bus.LineInfo;
 import com.wyj.mvp.entity.bus.LineStationInfo;
+import com.wyj.mvp.entity.bus.StationInfo;
 import com.wyj.mvp.service.retrofit.BaseObserver;
-import com.wyj.mvp.service.retrofit.BaseSubscriber;
 import com.wyj.mvp.ui.adapter.FlexListAdapter;
 import com.wyj.mvp.manager.BusClientUtils;
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.BaseActivity;
 import com.wyj.treasure.utils.CommonUtils;
 import com.wyj.treasure.utils.LogUtil;
-import com.wyj.treasure.utils.ToastUtil;
 
 import java.util.List;
 
 import butterknife.BindView;
 
-public class ResultActivity extends BaseActivity implements OnItemClickListener {
+public class ResultActivity extends BaseActivity implements OnItemClickListener, FlexListAdapter.OnCollectClick {
     @BindView(R.id.tv_bus_result)
     TextView mTvBusResult;
     @BindView(R.id.tv_qidian)
@@ -55,7 +57,7 @@ public class ResultActivity extends BaseActivity implements OnItemClickListener 
     private boolean direction = true;
     private BusClientUtils lineService;
 
-
+    private int errorNum = 0;
     private FlexListAdapter adapter;
 
 
@@ -76,7 +78,8 @@ public class ResultActivity extends BaseActivity implements OnItemClickListener 
      * 查询公交线路和站点
      */
     private void searchLine(String nowLineName) {
-        if (TextUtils.isEmpty(nowLineName)) {
+        if (TextUtils.isEmpty(nowLineName) || errorNum >= 5) {
+
             return;
         }
         lineService.getLineInfo(nowLineName, new BaseObserver<LineInfo>() {
@@ -103,12 +106,13 @@ public class ResultActivity extends BaseActivity implements OnItemClickListener 
 
                     @Override
                     protected void _onComplete() {
-
+                        errorNum = 0;
                     }
 
                     @Override
                     protected void _onError(String message) {
                         LogUtil.e("lineStationInfo----->" + message);
+                        errorNum++;
                         searchLine(lineName);
                     }
                 });
@@ -117,6 +121,7 @@ public class ResultActivity extends BaseActivity implements OnItemClickListener 
             @Override
             protected void _onError(String message) {
                 LogUtil.e(message);
+                errorNum++;
                 searchLine(lineName);
             }
         });
@@ -261,6 +266,7 @@ public class ResultActivity extends BaseActivity implements OnItemClickListener 
             adapter = new FlexListAdapter(activity);
             mListCards.setAdapter(adapter);
             mListCards.setOnItemClickListener(ResultActivity.this);
+            adapter.setOnCollectListener(this);
         }
         if (direction) {
             // 正向
@@ -271,4 +277,24 @@ public class ResultActivity extends BaseActivity implements OnItemClickListener 
         }
     }
 
+    @Override
+    public void onCollect(int position, CollectStation collectStation) {
+        StationInfo stationInfo = (StationInfo) adapter.getItem(position);
+        CollectStationDao stationDao = GreenDAOHelp.getDaoSession().getCollectStationDao();
+        if (collectStation != null) {
+            stationDao.delete(collectStation);
+        } else {
+            CollectStation station = new CollectStation();
+            station.setStationId(stationInfo.getId() + "_" + stationInfo.getZdmc());
+            station.setDirection(direction ? "1" : "0");
+            station.setStartStation(direction ? mLineInfo.getStart_stop() : mLineInfo.getEnd_stop());
+            station.setEndStation(direction ? mLineInfo.getEnd_stop() : mLineInfo.getStart_stop());
+            station.setStationName(stationInfo.getZdmc());
+            station.setLineName(lineName);
+            station.setLineId(mLineInfo.getLine_id());
+            station.setStopId(stationInfo.getId());
+            stationDao.insert(station);
+        }
+        adapter.notifyDataSetChanged();
+    }
 }

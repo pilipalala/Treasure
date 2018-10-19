@@ -301,7 +301,7 @@
         <activity android:name="com.wyj.bluetooth.BluetoothBleActivity" />
         <activity android:name="com.wyj.setdetail.SettingDetailActivity" />
         <activity
-            android:name="com.wyj.retrofit.RetrofitActivity"
+            android:name="com.wyj.mvp.ui.activity.RetrofitActivity"
             android:label="@string/title_activity_retrofit"
             android:theme="@style/AppTheme" />
         <activity android:name="com.wyj.mvp.ui.activity.ZhiHuDailyActivity" />
@@ -309,10 +309,12 @@
             android:name="com.wyj.mvp.ui.activity.ZhiHuDetailActivity"
             android:theme="@style/ImageTranslucentTheme" />
         <activity android:name="com.wyj.greendao.GreenDAOActivity" />
-        <activity android:name="com.wyj.mvp.ui.activity.BusActivity" />
+        <activity
+            android:name="com.wyj.mvp.ui.activity.BusActivity"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" />
         <activity android:name="com.wyj.mvp.ui.activity.ResultActivity" />
         <activity android:name="com.wyj.mvp.ui.activity.DouBanActivity" />
-        <activity android:name="com.wyj.spannable.SpannableStringActivity"></activity>
+        <activity android:name="com.wyj.spannable.SpannableStringActivity"/>
     </application>
 
 </manifest>

@@ -22,6 +22,7 @@ public abstract class BaseObserver<T> implements ProgressCancelListener, Observe
     @Override
     public void onSubscribe(Disposable d) {
         mDisposable = d;
+        _onStart();
     }
 
     @Override
@@ -76,6 +77,9 @@ public abstract class BaseObserver<T> implements ProgressCancelListener, Observe
         }
     }
 
+    public void _onStart() {
+
+    }
 
     protected abstract void _onNext(T t);
 

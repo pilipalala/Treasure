@@ -108,6 +108,7 @@ android {
     lintOptions {
         checkReleaseBuilds false
         abortOnError false
+        disable 'GoogleAppIndexingWarning'
     }
     sourceSets { main { aidl.srcDirs = ['src/main/aidl', 'src/main/aidl/'] } }
 

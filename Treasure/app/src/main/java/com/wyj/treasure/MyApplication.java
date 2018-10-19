@@ -54,7 +54,7 @@ public class MyApplication extends Application {
 
         Hawk.init(this).build();
         //创建GreenDAO 数据库
-        GreenDAOHelp.create(this);
+        GreenDAOHelp.create(this,"Treasure.db");
 
         initStetho();
     }
