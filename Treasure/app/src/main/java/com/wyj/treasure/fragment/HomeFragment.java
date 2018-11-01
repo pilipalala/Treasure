@@ -14,6 +14,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.wyj.baseadapter.RecyclerViewActivity;
 import com.wyj.bitmap.BitmapActivity;
 import com.wyj.process.ProcessActivity;
@@ -101,19 +102,22 @@ public class HomeFragment extends BaseFragment {
         rvList.setLayoutAnimation(controller);
         rvList.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         dealWithData();
-        HomeAdapter homeAdapter = new HomeAdapter(R.layout.adapter_item_home, mDataList);
+        HomeAdapter homeAdapter = new HomeAdapter(R.layout.adapter_base_list_item, mDataList);
         homeAdapter.openLoadAnimation();
-        homeAdapter.setOnItemClickListener((adapter, view, position) -> {
+        homeAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
 
-            if (TITLE[position].equals("动态更换图片")) {
-                disableComponent(componentNameDefault);
-                enableComponent(componentName);
-            }
-            Intent intent = new Intent(getActivity(), ACTIVITY[position]);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
-            } else {
-                startActivity(intent);
+                if (TITLE[position].equals("动态更换图片")) {
+                    HomeFragment.this.disableComponent(componentNameDefault);
+                    HomeFragment.this.enableComponent(componentName);
+                }
+                Intent intent = new Intent(HomeFragment.this.getActivity(), ACTIVITY[position]);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    HomeFragment.this.startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(HomeFragment.this.getActivity()).toBundle());
+                } else {
+                    HomeFragment.this.startActivity(intent);
+                }
             }
         });
         rvList.setAdapter(homeAdapter);

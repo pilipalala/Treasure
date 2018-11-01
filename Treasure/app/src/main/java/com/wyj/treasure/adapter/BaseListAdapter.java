@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.wyj.treasure.R;
@@ -49,7 +48,7 @@ public class BaseListAdapter extends RecyclerView.Adapter<BaseListAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.text.setText(data.get(position).toString());
-        holder.llRoot.setOnClickListener(v -> {
+        holder.itemView.setOnClickListener(v -> {
             if (null != listener) {
                 listener.clickListener(position);
             }
@@ -71,8 +70,6 @@ public class BaseListAdapter extends RecyclerView.Adapter<BaseListAdapter.ViewHo
         ImageView icon;
         @BindView(R.id.text)
         TextView text;
-        @BindView(R.id.ll_root)
-        LinearLayout llRoot;
 
         public ViewHolder(View itemView) {
 

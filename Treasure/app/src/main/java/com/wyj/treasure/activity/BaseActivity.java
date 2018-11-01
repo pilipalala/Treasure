@@ -22,6 +22,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;

@@ -1,12 +1,9 @@
 package com.wyj.treasure.activity;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.view.View;
 
 import com.wyj.treasure.R;
 import com.wyj.treasure.fragment.BaseFragment;
@@ -47,7 +44,6 @@ public class MainActivity extends BaseActivity {
         BaseFragment to = getFragment(position);
         switchFragment(mFragment, to);
     }
-
 
     public BaseFragment getFragment(int position) {
         BaseFragment baseFragment = mBaseFragment.get(position);

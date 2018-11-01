@@ -12,7 +12,6 @@ import android.graphics.Rect;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.os.Binder;
 import android.os.Build;
 import android.provider.Settings;
 import android.text.TextUtils;
@@ -28,6 +27,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -51,8 +52,10 @@ public class CommonUtils {
         wm.getDefaultDisplay().getMetrics(outMetrics);
         return outMetrics.widthPixels;
     }
+
     /**
      * 获得屏幕宽度
+     *
      * @param context
      * @return
      */
@@ -63,14 +66,17 @@ public class CommonUtils {
         wm.getDefaultDisplay().getMetrics(outMetrics);
         return outMetrics.heightPixels;
     }
+
     /**
      * 获取屏幕密度
+     *
      * @param context
      * @return
      */
     public static float getScreenDensity(Context context) {
         return context.getResources().getDisplayMetrics().density;
     }
+
     /**
      * 判断某个服务是否正在运行
      *
@@ -306,14 +312,12 @@ public class CommonUtils {
         if (conn != null) {
             // 网络管理连接对象
             NetworkInfo info = conn.getActiveNetworkInfo();
-
-            if(info != null && info.isConnected()) {
+            if (info != null && info.isConnected()) {
                 // 判断当前网络是否连接
                 if (info.getState() == NetworkInfo.State.CONNECTED) {
                     return true;
                 }
             }
-
         }
         return false;
     }
@@ -324,13 +328,17 @@ public class CommonUtils {
      * @param str
      * @return
      */
-    public static boolean isNumeric(String str){
+    public static boolean isNumeric(String str) {
+        if (TextUtils.isEmpty(str)) {
+            return false;
+        }
         Pattern pattern = Pattern.compile("[0-9]*");
         return pattern.matcher(str).matches();
     }
 
     /**
      * 获取当前屏幕截图，包含状态栏
+     *
      * @param activity
      * @return
      */
@@ -346,8 +354,10 @@ public class CommonUtils {
         view.destroyDrawingCache();
         return bp;
     }
+
     /**
      * 获取当前屏幕截图，不包含状态栏
+     *
      * @param activity
      * @return
      */
@@ -370,4 +380,71 @@ public class CommonUtils {
 
     }
 
+    /**
+     * 判断 WiFi 开启时 GPRS 的状态
+     */
+    private static boolean isMobileEnableReflex(Context context) {
+        try {
+            ConnectivityManager connectivityManager = (ConnectivityManager) context.getApplicationContext()
+                    .getSystemService(Context.CONNECTIVITY_SERVICE);
+            Method getMobileDataEnabledMethod = ConnectivityManager.class.getDeclaredMethod("getMobileDataEnabled");
+            getMobileDataEnabledMethod.setAccessible(true);
+            return (Boolean) getMobileDataEnabledMethod.invoke(connectivityManager);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean isAllEnable(Context context) {
+        return isWiFiEnable(context) && isMobileEnableReflex(context);
+    }
+
+    /**
+     * 判断 GPRS|数据网络 是否打开
+     */
+    public static boolean isMobileEnable(Context context) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getApplicationContext()
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager == null) {
+            return false;
+        }
+//        NetworkInfo.State gprs = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState();
+//        if (gprs == NetworkInfo.State.CONNECTED || gprs == NetworkInfo.State.CONNECTING) {
+//            ToastUtil.show("您是数据网络连接");
+//        }
+
+        NetworkInfo info = connectivityManager.getActiveNetworkInfo();
+        return !((info == null) || (!info.isAvailable())) && info.getType() == ConnectivityManager.TYPE_MOBILE;
+    }
+
+    /**
+     * 判断 WiFi网络 是否打开
+     */
+    public static boolean isWiFiEnable(Context context) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getApplicationContext()
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager == null) {
+            return false;
+        }
+//        NetworkInfo.State wifi = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState();
+//        if (wifi == NetworkInfo.State.CONNECTED || wifi == NetworkInfo.State.CONNECTING) {
+//            ToastUtil.show("你是wifi连接");
+//        }
+
+        NetworkInfo info = connectivityManager.getActiveNetworkInfo();
+        return !((info == null) || (!info.isAvailable())) && info.getType() == ConnectivityManager.TYPE_WIFI;
+    }
+
+    /**
+     * 解析时间
+     * yyyy-MM-dd HH:mm:ss
+     * @param date
+     * @return
+     */
+    public static String getTime(Date date) {
+        Log.d("getTime()", "choice date millis: " + date.getTime());
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+        return format.format(date);
+    }
 }

@@ -55,10 +55,10 @@
                     android:id="@+id/tv_image_source"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
                     android:layout_alignParentRight="true"
-                    android:layout_marginBottom="@dimen/dp_30"
+                    android:layout_alignParentBottom="true"
                     android:layout_marginRight="@dimen/dp_20"
+                    android:layout_marginBottom="@dimen/dp_30"
                     android:textColor="@color/list_divider"
                     android:textSize="@dimen/sp_12" />
             </RelativeLayout>
@@ -95,10 +95,10 @@
                 android:id="@+id/cv_zhihu"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/dp_15"
                 android:layout_marginLeft="@dimen/dp_5"
-                android:layout_marginRight="@dimen/dp_5"
                 android:layout_marginTop="@dimen/dp_35"
+                android:layout_marginRight="@dimen/dp_5"
+                android:layout_marginBottom="@dimen/dp_15"
                 android:visibility="gone"
                 app:cardCornerRadius="@dimen/dp_5"
                 app:cardElevation="@dimen/dp_8">

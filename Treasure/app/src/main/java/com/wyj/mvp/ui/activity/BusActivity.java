@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
 
+import com.wyj.baseadapter.ItemClickListener;
 import com.wyj.greendao.GreenDAOHelp;
 import com.wyj.mvp.Bus_Routers;
 import com.wyj.mvp.entity.bus.CarsInfo;
@@ -47,13 +48,11 @@ public class BusActivity extends BaseActivity {
     private CollectStationDao stationDao;
     private BusClientUtils lineService;
     private AdapterCollectBus adapterCollectBus;
-    private boolean isConnect = false;
 
     @Override
     public boolean isStartAnimation() {
         return false;
     }
-
 
 
     @Override
@@ -66,54 +65,56 @@ public class BusActivity extends BaseActivity {
         String[] province = Bus_Routers.Routers;
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.adapter_auto_complete_item, province);
         actBusNumber.setAdapter(adapter);
-        actBusNumber.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                searchLine(actBusNumber.getText().toString());
-            }
-        });
+        actBusNumber.setOnItemClickListener((parent, view, position, id) -> searchLine(actBusNumber.getText().toString()));
         lineService = new BusClientUtils();
         stationDao = GreenDAOHelp.getDaoSession().getCollectStationDao();
         adapterCollectBus = new AdapterCollectBus(this, R.layout.adapter_collect_bus);
         mRvCollect.setAdapter(adapterCollectBus);
         mRvCollect.setLayoutManager(new LinearLayoutManager(this));
-        dealWith(stationDao.queryBuilder().list());
-        setRightTitle("刷新", v -> dealWith(stationDao.queryBuilder().list()));
-    }
 
-    private void dealWith(List<CollectStation> list) {
-        List<CollectLine> lineList = new ArrayList<>();
-        for (int i = 0; i < list.size(); i++) {
-            int finalI = i;
-            lineService.getStationCars(list.get(i).getLineName(),
-                    list.get(i).getLineId(), list.get(i).getStopId(),
-                    list.get(i).getDirection().equals("1") ? true : false,
+        adapterCollectBus.setOnItemClick((view, position) -> {
+            CollectLine item = adapterCollectBus.getItem(position);
+            lineService.getStationCars(item.getLineName(),
+                    item.getLineId(), item.getStopId(),
+                    "1".equals(item.getDirection()),
                     new BaseObserver<CarsInfo>() {
                         @Override
                         protected void _onNext(CarsInfo carInfo) {
                             if (carInfo != null) {
                                 LogUtil.d(carInfo.toString());
-                                CollectLine collectLine = new CollectLine();
-                                collectLine.setDistance(carInfo.getCars().get(0).getDistance());
-                                collectLine.setTime(carInfo.getCars().get(0).getTime());
-                                collectLine.setStopdis(carInfo.getCars().get(0).getStopdis());
-                                collectLine.setStation(list.get(finalI));
-                                lineList.add(collectLine);
-                                adapterCollectBus.setData(lineList);
+                                item.setDistance(carInfo.getCars().get(0).getDistance());
+                                item.setTime(carInfo.getCars().get(0).getTime());
+                                item.setStopdis(carInfo.getCars().get(0).getStopdis());
+                                adapterCollectBus.notifyItemChanged(position, item);
                             }
                         }
 
                         @Override
                         protected void _onComplete() {
-                            isConnect = false;
                         }
 
                         @Override
                         protected void _onError(String message) {
-                            isConnect = false;
                         }
                     });
+        });
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        dealWith(stationDao.queryBuilder().list());
+    }
+
+    private void dealWith(List<CollectStation> stations) {
+        List<CollectLine> collectLines = new ArrayList<>();
+        for (int i = 0; i < stations.size(); i++) {
+            CollectLine collectLine = new CollectLine();
+            collectLine.setStation(stations.get(i));
+            collectLines.add(collectLine);
         }
+        adapterCollectBus.setData(collectLines);
     }
 
     /**

@@ -20,6 +20,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.wyj.treasure.R;
+import com.wyj.treasure.utils.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,41 +45,41 @@ public class TagView extends RelativeLayout {
 
     public TagView(Context context) {
         super(context, null);
-        LogUtil.v(TAG,"[TagView]constructor 1");
+        LogUtil.v("[TagView]constructor 1");
         init(context, null, 0, 0);
     }
 
     public TagView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        LogUtil.v(TAG,"[TagView]constructor 2");
+        LogUtil.v("[TagView]constructor 2");
         init(context, attrs, 0, 0);
     }
 
     public TagView(Context ctx, AttributeSet attrs, int defStyle) {
         super(ctx, attrs, defStyle);
-        LogUtil.v(TAG,"[TagView]constructor 3");
+        LogUtil.v("[TagView]constructor 3");
         init(ctx, attrs, defStyle, defStyle);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public TagView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
-        LogUtil.v(TAG,"[TagView]constructor 4");
+        LogUtil.v("[TagView]constructor 4");
         init(context, attrs, defStyleAttr, defStyleRes);
     }
 
     private void init(Context context, AttributeSet attrs, int defStyle, int defStyleRes) {
-        LogUtil.v(TAG,"[init]");
-        Constants.DEBUG = (context.getApplicationContext().getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
+        LogUtil.v("[init]");
+        TagConstants.DEBUG = (context.getApplicationContext().getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         // get AttributeSet
         TypedArray typeArray = context.obtainStyledAttributes(attrs, R.styleable.TagView, defStyle, defStyleRes);
-        this.lineMargin = (int) typeArray.getDimension(R.styleable.TagView_lineMargin, ResolutionUtil.dpToPx(this.getContext(), Constants.DEFAULT_LINE_MARGIN));
-        this.tagMargin = (int) typeArray.getDimension(R.styleable.TagView_tagMargin, ResolutionUtil.dpToPx(this.getContext(), Constants.DEFAULT_TAG_MARGIN));
-        this.textPaddingLeft = (int) typeArray.getDimension(R.styleable.TagView_textPaddingLeft, ResolutionUtil.dpToPx(this.getContext(), Constants.DEFAULT_TAG_TEXT_PADDING_LEFT));
-        this.textPaddingRight = (int) typeArray.getDimension(R.styleable.TagView_textPaddingRight, ResolutionUtil.dpToPx(this.getContext(), Constants.DEFAULT_TAG_TEXT_PADDING_RIGHT));
-        this.textPaddingTop = (int) typeArray.getDimension(R.styleable.TagView_textPaddingTop, ResolutionUtil.dpToPx(this.getContext(), Constants.DEFAULT_TAG_TEXT_PADDING_TOP));
-        this.texPaddingBottom = (int) typeArray.getDimension(R.styleable.TagView_textPaddingBottom, ResolutionUtil.dpToPx(this.getContext(), Constants.DEFAULT_TAG_TEXT_PADDING_BOTTOM));
+        this.lineMargin = (int) typeArray.getDimension(R.styleable.TagView_lineMargin, ResolutionUtil.dpToPx(this.getContext(), TagConstants.DEFAULT_LINE_MARGIN));
+        this.tagMargin = (int) typeArray.getDimension(R.styleable.TagView_tagMargin, ResolutionUtil.dpToPx(this.getContext(), TagConstants.DEFAULT_TAG_MARGIN));
+        this.textPaddingLeft = (int) typeArray.getDimension(R.styleable.TagView_textPaddingLeft, ResolutionUtil.dpToPx(this.getContext(), TagConstants.DEFAULT_TAG_TEXT_PADDING_LEFT));
+        this.textPaddingRight = (int) typeArray.getDimension(R.styleable.TagView_textPaddingRight, ResolutionUtil.dpToPx(this.getContext(), TagConstants.DEFAULT_TAG_TEXT_PADDING_RIGHT));
+        this.textPaddingTop = (int) typeArray.getDimension(R.styleable.TagView_textPaddingTop, ResolutionUtil.dpToPx(this.getContext(), TagConstants.DEFAULT_TAG_TEXT_PADDING_TOP));
+        this.texPaddingBottom = (int) typeArray.getDimension(R.styleable.TagView_textPaddingBottom, ResolutionUtil.dpToPx(this.getContext(), TagConstants.DEFAULT_TAG_TEXT_PADDING_BOTTOM));
         typeArray.recycle();
         mWidth = ResolutionUtil.getScreenWidth(context);
         // this.setWillNotDraw(false);
@@ -87,7 +88,7 @@ public class TagView extends RelativeLayout {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        LogUtil.v(TAG,"[onSizeChanged]w = " + w);
+        LogUtil.v("[onSizeChanged]w = " + w);
         mWidth = w;
         // drawTags();
     }
@@ -95,7 +96,7 @@ public class TagView extends RelativeLayout {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        LogUtil.v(TAG,"[onMeasure]getMeasuredWidth = " + getMeasuredWidth());
+        LogUtil.v("[onMeasure]getMeasuredWidth = " + getMeasuredWidth());
         /*int width = getMeasuredWidth();
         if (width <= 0) return;
         mWidth = getMeasuredWidth();
@@ -107,13 +108,13 @@ public class TagView extends RelativeLayout {
         super.onDraw(canvas);
         // View#onDraw is disabled in view group;
         // enable View#onDraw for view group : View#setWillNotDraw(false);
-        LogUtil.v(TAG,"[onDraw]");
+        LogUtil.v("[onDraw]");
         // drawTags();
     }
 
     @Override
     protected void onVisibilityChanged(@NonNull View changedView, int visibility) {
-        LogUtil.v(TAG,"[onVisibilityChanged]");
+        LogUtil.v("[onVisibilityChanged]");
         /*if (changedView == this){
             if (visibility == View.VISIBLE){
                 drawTags();
@@ -125,14 +126,14 @@ public class TagView extends RelativeLayout {
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        LogUtil.v(TAG,"[onAttachedToWindow]");
+        LogUtil.v("[onAttachedToWindow]");
     }
 
     private void drawTags() {
-        LogUtil.v(TAG,"[drawTags]visibility = " + (getVisibility() == View.VISIBLE));
+        LogUtil.v("[drawTags]visibility = " + (getVisibility() == View.VISIBLE));
         if (getVisibility() != View.VISIBLE) return;
-        LogUtil.v(TAG,"[drawTags]mWidth = " + mWidth);
-        LogUtil.d(TAG,"[drawTags]add tags, tag count = " + mTags.size());
+        LogUtil.v("[drawTags]mWidth = " + mWidth);
+        LogUtil.d("[drawTags]add tags, tag count = " + mTags.size());
         // clear all tag
         removeAllViews();
         // layout padding left & layout padding right
@@ -197,7 +198,7 @@ public class TagView extends RelativeLayout {
             //tagParams.setMargins(0, 0, 0, 0);
             //add margin of each line
             tagParams.bottomMargin = lineMargin;
-            if (mWidth <= total + tagMargin + tagWidth + ResolutionUtil.dpToPx(this.getContext(), Constants.LAYOUT_WIDTH_OFFSET)) {
+            if (mWidth <= total + tagMargin + tagWidth + ResolutionUtil.dpToPx(this.getContext(), TagConstants.LAYOUT_WIDTH_OFFSET)) {
                 //need to add in new line
                 tagParams.addRule(RelativeLayout.BELOW, index_bottom);
                 // initialize total param (layout padding left & layout padding right)
@@ -242,13 +243,13 @@ public class TagView extends RelativeLayout {
     }
 
     public void addTag(Tag tag) {
-        LogUtil.v(TAG,"[addTag]");
+        LogUtil.v("[addTag]");
         mTags.add(tag);
         drawTags();
     }
 
     public void addTags(String[] tags) {
-        LogUtil.v(TAG,"[addTags]");
+        LogUtil.v("[addTags]");
         if (tags == null || tags.length <= 0) return;
         for (String item : tags) {
             Tag tag = new Tag(item);
@@ -258,7 +259,7 @@ public class TagView extends RelativeLayout {
     }
 
     public void addTags(List<Tag> tagList) {
-        LogUtil.v(TAG,"[addTags]");
+        LogUtil.v("[addTags]");
         if (tagList == null || tagList.size() <= 0) return;
         mTags.addAll(tagList);
         drawTags();
@@ -269,13 +270,13 @@ public class TagView extends RelativeLayout {
     }
 
     public void remove(int position) {
-        LogUtil.v(TAG,"[remove]position = " + position);
+        LogUtil.v("[remove]position = " + position);
         mTags.remove(position);
         drawTags();
     }
 
     public void removeAllTags() {
-        LogUtil.v(TAG,"[removeAllTags]");
+        LogUtil.v("[removeAllTags]");
         mTags.clear();
         drawTags();
     }

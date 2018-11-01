@@ -1,6 +1,5 @@
 package com.wyj.treasure;
 
-import android.view.View;
 
 import com.wyj.navigationbar.DefaultNavigationBar;
 import com.wyj.treasure.activity.BaseActivity;

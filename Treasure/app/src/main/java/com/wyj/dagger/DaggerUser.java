@@ -6,17 +6,17 @@ package com.wyj.dagger;
  * @describe TODO
  **/
 public class DaggerUser {
+    private String name;
+
+    public DaggerUser(String name) {
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
-        this.name = name;
-    }
-
-    private String name;
-
-    public DaggerUser(String name) {
         this.name = name;
     }
 }

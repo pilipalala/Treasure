@@ -1,6 +1,8 @@
 package com.wyj.mvp.ui.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
+import android.view.View;
 
 import com.wyj.baseadapter.RecyclerCommonAdapter;
 import com.wyj.baseadapter.ViewHolder;
@@ -12,7 +14,7 @@ import com.wyj.treasure.utils.CommonUtils;
 /**
  * @author wangyujie
  * @date 2018/9/17.16:05
- * @describe 添加描述
+ * @describe
  */
 public class AdapterCollectBus extends RecyclerCommonAdapter<CollectLine> {
 
@@ -22,7 +24,7 @@ public class AdapterCollectBus extends RecyclerCommonAdapter<CollectLine> {
 
     @Override
     public void convert(ViewHolder holder, CollectLine data, int position) {
-
+        holder.getView(R.id.view_draw).setVisibility((position+1) == getItemCount() ? View.GONE : View.VISIBLE);
         String time = data.getTime();
         if (CommonUtils.isNumeric(time)) {
             try {
@@ -48,7 +50,9 @@ public class AdapterCollectBus extends RecyclerCommonAdapter<CollectLine> {
         holder.setText(R.id.tv_collect_station, data.getLineName() + "-" + data.getStationName())
                 .setText(R.id.tv_start_end, data.getStartStation() + "-" + data.getEndStation())
                 .setText(R.id.tv_station_distance, String.format("还有%d站%s米", data.getStopdis(), data.getDistance()))
-                .setText(R.id.tv_station_time, String.format("距离到站:%s", time))
-        ;
+                .setText(R.id.tv_station_time, String.format("距离到站:%s", time));
+        holder.getView(R.id.tv_station_distance).setVisibility(TextUtils.isEmpty(time) ? View.GONE : View.VISIBLE);
+        holder.getView(R.id.tv_station_time).setVisibility(TextUtils.isEmpty(time) ? View.GONE : View.VISIBLE);
+        holder.getView(R.id.tv_inquiry).setVisibility(TextUtils.isEmpty(time) ? View.VISIBLE : View.GONE);
     }
 }

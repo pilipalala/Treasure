@@ -2,10 +2,15 @@ package com.wyj.treasure;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkRequest;
+import android.os.Build;
 import android.support.multidex.MultiDex;
 
 import com.facebook.stetho.Stetho;
-import com.orhanobut.hawk.Hawk;
 import com.tencent.tinker.loader.app.ApplicationLike;
 import com.tinkerpatch.sdk.TinkerPatch;
 import com.tinkerpatch.sdk.loader.TinkerPatchApplicationLike;
@@ -13,6 +18,7 @@ import com.wyj.dagger.ApiModule;
 import com.wyj.dagger.AppComponent;
 import com.wyj.dagger.DaggerAppComponent;
 import com.wyj.greendao.GreenDAOHelp;
+import com.wyj.treasure.receiver.NetworkChangeReceiver;
 import com.wyj.treasure.utils.CommonUtils;
 import com.wyj.treasure.utils.LogUtil;
 
@@ -24,7 +30,7 @@ import com.wyj.treasure.utils.LogUtil;
  */
 
 public class MyApplication extends Application {
-    private static Context context;
+    private static Context mContext;
     private ApplicationLike tinkerApplicationLike;
     private static final String TAG = "MyApplication";
 
@@ -34,29 +40,63 @@ public class MyApplication extends Application {
      * 获取全局的 Context
      */
     public static Context getContext() {
-        return context;
+        return mContext;
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
         inject();
+        mContext = getApplicationContext();
         initTinkerPatch();
-        context = getApplicationContext();
         initCrash();
 //        initError();
         String processName = CommonUtils.getProcessName();
         if (getPackageName().equals(processName)) {
             LogUtil.d("AndroidApplication onCreate=" + processName);
         }
-
         LogUtil.d("MyApplication---onCreate");
-
-        Hawk.init(this).build();
-        //创建GreenDAO 数据库
-        GreenDAOHelp.create(this,"Treasure.db");
-
+        networkChanges();
+        initDataBase();
         initStetho();
+    }
+
+    private void initDataBase() {
+        //Hawk.init(this).build();
+        //创建GreenDAO 数据库
+        GreenDAOHelp.create(this, "Treasure.db");
+    }
+
+    private void networkChanges() {
+        /*
+         * <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+         * <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+         */
+        IntentFilter intentFilter = new IntentFilter();
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            connectivityManager.requestNetwork(new NetworkRequest.Builder().build(),
+                    new ConnectivityManager.NetworkCallback() {
+                        @Override
+                        public void onLost(Network network) {
+                            super.onLost(network);
+                            sendBroadcast(new Intent(Constants.ACTION_NETWORK_CHANGE_OFF));
+                        }
+
+                        @Override
+                        public void onAvailable(Network network) {
+                            super.onAvailable(network);
+                            sendBroadcast(new Intent(Constants.ACTION_NETWORK_CHANGE_ON));
+                        }
+                    });
+        } else {
+            /*动态注册*/
+            intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        }
+        intentFilter.addAction(Constants.ACTION_NETWORK_CHANGE_OFF);
+        intentFilter.addAction(Constants.ACTION_NETWORK_CHANGE_ON);
+        registerReceiver(new NetworkChangeReceiver(), intentFilter);
     }
 
     /**
@@ -64,11 +104,6 @@ public class MyApplication extends Application {
      */
     private void initStetho() {
         Stetho.initializeWithDefaults(this);
-//        Stetho.initialize(
-//                Stetho.newInitializerBuilder(this)
-//                        .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
-//                        .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
-//                        .build());
     }
 
     private void inject() {
@@ -104,9 +139,9 @@ public class MyApplication extends Application {
      * 错误统计
      */
     private void initCrash() {
-//        CrashHandler.getInstance().init(this);
+        CrashHandler.getInstance().init(this);
 //        CrashReport.initCrashReport(getApplicationContext(), "42788188ed", BuildConfig.DEBUG);
-//        CrashReport.setUserSceneTag(context, 20170811); // 上报后的Crash会显示该标签
+//        CrashReport.setUserSceneTag(mContext, 20170811); // 上报后的Crash会显示该标签
     }
 
     /**

@@ -71,7 +71,8 @@
      显示在所有其他应用之上。 Protection level: signature
     -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
     <permission
         android:name="com.wyj.process.permission.ACCESS_BOOK_SERVICE"
         android:protectionLevel="normal" />
@@ -84,9 +85,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".activity.MainActivity"
-            android:launchMode="singleTask">
+        <activity android:name=".mdcustom.splash.SplashActivity" />
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -204,7 +204,6 @@
 
         <activity android:name=".activity.itemtouch.RecyclerViewItemTouchActivity" />
         <activity android:name=".mdcustom.behaviorcustom.BehaviorActivity" />
-        <activity android:name=".mdcustom.splash.SplashActivity" />
         <activity android:name="com.wyj.bannerviewpager.BannerViewPagerActivity" />
         <activity android:name="com.wyj.handler.CustomHandlerActivity" />
         <activity android:name="com.wyj.colortracktextview.ColorTrackActivity" />
@@ -314,7 +313,18 @@
             android:windowSoftInputMode="stateHidden|stateUnchanged" />
         <activity android:name="com.wyj.mvp.ui.activity.ResultActivity" />
         <activity android:name="com.wyj.mvp.ui.activity.DouBanActivity" />
-        <activity android:name="com.wyj.spannable.SpannableStringActivity"/>
+        <activity android:name="com.wyj.spannable.SpannableStringActivity" />
+        <activity android:name="com.wyj.spannable.XmlResourceParserActivity" />
+        <activity android:name="com.wyj.skin.SkinActivity" />
+
+        <receiver android:name="com.wyj.alarm.AlarmReceiver">
+            <intent-filter>
+                <action android:name="com.wyj.alarm.clock"/>
+            </intent-filter>
+        </receiver>
+
+        <activity android:name="com.wyj.alarm.AlarmActivity" />
+        <activity android:name="com.wyj.dagger.DaggerActivity" />
     </application>
 
 </manifest>

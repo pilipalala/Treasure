@@ -137,4 +137,5 @@
     <dimen name="grid_expected_size">120dp</dimen>
     <dimen name="sp_28">28sp</dimen>
     <dimen name="shape_size">64dp</dimen>
+    <dimen name="dp_32">32dp</dimen>
 </resources>

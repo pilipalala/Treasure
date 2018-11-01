@@ -9,7 +9,7 @@ import retrofit2.Retrofit;
 /**
  * @author yujie
  * @date on 2018/7/30
- * @describe TODO
+ * @describe
  **/
 @Singleton
 @Component(modules = {ApiModule.class})

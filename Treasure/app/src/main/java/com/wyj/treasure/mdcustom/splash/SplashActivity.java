@@ -1,14 +1,20 @@
 package com.wyj.treasure.mdcustom.splash;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 
-public class SplashActivity extends AppCompatActivity {
+import com.wyj.treasure.R;
+import com.wyj.treasure.activity.MainActivity;
+
+public class SplashActivity extends AppCompatActivity implements SplashView.OnAnimatorListener {
     Handler handler = new Handler();
     private FrameLayout frameLayout;
-    private long STAITTIME = 5000;
+    private long STAITTIME = 2000;
 
 
     /*动画特效---加载过渡特效*/
@@ -29,20 +35,24 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //无title
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //全屏
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         frameLayout = new FrameLayout(this);
         contentView = new ContentView(this);
-
-        frameLayout.addView(contentView);
         splashView = new SplashView(this);
-        splashView.setBackground(null);
+        frameLayout.setBackgroundResource(R.color.white);
+        frameLayout.addView(contentView);
         frameLayout.addView(splashView);
         setContentView(frameLayout);
 
         //开启加载数据---数据加载前,开启动画
-        startSpashDataLoad();
+        startSplashDataLoad();
     }
 
-    private void startSpashDataLoad() {
+    private void startSplashDataLoad() {
+        splashView.setOnAnimatorListener(this);
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -51,5 +61,11 @@ public class SplashActivity extends AppCompatActivity {
             }
         }, STAITTIME);
 
+    }
+
+    @Override
+    public void onAnimationEnd() {
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
     }
 }

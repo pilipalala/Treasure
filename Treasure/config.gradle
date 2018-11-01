@@ -1,0 +1,33 @@
+ext {
+    supportLibrary = "28.0.0"
+    android = [
+            appId            : "com.wyj.treasure",
+            compileSdkVersion: 28,
+            minSdkVersion    : 16,
+            targetSdkVersion : 28,
+            buildToolsVersion: "28.0.3",
+            versionCode      : 1,
+            versionName      : "1.0"
+    ]
+    //配置数据服务器的host地址
+    url = [
+            "debug"  : "https://test.com",
+            "release": "https://release.com"
+    ]
+    //配置图片服务器的host地址
+    imgUrl = [
+            "debug"  : "http://test.image.com/picture",
+            "release": "https://release.image.com/picture"
+    ]
+    //统一配置依赖库
+    dependencies = [
+            "multidex"     : "com.android.support:multidex:1.0.3",
+            "supportV7"    : "com.android.support:appcompat-v7:${supportLibrary}",
+            "supportV4"    : "com.android.support:support-v4:${supportLibrary}",
+            "cardview"     : "com.android.support:cardview-v7:${supportLibrary}",
+            "constraint"   : "com.android.support.constraint:constraint-layout:1.1.3",
+            "suppoutDesign": "com.android.support:design:${supportLibrary}",
+            "palette"      : "com.android.support:palette-v7:${supportLibrary}",
+            "vector"       : "com.android.support:support-vector-drawable:${supportLibrary}",
+    ]
+}

@@ -16,6 +16,7 @@ import retrofit2.Retrofit;
  * @author yujie
  * @date on 2018/7/30
  * @describe @SingleTon 注解，是全局单例的对象
+ * Module里面的方法基本都是创建类实例的方法。
  **/
 @Module
 public class ApiModule {

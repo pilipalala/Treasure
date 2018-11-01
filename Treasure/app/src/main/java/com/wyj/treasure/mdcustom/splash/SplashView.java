@@ -96,6 +96,7 @@ public class SplashView extends View {
      * 设计模式:策略
      */
     private SplashState mState = null;
+    private OnAnimatorListener listener;
 
     public SplashView(Context context) {
         super(context);
@@ -281,6 +282,15 @@ public class SplashView extends View {
                     postInvalidate();
                 }
             });
+            mAnimator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    super.onAnimationEnd(animation);
+                    if (listener != null) {
+                        listener.onAnimationEnd();
+                    }
+                }
+            });
             mAnimator.setDuration(mSplashDuration * 2);
             mAnimator.start();
         }
@@ -290,5 +300,14 @@ public class SplashView extends View {
             /*擦黑板--绘制背景*/
             drawBackground(canvas);
         }
+    }
+
+    public interface OnAnimatorListener {
+        void onAnimationEnd();
+    }
+
+    public void setOnAnimatorListener(OnAnimatorListener listener) {
+        this.listener = listener;
+
     }
 }
