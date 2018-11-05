@@ -53,7 +53,7 @@ public class AlarmManagerUtil {
         Calendar calendar = Calendar.getInstance();
         long intervalMillis = 0;
         calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get
-                (Calendar.DAY_OF_MONTH), hour, minute, 10);
+                (Calendar.DAY_OF_MONTH), hour, minute, 0);
         if (flag == 0) {
             intervalMillis = 0;
         } else if (flag == 1) {
@@ -76,8 +76,9 @@ public class AlarmManagerUtil {
         PendingIntent sender = PendingIntent.getBroadcast(context, id, intent, PendingIntent
                 .FLAG_CANCEL_CURRENT);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            am.setWindow(AlarmManager.RTC_WAKEUP, calMethod(week, calendar.getTimeInMillis()),
-                    intervalMillis, sender);
+            am.setExact(AlarmManager.RTC_WAKEUP,
+                    calMethod(week, calendar.getTimeInMillis()) + intervalMillis,
+                    sender);
         } else {
             if (flag == 0) {
                 am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), sender);

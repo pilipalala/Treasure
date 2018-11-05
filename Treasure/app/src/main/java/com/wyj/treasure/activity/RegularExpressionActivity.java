@@ -37,7 +37,7 @@ public class RegularExpressionActivity extends BaseActivity {
     private static String path = "/sdcard/myHead/";// sd路径
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_regular_expression;
     }
 

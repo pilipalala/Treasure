@@ -28,7 +28,7 @@ public class KeyboardActivity extends BaseActivity {
     KeyboardView keyboardView;
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_keyboard;
     }
 

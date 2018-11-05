@@ -50,7 +50,7 @@ public class NotificationStyleActivity extends BaseActivity {
     private Bitmap mLargeIcon;
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_notification_style;
     }
 

@@ -25,7 +25,7 @@ public class SkateMenuActivity extends BaseActivity {
 
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_skate_menu;
     }
 

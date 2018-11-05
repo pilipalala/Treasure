@@ -17,7 +17,7 @@ public class NetworkChangeActivity extends BaseActivity {
     }
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_network_change;
     }
 

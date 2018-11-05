@@ -73,7 +73,7 @@ public class MVPLoginActivity extends MVPBaseActivity<LoginPresenter> implements
     }
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_mvp_login;
     }
 

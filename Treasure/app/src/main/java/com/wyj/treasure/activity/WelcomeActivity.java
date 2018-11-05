@@ -38,7 +38,7 @@ public class WelcomeActivity extends BaseActivity {
     private List<Fragment> fragments;
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         //无title
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         //全屏

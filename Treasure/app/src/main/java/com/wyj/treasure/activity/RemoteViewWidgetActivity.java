@@ -24,7 +24,7 @@ public class RemoteViewWidgetActivity extends BaseActivity {
      * updatePeriodMillis定义小工具的自动更新周期，毫秒为单位，每隔一个周期，小工具的自动更新就会触发
      */
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_remote_view_widget;
     }
 

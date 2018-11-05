@@ -25,7 +25,7 @@ public class PropertyActivity extends BaseActivity {
 
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_property;
     }
 

@@ -182,7 +182,7 @@ public class ReflectActivity extends BaseActivity {
     }
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_reflect;
     }
 

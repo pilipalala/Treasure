@@ -22,7 +22,7 @@ public class DrawingArticlesDrawTextActivity extends BaseActivity {
     MyDrawingDrawText viewDrawText;
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_drawing_articles;
     }
 

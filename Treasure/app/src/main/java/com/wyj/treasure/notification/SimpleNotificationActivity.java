@@ -38,7 +38,7 @@ public class SimpleNotificationActivity extends BaseActivity {
     private NotificationUtils notificationUtils;
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_simple_notification;
     }
 

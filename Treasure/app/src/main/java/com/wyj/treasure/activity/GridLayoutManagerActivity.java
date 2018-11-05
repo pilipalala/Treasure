@@ -20,7 +20,7 @@ public class GridLayoutManagerActivity extends BaseActivity {
     private TagAdapter tagAdapter;
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_grid_layout_manager;
     }
 

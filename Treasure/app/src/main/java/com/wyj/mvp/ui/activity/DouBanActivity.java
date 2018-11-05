@@ -29,7 +29,7 @@ public class DouBanActivity extends BaseActivity implements BookView {
     private BookPresenter mBookPresenter;
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_dou_ban;
     }
 

@@ -29,7 +29,7 @@ public class RecyclerViewDetailActivity extends BaseActivity {
     TextView tvDetail;
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return EMPTY_VIEW;
     }
 

@@ -46,7 +46,7 @@ public class BluetoothBleActivity extends BaseActivity {
     private BluetoothGatt mBluetoothGatt;
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_bluetooth_ble;
     }
 

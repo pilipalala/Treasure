@@ -17,7 +17,7 @@ public class XmlResourceParserActivity extends BaseActivity {
     }
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_xml_resource_parser;
     }
 

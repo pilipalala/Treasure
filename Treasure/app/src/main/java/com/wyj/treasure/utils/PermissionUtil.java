@@ -54,7 +54,7 @@ public class PermissionUtil {
 
 
     /**
-     * to find the permissions which were denied in this device.
+     * to select the permissions which were denied in this device.
      */
     @TargetApi(value = Build.VERSION_CODES.M)
     public static final List<String> findDeniedPermissions(Activity activity, List<String> permissions) {

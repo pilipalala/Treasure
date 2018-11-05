@@ -28,7 +28,7 @@ public class GirlListActivity extends BaseActivity implements IGirlView {
 
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_girl_list;
     }
 

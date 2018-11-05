@@ -24,7 +24,7 @@ public class NewHandlerThreadActivity extends BaseActivity implements Handler.Ca
 
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_new_handler_thread;
     }
 

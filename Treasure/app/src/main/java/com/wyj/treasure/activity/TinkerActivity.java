@@ -23,7 +23,7 @@ public class TinkerActivity extends BaseActivity {
     Button btnPermission;
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_tinker;
     }
 

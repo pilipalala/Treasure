@@ -53,7 +53,7 @@ public class PullUpToLoadMoreActivity extends BaseActivity {
     private View tv_title;
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return 0;
     }
 

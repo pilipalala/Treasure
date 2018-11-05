@@ -49,7 +49,7 @@ public class ToolBarActivity extends BaseActivity implements Toolbar.OnMenuItemC
 
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_tool_bar;
     }
 

@@ -29,7 +29,7 @@ public class IncludeMergeViewStubActivity extends BaseActivity {
 
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_include_merge_view_stub;
     }
 

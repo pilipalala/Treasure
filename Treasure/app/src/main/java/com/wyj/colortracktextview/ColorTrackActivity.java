@@ -34,7 +34,7 @@ public class ColorTrackActivity extends BaseActivity {
     private boolean isSettling = false;
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_color_track;
 
     }

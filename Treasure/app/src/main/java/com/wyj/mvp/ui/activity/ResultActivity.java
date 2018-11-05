@@ -62,7 +62,7 @@ public class ResultActivity extends BaseActivity implements OnItemClickListener,
 
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_bus_result;
     }
 

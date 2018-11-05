@@ -32,7 +32,7 @@ public class RecyclerRefreshActivity extends BaseActivity {
     private LinearLayoutManager layoutManager;
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return 0;
     }
 

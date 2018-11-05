@@ -38,7 +38,7 @@ public class BottomSheetActivity extends BaseActivity {
 
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return 0;
     }
 

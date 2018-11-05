@@ -14,7 +14,7 @@ import java.util.List;
 
 public class MaterialDesignActivity extends BaseActivity {
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return DEFATE_VIEW;
     }
 

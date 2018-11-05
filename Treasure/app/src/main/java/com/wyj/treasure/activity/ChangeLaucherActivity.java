@@ -13,7 +13,7 @@ public class ChangeLaucherActivity extends BaseActivity {
     private PackageManager packageManager;
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_change_laucher;
     }
 

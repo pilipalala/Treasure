@@ -24,7 +24,7 @@ public class RecyclerViewItemTouchActivity extends BaseActivity implements Start
     private ItemTouchHelper itemTouchHelper;
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_recycler_view_item_handle;
     }
 

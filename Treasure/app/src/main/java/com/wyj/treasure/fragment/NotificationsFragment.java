@@ -12,6 +12,7 @@ import com.wyj.mvp.ui.activity.BusActivity;
 import com.wyj.mvp.ui.activity.RetrofitActivity;
 import com.wyj.mvp.ui.activity.ZhiHuDailyActivity;
 import com.wyj.notification.NotificationActivity;
+import com.wyj.realm.RealmActivity;
 import com.wyj.setdetail.SettingDetailActivity;
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.RemoteViewWidgetActivity;
@@ -38,6 +39,7 @@ public class NotificationsFragment extends BaseCardViewFragment {
         mData.add(new ItemInfo("知乎日报", ZhiHuDailyActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("Retrofit", RetrofitActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("greenDAO", GreenDAOActivity.class, R.mipmap.ic_launcher));
+        mData.add(new ItemInfo("Realm", RealmActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("BUS", BusActivity.class, R.mipmap.ic_launcher));
 
         notifyDataChanged();

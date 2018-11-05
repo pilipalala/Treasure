@@ -21,7 +21,7 @@ public class GreenDAOActivity extends BaseActivity {
     private StudentDao studentDao;
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_green_dao;
     }
 

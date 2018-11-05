@@ -19,7 +19,7 @@ public class ServiceActivity extends BaseActivity {
     private MyService.DownloadBinder binder;
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_service;
     }
 

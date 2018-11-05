@@ -87,7 +87,7 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return EMPTY_VIEW;
     }
 

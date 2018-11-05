@@ -46,7 +46,7 @@ public class MyWebViewActivity extends BaseActivity implements MyWebChomeClient.
 
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_my_web_view;
 
     }

@@ -3,9 +3,7 @@ package com.wyj.treasure.activity;
 import android.Manifest;
 import android.app.Activity;
 import android.app.ActivityOptions;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -22,13 +20,10 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
-import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.wyj.treasure.R;
@@ -39,6 +34,7 @@ import com.wyj.treasure.permission.PermissionHelper;
 import com.wyj.treasure.permission.PermissionSuccess;
 import com.wyj.treasure.utils.ActivityCollector;
 import com.wyj.treasure.utils.LogUtil;
+import com.wyj.treasure.utils.StatusBarUtil;
 import com.wyj.treasure.utils.ToastUtil;
 
 import java.util.ArrayList;
@@ -73,18 +69,19 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ActivityCollector.addActivity(this);
         if (isStartAnimation()) {
             startAnimation();
         }
         mContext = this;
-        if (initView() != EMPTY_VIEW) {
-            setContentView(contentView(initView() == DEFATE_VIEW ? R.layout.activity_drawer_layout_main : initView()));
+        if (getContentViewID() != EMPTY_VIEW) {
+            setContentView(contentView(getContentViewID() == DEFATE_VIEW ? R.layout.activity_drawer_layout_main : getContentViewID()));
         } else {
             setContentView(contentView());
         }
         ButterKnife.bind(this);
-        ActivityCollector.addActivity(this);
         try {
+//            initView(savedInstanceState);
             initData();
         } catch (Exception e) {
             ToastUtil.show("出现异常");
@@ -141,7 +138,8 @@ public abstract class BaseActivity extends AppCompatActivity {
             mBaseRv.setVisibility(View.GONE);
         }
     }
-
+    protected void setStatusBar() {
+    }
     private RecyclerView mBaseRv;
     private FrameLayout mFlContent;
     public Toolbar mToolbar;
@@ -185,7 +183,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      *
      * @return
      */
-    protected abstract int initView();
+    protected abstract int getContentViewID();
 
     protected List<ItemInfo> getListData() {
         return mData;
@@ -196,7 +194,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      * 加载数据
      */
     protected abstract void initData();
-
+//    protected abstract void initView(@Nullable Bundle savedInstanceState);
 
     /**
      * @param context

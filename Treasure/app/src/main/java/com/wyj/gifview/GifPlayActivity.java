@@ -19,7 +19,7 @@ public class GifPlayActivity extends BaseActivity {
 
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_gif_play;
     }
 

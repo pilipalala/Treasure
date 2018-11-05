@@ -22,7 +22,7 @@ public class GridViewChoiceActivity extends BaseActivity {
     private MultipleChoiceAdapter choiceAdapter;
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_grid_view_choice;
     }
 

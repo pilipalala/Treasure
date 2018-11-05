@@ -39,7 +39,7 @@ public class DongTaiActivity extends BaseActivity {
 
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_dong_tai;
     }
 

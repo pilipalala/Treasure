@@ -23,7 +23,7 @@ import com.wyj.treasure.activity.BaseActivity;
 public class Interpolator extends BaseActivity {
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_interpolator;
     }
 

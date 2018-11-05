@@ -22,7 +22,7 @@ import io.reactivex.schedulers.Schedulers;
 public class RxJavaActivity extends BaseActivity {
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_rx_java;
     }
 

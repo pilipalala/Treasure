@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 
 apply plugin: 'org.greenrobot.greendao'
+
+apply plugin: 'realm-android'
 /**
  * 第一种方法 keystore.properties 可以直接放在 app module下
  * */
@@ -252,5 +254,7 @@ dependencies {
         exclude group: 'com.google.code.findbugs', module: 'jsr305'
     }
 
+    //选择控件器PickerView
     implementation 'com.contrarywind:Android-PickerView:4.1.6'
+
 }

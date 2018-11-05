@@ -29,7 +29,7 @@ public class SwipeDeleteActivity extends BaseActivity implements SwipeAdapter.Io
 
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return 0;
     }
 

@@ -78,7 +78,7 @@ public class ZhiHuDetailActivity extends MVPBaseActivity<ZhiHuDetailsPresenter> 
     }
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return EMPTY_VIEW;
     }
 

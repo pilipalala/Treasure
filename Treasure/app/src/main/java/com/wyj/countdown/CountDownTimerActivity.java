@@ -21,7 +21,7 @@ public class CountDownTimerActivity extends BaseActivity {
 
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_count_down_timer;
     }
 

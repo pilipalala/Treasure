@@ -21,7 +21,7 @@ public class StyleActivity extends BaseActivity {
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_style;
     }
 

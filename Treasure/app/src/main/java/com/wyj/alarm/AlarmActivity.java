@@ -1,12 +1,17 @@
 package com.wyj.alarm;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Service;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.media.MediaPlayer;
+import android.net.Uri;
+import android.os.Build;
+import android.os.PowerManager;
 import android.os.Vibrator;
+import android.provider.Settings;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -47,20 +52,23 @@ public class AlarmActivity extends BaseActivity {
     private int mWhich = 0;
     private MediaPlayer mediaPlayer;
     private Vibrator vibrator;
+    private int REQUEST_IGNORE_BATTERY_CODE = 0x111;
+
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_alarm;
     }
 
     @Override
     protected void initData() {
+
         String message = getIntent().getStringExtra("msg");
         int flag = getIntent().getIntExtra("flag", 0);
         if (!TextUtils.isEmpty(message)) {
             showDialogInBroadcastReceiver(message, flag);
         }
-
+        isIgnoreBatteryOption(this);
         //时间选择器
         build = new TimePickerBuilder(this, new OnTimeSelectListener() {
             @Override
@@ -219,4 +227,44 @@ public class AlarmActivity extends BaseActivity {
             return mWhich;
         }
     }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            if (requestCode == REQUEST_IGNORE_BATTERY_CODE) {
+                //TODO something
+            }
+        } else if (resultCode == RESULT_CANCELED) {
+            if (requestCode == REQUEST_IGNORE_BATTERY_CODE) {
+                ToastUtil.show("请开启忽略电池优化~");
+            }
+        }
+    }
+
+    /**
+     * 针对N以上的Doze模式
+     *
+     * @param activity
+     */
+    public void isIgnoreBatteryOption(Activity activity) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            try {
+            PowerManager powerManager = (PowerManager)activity.getSystemService(POWER_SERVICE);
+            boolean hasIgnored = powerManager.isIgnoringBatteryOptimizations(activity.getPackageName());
+            /**
+             * 判断当前APP是否有加入电池优化的白名单，
+             * 如果没有，弹出加入电池优化的白名单的设置对话框
+             * */
+            if (!hasIgnored) {
+                Intent intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
+                intent.setData(Uri.parse("package:" + activity.getPackageName()));
+                activity.startActivity(intent);
+            }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }

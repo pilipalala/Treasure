@@ -18,9 +18,13 @@ import com.wyj.dagger.ApiModule;
 import com.wyj.dagger.AppComponent;
 import com.wyj.dagger.DaggerAppComponent;
 import com.wyj.greendao.GreenDAOHelp;
+import com.wyj.realm.AppRealmMigration;
 import com.wyj.treasure.receiver.NetworkChangeReceiver;
 import com.wyj.treasure.utils.CommonUtils;
 import com.wyj.treasure.utils.LogUtil;
+
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 
 /**
  * Created by wangyujie
@@ -57,14 +61,26 @@ public class MyApplication extends Application {
         }
         LogUtil.d("MyApplication---onCreate");
         networkChanges();
-        initDataBase();
+        initDataBaseForGreenDAO();
+        initDataBaseForRealm();
         initStetho();
     }
 
-    private void initDataBase() {
+    private void initDataBaseForRealm() {
+        Realm.init(this);
+        RealmConfiguration configuration = new RealmConfiguration.Builder()
+                .name(AppConfig.REALM_NAME)
+                .schemaVersion(3)
+//                .inMemory()//创建非持久化的Realm，也就是保持在内存中，应用关闭后就清除了。
+                .migration(new AppRealmMigration())
+                .build();
+        Realm.setDefaultConfiguration(configuration);
+    }
+
+    private void initDataBaseForGreenDAO() {
         //Hawk.init(this).build();
         //创建GreenDAO 数据库
-        GreenDAOHelp.create(this, "Treasure.db");
+        GreenDAOHelp.create(this, AppConfig.GREEMDAO_NAME);
     }
 
     private void networkChanges() {
@@ -101,6 +117,7 @@ public class MyApplication extends Application {
 
     /**
      * Android调试工具Stetho
+     * Stetho初始化
      */
     private void initStetho() {
         Stetho.initializeWithDefaults(this);

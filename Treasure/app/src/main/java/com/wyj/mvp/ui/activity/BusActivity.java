@@ -4,14 +4,11 @@ import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
 
-import com.wyj.baseadapter.ItemClickListener;
 import com.wyj.greendao.GreenDAOHelp;
 import com.wyj.mvp.Bus_Routers;
 import com.wyj.mvp.entity.bus.CarsInfo;
@@ -56,12 +53,19 @@ public class BusActivity extends BaseActivity {
 
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_bus_main;
     }
 
     @Override
     protected void initData() {
+//        setRightTitle("查余额", new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
+
         String[] province = Bus_Routers.Routers;
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.adapter_auto_complete_item, province);
         actBusNumber.setAdapter(adapter);

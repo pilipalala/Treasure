@@ -24,7 +24,7 @@ public class CountDownActivity extends BaseActivity {
     Button btnCountDownTimer;
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_count_down;
     }
 

@@ -25,7 +25,7 @@ import java.lang.reflect.Method;
 public class ExternalStorageActivity extends BaseActivity {
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_external_storage;
     }
 

@@ -17,7 +17,7 @@ public class RetrofitActivity extends BaseActivity {
     private static final String TAG = "RetrofitActivity";
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_retrofit;
     }
 

@@ -47,7 +47,7 @@ public class HeadimageScaleActivity extends BaseActivity {
     }
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         StatusBarUtil.setImgTransparent(this);
         return R.layout.activity_headimage_scale;
     }

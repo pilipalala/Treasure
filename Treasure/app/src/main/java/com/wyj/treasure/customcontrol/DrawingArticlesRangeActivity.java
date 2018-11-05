@@ -21,7 +21,7 @@ public class DrawingArticlesRangeActivity extends BaseActivity {
     MyDrawingRegionView viewRegion;
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_drawing_articles;
     }
 

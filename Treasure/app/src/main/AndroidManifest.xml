@@ -72,7 +72,9 @@
     -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+
     <permission
         android:name="com.wyj.process.permission.ACCESS_BOOK_SERVICE"
         android:protectionLevel="normal" />
@@ -319,12 +321,13 @@
 
         <receiver android:name="com.wyj.alarm.AlarmReceiver">
             <intent-filter>
-                <action android:name="com.wyj.alarm.clock"/>
+                <action android:name="com.wyj.alarm.clock" />
             </intent-filter>
         </receiver>
 
         <activity android:name="com.wyj.alarm.AlarmActivity" />
         <activity android:name="com.wyj.dagger.DaggerActivity" />
+        <activity android:name="com.wyj.realm.RealmActivity"></activity>
     </application>
 
 </manifest>

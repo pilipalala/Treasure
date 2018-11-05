@@ -24,7 +24,7 @@ public class VolumeAdjustmentActivity extends BaseActivity {
     private int barMax;
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_volume_adjustment;
     }
 

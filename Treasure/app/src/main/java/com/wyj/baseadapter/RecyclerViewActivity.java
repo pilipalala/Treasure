@@ -27,7 +27,7 @@ public class RecyclerViewActivity extends BaseActivity {
     private RecyclerView.ItemDecoration decoration;
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return 0;
     }
 

@@ -30,7 +30,7 @@ public class BannerViewPagerActivity extends BaseActivity implements BannerViewP
             "6", "7", "8", "9", "10"};
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_banner_view_pager;
     }
 

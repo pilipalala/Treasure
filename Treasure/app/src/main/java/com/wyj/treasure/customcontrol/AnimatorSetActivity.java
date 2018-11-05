@@ -36,7 +36,7 @@ public class AnimatorSetActivity extends BaseActivity {
     private boolean mIsMenuOpen = false;
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_animator_set;
     }
 

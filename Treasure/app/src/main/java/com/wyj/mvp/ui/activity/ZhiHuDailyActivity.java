@@ -32,7 +32,7 @@ public class ZhiHuDailyActivity extends BaseActivity implements ZhiHuFragment.Ca
     }
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return 0;
     }
 

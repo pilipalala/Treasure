@@ -68,7 +68,7 @@ public class MultipleChoiceActivity extends BaseActivity implements ShopcartAdap
     private int flag = 0;
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return 0;
     }
 

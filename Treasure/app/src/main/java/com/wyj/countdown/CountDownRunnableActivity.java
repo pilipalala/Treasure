@@ -20,7 +20,7 @@ public class CountDownRunnableActivity extends BaseActivity {
     private Handler mHandler = new Handler();
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_count_down_runnable;
 
     }

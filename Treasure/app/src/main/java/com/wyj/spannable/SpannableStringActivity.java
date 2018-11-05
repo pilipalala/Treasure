@@ -39,7 +39,9 @@ import static android.text.style.DynamicDrawableSpan.ALIGN_BASELINE;
 /**
  * @author wangyujie
  * @date 2018/10/16.11:52
- * @describe https://blog.csdn.net/baidu_31956557/article/details/78339071
+ * @describe
+ * https://www.cnblogs.com/qynprime/p/8026672.html
+ * https://blog.csdn.net/baidu_31956557/article/details/78339071
  * https://blog.csdn.net/snowdream86/article/details/6776629
  */
 public class SpannableStringActivity extends BaseActivity {
@@ -48,7 +50,7 @@ public class SpannableStringActivity extends BaseActivity {
     TextView mTvResult;
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_spannable_string;
     }
 

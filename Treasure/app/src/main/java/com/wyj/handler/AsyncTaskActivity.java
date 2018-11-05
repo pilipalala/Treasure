@@ -22,7 +22,7 @@ public class AsyncTaskActivity extends BaseActivity {
     private MyAsyncTask task;
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
         return R.layout.activity_async_task;
     }
 

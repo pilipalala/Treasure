@@ -28,7 +28,7 @@ public class MultiSuspensionBarActivity extends BaseActivity {
     private int mCurrentPosition = 0;
 
     @Override
-    protected int initView() {
+    protected int getContentViewID() {
        return R.layout.activity_multi_suspension_bar;
     }
 
