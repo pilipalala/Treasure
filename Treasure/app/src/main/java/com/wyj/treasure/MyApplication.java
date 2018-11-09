@@ -11,9 +11,6 @@ import android.os.Build;
 import android.support.multidex.MultiDex;
 
 import com.facebook.stetho.Stetho;
-import com.tencent.tinker.loader.app.ApplicationLike;
-import com.tinkerpatch.sdk.TinkerPatch;
-import com.tinkerpatch.sdk.loader.TinkerPatchApplicationLike;
 import com.wyj.dagger.ApiModule;
 import com.wyj.dagger.AppComponent;
 import com.wyj.dagger.DaggerAppComponent;
@@ -35,7 +32,6 @@ import io.realm.RealmConfiguration;
 
 public class MyApplication extends Application {
     private static Context mContext;
-    private ApplicationLike tinkerApplicationLike;
     private static final String TAG = "MyApplication";
 
     private AppComponent appComponent;
@@ -52,7 +48,6 @@ public class MyApplication extends Application {
         super.onCreate();
         inject();
         mContext = getApplicationContext();
-        initTinkerPatch();
         initCrash();
 //        initError();
         String processName = CommonUtils.getProcessName();
@@ -131,25 +126,6 @@ public class MyApplication extends Application {
 
     public AppComponent getAppComponent() {
         return appComponent;
-    }
-
-    /**
-     * 初始化微信Tinker热修复
-     */
-    private void initTinkerPatch() {
-        // 我们可以从这里获得Tinker加载过程的信息
-        tinkerApplicationLike = TinkerPatchApplicationLike.getTinkerPatchApplicationLike();
-        // 初始化TinkerPatch SDK, 更多配置可参照API章节中的,初始化SDK
-        if (null != tinkerApplicationLike) {
-            TinkerPatch.init(tinkerApplicationLike)
-                    .reflectPatchLibrary()
-                    .setPatchRollbackOnScreenOff(true)
-                    .setPatchRestartOnSrceenOff(true)
-                    .setFetchPatchIntervalByHours(3);
-            // 每隔3个小时(通过setFetchPatchIntervalByHours设置)去访问后台时候有更新,通过handler实现轮训的效果
-            TinkerPatch.with().fetchPatchUpdateAndPollWithInterval();
-        }
-
     }
 
     /**

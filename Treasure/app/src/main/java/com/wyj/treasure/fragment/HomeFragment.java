@@ -27,7 +27,7 @@ import com.wyj.treasure.activity.MyWebViewActivity;
 import com.wyj.treasure.activity.NetworkChangeActivity;
 import com.wyj.treasure.activity.PullUpToLoadMoreActivity;
 import com.wyj.treasure.activity.ServiceActivity;
-import com.wyj.treasure.activity.TinkerActivity;
+import com.wyj.tinker.TinkerActivity;
 import com.wyj.treasure.activity.transition.TransitionsActivity;
 import com.wyj.treasure.adapter.HomeAdapter;
 import com.wyj.treasure.mode.HomeItem;

@@ -34,7 +34,6 @@ import com.wyj.treasure.permission.PermissionHelper;
 import com.wyj.treasure.permission.PermissionSuccess;
 import com.wyj.treasure.utils.ActivityCollector;
 import com.wyj.treasure.utils.LogUtil;
-import com.wyj.treasure.utils.StatusBarUtil;
 import com.wyj.treasure.utils.ToastUtil;
 
 import java.util.ArrayList;

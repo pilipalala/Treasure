@@ -2,6 +2,7 @@ package com.wyj.dagger;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.wyj.treasure.MyApplication;
 import com.wyj.treasure.R;
@@ -45,6 +46,7 @@ import retrofit2.Retrofit;
  * Module可以包含创建类实例的方法，这些方法用Provides来标注
  */
 public class DaggerActivity extends AppCompatActivity {
+    private static final String TAG = "DaggerActivity";
     @Inject
     DaggerPresenter presenter;
     @Inject
@@ -58,6 +60,10 @@ public class DaggerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dagger);
+        if (savedInstanceState != null) {
+            String message = savedInstanceState.getString("message");
+            Log.e(TAG, "DaggerActivity_63-->onCreate: "+message);
+        }
         inject();
         presenter.showUserName();
         LogUtil.i("client = " + (client == null ? "null" : client));
@@ -73,7 +79,11 @@ public class DaggerActivity extends AppCompatActivity {
                 .build()
                 .inject(this);//该方法就是 AppComponent 接口的inject(),传入当前 Activity 的引用
     }
-
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState){
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putString("message", "onSaveInstanceState");
+    }
     public void showUserName(String userName) {
         LogUtil.i("userName = " + userName);
     }

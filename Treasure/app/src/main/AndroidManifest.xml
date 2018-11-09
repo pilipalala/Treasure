@@ -160,7 +160,7 @@
         <activity android:name=".notification.SimpleNotificationActivity" />
         <activity android:name=".notification.NotificationEffectActivity" />
         <activity android:name=".activity.NotificationStyleActivity" />
-        <activity android:name=".activity.TinkerActivity" />
+        <activity android:name="com.wyj.tinker.TinkerActivity" />
         <activity android:name=".activity.transition.TransitionsActivity" />
         <activity android:name=".activity.transition.TransitionsSlideActivity" />
         <activity android:name=".activity.transition.TransitionsRedActivity" />
