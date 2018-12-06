@@ -1,6 +1,8 @@
 package com.wyj.treasure.utils;
 
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.Context;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,5 +34,17 @@ public class ActivityCollector {
         } else {
             return activities.get(activities.size() - 1);
         }
+    }
+    /**
+     * 退出应用程序
+     */
+    public static void AppExit(Context context) {
+        try {
+            ActivityCollector.finishAll();
+            ActivityManager activityMgr = (ActivityManager) context
+                    .getSystemService(Context.ACTIVITY_SERVICE);
+            activityMgr.killBackgroundProcesses(context.getPackageName());
+            System.exit(0);
+        } catch (Exception ignored) {}
     }
 }

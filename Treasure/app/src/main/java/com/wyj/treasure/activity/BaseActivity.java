@@ -13,7 +13,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -26,6 +25,7 @@ import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 import com.wyj.treasure.R;
 import com.wyj.treasure.adapter.BaseActivityAdapter;
 import com.wyj.treasure.mode.ItemInfo;
@@ -48,7 +48,7 @@ import butterknife.ButterKnife;
  * TODO
  */
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends RxAppCompatActivity {
     public final int PERMISSION_REQUEST_CODE = 0x110;
     public final int DEFATE_VIEW = -1;
     public final int EMPTY_VIEW = 0;

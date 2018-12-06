@@ -1,4 +1,6 @@
-package com.wyj.dagger;
+package com.wyj.dagger.mode;
+
+import com.wyj.dagger.DaggerActivity;
 
 import dagger.Module;
 import dagger.Provides;
@@ -29,8 +31,9 @@ public class ActivityModule {
         return activity;
     }
 
-    @Provides
-    public DaggerPresenter provideDaggerPresenter(DaggerActivity activity, DaggerUser user) {
-        return new DaggerPresenter(activity, user);
-    }
+//    @Provides
+//    public DaggerPresenter provideDaggerPresenter(DaggerActivity activity, DaggerUser user) {
+//        LogUtil.i("from Module");
+//        return new DaggerPresenter(activity, user);
+//    }
 }

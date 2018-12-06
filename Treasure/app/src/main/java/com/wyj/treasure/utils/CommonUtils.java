@@ -84,18 +84,23 @@ public class CommonUtils {
      * @param serviceName 包名+服务的类名
      * @return true代表正在运行，false代表服务没有正在运行
      */
-    public static boolean isServiceWork(Context mContext, String serviceName) {
+    public static boolean isServiceWork(String serviceName) {
+        LogUtil.e("CommonUtils_88-->isServiceWork: " + serviceName);
         boolean isWork = false;
-        ActivityManager myAM = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
+        ActivityManager myAM = (ActivityManager) MyApplication.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+        if (myAM == null) {
+            LogUtil.e("CommonUtils_92-->isServiceWork: " + serviceName);
+            return true;
+        }
         List<ActivityManager.RunningServiceInfo> myList = myAM.getRunningServices(100);
         if (myList.size() <= 0) {
+            LogUtil.e("CommonUtils_97-->isServiceWork: " + serviceName);
             return false;
         }
-        for (int i = 0; i < myList.size(); i++) {
-            String mName = myList.get(i).service.getClassName().toString();
-            if (mName.equals(serviceName)) {
+        for (ActivityManager.RunningServiceInfo service : myAM.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceName.equals(service.service.getClassName())) {
+                LogUtil.e("CommonUtils_102-->isServiceWork: " + serviceName);
                 isWork = true;
-                break;
             }
         }
         return isWork;
@@ -439,6 +444,7 @@ public class CommonUtils {
     /**
      * 解析时间
      * yyyy-MM-dd HH:mm:ss
+     *
      * @param date
      * @return
      */
@@ -447,4 +453,6 @@ public class CommonUtils {
         SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
         return format.format(date);
     }
+
+
 }

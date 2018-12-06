@@ -30,7 +30,9 @@ public class CustomControlActivity extends BaseActivity {
         mData.add(new ItemInfo("PropertyValuesHolder与Keyframe",PropertyActivity.class , 0));
         mData.add(new ItemInfo("AnimatorSet",AnimatorSetActivity.class , 0));
         mData.add(new ItemInfo("绘图篇-概述及基本几何图形绘制",DrawingArticlesOneActivity.class , 0));
+        mData.add(new ItemInfo("绘图篇-饼状图",PieActivity.class , 0));
         mData.add(new ItemInfo("绘图篇-路径及文字",DrawingArticlesTwoActivity.class , 0));
+        mData.add(new ItemInfo("绘图篇-Canvas操作",DrawingCanvasActivity.class , 0));
         mData.add(new ItemInfo("区域(Range)",DrawingArticlesRangeActivity.class , 0));
         mData.add(new ItemInfo("drawText()详解",DrawingArticlesDrawTextActivity.class , 0));
         mData.add(new ItemInfo("贝赛尔曲线",BezierActivity.class , 0));

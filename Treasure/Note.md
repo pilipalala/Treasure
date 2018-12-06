@@ -1,209 +1,72 @@
+# 收藏的开源库
+
+
+---
+
+## [使用Android-Debug-Database](https://github.com/amitshekhariitbhu/Android-Debug-Database)
+
+如何使用
+在`build.gradle`添加如下：
+
+`debugCompile 'com.amitshekhar.android:debug-db:1.0.0'`
+
+debugCompile 的作用：只在你debug编译时起作用，当你release的时候就没必要使用它了。
+
+这就完了，你不需要任何其他的代码啦。
+
+下面当你在App启动的时候，你要注意查看下你的logcat，会有这么一行：
+D/DebugDB: Open http://XXX.XXX.X.XXX:8080
+把它复制到你电脑的浏览器(手机和电脑要在同一个局域网下)，你就可以看到你的App中的数据库，和shared preferences
+
+---
+
+## 1. [高斯模糊](https://github.com/mmin18/RealtimeBlurView)
+适用于Android的实时模糊叠加层
+``implementation 'com.github.mmin18:realtimeblurview:1.1.0'``
+
+## 2. level-list 的坑
+`android:maxLevel`的顺序要 从小到大排列
+
+## 3. [一个关于时间处理的 包括两个时间计算，时区的计算](https://github.com/dlew/joda-time-android)
+[Android Joda-Time使用](https://www.jianshu.com/p/92a131fa9dd5)
+ `implementation 'net.danlew:android.joda:2.9.3.1'`
+
+## 4. [一个Material 风格的 Dialog]( https://github.com/afollestad/material-dialogs)
+`implementation 'com.afollestad.material-dialogs:core:2.0.0-rc2'`
+
+![](https://raw.githubusercontent.com/afollestad/material-dialogs/master/art/showcase20.jpg)
+
+## 5. [运行时权限处理 Permission helper](https://github.com/k0shk0sh/PermissionHelper)
+``implementation 'com.github.k0shk0sh:PermissionHelper:1.1.0'``
+
+## 6. [Android布局，支持扩展和折叠子视图](https://github.com/cachapa/ExpandableLayout)
+``implementation 'net.cachapa.expandablelayout:expandablelayout:2.3' ``
+
+## 7. [Image Picker](https://github.com/nguyenhoanglam/ImagePicker)
+``implementation 'com.github.nguyenhoanglam:ImagePicker:1.1.2'``
+
+## 8. [Pusher 推送](https://pusher.com/docs/android_quick_start)
 ```
-buildscript {
-    repositories {
-        maven { url 'https://maven.fabric.io/public' }
+    compile 'com.pusher:pusher-java-client:1.2.1'
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.5@aar') {
+        transitive = true;
     }
+```
 
-    dependencies {
-        classpath 'io.fabric.tools:gradle:1.+'
-    }
-}
-apply plugin: 'com.android.application'
-apply plugin: 'io.fabric'
+## 9. [android-gif-drawable](https://github.com/koral--/android-gif-drawable)
 
-repositories {
-    maven { url 'https://maven.fabric.io/public' }
-}
+``implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.16'``
 
-apply plugin: 'realm-android'
-apply plugin: 'me.tatarka.retrolambda'
-apply plugin: 'android-apt'
 
-android {
-    compileSdkVersion 24
-    buildToolsVersion "23.0.3"
-
-    defaultConfig {
-        applicationId "co.companyname.theapp"
-        minSdkVersion 15
-        targetSdkVersion 24
-        versionCode 1
-        versionName "0.0.1"
-        vectorDrawables.useSupportLibrary = true
-        multiDexEnabled true
-    }
-
-    /**
-     * This is for jenkins only. Always comment out if not Jenkins
-     * */
-    lintOptions {
-        abortOnError false
-    }
-
-    dataBinding {
-        enabled = true
-    }
-
-    dexOptions {
-        javaMaxHeapSize "4g"
-        preDexLibraries = false
-    }
-
-    signingConfigs {
-        debug {
-            keyAlias keystoreProperties['keyAlias']
-            keyPassword keystoreProperties['keyPassword']
-            storeFile file(keystoreProperties['storeFile'])
-            storePassword keystoreProperties['storePassword']
-        }
-
-        release {
-            keyAlias keystoreProperties['keyAlias']
-            keyPassword keystoreProperties['keyPassword']
-            storeFile file(keystoreProperties['storeFile'])
-            storePassword keystoreProperties['storePassword']
-        }
-    }
-
-    buildTypes {
-        release {
-            resValue 'string', 'APP_NAME', '"APP"'
-            multiDexEnabled true
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-
-            signingConfig signingConfigs.release
-            ext.betaDistributionReleaseNotes="Release Notes for this build."
-            ext.betaDistributionGroupAliases="Production"
-            ext.betaDistributionEmails="soso@soso.co"
-            ext.betaDistributionNotifications=true
-        }
-
-        debug {
-            applicationIdSuffix ".dev"
-            versionNameSuffix "-dev"
-            resValue 'string', 'APP_NAME', '"APP Dev"'
-            multiDexEnabled true
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-
-            signingConfig signingConfigs.debug
-            ext.betaDistributionReleaseNotes="Bla bla bla"
-            ext.betaDistributionGroupAliases="Bla"
-            ext.betaDistributionNotifications=true
-        }
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    packagingOptions {
-        exclude 'META-INF/services/javax.annotation.processing.Processor'
-        exclude 'LICENSE'
-        exclude 'LICENSE.txt'
-    }
-}
-
-dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    /*Basic Needs The support libraries*/
-    compile 'com.android.support:appcompat-v7:24.2.1'
-    compile 'com.android.support:design:24.2.1'
-    compile 'com.android.support:support-v4:24.2.1'
-    compile 'com.android.support:cardview-v7:24.2.1'
-
-    /**
-     *Reactive Programming for both UI and making request using Reactive Programming
-     * */
-    compile 'io.reactivex:rxandroid:1.0.1'
-    compile 'io.reactivex:rxjava:1.0.14'
-
+```
     /**
      * Java 8 Stream support for pre Java8
      * */
     compile 'com.annimon:stream:1.0.9'
 
     /**
-     *Retrofit and OKHTTP For making Restful API request
-     * */
-    compile 'com.squareup.retrofit2:retrofit:2.1.0'
-    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
-    compile 'com.squareup.okhttp3:okhttp:3.4.1'
-
-    /**
      * Stetho to debug app using Chrome Inspect
      * */
     compile 'com.facebook.stetho:stetho:1.3.1'
     compile 'com.facebook.stetho:stetho-okhttp3:1.3.1'
-
-    /**
-     * Afollestad Modified Material Dialog
-     * */
-    compile 'com.afollestad.material-dialogs:core:0.8.6.2'
-
-    /**
-     * Apache common is a collection of reusable components.
-     * */
-    compile ('org.apache.commons:commons-collections4:4.0') {
-        transitive = false
-    }
-    compile ('org.apache.commons:commons-lang3:3.4') {
-        transitive = false
-    }
-    compile ('commons-io:commons-io:2.4') {
-        transitive = false
-    }
-
-    /**
-     * Joda Time is for managing Time and Date and recent function present in Java 8 but
-     * */
-    compile 'net.danlew:android.joda:2.9.3.1'
-
-    /**
-     * Dependency Injection
-    * */
-    compile 'com.google.dagger:dagger:2.7'
-    compile 'com.google.dagger:dagger-compiler:2.7'
-
-    /**
-     * Views invjection
-     * */
-    compile 'com.jakewharton:butterknife:8.4.0'
-    apt 'com.jakewharton:butterknife-compiler:8.4.0'
-
-    /**
-     * Image Loading
-     * */
-    compile 'com.github.bumptech.glide:glide:3.7.0'
-
-    /**
-     * Permission helper
-     * */
-    compile 'com.github.k0shk0sh:PermissionHelper:1.0.9'
-
-    compile 'net.cachapa.expandablelayout:expandablelayout:2.3'
-
-    /**
-     * Image Picker
-     * */
-    compile 'com.github.nguyenhoanglam:ImagePicker:1.1.2'
-
-    /**
-     * Pusher
-     * */
-    compile 'com.pusher:pusher-java-client:1.2.1'
-    compile('com.crashlytics.sdk.android:crashlytics:2.6.5@aar') {
-        transitive = true;
-    }
-}
-
-retrolambda {
-    javaVersion JavaVersion.VERSION_1_7
-    defaultMethods false
-}
 ```

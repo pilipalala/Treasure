@@ -2,6 +2,7 @@ package com.wyj.treasure.rxjava;
 
 import android.view.View;
 
+import com.trello.rxlifecycle2.android.ActivityEvent;
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.BaseActivity;
 import com.wyj.treasure.rxjava.entity.LoginRequest;
@@ -39,6 +40,12 @@ public class RxJavaActivity extends BaseActivity {
         rxApi.login(new LoginRequest())
                 .subscribeOn(Schedulers.io())//在IO线程进行网络请求
                 .observeOn(AndroidSchedulers.mainThread())//回到主线程去处理请求结果
+                // 在Activity中使用bindToLifecycle()方法，完成Observable发布的事件和当前的组件绑定，
+                // 实现生命周期同步。从而实现当前组件生命周期结束时，自动取消对Observable订阅
+                .compose(bindToLifecycle())
+                //使用bindUntilEvent指定在哪个生命周期方法调用时取消订阅
+                // 使用ActivityEvent类，其中的CREATE、START、 RESUME、PAUSE、STOP、 DESTROY分别对应生命周期内的方法
+                .compose(bindUntilEvent(ActivityEvent.DESTROY))
                 .subscribe(new Observer<LoginResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {

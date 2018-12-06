@@ -3,9 +3,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/et_error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_vertical"
+        android:singleLine="true"
+        android:textColor="#000000" />
+
     <Button
         android:id="@+id/btn_permission"
-        android:text="bug"
-        style="@style/default_button_style" />
+        style="@style/default_button_style"
+        android:text="bug" />
 
 </LinearLayout>

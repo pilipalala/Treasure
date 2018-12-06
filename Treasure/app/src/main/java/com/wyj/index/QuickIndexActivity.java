@@ -30,15 +30,14 @@ public class QuickIndexActivity extends BaseActivity {
     private IndexAdapter indexAdapter;
 
 
-
     @Override
     protected int getContentViewID() {
         return R.layout.activity_quick_index;
     }
 
     private void updateListView(String word) {
-        for (int i = 0; i <persons.size(); i++) {
-            if (word.equals(persons.get(i).getPinyin().substring(0,1))) {
+        for (int i = 0; i < persons.size(); i++) {
+            if (word.equals(persons.get(i).getPinyin().substring(0, 1))) {
                 lvMain.setSelection(i);
                 return;
             }
@@ -47,6 +46,7 @@ public class QuickIndexActivity extends BaseActivity {
 
     /**
      * 屏幕中间显示字母
+     *
      * @param word
      */
     private void updateWord(String word) {
@@ -78,7 +78,6 @@ public class QuickIndexActivity extends BaseActivity {
                 updateListView(word);
             }
         });
-
 
 
         //排序

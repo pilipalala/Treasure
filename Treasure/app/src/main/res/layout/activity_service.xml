@@ -1,51 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.wyj.treasure.activity.ServiceActivity">
+    tools:context="com.wyj.treasure.service.ServiceActivity">
+
+    <TextView
+        android:id="@+id/tv_show_time"
+        style="@style/default_button_style"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center" />
+
+    <Button
+        android:id="@+id/btn_keep_alive"
+        style="@style/default_button_style"
+        android:text="开启保活" />
 
     <Button
         android:id="@+id/btn_start"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_5"
-        android:background="@color/spinner_bg"
-        android:text="start"
-        android:textAllCaps="false"
-        android:textColor="@color/white" />
+        style="@style/default_button_style"
+        android:text="开启服务" />
 
     <Button
         android:id="@+id/btn_stop"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_5"
-        android:background="@color/spinner_bg"
-        android:text="stop"
-        android:textAllCaps="false"
-        android:textColor="@color/white" />
+        style="@style/default_button_style"
+        android:text="停止服务" />
 
     <Button
         android:id="@+id/btn_bind"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_5"
-        android:background="@color/spinner_bg"
-        android:text="bind"
-        android:textAllCaps="false"
-        android:textColor="@color/white" />
+        style="@style/default_button_style"
+        android:text="绑定服务" />
 
     <Button
         android:id="@+id/btn_unbind"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_5"
-        android:background="@color/spinner_bg"
-        android:text="unbind"
-        android:textAllCaps="false"
-        android:textColor="@color/white" />
+        style="@style/default_button_style"
+        android:text="取绑服务" />
 
 
 </LinearLayout>

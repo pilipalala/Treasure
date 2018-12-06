@@ -33,7 +33,8 @@ public abstract class BaseObserver<T> implements ProgressCancelListener, Observe
     @Override
     public void onError(Throwable e) {
         e.printStackTrace();
-        if (false) { //这里自行替换判断网络的代码
+        if (false) { //这里自行替换判断
+            // 网络的代码
             _onError("网络不可用");
         } else if (e instanceof ApiException) {
             _onError(e.getMessage());

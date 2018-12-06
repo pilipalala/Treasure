@@ -1,17 +1,16 @@
 package com.wyj.treasure.fragment;
 
-import com.wyj.keyboard.KeyboardActivity;
-import com.wyj.mvp.ui.activity.DouBanActivity;
-import com.wyj.mvp.ui.activity.UserLoginActivity;
-import com.wyj.spannable.SpannableStringActivity;
-import com.wyj.swipedelete.SwipeDeleteActivity;
 import com.wyj.bannerviewpager.BannerViewPagerActivity;
 import com.wyj.colortracktextview.ColorTrackActivity;
 import com.wyj.countdown.CountDownActivity;
 import com.wyj.dagger.DaggerActivity;
 import com.wyj.handler.AsyncTaskActivity;
 import com.wyj.index.QuickIndexActivity;
+import com.wyj.keyboard.KeyboardActivity;
 import com.wyj.materialdesign.MaterialDesignActivity;
+import com.wyj.mvp.ui.activity.UserLoginActivity;
+import com.wyj.spannable.SpannableStringActivity;
+import com.wyj.swipedelete.SwipeDeleteActivity;
 import com.wyj.touch.TouchDemoActivity;
 import com.wyj.treasure.NavigationBarActivity;
 import com.wyj.treasure.PxDpActivity;
@@ -30,6 +29,7 @@ import com.wyj.treasure.mdcustom.splash.SplashActivity;
 import com.wyj.treasure.mode.ItemInfo;
 import com.wyj.treasure.popup.PopupWindowActivity;
 import com.wyj.treasure.rxjava.RxJavaActivity;
+import com.wyj.wanandroid.WanActivity;
 import com.wyj.waveview.VoiceWaveActivity;
 import com.wyj.welcome.WelcomeActivity;
 
@@ -37,6 +37,7 @@ public class DashboardFragment extends BaseCardViewFragment {
 
     @Override
     protected void processData() {
+        mData.add(new ItemInfo("玩儿", WanActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("Java 反射机制", ReflectActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("RecyclerView 滑动删除", SwipeDeleteActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("GridView多选", GridViewChoiceActivity.class, R.mipmap.ic_launcher));

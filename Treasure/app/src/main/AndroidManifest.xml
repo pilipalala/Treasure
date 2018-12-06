@@ -82,6 +82,7 @@
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -156,7 +157,7 @@
         </receiver>
 
         <activity android:name=".activity.MyLocalBroadcastActivity" />
-        <activity android:name=".activity.ServiceActivity" />
+        <activity android:name=".service.ServiceActivity" />
         <activity android:name=".notification.SimpleNotificationActivity" />
         <activity android:name=".notification.NotificationEffectActivity" />
         <activity android:name=".activity.NotificationStyleActivity" />
@@ -327,7 +328,23 @@
 
         <activity android:name="com.wyj.alarm.AlarmActivity" />
         <activity android:name="com.wyj.dagger.DaggerActivity" />
-        <activity android:name="com.wyj.realm.RealmActivity"></activity>
+        <activity android:name="com.wyj.realm.RealmActivity" />
+
+        <service
+            android:name=".service.ProtectedService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity
+            android:name=".service.SinglePixelActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|navigation|keyboard"
+            android:excludeFromRecents="true"
+            android:finishOnTaskLaunch="false"
+            android:launchMode="singleInstance"
+            android:theme="@style/SingleActivityStyle" />
+        <activity android:name=".customcontrol.PieActivity" />
+        <activity android:name=".customcontrol.DrawingCanvasActivity" />
+        <activity android:name="com.wyj.wanandroid.WanActivity"></activity>
     </application>
 
 </manifest>

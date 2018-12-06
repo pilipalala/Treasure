@@ -1,6 +1,5 @@
 package com.wyj.treasure.customcontrol;
 
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.wyj.treasure.R;
@@ -24,10 +23,8 @@ public class DrawingArticlesOneActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-
         viewOne.setVisibility(View.VISIBLE);
         viewTwo.setVisibility(View.GONE);
         viewText.setVisibility(View.GONE);
-
     }
 }

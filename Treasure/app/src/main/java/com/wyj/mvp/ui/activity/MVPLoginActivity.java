@@ -12,7 +12,6 @@ import com.wyj.treasure.R;
 import com.wyj.treasure.utils.ToastUtil;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MVPLoginActivity extends MVPBaseActivity<LoginPresenter> implements LoginContract.LoginView {

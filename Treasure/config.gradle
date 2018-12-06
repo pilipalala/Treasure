@@ -1,11 +1,16 @@
+/**
+ * http://wuxiaolong.me/2016/03/30/gradle4android1
+ * https://github.com/luorenyu/newApp
+ * 注意需要在根目录的build.gradle中进行引入
+ * */
 ext {
     supportLibrary = "28.0.0"
     android = [
             appId            : "com.wyj.treasure",
-            compileSdkVersion: 28,
-            minSdkVersion    : 16,
-            targetSdkVersion : 28,
-            buildToolsVersion: "28.0.3",
+            compileSdkVersion: 28,//编译的 SDK 版本
+            minSdkVersion    : 16,//兼容的最低 SDK 版本
+            targetSdkVersion : 28,//向前兼容，保存新旧两种逻辑，并通过 if-else 方法来判断执行哪种逻辑
+            buildToolsVersion: "28.0.3",//构建工具的版本，其中包括了打包工具aapt、dx等
             versionCode      : 1,
             versionName      : "1.0"
     ]

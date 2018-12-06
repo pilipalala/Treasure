@@ -27,3 +27,19 @@ https://blog.csdn.net/qq_40638618/article/details/80038329
 
 [Navigation 详解一](https://www.jianshu.com/p/d37f5132db3c)
 
+[我把这两年的精华文章都整理出来了](https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&mid=2665514860&idx=1&sn=641187383bb8d9d3f56009a7ed1e2696&chksm=80d67f2fb7a1f639384a807b0496a03794cf3f47b24d8c41ddc49b02f43bb1924becbd7cf035&token=1699190082&lang=zh_CN#rd)
+
+https://github.com/hoang8f/android-flat-button
+
+https://github.com/RomainPiel/Shimmer-android
+
+
+---
+[Gradle 分类](http://wuxiaolong.me/categories/Gradle/)
+
+Gradle for Android（三）多渠道打包、配置签名信息
+
+Gradle for Android（二）全局设置、自定义BuildConfig、混淆
+
+Gradle for Android（一）基本配置、依赖管理
+---

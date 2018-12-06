@@ -1,6 +1,5 @@
 package com.wyj.treasure.service;
 
-import android.app.ActivityManager;
 import android.app.job.JobInfo;
 import android.app.job.JobParameters;
 import android.app.job.JobScheduler;
@@ -11,7 +10,8 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
-import java.util.List;
+import com.wyj.treasure.utils.CommonUtils;
+import com.wyj.treasure.utils.LogUtil;
 
 /**
  * Created by wangyujie
@@ -41,9 +41,10 @@ public class JobWakeUpService extends JobService {
     public boolean onStartJob(JobParameters params) {
         /*开启定时任务，定时轮寻，看MyService是否被杀死*/
 
-        boolean local = isServiceWork(LocalService.class.getName());
+        boolean local = CommonUtils.isServiceWork(ProtectedService.class.getName());
         if (!local) {
-            startService(new Intent(this, LocalService.class));
+            LogUtil.i("JobWakeUpService " + local);
+            startService(new Intent(this, ProtectedService.class));
         }
         return false;
     }
@@ -52,22 +53,5 @@ public class JobWakeUpService extends JobService {
     public boolean onStopJob(JobParameters params) {
         return false;
     }
-    public boolean isServiceWork(String serviceName) {
-        boolean isWork = false;
-        ActivityManager myAM = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-        List<ActivityManager.RunningServiceInfo> myList = myAM.getRunningServices(100);
-        if (myList.size() <= 0) {
-            return false;
-        }
-        for (int i = 0; i < myList.size(); i++) {
-            String mName = myList.get(i).service.getClassName();
-            if (mName.equals(serviceName)) {
-                isWork = true;
-                break;
-            }
-        }
-        return isWork;
-    }
-
 
 }

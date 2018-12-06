@@ -76,8 +76,8 @@ public class ExternalStorageActivity extends BaseActivity {
             //字符数组方式写入
             int temp1 = 0;
             char[] buff = new char[1024];
-            while  ((temp1 = fileReader.read(buff)) != -1) {
-                fileWriter.write(buff,0,temp1);
+            while ((temp1 = fileReader.read(buff)) != -1) {
+                fileWriter.write(buff, 0, temp1);
             }
 
         } catch (Exception e) {
@@ -135,7 +135,7 @@ public class ExternalStorageActivity extends BaseActivity {
 
             int temp = 0;
             byte[] buff = new byte[1024];
-            while  ((temp = bufferedInputStream.read(buff)) != -1) {
+            while ((temp = bufferedInputStream.read(buff)) != -1) {
                 bufferedOutputStream.write(buff, 0, temp);
             }
         } catch (Exception e) {
@@ -220,9 +220,12 @@ public class ExternalStorageActivity extends BaseActivity {
         File cacheDir = getExternalCacheDir();
         LogUtil.v("Context.getExternalCacheDir():" + cacheDir.toString());
 
-        File[] cacheDirs = getExternalCacheDirs();
-        for (File dir : cacheDirs) {
-            LogUtil.v("Context.getExternalCacheDirs():" + dir.toString());
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+            File[] cacheDirs = new File[0];
+            cacheDirs = getExternalCacheDirs();
+            for (File dir : cacheDirs) {
+                LogUtil.v("Context.getExternalCacheDirs():" + dir.toString());
+            }
         }
 
 
@@ -278,8 +281,7 @@ public class ExternalStorageActivity extends BaseActivity {
 
     /**
      * @param mContext
-     * @return
-     * 扩展内存就是我们插入的外置SD卡
+     * @return 扩展内存就是我们插入的外置SD卡
      */
     private static String getExtendedMemoryPath(Context mContext) {
         StorageManager mStorageManager = (StorageManager) mContext.getSystemService(Context.STORAGE_SERVICE);

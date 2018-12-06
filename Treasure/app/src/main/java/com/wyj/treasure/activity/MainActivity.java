@@ -3,13 +3,14 @@ package com.wyj.treasure.activity;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
 
 import com.wyj.treasure.R;
 import com.wyj.treasure.fragment.BaseFragment;
 import com.wyj.treasure.fragment.DashboardFragment;
 import com.wyj.treasure.fragment.HomeFragment;
 import com.wyj.treasure.fragment.NotificationsFragment;
+import com.wyj.treasure.utils.ActivityCollector;
+import com.wyj.treasure.utils.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,7 @@ import butterknife.BindView;
 public class MainActivity extends BaseActivity {
     @BindView(R.id.navigation)
     BottomNavigationView navigation;
+    private long mExitTime = 0L;
     private Fragment mFragment;
     private List<BaseFragment> mBaseFragment;
     private HomeFragment homeFragment;
@@ -112,5 +114,16 @@ public class MainActivity extends BaseActivity {
         mBaseFragment.add(homeFragment);
         mBaseFragment.add(dashboardFragment);
         mBaseFragment.add(notificationsFragment);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if ((System.currentTimeMillis() - mExitTime) > 2000) {
+            ToastUtil.show("再按一次退出");
+            mExitTime = System.currentTimeMillis();
+        } else {
+            ActivityCollector.AppExit(this);
+            super.onBackPressed();
+        }
     }
 }

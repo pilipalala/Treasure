@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.BaseActivity;
@@ -12,12 +14,21 @@ import com.wyj.treasure.mode.ItemInfo;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
+
+import butterknife.BindView;
 
 public class BitmapActivity extends BaseActivity {
 
+    @BindView(R.id.iv_before_compression)
+    ImageView mIvBeforeCompression;
+    @BindView(R.id.iv_after_compression)
+    ImageView mIvAfterCompression;
     private File imageFile;
     private File sdFile;
+    private Bitmap mBitmap;
 
 
     @Override
@@ -30,23 +41,47 @@ public class BitmapActivity extends BaseActivity {
         return null;
     }
 
+    /**
+     * 1、资源文件(drawable/mipmap/raw):
+     * R.mipmap.*
+     * R.drawable.*
+     * R.raw.*
+     */
+    public void decodeOne() {
+        Bitmap bitmap = BitmapFactory.decodeResource(mContext.getResources(), R.mipmap.ai_1);
+    }
+
+    /**
+     * 2、资源文件(assets):
+     */
+    public void decodeTwo() {
+        Bitmap bitmap = null;
+        try {
+            InputStream is = mContext.getAssets().open("bitmap.png");
+            bitmap = BitmapFactory.decodeStream(is);
+            is.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 内存卡文件:
+     */
+    public void decodeThree() {
+        imageFile = new File(sdFile, "bitmap.png");
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        Bitmap bitmap = BitmapFactory.decodeFile(imageFile.toString(), options);
+        //或者用下面的方法
+//        Bitmap bitmap = BitmapFactory.decodeFile("/sdcard/bitmap.png");
+    }
 
     @Override
     protected void initData() {
         sdFile = getExternalCacheDir();
 
-        imageFile = new File(sdFile, "image.jpg");
-//        BitmapFactory.decodeResource()
-
-//        BitmapFactory.decodeStream()
-        BitmapFactory.Options options = new BitmapFactory.Options();
-
-        Bitmap bitmap = BitmapFactory.decodeFile(imageFile.toString(), options);
-
-        compressImageToFileBySize(bitmap, new File(sdFile, "zhiliang1.jpeg"));
-//        compressImageToFile(bitmap, new File(sdFile, "zhiliang.jpeg"));
-
-
+        mBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ai_4);
+        mIvBeforeCompression.setImageBitmap(mBitmap);
     }
 
     /**
@@ -95,11 +130,8 @@ public class BitmapActivity extends BaseActivity {
         Bitmap result = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
 
         Canvas canvas = new Canvas(result);
-
         Rect rect = new Rect(0, 0, width, height);
-
         canvas.drawBitmap(bitmap, null, rect, null);
-
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         result.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         try {
@@ -110,5 +142,13 @@ public class BitmapActivity extends BaseActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void qualityCompression(View view) {
+        compressImageToFile(mBitmap, new File(sdFile, "zhiliang.jpeg"));
+    }
+
+    public void sizeCompression(View view) {
+        compressImageToFileBySize(mBitmap, new File(sdFile, "daxiao.jpeg"));
     }
 }

@@ -8,12 +8,15 @@ import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkRequest;
 import android.os.Build;
+import android.os.StrictMode;
 import android.support.multidex.MultiDex;
 
 import com.facebook.stetho.Stetho;
-import com.wyj.dagger.ApiModule;
-import com.wyj.dagger.AppComponent;
-import com.wyj.dagger.DaggerAppComponent;
+import com.squareup.leakcanary.LeakCanary;
+import com.wyj.dagger.component.AppComponent;
+import com.wyj.dagger.component.DaggerAppComponent;
+import com.wyj.dagger.mode.ApiModule;
+import com.wyj.dagger.mode.AppMode;
 import com.wyj.greendao.GreenDAOHelp;
 import com.wyj.realm.AppRealmMigration;
 import com.wyj.treasure.receiver.NetworkChangeReceiver;
@@ -27,7 +30,6 @@ import io.realm.RealmConfiguration;
  * Created by wangyujie
  * Date 2017/7/30
  * Time 21:41
- * TODO
  */
 
 public class MyApplication extends Application {
@@ -46,19 +48,28 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        inject();
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            return;
+        }
+        LeakCanary.install(this);
         mContext = getApplicationContext();
+        inject();
         initCrash();
 //        initError();
+        networkChanges();
+        initDataBaseForGreenDAO();
+        initDataBaseForRealm();
+        initStetho();
         String processName = CommonUtils.getProcessName();
         if (getPackageName().equals(processName)) {
             LogUtil.d("AndroidApplication onCreate=" + processName);
         }
         LogUtil.d("MyApplication---onCreate");
-        networkChanges();
-        initDataBaseForGreenDAO();
-        initDataBaseForRealm();
-        initStetho();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            StrictMode.VmPolicy.Builder builde = new StrictMode.VmPolicy.Builder();
+            StrictMode.setVmPolicy(builde.build());
+            builde.detectFileUriExposure();
+        }
     }
 
     private void initDataBaseForRealm() {
@@ -115,12 +126,15 @@ public class MyApplication extends Application {
      * Stetho初始化
      */
     private void initStetho() {
-        Stetho.initializeWithDefaults(this);
+        if (BuildConfig.DEBUG) {
+            Stetho.initializeWithDefaults(this);
+        }
     }
 
     private void inject() {
         appComponent = DaggerAppComponent.builder()
                 .apiModule(new ApiModule())
+                .appMode(new AppMode(this))
                 .build();
     }
 
