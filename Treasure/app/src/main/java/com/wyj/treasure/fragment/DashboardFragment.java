@@ -4,6 +4,7 @@ import com.wyj.bannerviewpager.BannerViewPagerActivity;
 import com.wyj.colortracktextview.ColorTrackActivity;
 import com.wyj.countdown.CountDownActivity;
 import com.wyj.dagger.DaggerActivity;
+import com.wyj.draghelper.DragDemoActivity;
 import com.wyj.handler.AsyncTaskActivity;
 import com.wyj.index.QuickIndexActivity;
 import com.wyj.keyboard.KeyboardActivity;
@@ -38,6 +39,7 @@ public class DashboardFragment extends BaseCardViewFragment {
     @Override
     protected void processData() {
         mData.add(new ItemInfo("玩儿", WanActivity.class, R.mipmap.ic_launcher));
+        mData.add(new ItemInfo("滑动解锁", DragDemoActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("Java 反射机制", ReflectActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("RecyclerView 滑动删除", SwipeDeleteActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("GridView多选", GridViewChoiceActivity.class, R.mipmap.ic_launcher));

@@ -1,9 +1,12 @@
 package com.wyj.treasure;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkRequest;
@@ -18,6 +21,7 @@ import com.wyj.dagger.component.DaggerAppComponent;
 import com.wyj.dagger.mode.ApiModule;
 import com.wyj.dagger.mode.AppMode;
 import com.wyj.greendao.GreenDAOHelp;
+import com.wyj.network.NetWorkService;
 import com.wyj.realm.AppRealmMigration;
 import com.wyj.treasure.receiver.NetworkChangeReceiver;
 import com.wyj.treasure.utils.CommonUtils;
@@ -35,8 +39,10 @@ import io.realm.RealmConfiguration;
 public class MyApplication extends Application {
     private static Context mContext;
     private static final String TAG = "MyApplication";
+    private static MyApplication instance;
 
     private AppComponent appComponent;
+    private PackageInfo packInfo;
 
     /**
      * 获取全局的 Context
@@ -52,6 +58,7 @@ public class MyApplication extends Application {
             return;
         }
         LeakCanary.install(this);
+        instance = this;
         mContext = getApplicationContext();
         inject();
         initCrash();
@@ -94,6 +101,10 @@ public class MyApplication extends Application {
          * <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
          * <uses-permission android:name="android.permission.WRITE_SETTINGS" />
          */
+
+        //开始Service监听网络状态的变化，当网络有变化时发送广播通知
+        startService(new Intent(mContext, NetWorkService.class));
+
         IntentFilter intentFilter = new IntentFilter();
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -174,5 +185,31 @@ public class MyApplication extends Application {
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         MultiDex.install(this);
+    }
+
+    public static MyApplication getIns() {
+        return instance;
+    }
+
+    /**
+     * 获取apk包名路径
+     */
+    @SuppressLint("Override")
+    public String getApkDataDir() {
+        if (packInfo == null)
+            getAppInfo();
+        return packInfo != null && packInfo.applicationInfo != null ? packInfo.applicationInfo.dataDir : "";
+    }
+
+    private void getAppInfo() {
+        // 获取packageManager的实例
+        PackageManager packageManager = getPackageManager();
+        // getPackageName()是你当前类的包名，0代表是获取版本信息
+        try {
+
+            packInfo = packageManager.getPackageInfo(getPackageName(), 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

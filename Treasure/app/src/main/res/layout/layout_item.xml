@@ -29,7 +29,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="sssssssssssssss"
-                android:background="@drawable/btn_click_black_havebackground"
                 android:textColor="#DD000000"
                 android:textSize="50dp" />
         </RelativeLayout>

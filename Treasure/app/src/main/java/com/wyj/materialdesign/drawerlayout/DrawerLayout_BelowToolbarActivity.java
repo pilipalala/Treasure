@@ -79,4 +79,5 @@ public class DrawerLayout_BelowToolbarActivity extends AppCompatActivity impleme
         getMenuInflater().inflate(R.menu.material_design_demo, menu);
         return true;
     }
+
 }

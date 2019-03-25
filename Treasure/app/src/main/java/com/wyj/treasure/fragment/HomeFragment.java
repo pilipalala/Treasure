@@ -17,6 +17,7 @@ import android.view.animation.LayoutAnimationController;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.wyj.baseadapter.RecyclerViewActivity;
 import com.wyj.bitmap.BitmapActivity;
+import com.wyj.network.NetWorkActivity;
 import com.wyj.process.ProcessActivity;
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.ChangeLaucherActivity;
@@ -47,7 +48,6 @@ public class HomeFragment extends BaseFragment {
     Unbinder unbinder;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    Unbinder unbinder1;
     private ComponentName componentName;
     private ComponentName componentNameDefault;
     private PackageManager packageManager;
@@ -59,7 +59,7 @@ public class HomeFragment extends BaseFragment {
             "向上拖动查看图文详情控件", "网页交互",
             "万能adapter", "动态更换图片",
             "多进程通信", "Android存储路径",
-            "BitmapActivity"};
+            "BitmapActivity","监听网络强度变化"};
     private Class<?>[] ACTIVITY = {
             DongTaiActivity.class, NetworkChangeActivity.class,
             ServiceActivity.class, TinkerActivity.class,
@@ -67,7 +67,7 @@ public class HomeFragment extends BaseFragment {
             PullUpToLoadMoreActivity.class, MyWebViewActivity.class,
             RecyclerViewActivity.class, ChangeLaucherActivity.class,
             ProcessActivity.class, ExternalStorageActivity.class,
-            BitmapActivity.class};
+            BitmapActivity.class, NetWorkActivity.class};
     private List<HomeItem> mDataList;
 
 

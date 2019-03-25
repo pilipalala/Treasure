@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.wyj.draghelper.DragActivity">
+
+    <com.wyj.draghelper.DirectionDragLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_drag_call"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"
+            android:src="@mipmap/drag_call"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_drag_home"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/iv_drag_left"
+            app:layout_constraintTop_toTopOf="@+id/iv_drag_home" />
+
+        <ImageView
+            android:id="@+id/iv_drag_unlock"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"
+            android:src="@mipmap/drag_unlock"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_drag_home"
+            app:layout_constraintLeft_toRightOf="@+id/iv_drag_right"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv_drag_home" />
+
+        <ImageView
+            android:id="@+id/iv_drag_camera"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"
+            android:layout_marginBottom="@dimen/dp_30"
+            android:src="@mipmap/drag_camera"
+            app:layout_constraintBottom_toTopOf="@+id/iv_drag_top"
+            app:layout_constraintLeft_toLeftOf="@+id/iv_drag_home"
+            app:layout_constraintRight_toRightOf="@+id/iv_drag_home" />
+
+        <ImageView
+            android:id="@+id/iv_drag_home"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"
+            android:layout_marginBottom="@dimen/dp_30"
+            android:src="@mipmap/drag_home"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/iv_drag_top"
+            android:layout_width="@dimen/dp_20"
+            android:layout_height="@dimen/dp_20"
+            android:layout_marginBottom="@dimen/dp_30"
+            android:rotation="90"
+            android:src="@mipmap/drag_left"
+            app:layout_constraintBottom_toTopOf="@+id/iv_drag_home"
+            app:layout_constraintLeft_toLeftOf="@+id/iv_drag_home"
+            app:layout_constraintRight_toRightOf="@+id/iv_drag_home" />
+
+        <ImageView
+            android:id="@+id/iv_drag_right"
+            android:layout_width="@dimen/dp_20"
+            android:layout_height="@dimen/dp_20"
+            android:rotation="180"
+            android:src="@mipmap/drag_left"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_drag_home"
+            app:layout_constraintLeft_toRightOf="@+id/iv_drag_home"
+            app:layout_constraintRight_toLeftOf="@+id/iv_drag_unlock"
+            app:layout_constraintTop_toTopOf="@+id/iv_drag_home" />
+
+        <ImageView
+            android:id="@+id/iv_drag_left"
+            android:layout_width="@dimen/dp_20"
+            android:layout_height="@dimen/dp_20"
+            android:src="@mipmap/drag_left"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_drag_home"
+            app:layout_constraintLeft_toRightOf="@+id/iv_drag_call"
+            app:layout_constraintRight_toLeftOf="@+id/iv_drag_home"
+            app:layout_constraintTop_toTopOf="@+id/iv_drag_home" />
+    </com.wyj.draghelper.DirectionDragLayout>
+</RelativeLayout>

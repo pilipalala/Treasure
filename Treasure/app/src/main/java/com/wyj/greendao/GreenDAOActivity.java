@@ -1,15 +1,22 @@
 package com.wyj.greendao;
 
+import android.content.res.AssetFileDescriptor;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.BaseActivity;
+import com.wyj.treasure.activity.MainActivity;
 import com.wyj.treasure.utils.LogUtil;
 import com.wyj.treasure.utils.ToastUtil;
 
 
 import org.greenrobot.greendao.query.QueryBuilder;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +26,8 @@ public class GreenDAOActivity extends BaseActivity {
 
     private static final String TAG = "GreenDAOActivity";
     private StudentDao studentDao;
+    private StringBuilder builder;
+    private SQLiteDatabase db;
 
     @Override
     protected int getContentViewID() {
@@ -29,6 +38,45 @@ public class GreenDAOActivity extends BaseActivity {
     protected void initData() {
         setTitle("GreenDAO的基本使用");
         create();
+
+//        copyRawDB();
+
+    }
+
+    /**
+     * 读取 assets 资源文件夹里面的.db文件
+     */
+    private void copyRawDB() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                // 初始化，只需要调用一次
+                AssetsDatabaseManager.initManager(GreenDAOActivity.this);
+                // 获取管理对象，因为数据库需要通过管理对象才能够获取
+                AssetsDatabaseManager mg = AssetsDatabaseManager.getManager();
+                // 通过管理对象获取数据库
+                db = mg.getDatabase("data_s.db");
+                // 对数据库进行操作
+                String sql = "SELECT * FROM Demo " + " WHERE height > 50 and height < 210 and age >10 and age < 99 and weight >40 and weight < 120";
+                Cursor cursor = db.rawQuery("select * from Demo", null);
+                int count = 0;
+                long start = System.currentTimeMillis();
+                long end = 0;
+                while (cursor.moveToNext()) {
+                    count++;
+                    if (count <= 1000) {
+                        Log.e(TAG, "GreenDAOActivity_58-->count: " + count);
+                    }
+                    if (count == 1000) {
+                        end = System.currentTimeMillis();
+                        Log.e(TAG, "GreenDAOActivity_58-->time: " + (end - start));
+                    }
+                }
+                cursor.close();
+                db.close();
+            }
+        }).start();
+
     }
 
     private void create() {
