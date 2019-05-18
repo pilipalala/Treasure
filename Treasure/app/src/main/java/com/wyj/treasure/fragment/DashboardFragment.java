@@ -8,6 +8,7 @@ import com.wyj.draghelper.DragDemoActivity;
 import com.wyj.handler.AsyncTaskActivity;
 import com.wyj.index.QuickIndexActivity;
 import com.wyj.keyboard.KeyboardActivity;
+import com.wyj.live.LiveActivity;
 import com.wyj.materialdesign.MaterialDesignActivity;
 import com.wyj.mvp.ui.activity.UserLoginActivity;
 import com.wyj.spannable.SpannableStringActivity;
@@ -16,6 +17,7 @@ import com.wyj.touch.TouchDemoActivity;
 import com.wyj.treasure.NavigationBarActivity;
 import com.wyj.treasure.PxDpActivity;
 import com.wyj.treasure.R;
+import com.wyj.treasure.TestActivity;
 import com.wyj.treasure.activity.GridViewChoiceActivity;
 import com.wyj.treasure.activity.IncludeMergeViewStubActivity;
 import com.wyj.treasure.activity.MultipleChoiceActivity;
@@ -38,6 +40,8 @@ public class DashboardFragment extends BaseCardViewFragment {
 
     @Override
     protected void processData() {
+        mData.add(new ItemInfo("直播", LiveActivity.class, R.mipmap.ic_launcher));
+        mData.add(new ItemInfo("粒子效果", TestActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("玩儿", WanActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("滑动解锁", DragDemoActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("Java 反射机制", ReflectActivity.class, R.mipmap.ic_launcher));

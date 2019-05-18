@@ -54,6 +54,7 @@ android {
         versionCode cfg.versionCode
         versionName cfg.versionName
         multiDexEnabled true
+        flavorDimensions "versionCode"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         ndk {
@@ -81,6 +82,15 @@ android {
         def file = variant.outputs[0].outputFile
         variant.outputs.all {
             outputFileName = file.name.replace(".apk", "-" + defaultConfig.versionName + ".apk")
+        }
+    }
+
+    productFlavors {
+        tencent {
+            manifestPlaceholders = [CHANNEL_VALUE: "tencent"]
+        }
+        huawei {
+            manifestPlaceholders = [CHANNEL_VALUE: "huawei"]
         }
     }
 //增加java堆内存
@@ -301,4 +311,6 @@ dependencies {
 
     // Android使用的库，继承NaviActivity使用
     implementation 'com.trello.rxlifecycle2:rxlifecycle-navi:2.1.0'
+
+    implementation 'com.plattysoft.leonids:LeonidsLib:1.3.2'
 }

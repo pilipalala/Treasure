@@ -67,6 +67,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name="com.wyj.live.LiveActivity"></activity>
+        <activity android:name="com.wyj.youtube.YoutubeActivity" />
+        <activity android:name=".TestActivity" />
         <activity android:name=".mdcustom.splash.SplashActivity" />
         <activity android:name=".activity.MainActivity">
             <intent-filter>

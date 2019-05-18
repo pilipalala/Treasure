@@ -102,8 +102,6 @@ public class MyApplication extends Application {
          * <uses-permission android:name="android.permission.WRITE_SETTINGS" />
          */
 
-        //开始Service监听网络状态的变化，当网络有变化时发送广播通知
-        startService(new Intent(mContext, NetWorkService.class));
 
         IntentFilter intentFilter = new IntentFilter();
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

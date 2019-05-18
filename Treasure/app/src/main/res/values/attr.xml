@@ -127,5 +127,13 @@
         </attr>
     </declare-styleable>
 
+    <declare-styleable name="VerticalSeekBar">
+        <attr name="vsb_thumb" format="reference" />
+        <attr name="vsb_progressWidth" format="dimension" />
+        <attr name="vsb_progress" format="integer" />
+        <attr name="vsb_radius" format="dimension" />
+        <attr name="vsb_selectColor" format="color" />
+        <attr name="vsb_unSelectColor" format="color" />
+    </declare-styleable>
 
 </resources>

@@ -1,9 +1,12 @@
 package com.wyj.treasure.activity;
 
+import android.Manifest;
+import android.content.Intent;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 
+import com.wyj.network.NetWorkService;
 import com.wyj.treasure.R;
 import com.wyj.treasure.fragment.BaseFragment;
 import com.wyj.treasure.fragment.DashboardFragment;
@@ -104,6 +107,21 @@ public class MainActivity extends BaseActivity {
         initFragment();
         check(0);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        requestRuntimePermission(new String[]{
+                Manifest.permission.READ_PHONE_STATE,
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+        }, new PermissionListener() {
+            @Override
+            public void onGranted() {
+                //开始Service监听网络状态的变化，当网络有变化时发送广播通知
+                startService(new Intent(mContext, NetWorkService.class));
+            }
+
+            @Override
+            public void onDenied(List<String> deniedPermissions, List<String> unRationalePermissions) {
+
+            }
+        });
     }
 
     private void initFragment() {

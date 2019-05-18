@@ -19,12 +19,14 @@ import com.wyj.treasure.activity.RemoteViewWidgetActivity;
 import com.wyj.treasure.activity.VolumeAdjustmentActivity;
 import com.wyj.treasure.activity.itemtouch.RecyclerViewItemTouchActivity;
 import com.wyj.treasure.mode.ItemInfo;
+import com.wyj.youtube.YoutubeActivity;
 
 public class NotificationsFragment extends BaseCardViewFragment {
 
 
     @Override
     protected void processData() {
+        mData.add(new ItemInfo("Youtube缩放动效", YoutubeActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("设置闹钟", AlarmActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("Notification", NotificationActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("RemoteView 桌面小部件", RemoteViewWidgetActivity.class, R.mipmap.ic_launcher));

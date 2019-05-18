@@ -1,4 +1,4 @@
-package com.wyj.mvp.service;
+package com.wyj.live;
 
 
 import com.facebook.stetho.okhttp3.StethoInterceptor;
@@ -18,16 +18,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @date 2018/9/17.15:51
  * @describe
  */
-public class ZhiHuClient {
-    private static ApiService SERVICE;
+public class LiveClient {
+    private static LiveService SERVICE;
     /**
      * 请求超时时间
      */
     private static final int DEFAULT_TIMEOUT = 10000;
     //定义api路径
-    static String url = "http://news-at.zhihu.com/api/4/news/";
+    static String url = "http://api.hclyz.com:81/mf/";
 
-    public static ApiService getApi() {
+    public static LiveService getApi() {
         if (SERVICE == null) {
             SERVICE = new Retrofit.Builder()
                     //放路径 这里建议：- Base URL: 总是以/结尾；- @Url: 不要以/开头
@@ -36,7 +36,7 @@ public class ZhiHuClient {
                     //Gson解析
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(getOkHttpClient())
-                    .build().create(ApiService.class);
+                    .build().create(LiveService.class);
         }
         return SERVICE;
     }

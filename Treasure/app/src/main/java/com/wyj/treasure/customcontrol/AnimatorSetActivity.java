@@ -1,5 +1,7 @@
 package com.wyj.treasure.customcontrol;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.support.v7.widget.Toolbar;
@@ -156,7 +158,12 @@ public class AnimatorSetActivity extends BaseActivity {
         animatorSet.setStartDelay(2000);
         animatorSet.setDuration(2000);
         animatorSet.start();
-
+        animatorSet.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationCancel(Animator animation) {
+                super.onAnimationCancel(animation);
+            }
+        });
     }
 
     private void doPlayTogetherAnimator() {

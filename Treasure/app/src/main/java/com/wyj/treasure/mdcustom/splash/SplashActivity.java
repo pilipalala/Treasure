@@ -35,6 +35,11 @@ public class SplashActivity extends AppCompatActivity implements SplashView.OnAn
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //解决App首次安装后第一次切到后台再次进入重启问题
+        if (!isTaskRoot()) {
+            finish();
+            return;
+        }
         //无title
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         //全屏
