@@ -48,6 +48,7 @@ public class SlideLayout extends FrameLayout {
 
     /**
      * 当布局文件加载完成的时候回调这个方法
+     * 在setContentView之后、onMeasure之前调用的方法
      */
     @Override
     protected void onFinishInflate() {
