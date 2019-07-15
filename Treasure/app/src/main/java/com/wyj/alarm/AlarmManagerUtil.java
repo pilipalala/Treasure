@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Build;
 import android.util.Log;
 
+import com.wyj.treasure.utils.TimeUtils;
+
 import java.util.Calendar;
 
 /**
@@ -52,6 +54,10 @@ public class AlarmManagerUtil {
         AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Calendar calendar = Calendar.getInstance();
         long intervalMillis = 0;
+//        calendar.set(Calendar.HOUR_OF_DAY, mHours);
+//        calendar.set(Calendar.MINUTE, mMinutes);
+//        calendar.set(Calendar.SECOND, 0);
+//        calendar.add(Calendar.DATE, add);
         calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get
                 (Calendar.DAY_OF_MONTH), hour, minute, 0);
         if (flag == 0) {
@@ -64,7 +70,6 @@ public class AlarmManagerUtil {
         Log.e("AlarmManagerUtil", "AlarmManagerUtil_63-->flag: " + flag);
         Log.e("AlarmManagerUtil", "AlarmManagerUtil_63-->hour: " + hour + ":" + minute);
         Log.e("AlarmManagerUtil", "AlarmManagerUtil_63-->id: " + id);
-        Log.e("AlarmManagerUtil", "AlarmManagerUtil_63-->id: " + id);
         Log.e("AlarmManagerUtil", "AlarmManagerUtil_63-->week: " + week);
         Log.e("AlarmManagerUtil", "AlarmManagerUtil_63-->tips: " + tips);
         Log.e("AlarmManagerUtil", "AlarmManagerUtil_63-->soundOrVibrator: " + soundOrVibrator);
@@ -76,6 +81,8 @@ public class AlarmManagerUtil {
         PendingIntent sender = PendingIntent.getBroadcast(context, id, intent, PendingIntent
                 .FLAG_CANCEL_CURRENT);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            String s = TimeUtils.millis2String(calMethod(week, calendar.getTimeInMillis()) + intervalMillis);
+            Log.e("AlarmManagerUtil", "AlarmManagerUtil_82-->setAlarm: " + s);
             am.setExact(AlarmManager.RTC_WAKEUP,
                     calMethod(week, calendar.getTimeInMillis()) + intervalMillis,
                     sender);
