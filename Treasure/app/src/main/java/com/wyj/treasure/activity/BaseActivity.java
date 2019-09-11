@@ -70,7 +70,7 @@ public abstract class BaseActivity extends RxAppCompatActivity {
         super.onCreate(savedInstanceState);
         ActivityCollector.addActivity(this);
         if (isStartAnimation()) {
-            startAnimation();
+//            startAnimation();
         }
         mContext = this;
         if (getContentViewID() != EMPTY_VIEW) {

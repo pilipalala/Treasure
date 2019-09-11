@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.wyj.piestyle.PieStyleActivity">
+
+    <Button
+        style="@style/default_button_style"
+        android:onClick="style1"
+        android:text="仪表盘 1" />
+
+    <Button
+        style="@style/default_button_style"
+        android:onClick="style2"
+        android:text="仪表盘 2" />
+
+    <Button
+        style="@style/default_button_style"
+        android:onClick="style3"
+        android:text="仪表盘 3" />
+
+    <Button
+        style="@style/default_button_style"
+        android:onClick="pei1"
+        android:text="饼图 1" />
+
+    <Button
+        style="@style/default_button_style"
+        android:onClick="pei2"
+        android:text="饼图 2" />
+
+    <Button
+        style="@style/default_button_style"
+        android:onClick="pei3"
+        android:text="饼图 3" />
+
+
+</LinearLayout>

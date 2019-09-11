@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/blue_deep"
+        android:gravity="center_horizontal">
+
+        <com.wyj.piestyle.dashboard.DashboardView1
+            android:id="@+id/dv"
+            android:layout_width="250dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="20dp" />
+
+    </LinearLayout>
+
+    <include layout="@layout/include_set" />
+
+
+</LinearLayout>

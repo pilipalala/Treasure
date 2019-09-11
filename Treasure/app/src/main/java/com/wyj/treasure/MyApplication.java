@@ -95,7 +95,7 @@ public class MyApplication extends Application {
             builde.detectFileUriExposure();
         }
         // 全局监听Activity生命周期
-        registerActivityListener();
+//        registerActivityListener();
     }
 
 

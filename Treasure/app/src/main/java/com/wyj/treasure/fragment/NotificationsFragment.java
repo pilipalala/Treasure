@@ -12,6 +12,7 @@ import com.wyj.mvp.ui.activity.BusActivity;
 import com.wyj.mvp.ui.activity.RetrofitActivity;
 import com.wyj.mvp.ui.activity.ZhiHuDailyActivity;
 import com.wyj.notification.NotificationActivity;
+import com.wyj.piestyle.PieStyleActivity;
 import com.wyj.realm.RealmActivity;
 import com.wyj.setdetail.SettingDetailActivity;
 import com.wyj.treasure.R;
@@ -26,6 +27,7 @@ public class NotificationsFragment extends BaseCardViewFragment {
 
     @Override
     protected void processData() {
+        mData.add(new ItemInfo("仪表盘", PieStyleActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("Youtube缩放动效", YoutubeActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("设置闹钟", AlarmActivity.class, R.mipmap.ic_launcher));
         mData.add(new ItemInfo("Notification", NotificationActivity.class, R.mipmap.ic_launcher));

@@ -67,33 +67,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.wyj.live.LiveActivity"></activity>
+        <activity android:name="com.wyj.live.LiveActivity" />
         <activity android:name="com.wyj.youtube.YoutubeActivity" />
         <activity android:name=".TestActivity" />
-        <activity android:name=".activity.MainActivity"/>
+        <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.WelcomeActivity" />
-        <activity android:name=".mdcustom.splash.SplashActivity" >
+        <activity android:name=".mdcustom.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.HOME" />
             </intent-filter>
-        </activity>
-
-        <!--<activity-alias-->
-            <!--android:name=".MainAliasActivity"-->
-            <!--android:enabled="false"-->
-            <!--android:icon="@mipmap/git"-->
-            <!--android:label="treasure"-->
-            <!--android:targetActivity=".activity.MainActivity">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
-
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
-        <!--</activity-alias>-->
-
+        </activity> <!-- <activity-alias -->
+        <!-- android:name=".MainAliasActivity" -->
+        <!-- android:enabled="false" -->
+        <!-- android:icon="@mipmap/git" -->
+        <!-- android:label="treasure" -->
+        <!-- android:targetActivity=".activity.MainActivity"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.MAIN" /> -->
+        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+        <!-- </intent-filter> -->
+        <!-- </activity-alias> -->
         <receiver
             android:name=".receiver.NetworkChangeReceiver"
             android:enabled="true"
@@ -334,6 +330,14 @@
             android:name="com.wyj.network.NetWorkService"
             android:enabled="true"
             android:exported="true" />
+        <activity android:name="com.wyj.piestyle.PieStyleActivity"/>
+        <activity android:name="com.wyj.piestyle.PieStyle1Activity"/>
+        <activity android:name="com.wyj.piestyle.PieStyle2Activity"/>
+        <activity android:name="com.wyj.piestyle.PieStyle3Activity"/>
+        <activity android:name="com.wyj.piestyle.Style1Activity"/>
+        <activity android:name="com.wyj.piestyle.Style2Activity"/>
+        <activity android:name="com.wyj.piestyle.Style3Activity"/>
+
     </application>
 
 </manifest>

@@ -36,7 +36,6 @@ public class RxJavaActivity extends BaseActivity {
     RxApi rxApi = RetrofitProvider.get().create(RxApi.class);
 
     public void RxJavaForLogin() {
-
         rxApi.login(new LoginRequest())
                 .subscribeOn(Schedulers.io())//在IO线程进行网络请求
                 .observeOn(AndroidSchedulers.mainThread())//回到主线程去处理请求结果
