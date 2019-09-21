@@ -8,7 +8,8 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 
-import com.sumsoar.baselibrary.util.DisplayUtil;
+
+import com.wyj.treasure.utils.DensityUtil;
 
 import java.lang.ref.WeakReference;
 
@@ -46,7 +47,7 @@ public class AutoPollPositionRecyclerView  extends RecyclerView{
             AutoPollPositionRecyclerView recyclerView = mReference.get();
             if (recyclerView != null && recyclerView.running && recyclerView.canRun) {
                 LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
-                int offsetY = -DisplayUtil.dp2px(recyclerView.getContext(), 0);
+                int offsetY = -DensityUtil.dip2px(0);
                 layoutManager.scrollToPositionWithOffset(++position, offsetY);
                 recyclerView.postDelayed(recyclerView.autoPollTask, TIME_AUTO_POLL);
             }

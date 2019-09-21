@@ -1,6 +1,5 @@
 package com.wyj.treasure.utils;
 
-import android.content.Context;
 import android.util.TypedValue;
 
 import com.wyj.treasure.MyApplication;

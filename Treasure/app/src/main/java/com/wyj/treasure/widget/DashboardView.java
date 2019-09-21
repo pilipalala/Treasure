@@ -16,7 +16,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
-import com.orhanobut.logger.Logger;
+
+import com.wyj.treasure.utils.LogUtil;
 
 import java.math.BigDecimal;
 
@@ -198,7 +199,7 @@ public class DashboardView extends View {
         //半径
         mRadius = Math.min(mWidth, mHeight) / 2;
 
-        Logger.d("mWidth:" + mWidth + ",mHeight:" + mHeight + ",mRadius:" + mRadius);
+        LogUtil.d("mWidth:" + mWidth + ",mHeight:" + mHeight + ",mRadius:" + mRadius);
         //初始化圆环
         initArcRect(mPadding, mPadding, mWidth - mPadding, mWidth - mPadding);
     }

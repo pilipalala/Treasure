@@ -22,6 +22,8 @@
     返回的特定于应用程序的目录中的文件不需要此权限。
     -->
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+<!--    <uses-permission android:name="android.permission.SET_ALARM" />-->
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
     <!--
     允许应用程序读取或写入系统设置。 Protection level: signature
     应用程序通过发送具有操作Settings.ACTION_MANAGE_WRITE_SETTINGS的意图来请求用户的批准。
@@ -330,13 +332,14 @@
             android:name="com.wyj.network.NetWorkService"
             android:enabled="true"
             android:exported="true" />
-        <activity android:name="com.wyj.piestyle.PieStyleActivity"/>
-        <activity android:name="com.wyj.piestyle.PieStyle1Activity"/>
-        <activity android:name="com.wyj.piestyle.PieStyle2Activity"/>
-        <activity android:name="com.wyj.piestyle.PieStyle3Activity"/>
-        <activity android:name="com.wyj.piestyle.Style1Activity"/>
-        <activity android:name="com.wyj.piestyle.Style2Activity"/>
-        <activity android:name="com.wyj.piestyle.Style3Activity"/>
+
+        <activity android:name="com.wyj.piestyle.PieStyleActivity" />
+        <activity android:name="com.wyj.piestyle.PieStyle1Activity" />
+        <activity android:name="com.wyj.piestyle.PieStyle2Activity" />
+        <activity android:name="com.wyj.piestyle.PieStyle3Activity" />
+        <activity android:name="com.wyj.piestyle.Style1Activity" />
+        <activity android:name="com.wyj.piestyle.Style2Activity" />
+        <activity android:name="com.wyj.piestyle.Style3Activity" />
 
     </application>
 

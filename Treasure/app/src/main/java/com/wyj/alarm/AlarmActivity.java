@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.PowerManager;
 import android.os.Vibrator;
+import android.provider.AlarmClock;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.View;
@@ -24,15 +25,24 @@ import com.bigkoo.pickerview.view.TimePickerView;
 import com.wyj.treasure.R;
 import com.wyj.treasure.activity.BaseActivity;
 import com.wyj.treasure.utils.CommonUtils;
+import com.wyj.treasure.utils.LogUtil;
 import com.wyj.treasure.utils.ToastUtil;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
+/**
+ * @author wangyujie
+ * @date 2019/9/21.16:59
+ * https://blog.csdn.net/u010215167/article/details/87278174
+ * @describe 如果通过android系统中的AlarmManager设置闹钟。因为通过AlarmManager设置闹钟，需要考虑到国内厂商对于android系统的定制化，应用进程很难常驻，加上当进程被kill的时候，或是手机关机的时候，用户在应用中设置的闹钟往往无法及时触达用户，影响功能的正常使用。
+ * 如果是往手机自带的系统闹钟应用中设置闹钟，是一个不错的选择，这样就能够保证提醒的及时性。
+ */
 public class AlarmActivity extends BaseActivity {
 
     private static final String TAG = "AlarmActivity";
@@ -154,22 +164,81 @@ public class AlarmActivity extends BaseActivity {
                 break;
             case R.id.btn_alarm_sure:
                 if (!TextUtils.isEmpty(mSelectTime)) {
+//                    setNormalAlarm();
                     String[] times = mSelectTime.split(":");
-                    if (mWhich == 0) {//只响一次
-                        AlarmManagerUtil.setAlarm(this, mWhich, Integer.parseInt(times[0]), Integer.parseInt
-                                (times[1]), 0, 0, "只响一次的闹钟", mRemindPosition);
+                    createAlarm("messager", Integer.parseInt(times[0]), Integer.parseInt(times[1]), 0);
 
-                    } else if (mWhich == 1) {//每天都响
-                        AlarmManagerUtil.setAlarm(this, mWhich, Integer.parseInt(times[0]), Integer.parseInt
-                                (times[1]), 0, 0, "每天都响的闹钟~~~", mRemindPosition);
-                    } else {
-                        AlarmManagerUtil.setAlarm(this, 2, Integer.parseInt(times[0]), Integer
-                                .parseInt(times[1]), 0, (mWhich - 1), "重复闹钟响了", mRemindPosition);
-                    }
-                    ToastUtil.show("设置成功");
                 }
                 break;
         }
+    }
+
+    /**
+     * @param message
+     * @param hour
+     * @param minutes
+     * @param resId   音乐文件
+     */
+    private void createAlarm(String message, int hour, int minutes, int resId) {
+        if (Build.VERSION.SDK_INT < 9) {
+            return;
+        }
+
+        LogUtil.d(message + "---" + hour + "---" + minutes);
+        ArrayList<Integer> testDays = new ArrayList<>();
+        testDays.add(Calendar.MONDAY);//周一
+        testDays.add(Calendar.TUESDAY);//周二
+        testDays.add(Calendar.WEDNESDAY);//周三
+        testDays.add(Calendar.THURSDAY);//周五
+        testDays.add(Calendar.FRIDAY);//周五
+        testDays.add(Calendar.SATURDAY);//周六
+        testDays.add(Calendar.SUNDAY);//周日
+
+        String packageName = getApplication().getPackageName();
+//        Uri ringtoneUri = Uri.parse("android.resource://" + packageName + "/" + resId);
+        //action为AlarmClock.ACTION_SET_ALARM
+        Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM)
+                //闹钟的小时
+                .putExtra(AlarmClock.EXTRA_HOUR, hour)
+                //闹钟的分钟
+                .putExtra(AlarmClock.EXTRA_MINUTES, minutes)
+                //响铃时提示的信息
+                .putExtra(AlarmClock.EXTRA_MESSAGE, message)
+                //一个 content: URI，用于指定闹铃使用的铃声，也可指定 VALUE_RINGTONE_SILENT 以不使用铃声。
+                //如需使用默认铃声，则无需指定此 extra。
+//                .putExtra(AlarmClock.EXTRA_RINGTONE, ringtoneUri)
+                //一个 ArrayList，其中包括应重复触发该闹铃的每个周日。
+                // 每一天都必须使用 Calendar 类中的某个整型值（如 MONDAY）进行声明。
+                //对于一次性闹铃，无需指定此 extra
+                .putExtra(AlarmClock.EXTRA_DAYS, testDays);
+        //如果为true，则调用startActivity()不会进入手机的闹钟设置界面
+        if (Build.VERSION.SDK_INT >= 11) {
+            intent.putExtra(AlarmClock.EXTRA_SKIP_UI, true);
+        }
+        //用于指定该闹铃触发时是否振动
+        if (Build.VERSION.SDK_INT >= 19) {
+            intent.putExtra(AlarmClock.EXTRA_VIBRATE, true);
+        }
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+            ToastUtil.show("设置成功");
+        }
+    }
+
+    private void setNormalAlarm() {
+        String[] times = mSelectTime.split(":");
+        if (mWhich == 0) {//只响一次
+            AlarmManagerUtil.setAlarm(this, mWhich, Integer.parseInt(times[0]), Integer.parseInt
+                    (times[1]), 0, 0, "只响一次的闹钟", mRemindPosition);
+
+        } else if (mWhich == 1) {//每天都响
+            AlarmManagerUtil.setAlarm(this, mWhich, Integer.parseInt(times[0]), Integer.parseInt
+                    (times[1]), 0, 0, "每天都响的闹钟~~~", mRemindPosition);
+        } else {
+            AlarmManagerUtil.setAlarm(this, 2, Integer.parseInt(times[0]), Integer
+                    .parseInt(times[1]), 0, (mWhich - 1), "重复闹钟响了", mRemindPosition);
+        }
+        ToastUtil.show("设置成功");
     }
 
     private final int SING_CHOICE_DIALOG = 0;
